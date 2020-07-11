@@ -63,12 +63,9 @@ public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, GameObj
         }catch(Exception e){}
 
         holder.setText(R.id.tv_game_object_name, Html.fromHtml(str)).setViewVisible(R.id.tv_game_object_name, str == null ? View.GONE : View.VISIBLE);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(iGameObjectCallBack!=null){
-                    iGameObjectCallBack.onClick(holder.itemView,obj);
-                }
+        holder.itemView.setOnClickListener(view ->{
+            if(iGameObjectCallBack!=null){
+                iGameObjectCallBack.onClick(holder.itemView,obj);
             }
         });
     }

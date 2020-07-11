@@ -14,10 +14,15 @@ import com.ez.utils.BObject;
 import com.eztv.mud.R;
 import com.eztv.mud.bean.Chat;
 import com.eztv.mud.bean.Enum;
+import com.eztv.mud.recycleview.callback.IChatCallBack;
 
 import java.util.List;
 
+import static com.eztv.mud.Constant.player;
+import static com.eztv.mud.controller.MessageController.doTalk;
+
 public class GameChatAdapter extends BaseAdapterRvList<BaseViewHolder, Chat> {
+    IChatCallBack iChatCallBack;
     public GameChatAdapter(@NonNull Activity activity, List<Chat> list) {
         super(activity, list);
     }
@@ -28,10 +33,10 @@ public class GameChatAdapter extends BaseAdapterRvList<BaseViewHolder, Chat> {
         if(BObject.isNotEmpty(chat))
         switch (chat.getMsgType()){
             case 公聊:
-                str+="<font color=\"#FFD700\">【公聊】</font><u>"+chat.getPlayer().getName()+"</u>:";
+                str+="<font color=\"#FFD700\">【公聊】</font><u>"+chat.getFromName()+"</u>:";
                 break;
             case 私聊:
-                str+="<font color=\"#C71585\">【私聊】</font>";
+                str+="<font color=\"#C71585\">【私聊】</font><u>"+(chat.getFrom().equals(player.getKey())?"我":chat.getFromName())+"</u>:";
                 break;
             case 系统:
                 str+="<font color=\"#DC143C\">【系统】</font>";
@@ -40,7 +45,15 @@ public class GameChatAdapter extends BaseAdapterRvList<BaseViewHolder, Chat> {
         }
         str+=chat.getContent();
         holder.setText(R.id.tv_chat_content, Html.fromHtml(str)).setViewVisible(R.id.tv_chat_content, str == null ? View.GONE : View.VISIBLE);
+        holder.itemView.setOnClickListener(view -> {
+            if(BObject.isNotEmpty(chat.getFrom()))
+                doTalk(chat.getFrom());
+            if(iChatCallBack!=null){
+                iChatCallBack.onClick(holder.itemView,chat);
+            }
+        });
     }
+
     @NonNull
     @Override
     protected BaseViewHolder onCreateVH(ViewGroup parent, LayoutInflater inflater) {
@@ -50,5 +63,9 @@ public class GameChatAdapter extends BaseAdapterRvList<BaseViewHolder, Chat> {
     public void addChat(Chat chat){
         mList.add(chat);
         notifyItemInserted(mList.size());
+    }
+
+    public void setChatCallBack(IChatCallBack iChatCallBack) {
+        this.iChatCallBack = iChatCallBack;
     }
 }

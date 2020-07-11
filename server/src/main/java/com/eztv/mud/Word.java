@@ -71,15 +71,18 @@ public class Word {
             try {
                 Attribute attribute = new Attribute();
                 if (npc.getScript().length() > 0) {
-                    npcScript.put(npc.getId() + "", globals.loadfile(NPC_PATH + npc.getScript() + ".lua"));
+                    npc.setScript(NPC_PATH + npc.getScript());
+                    npcScript.put(npc.getId() + "", globals.loadfile(npc.getScript() + ".lua"));
                     globals.load(npcScript.get(npc.getId() + ""));
                     attribute = JSONObject.toJavaObject(jsonStr2Json(globals.get(LuaValue.valueOf("init")).invoke().toString()), Attribute.class);
                     npc.setAttribute(attribute);
                 }
                 final Attribute baseAttribute = attribute;
+
                 for (int i = 0; i < npc.getNum(); i++) {//实例NPC
                     Npc m = (Npc) npc.clone();
                     m.setAttribute((Attribute) baseAttribute.clone());
+                    m.setScript(npc.getScript());
                     m.setKey(BDate.getNowMills() + i + "");
                     if (m.getRefreshment() > 0) {
                         m.setiGameObject((client) -> new Thread(new Runnable() {//NPC复活回调
@@ -90,6 +93,7 @@ public class Word {
                                     Thread.sleep(m.getRefreshment());
                                     addM = (Npc) m.clone();
                                     addM.setAttribute((Attribute) baseAttribute.clone());
+                                    addM.setScript(npc.getScript());
                                     addM.setKey(BDate.getNowMills() + "");
                                     Rooms.get(m.getMap() + "").add(addM);
                                     for (Client item : clients) {//发送房间东西新增
@@ -128,23 +132,18 @@ public class Word {
                 Attribute attribute = new Attribute();
                 //List<Choice> choice = new ArrayList<>();
                 if (monster.getScript().length() > 0) {//模板
-                    monsterScript.put(monster.getId() + "", globals.loadfile(Monster_PATH + monster.getScript() + ".lua"));
+                    monster.setScript(Monster_PATH + monster.getScript());
+                    monsterScript.put(monster.getId() + "", globals.loadfile( monster.getScript()+ ".lua"));
                     globals.load(monsterScript.get(monster.getId() + ""));
                     attribute = JSONObject.toJavaObject(jsonStr2Json(globals.get(LuaValue.valueOf("init")).invoke().toString()), Attribute.class);
                     monster.setAttribute(attribute);
-//                    for (Object c:JSONObject.toJavaObject(jsonStr2JsonArr(globals.get(LuaValue.valueOf("choice")).invoke().toString()), List.class) ) {
-//                        Choice co = JSONObject.toJavaObject(JSONObject.parseObject(JSONObject.toJSON(c).toString()), Choice.class);
-//                        choice.add(co);
-//                    }
-//                    monster.setChoice(choice);
                 }
                 final Attribute baseAttribute = attribute;
-               // final List<Choice> baseChoice = choice;
                 for (int i = 0; i < monster.getNum(); i++) {//实例化怪物
                     Monster m = (Monster) monster.clone();
                     m.setAttribute((Attribute) baseAttribute.clone());
-                    //m.setChoice(baseChoice);
                     m.setKey(BDate.getNowMills() + i + "m");
+                    m.setScript(monster.getScript());
                     if (m.getRefreshment() > 0) {
                         m.setiGameObject((client) -> new Thread(new Runnable() {//怪物复活回调
                             @Override
@@ -154,7 +153,7 @@ public class Word {
                                     Thread.sleep(m.getRefreshment());
                                     addM = (Monster) m.clone();
                                     addM.setAttribute((Attribute) baseAttribute.clone());
-                                   // addM.setChoice(baseChoice);
+                                    addM.setScript(monster.getScript());
                                     addM.setKey(BDate.getNowMills() + "m");
                                     Rooms.get(m.getMap() + "").add(addM);
                                     for (Client item : clients) {//发送房间东西新增
@@ -206,6 +205,10 @@ public class Word {
 
     public HashMap<String, Attribute> getBaseAttributes() {
         return baseAttributes;
+    }
+
+    public HashMap<String, LuaValue> getMonsterScript() {
+        return monsterScript;
     }
 
     public String getGG() {

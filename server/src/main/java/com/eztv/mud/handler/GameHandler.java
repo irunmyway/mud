@@ -13,6 +13,7 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.handler.core.Battle;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
+import org.luaj.vm2.LuaValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.GameUtil.getGameObject;
 import static com.eztv.mud.bean.Cmd.*;
 
 public class GameHandler {
@@ -90,13 +92,35 @@ public class GameHandler {
         getMapDetail(client);
     }
 
+    public static void doChatWin(Client client, Msg msg) {//发送聊天窗口
+        WinMessage winMsg = new WinMessage();
+        List<Choice> choice = new ArrayList<>();
+        winMsg.setDesc(msg.getRole());
+        choice.add(Choice.createChoice("发送", messageType.chat,msg.getCmd(), msg.getMsg()));
+        winMsg.setChoice(choice);
+        GameObject gameObject = GameUtil.getGameObject(client,msg.getRole());
+        String name ="";//发给谁
+        if(gameObject!=null)name = gameObject.getName();
+        //聊天窗口 对方id  对方名字
+        client.sendMsg(msgBuild(messageType.input, chat,object2JsonStr(winMsg),msg.getRole(),name).getBytes());
+    }
 
-
-    public static void doChat(Client client, Msg msg) {
+    public static void doChat(Client client, Msg msg) {//发送聊天内容
         Chat chat = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), Chat.class);
-        for (Client item: clients) {
-            item.sendMsg(msgBuild(messageType.chat, "chat",object2JsonStr(chat),"").getBytes());
+        switch (msg.getCmd()){
+            case "公聊":
+                for (Client item: clients) {
+                    item.sendMsg(msgBuild(messageType.chat, msg.getCmd(),object2JsonStr(chat),"").getBytes());
+                }
+                break;
+            case "私聊":
+                for (Client item: clients) {
+                    if(item.getPlayer().getKey().equals(msg.getRole())||item.equals(client))
+                    item.sendMsg(msgBuild(messageType.chat, msg.getCmd(),object2JsonStr(chat),"").getBytes());
+                }
+                break;
         }
+
     }
     //获取玩家属性
     public static void getAttribute(Client client) {
@@ -104,12 +128,10 @@ public class GameHandler {
     }
 
     //玩家攻击
-    public static void doAttack(Client client,Msg msg) {
+    public static void doAttack(Client client,Msg msg) {//重写。。。。获取所有列表从里头拿
         AttackPack attackPack = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), AttackPack.class);
-        if(attackPack.getTargetType()==gameObjectType.monster){
-            GameObject obj = getGameObject(gameObjectType.monster,Word.getInstance().getRooms().get(getCurRoomId(client)).getMonsterList(),attackPack.getTarget());
-            client.getPlayer().setBattle(client,client.getPlayer(),obj,attackPack.getTarget());
-        }
+        GameObject gameObject=getGameObject(client,attackPack.getTarget());
+        client.getPlayer().setBattle(client,client.getPlayer(),gameObject,attackPack.getTarget());
     }
 
 
@@ -119,26 +141,20 @@ public class GameHandler {
     }
 
     public static void doTalk(Client client, Msg msg) {
-        GameObject gameObject=null;
         WinMessage winMsg = new WinMessage();
-        List<GameObject> list = new ArrayList<>();
-        list.addAll(getCurRoom(client).getMonsterList());
-        list.addAll(getCurRoom(client).getNpcList());
-        list.addAll(getCurRoom(client).getPlayerList());
-        for (GameObject o:list) {
-            if(o.getKey().equals(msg.getMsg())){
-                gameObject = o;
-                break;
-            }
-        }
+        GameObject gameObject=getGameObject(client,msg.getMsg());
         if(gameObject==null)return;
         List<Choice> choice = new ArrayList<>();
         if(gameObject instanceof Player){//是玩家
-            choice.add(Choice.createChoice("对话", "chat", ""));
+            choice.add(Choice.createChoice("私聊", messageType.input,"私聊", gameObject.getKey()));
             winMsg.setChoice(choice);
             winMsg.setDesc(((Player) gameObject).getName()+"</p><br>&emsp;"+"这是一位凶神恶煞的玩家");
         }else{
-            choice.add(Choice.createChoice("攻击", "attack", ""));
+            client.getScriptExecutor().loadfile(gameObject.getScript() + ".lua").call();
+            for (Object c:JSONObject.toJavaObject(jsonStr2JsonArr(client.getScriptExecutor().get(LuaValue.valueOf("choice")).invoke().toString()), List.class) ) {
+                Choice co = JSONObject.toJavaObject(JSONObject.parseObject(JSONObject.toJSON(c).toString()), Choice.class);
+                choice.add(co);
+            }
             winMsg.setChoice(choice);
             winMsg.setDesc(gameObject.getName()+"</p><br>&emsp;"+(gameObject.getDesc()==null?"":gameObject.getDesc()));
         }

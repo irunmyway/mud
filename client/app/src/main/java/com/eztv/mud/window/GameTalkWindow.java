@@ -18,6 +18,7 @@ import com.eztv.mud.bean.Item;
 import com.eztv.mud.bean.Monster;
 import com.eztv.mud.bean.Npc;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.controller.MessageController;
 import com.eztv.mud.handler.activity.GameHandle;
 import com.eztv.mud.recycleview.RvUtil;
@@ -28,6 +29,9 @@ import com.eztv.mud.window.callback.IChatWindow;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.eztv.mud.controller.MessageController.send;
+import static com.eztv.mud.util.Util.msgBuild;
 
 public class GameTalkWindow extends BaseWindow implements IButtonCallBack {
     private View talkView;
@@ -57,13 +61,13 @@ public class GameTalkWindow extends BaseWindow implements IButtonCallBack {
         super.setViewAndTarget(talkView,target);
         return this;
     }
-    public void setList(List<Choice> choices){
-        rv_answer.setLayoutManager(RvUtil.getGridLayoutManager(activity,3));
+    public GameTalkWindow setList(List<Choice> choices,WinMessage winMessage){
+        rv_answer.setLayoutManager(RvUtil.getGridLayoutManager(activity,winMessage.getCol()));
         if(choices==null)choices = new ArrayList<>();
         gameButtonAdapter = new GameButtonAdapter(activity,choices,key);
         gameButtonAdapter.setButtonCallBack(this::onClick);
         rv_answer.setAdapter(gameButtonAdapter);
-
+        return this;
     }
 
     @Override
@@ -72,7 +76,9 @@ public class GameTalkWindow extends BaseWindow implements IButtonCallBack {
             case "attack"://攻击
                 MessageController.doAttack(Enum.gameObjectType.monster,key);
                 break;
+                default:send(msgBuild(choice.getType(), choice.getCmd(),choice.getMsg(),key));
         }
         super.popupWindow.dismiss();
     }
+
 }

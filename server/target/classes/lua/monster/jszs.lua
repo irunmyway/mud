@@ -15,14 +15,16 @@ end
 
 function choice()--基础功能
 local util = luajava.newInstance("com.eztv.mud.bean.BeanUtil")
-util:getChoice():add(createChoice("攻击","attack",""));
+local Enum = luajava.newInstance("com.eztv.mud.bean.Enum")
+util:getChoice():add(createChoice("攻击",Enum.messageType.normal,"attack",""));
 return gameUtil:objectArr2JsonStr(util:getChoice());
 end
 
-function createChoice(name,cmd,msg)--创建选项
+function createChoice(name,type,cmd,msg)--创建选项
 local choiceRet = luajava.newInstance("com.eztv.mud.bean.Choice")
 choiceRet:setName(name);
 choiceRet:setCmd(cmd);
 choiceRet:setMsg(msg);
+choiceRet:setType(type);
 return choiceRet;
 end

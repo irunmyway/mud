@@ -102,9 +102,23 @@ public class Server implements SocketServerCallback {
                         break;
                 }
                 break;
-            case "chat"://指令
+            case "input"://发送请求输入框
                 msg =  JSONObject.toJavaObject(json,Msg.class);
-                GameHandler.doChat(client,msg);
+                switch (msg.getCmd()){
+                    case "私聊":
+                    case "公聊":
+                        GameHandler.doChatWin(client,msg);
+                        break;
+                }
+                break;
+            case "chat"://发送聊天内容
+                msg =  JSONObject.toJavaObject(json,Msg.class);
+                switch (msg.getCmd()) {
+                    case "私聊":
+                    case "公聊":
+                        GameHandler.doChat(client, msg);
+                        break;
+                }
             break;
         }
     }

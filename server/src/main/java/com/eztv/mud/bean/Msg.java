@@ -2,8 +2,8 @@ package com.eztv.mud.bean;
 
 public class Msg
 {
-    String cmd;//指令
-    String msg;//消息
+    String cmd;//鎸囦护
+    String msg;//娑堟伅
     String name;
     Enum.messageType type = Enum.messageType.normal;
     String role;

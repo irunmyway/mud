@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.Enum;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
@@ -29,6 +30,17 @@ public class GameUtil {
         msg.setMsg(msgstr);
         msg.setRole(role);
         msg.setType(type);
+        return object2JsonStr(msg);
+    }
+
+    //Msg消息流生成器
+    public static String msgBuild(Enum.messageType type, String cmd, String msgstr, String role,String name) {
+        Msg msg = new Msg();
+        msg.setCmd(cmd);
+        msg.setMsg(msgstr);
+        msg.setRole(role);
+        msg.setType(type);
+        msg.setName(name);
         return object2JsonStr(msg);
     }
 
@@ -61,12 +73,18 @@ public class GameUtil {
     }
 
     //查找游戏元素
-    public static GameObject getGameObject(Enum.gameObjectType gameObjectType,Object list, String key) {
-        if(gameObjectType == Enum.gameObjectType.monster){
-            for (Monster monster : ((List<Monster>)list)) {
-                if (monster.getKey().equals(key))return monster;
+    public static GameObject getGameObject(Client client, String key) {
+        GameObject gameObject=null;
+        List<GameObject> list = new ArrayList<>();
+        list.addAll(getCurRoom(client).getMonsterList());
+        list.addAll(getCurRoom(client).getNpcList());
+        list.addAll(getCurRoom(client).getPlayerList());
+        for (GameObject o:list) {
+            if(o.getKey().equals(key)){
+                gameObject = o;
+                break;
             }
         }
-        return null;
+        return gameObject;
     }
 }

@@ -28,6 +28,7 @@ public abstract class GameObject{
     private Attribute attribute;//属性
     private String desc;//实体介绍说明
     private com.eztv.mud.bean.callback.IGameObject iGameObject;//死亡监听
+    private String script;//绑定的游戏脚本
     //攻击命令
     public GameObject Attack(GameObject gameObject,Client client) {
         AttackPack ap = new AttackPack();
@@ -130,6 +131,14 @@ public abstract class GameObject{
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getScript() {
+        return script;
+    }
+
+    public void setScript(String script) {
+        this.script = script;
     }
 }
 

@@ -12,6 +12,7 @@ import com.ez.adapters.adapter.BaseAdapterRvList;
 import com.ez.adapters.base.BaseViewHolder;
 import com.eztv.mud.R;
 import com.eztv.mud.bean.Choice;
+import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.Item;
 import com.eztv.mud.bean.net.Player;
@@ -19,6 +20,11 @@ import com.eztv.mud.recycleview.callback.IButtonCallBack;
 import com.eztv.mud.recycleview.callback.IGameObjectCallBack;
 
 import java.util.List;
+
+import static com.eztv.mud.bean.Cmd.doChat;
+import static com.eztv.mud.controller.MessageController.send;
+import static com.eztv.mud.util.Util.msgBuild;
+import static com.eztv.mud.util.Util.object2JsonStr;
 
 public class GameButtonAdapter extends BaseAdapterRvList<BaseViewHolder, Choice> {
     String key;

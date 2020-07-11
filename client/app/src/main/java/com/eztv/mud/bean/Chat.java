@@ -6,16 +6,20 @@ public class Chat {
     private Enum.chat msgType=Enum.chat.公聊;
     private String content=""; //内容
 
-    private Player player;//谁说话
-    private Player target;//对谁说
+    private String from;//谁说话
+    private String fromName;//谁说话
+    private String to;//对谁说
+    private String toNmae;//对谁说
     private Item item; //后期可用来展示
 
     public Chat() {
     }
 
-    public Chat(Enum.chat msgType, String content) {
+    public Chat(Enum.chat msgType, String from,String fromName,String content) {
         this.msgType = msgType;
         this.content = content;
+        this.from = from;
+        this.fromName = fromName;
     }
 
     public Enum.chat getMsgType() {
@@ -34,20 +38,37 @@ public class Chat {
         this.content = content;
     }
 
-    public Player getPlayer() {
-        return player;
+
+    public String getFrom() {
+        return from;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public Player getTarget() {
-        return target;
+    public String getFromName() {
+        return fromName;
     }
 
-    public void setTarget(Player target) {
-        this.target = target;
+    public void setFromName(String fromName) {
+        this.fromName = fromName;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getToNmae() {
+        return toNmae;
+    }
+
+    public void setToNmae(String toNmae) {
+        this.toNmae = toNmae;
     }
 
     public Item getItem() {

@@ -1,9 +1,11 @@
 package com.eztv.mud.bean;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Choice implements Cloneable{
+    private Enum.messageType type;
     private String name;
     private String cmd;
     private String msg;
@@ -12,11 +14,12 @@ public class Choice implements Cloneable{
         return name;
     }
 
-    public static Choice createChoice(String name,String cmd,String msg){
+    public static Choice createChoice(String name,Enum.messageType type, String cmd, String msg){
         Choice c = new Choice();
         c.setName(name);
         c.setCmd(cmd);
         c.setMsg(msg);
+        c.setType(type);
         return c;
     }
 
@@ -38,6 +41,14 @@ public class Choice implements Cloneable{
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public Enum.messageType getType() {
+        return type;
+    }
+
+    public void setType(Enum.messageType type) {
+        this.type = type;
     }
 
     @Override

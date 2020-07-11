@@ -31,7 +31,6 @@ import com.eztv.mud.bean.Chat;
 import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.Enum.*;
 import com.eztv.mud.bean.GameObject;
-import com.eztv.mud.bean.Item;
 import com.eztv.mud.bean.Monster;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.Npc;
@@ -40,7 +39,6 @@ import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.RoomDetail;
 import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.controller.MessageController;
-import com.eztv.mud.handler.activity.GameHandle;
 import com.eztv.mud.recycleview.adapter.GameChatAdapter;
 import com.eztv.mud.recycleview.adapter.GameObjectAdapter;
 import com.eztv.mud.recycleview.callback.IGameObjectCallBack;
@@ -48,7 +46,7 @@ import com.eztv.mud.util.BAutoSize;
 import com.eztv.mud.util.Util;
 import com.eztv.mud.util.callback.IAnimatorListener;
 import com.eztv.mud.window.GameBagWindow;
-import com.eztv.mud.window.GameChatWindow;
+import com.eztv.mud.window.GameInputWindow;
 import com.eztv.mud.window.GameTalkWindow;
 import com.eztv.mud.window.callback.IChatWindow;
 
@@ -60,7 +58,6 @@ import java.util.List;
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.bean.Cmd.*;
 import static com.eztv.mud.bean.Cmd.getAttribute;
-import static com.eztv.mud.bean.Enum.*;
 import static com.eztv.mud.bean.Enum.chat.公聊;
 import static com.eztv.mud.controller.MessageController.*;
 import static com.eztv.mud.recycleview.RvUtil.getGridLayoutManager;
@@ -105,10 +102,18 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                 case doTalk://玩家战斗总结
                                         onTalk(msg);
                                     break;
+
+
+
                             }
                         break;
                         case chat:
-                            getChat(msg);
+                            switch (msg.getCmd()){//收到聊天内容
+                                case "公聊":
+                                case "私聊":
+                                    getChat(msg);
+                                    break;
+                            }
                         break;
                         case normal:
                             switch (msg.getCmd()){
@@ -122,6 +127,13 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                     getGG(msg);
                                     break;
 
+                            }
+                            break;
+                        case input://请求输入框
+                            switch (msg.getCmd()){
+                                case "chat":
+                                    onChatWin(msg);
+                                    break;
                             }
                             break;
                     }
@@ -208,16 +220,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         btn_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new GameChatWindow().setContent("发送公聊").setSendListener(new IChatWindow() {
-                    @Override
-                    public void onSend(String str, PopupWindow window) {//聊天发送后的处理模块
-                        if(str.length()<1)return;
-                        Chat chat = new Chat(公聊,str);
-                        chat.setPlayer(player);
-                        doChat(chat);
-                        window.dismiss();
-                    }
-                }).build(mActivity,getContentView(mActivity)).showBySimpleSize(mActivity);
+                send(msgBuild(messageType.input, "公聊",player.getKey(),"公聊"));
             }
         });
 
@@ -379,13 +382,11 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         }
         gameObjectAdapter.getList().add(obj);
         gameObjectAdapter.notifyItemInserted(gameObjectAdapter.getList().size());
-        //gameObjectAdapter.notifyItemRangeChanged(gameObjectAdapter.getList().size(),gameObjectAdapter.getList().size() - gameObjectAdapter.getList().size());
-        gameObjectAdapter.notifyDataSetChanged();
+        gameObjectAdapter.notifyItemRangeChanged(gameObjectAdapter.getList().size(),gameObjectAdapter.getList().size() - gameObjectAdapter.getList().size());
     }
     private void onObjectOutRoom(Msg msg) {
         GameObject obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),GameObject.class);
         gameObjectAdapter.remove(obj);
-        gameObjectAdapter.notifyDataSetChanged();
     }
     private void onAtackResponse(Msg msg) {
         boolean isIAttack=true;//是由主角发起的
@@ -516,14 +517,18 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         rv_chat.smoothScrollToPosition(gameChatAdapter.size());
     }
 
-    private void onTalk(Msg msg) {//获取服务器发送过来的公告
+    private void onTalk(Msg msg) {//弹出对话框
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
         GameTalkWindow win = new GameTalkWindow();
         win.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),msg.getRole());
+        win.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);;
+    }
 
-        win.setList(winMessage.getChoice());
-        win.showBySimpleSize(mActivity);
-
+    private void onChatWin(Msg msg) {//弹出聊天输入框
+        WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
+        GameInputWindow inputWin =  new GameInputWindow();
+        inputWin.build(mActivity,getContentView(mActivity),msg.getRole(),msg.getName());
+        inputWin.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);
     }
 
 }
