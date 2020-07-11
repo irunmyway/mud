@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/socket/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/socket/SocketServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/utils/BArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/utils/BArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/socket/SocketServer$HandlerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/socket/SocketServer$HandlerThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/utils/BArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/utils/BArray.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/com.eztv.mud-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-com.eztv.mud-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-com.eztv.mud-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../易语言测试/1.bak" beforeDir="false" afterPath="$PROJECT_DIR$/../易语言测试/1.bak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../易语言测试/1.e" beforeDir="false" afterPath="$PROJECT_DIR$/../易语言测试/1.e" afterDir="false" />
     </list>
@@ -211,7 +200,7 @@
       <workItem from="1594345186148" duration="19666000" />
       <workItem from="1594386045247" duration="4894000" />
       <workItem from="1594393276341" duration="660000" />
-      <workItem from="1594427450515" duration="4190000" />
+      <workItem from="1594427450515" duration="4740000" />
     </task>
     <servers />
   </component>

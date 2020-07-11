@@ -173,7 +173,7 @@ public class SocketServer extends Thread {
                                 if(byteArrayToInt(head,HEAD_LENGTH)<1){//还没有读取到包头
                                     int tmpLen = 0;
                                     try {
-                                        tmpLen  = in.read(b,0,2);
+                                        tmpLen  = in.read(b,0,HEAD_LENGTH);
                                     }catch (Exception e){break;}
                                     if(tmpLen>0){
                                         arraycopy(b, 0, head, 0, HEAD_LENGTH);
