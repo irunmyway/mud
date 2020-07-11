@@ -1,0 +1,120 @@
+
+//获取奖励悬浮
+ArrayList<String> list = new ArrayList<>();
+                ArrayList<Integer> colors = new ArrayList<Integer>();
+                list.add("成功杀死了 通天教主");
+                list.add("获得 通天教主勋章 *1");
+                list.add("达成成就 除魔卫道");
+                list.add("升级到 19 级");
+                list.add("获得 金疮药 *1");
+                list.add("铜币 + 9999");
+                colors.add(mContext.getResources().getColor(R.color.c_pink));
+                colors.add(mContext.getResources().getColor(R.color.blue));
+                colors.add(mContext.getResources().getColor(R.color.lightblue));
+                colors.add(mContext.getResources().getColor(R.color.white));
+                colors.add(mContext.getResources().getColor(R.color.mainColor));
+                Rect localRect1 = Util.getViewAbsRect(findViewById(R.id.btn_noth));
+                localRect1.offset(0, -125);
+                for (int i = 0; i < list.size(); i++) {
+                    final TextView localTextView = new TextView(mActivity);
+                    localTextView.setText(list.get(i));
+                    localTextView.setTextColor(colors.get((int)(Math.random()*4)));
+                    localTextView.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
+                    final Rect localRect2 = new Rect(localRect1);
+                    localRect2.offset(0, -(list.size() - i-1) * BAutoSize.value2px(mActivity,1,WIDTH_DP));
+                    final Rect localRect3 = new Rect(localRect2);
+                    localRect3.offset(0, -(list.size() - i-1) * BAutoSize.value2px(mActivity,25,WIDTH_DP));
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Util.calculateAnim(findViewById(R.id.game_layout), localTextView,localRect2, localRect3, new IAnimatorListener() {
+                                @Override
+                                public void onAnimationPrepare(Object Layout, View showView, View fromView, View toView) {
+                                    ((ConstraintLayout) Layout).addView(localTextView);
+                                }
+
+                                @Override
+                                public void onAnimationFinish(final Object Layout, View showView, View fromView, View toView) {
+                                   handler.postDelayed(new Runnable() {
+                                       @Override
+                                       public void run() {
+                                           ((ConstraintLayout) Layout).removeView(localTextView);
+                                       }
+                                   },2500);
+
+                                }
+
+                            });
+                        }
+                    },i*100);
+                }
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				//攻击
+				
+				
+				
+				final ImageView localImageView = new ImageView(mActivity);
+                localImageView.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
+                localImageView.setImageResource(R.mipmap.sword);
+                Util.fightAnim(findViewById(R.id.game_layout),localImageView, findViewById(R.id.self_describe), view, new IAnimatorListener() {
+                    @Override
+                    public void onAnimationPrepare(Object Layout, View showView,View fromView,View toView) {
+                        ((ConstraintLayout)Layout).addView(localImageView);
+                    }
+                    @Override
+                    public void onAnimationFinish(Object Layout, View showView,View fromView,View toView) {
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ((ConstraintLayout)Layout).removeView(localImageView);
+                            }
+                        },300);
+                    }
+
+                });
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				//调用lua
+				
+        globals.load(npcScript.get("1"));
+        globals.get(LuaValue.valueOf("hello")).call();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+战斗概述对所有在该地图的玩家发放（完成）
+公告 记录10条历史聊天（完成）
+死亡后还发送状态的问题（暂时没问题）
+多次点击攻击目标时候 攻击多次。。。（完成）
+死亡复活
+混淆
