@@ -282,27 +282,32 @@ public class SocketClient extends Thread {
                                     if (isReceive) {
                                         try {
                                             curLen += in.read(body, 0, bodyLen);
-                                            //BDebug.trace("测试curLen"+curLen);
+                                            BDebug.trace("测试curLen"+curLen);
                                         } catch (Exception e) {
                                         }
                                         if (curLen == bodyLen && curLen != 0) {
                                             try {
                                                 socketCallback.onReceive(socket, body);
                                             } catch (Exception e) {//如果接收到的包不能被正常解析的话 就跳过
-                                               // BDebug.trace("测试长度"+byteArrayToInt(subBytes(body,0,2),2));
+                                                BDebug.trace("测试长度"+byteArrayToInt(subBytes(body,0,2),2));
                                                 e.printStackTrace();
                                                 body = new byte[0];
                                                 isReceive = false;
                                                 curLen = 0;
                                                 bodyLen = 0;
                                                 head = new byte[HEAD_LENGTH];
-                                                in.read(b);
+                                                //in.read(b);
                                                 b = new byte[1024 * maxReceiveMB];
                                                 continue;
                                             }
                                             isReceive = false;
                                             curLen = 0;
                                             head = new byte[HEAD_LENGTH];
+
+                                            body = new byte[0];
+                                            //in.read(b);
+                                            bodyLen = 0;
+                                            b = new byte[1024 * maxReceiveMB];
                                         } else {
                                             if (curLen == -1) {//断线了
                                                 if (needReconnect) reConnect();

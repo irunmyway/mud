@@ -107,6 +107,7 @@ public class GameHandler {
 
     public static void doChat(Client client, Msg msg) {//发送聊天内容
         Chat chat = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), Chat.class);
+
         switch (msg.getCmd()){
             case "公聊":
                 for (Client item: clients) {
@@ -115,9 +116,22 @@ public class GameHandler {
                 break;
             case "私聊":
                 for (Client item: clients) {
-                    if(item.getPlayer().getKey().equals(msg.getRole())||item.equals(client))
-                    item.sendMsg(msgBuild(messageType.chat, msg.getCmd(),object2JsonStr(chat),"").getBytes());
+                    try{
+                        if(item.getPlayer().getKey().equals(msg.getRole())){
+                            chat.setToName(item.getPlayer().getName());
+                            chat.setTo(item.getPlayer().getKey());
+                            item.sendMsg(msgBuild(messageType.chat, msg.getCmd(),object2JsonStr(chat),"").getBytes());
+                            if(item.equals(client))return;
+                        }
+                    }catch (Exception e){}
                 }
+                for (Client item: clients) {
+                    try{
+                        if(item.equals(client)){
+                            item.sendMsg(msgBuild(messageType.chat, msg.getCmd(),object2JsonStr(chat),"").getBytes());
+                        }
+                    }catch (Exception e){}
+                 }
                 break;
         }
 

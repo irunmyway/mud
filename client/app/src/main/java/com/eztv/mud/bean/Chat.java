@@ -9,7 +9,7 @@ public class Chat {
     private String from;//谁说话
     private String fromName;//谁说话
     private String to;//对谁说
-    private String toNmae;//对谁说
+    private String toName;//对谁说
     private Item item; //后期可用来展示
 
     public Chat() {
@@ -63,12 +63,12 @@ public class Chat {
         this.to = to;
     }
 
-    public String getToNmae() {
-        return toNmae;
+    public String getToName() {
+        return toName;
     }
 
-    public void setToNmae(String toNmae) {
-        this.toNmae = toNmae;
+    public void setToName(String toName) {
+        this.toName = toName;
     }
 
     public Item getItem() {
