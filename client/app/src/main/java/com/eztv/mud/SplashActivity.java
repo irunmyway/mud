@@ -202,8 +202,6 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
     //等待授予权限
     private void CheckGrant() {
         String[] permissions = {
-                "android.permission.RECEIVE_BOOT_COMPLETED",
-                "android.permission.READ_PHONE_STATE",
                 "android.permission.READ_EXTERNAL_STORAGE",
                 "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.SYSTEM_ALERT_WINDOW"};
