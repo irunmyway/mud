@@ -3,6 +3,7 @@ package com.eztv.mud.bean;
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.bean.net.SendGameObject;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 
@@ -139,6 +140,19 @@ public abstract class GameObject{
 
     public void setScript(String script) {
         this.script = script;
+    }
+    public SendGameObject toSendGameObject(){
+        SendGameObject obj = new SendGameObject();
+        obj.setKey(getKey());
+        obj.setName(getName());
+        obj.setAttribute(attribute);
+        if(this instanceof Npc)
+            obj.setObjType(Enum.gameObjectType.npc);
+        if(this instanceof Monster)
+            obj.setObjType(Enum.gameObjectType.monster);
+        if(this instanceof Player)
+            obj.setObjType(Enum.gameObjectType.player);
+        return obj;
     }
 }
 

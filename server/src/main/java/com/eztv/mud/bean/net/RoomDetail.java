@@ -17,7 +17,19 @@ public class RoomDetail {
     private List<GameObject> npcList = new ArrayList<>();
     private List<GameObject> monsterList = new ArrayList<>();
     List<GameObject> playerList = new ArrayList<>();
+    private List<SendGameObject> gameObjects = new ArrayList<>();
 
+    public void addGameObject(SendGameObject obj){
+        gameObjects.add(obj);
+    }
+
+    public List<SendGameObject> getGameObjects() {
+        return gameObjects;
+    }
+
+    public void setGameObjects(List<SendGameObject> gameObjects) {
+        this.gameObjects = gameObjects;
+    }
 
     public List<GameObject> getNpcList() {
         return npcList;

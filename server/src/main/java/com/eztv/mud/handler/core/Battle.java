@@ -67,12 +67,12 @@ public class Battle implements ActionListener {
             if(initFail()){
                 //战斗结束
                 timer.stop();
-                GameHandler.getAttribute(client);//获取玩家属性
+                getAttribute(client);//获取玩家属性
                 return false;
             }
         }catch (Exception e){
             timer.stop();
-            GameHandler.getAttribute(client);//获取玩家属性
+            getAttribute(client);//获取玩家属性
             return false;
         }
         timer.setDelay(FIGHT_SPEED);

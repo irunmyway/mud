@@ -40,9 +40,6 @@ public class GameChatAdapter extends BaseAdapterRvList<BaseViewHolder, Chat> {
                     break;
                 case 私聊:
                     str += "<font color=\"#C71585\">【私聊】</font><u>";
-                    BDebug.trace("测试" + player.getKey());
-                    BDebug.trace("测试" + chat.getTo() + "|" + chat.getToName());
-                    BDebug.trace("测试" + chat.getFrom() + "|" + chat.getFromName());
                     if (chat.getTo().equals(player.getKey()) && chat.getFrom().equals(player.getKey())) {
                         str += "我 对 自己说</u>:";
                     } else {

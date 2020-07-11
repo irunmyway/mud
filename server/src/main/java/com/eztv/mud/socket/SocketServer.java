@@ -183,9 +183,7 @@ public class SocketServer extends Thread {
                                     isReceive = true;
                                 }
                                 if(isReceive){
-                                    try {
-                                        curLen += in.read(body,0,bodyLen);
-                                    }catch (Exception e){break;}
+                                    curLen += in.read(body,curLen,bodyLen-curLen);
                                     if(curLen==bodyLen&&curLen!=0){
                                         for (Client client: clients) {
                                             if(client.getSocket().equals(socket))socketServerCallback.onReceive(client, body);

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
+import static com.eztv.mud.bean.Cmd.getAttribute;
 
 public class GameUtil {
     //通过房间id获取房间实体
@@ -86,5 +87,10 @@ public class GameUtil {
             }
         }
         return gameObject;
+    }
+
+    //获取玩家属性
+    public static void getAttribute(Client client) {
+        client.sendMsg(msgBuild(Enum.messageType.action, getAttribute,object2JsonStr(client.getPlayer().getPlayerData().getAttribute()),client.getRole()).getBytes());
     }
 }

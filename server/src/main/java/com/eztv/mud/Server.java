@@ -16,6 +16,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import static com.eztv.mud.Constant.*;
+import static com.eztv.mud.GameUtil.getAttribute;
+import static com.eztv.mud.handler.ChatHandler.doChat;
+import static com.eztv.mud.handler.ChatHandler.doChatWin;
+import static com.eztv.mud.handler.MapHandler.*;
 
 public class Server implements SocketServerCallback {
 
@@ -42,7 +46,7 @@ public class Server implements SocketServerCallback {
 
     public void onClosed(ServerSocket serverSocket,Socket socket,Client client) {
         try {
-            GameHandler.onObjectOutRoom(client.getPlayer().getPlayerData().getRoom(),client.getPlayer());
+            onObjectOutRoom(client.getPlayer().getPlayerData().getRoom(),client.getPlayer());
             Word.getInstance().getRooms().get(client.getPlayer().getPlayerData().getRoom()).remove(client.getPlayer());
         }catch (Exception e){e.printStackTrace();}
         if(通信检查)
@@ -86,13 +90,13 @@ public class Server implements SocketServerCallback {
                 msg =  JSONObject.toJavaObject(json,Msg.class);
                 switch (msg.getCmd()){
                     case Cmd.getMapDetail://获取房间信息
-                        GameHandler.getMapDetail(client);
+                        getMapDetail(client);
                         break;
-                    case Cmd.playerMove://获取房间信息
-                        GameHandler.playerMove(client,msg);
+                    case Cmd.playerMove://玩家移动
+                        playerMove(client,msg);
                         break;
-                    case Cmd.getAttribute://获取房间信息
-                        GameHandler.getAttribute(client);
+                    case Cmd.getAttribute://获取玩家属性
+                        getAttribute(client);
                         break;
                     case Cmd.doAttack://获取房间信息
                         GameHandler.doAttack(client,msg);
@@ -107,7 +111,7 @@ public class Server implements SocketServerCallback {
                 switch (msg.getCmd()){
                     case "私聊":
                     case "公聊":
-                        GameHandler.doChatWin(client,msg);
+                        doChatWin(client,msg);
                         break;
                 }
                 break;
@@ -116,7 +120,7 @@ public class Server implements SocketServerCallback {
                 switch (msg.getCmd()) {
                     case "私聊":
                     case "公聊":
-                        GameHandler.doChat(client, msg);
+                        doChat(client, msg);
                         break;
                 }
             break;

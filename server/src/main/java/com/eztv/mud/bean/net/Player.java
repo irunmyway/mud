@@ -137,4 +137,13 @@ public class Player extends GameObject {
         this.attribute = attribute;
     }
 
+    public SendGameObject toSendGameObject(){
+        SendGameObject obj = new SendGameObject();
+        obj.setKey(key);
+        obj.setName(name);
+        obj.setObjType(Enum.gameObjectType.player);
+        obj.setPlayerData(this.playerData);
+        return obj;
+    }
+
 }

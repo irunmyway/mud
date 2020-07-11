@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/release/app-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Chat.java" afterDir="false" />
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="mud server">
+      <change afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/SendGameObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/SendGameObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/ChatHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/adapter/GameChatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/adapter/GameChatAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/utils/build/.transforms/2607c1d26b0f3f984b21c234c98270ef/classes/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/.transforms/2607c1d26b0f3f984b21c234c98270ef/classes/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_library_classes/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_library_classes/debug/classes.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_library_classes/release/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_library_classes/release/classes.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/release/classes/com/ez/socket/SocketClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/runtime_library_classes/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/runtime_library_classes/debug/classes.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/runtime_library_classes/release/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/runtime_library_classes/release/classes.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/utils/src/main/java/com/ez/socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/src/main/java/com/ez/socket/SocketClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Enum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/RoomDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/RoomDetail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Chat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/socket/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/socket/SocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/RoomDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/RoomDetail.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-com.eztv.mud-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-com.eztv.mud-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/socket/SocketServer$HandlerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/socket/SocketServer$HandlerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/testClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/testClass.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -140,19 +158,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SocketServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.SocketServer" />
-      <module name="com.eztv.mud" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.eztv.mud.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.Test" />
       <module name="com.eztv.mud" />
@@ -182,13 +187,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.eztv.mud" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.eztv.mud.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.eztv.mud.test" />
+      <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.Test" />
+      <option name="METHOD_NAME" value="test3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.Test.test3" />
         <item itemvalue="JUnit.Test.test2" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.ClientSocket" />
-        <item itemvalue="Application.SocketServer" />
       </list>
     </recent_temporary>
   </component>
@@ -214,7 +235,8 @@
       <workItem from="1594345186148" duration="19666000" />
       <workItem from="1594386045247" duration="4894000" />
       <workItem from="1594393276341" duration="660000" />
-      <workItem from="1594427450515" duration="24771000" />
+      <workItem from="1594427450515" duration="24803000" />
+      <workItem from="1594467163179" duration="9767000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -230,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594454411587</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mud server">
+      <created>1594459531456</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594459531456</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +273,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

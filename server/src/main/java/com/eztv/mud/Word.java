@@ -38,16 +38,17 @@ public class Word {
         return Instance;
     }
 
-    private void initGG(){//加载公告
+    private void initGG() {//加载公告
 //        String src = this.getClass().getClassLoader().getResource("gg").getPath();
 //        GG = BFile.readFromFile(src);
-        InputStream is=this.getClass().getResourceAsStream("/gg");
-        BufferedReader br=new BufferedReader(new InputStreamReader(is));
-        String s="";
+        InputStream is = this.getClass().getResourceAsStream("/gg");
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String s = "";
         try {
-            while((s=br.readLine())!=null)
-                GG+=s;
-        }catch (Exception e){}
+            while ((s = br.readLine()) != null)
+                GG += s;
+        } catch (Exception e) {
+        }
         BDebug.trace("公告加载完成");
     }
 
@@ -99,12 +100,7 @@ public class Word {
                                     for (Client item : clients) {//发送房间东西新增
                                         try {
                                             if (item.getPlayer().getPlayerData().getRoom().equals(m.getMap() + "")) {
-                                                if (addM instanceof Monster)
-                                                    item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM), "Monster"));
-                                                if (addM instanceof Npc)
-                                                    item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM), "Npc"));
-                                                if (addM instanceof Player)
-                                                    item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM), "Player"));
+                                                item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM.toSendGameObject()), null));
                                             }
                                         } catch (Exception e) {
                                         }
@@ -133,7 +129,7 @@ public class Word {
                 //List<Choice> choice = new ArrayList<>();
                 if (monster.getScript().length() > 0) {//模板
                     monster.setScript(Monster_PATH + monster.getScript());
-                    monsterScript.put(monster.getId() + "", globals.loadfile( monster.getScript()+ ".lua"));
+                    monsterScript.put(monster.getId() + "", globals.loadfile(monster.getScript() + ".lua"));
                     globals.load(monsterScript.get(monster.getId() + ""));
                     attribute = JSONObject.toJavaObject(jsonStr2Json(globals.get(LuaValue.valueOf("init")).invoke().toString()), Attribute.class);
                     monster.setAttribute(attribute);
@@ -159,16 +155,14 @@ public class Word {
                                     for (Client item : clients) {//发送房间东西新增
                                         try {
                                             if (item.getPlayer().getPlayerData().getRoom().equals(m.getMap() + "")) {
-                                                if (addM instanceof Monster)
-                                                    item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM), "Monster"));
-                                                if (addM instanceof Npc)
-                                                    item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM), "Npc"));
-                                                if (addM instanceof Player)
-                                                    item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM), "Player"));
+                                                item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM.toSendGameObject()), null));
                                             }
-                                        } catch (Exception e) { }
+                                        } catch (Exception e) {
+                                        }
                                     }
-                                } catch (Exception e) { e.printStackTrace(); }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }).start());
                     }

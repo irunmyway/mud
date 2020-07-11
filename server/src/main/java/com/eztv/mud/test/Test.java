@@ -63,6 +63,15 @@ public class Test {
     }
 
 
+    @org.junit.Test
+    public void test3(){
+        byte[] a = new byte[5];
+        a[0] = 5;
+        a= new byte[5];
+        System.out.println(a[0]);
+
+    }
+
 }
 class testClass{
     static testClass t ;
