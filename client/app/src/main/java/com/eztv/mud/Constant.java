@@ -9,4 +9,7 @@ public class Constant {
 
     public final static long reconnectDelay = 3000;
     public static Player player = new Player();//游戏中的主角
+
+
+    public final static boolean 通信检查 = true;
 }

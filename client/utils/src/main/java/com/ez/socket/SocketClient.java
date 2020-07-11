@@ -150,12 +150,10 @@ public class SocketClient extends Thread {
                         try {
                             try {
                                 if (args instanceof byte[]) {
-                                    out.write(intToByteArray(((byte[]) args).length, HEAD_LENGTH));
-                                    out.write((byte[]) args);
+                                    out.write(byteMerger(intToByteArray(((byte[]) args).length, HEAD_LENGTH),(byte[]) args));
                                 }
                                 if (args instanceof String) {
-                                    out.write(intToByteArray(((String) args).getBytes().length, HEAD_LENGTH));
-                                    out.write(((String) args).getBytes());
+                                    out.write(byteMerger(intToByteArray(((String) args).getBytes().length, HEAD_LENGTH),((String) args).getBytes()));
                                 }
                             } catch (Exception e) {
                                 socketCallback.onError(e);

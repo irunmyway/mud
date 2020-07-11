@@ -2,6 +2,7 @@ package com.eztv.mud.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ez.socket.SocketClient;
+import com.ez.utils.BDebug;
 import com.eztv.mud.bean.Chat;
 import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.Msg;
@@ -19,7 +20,9 @@ import static com.eztv.mud.util.Util.object2JsonStr;
 public class MessageController {
 
     public static void send(Object obj){//如果断开了连接就不要发送了
+        System.out.println("开始返送");
         SocketClient.getInstance().sendMsgByLength(JSONObject.parseObject(JSONObject.toJSON(obj).toString()) .toJSONString().getBytes());
+        System.out.println("发送完毕");
     }
 
     //第一次进游戏获取地图信息

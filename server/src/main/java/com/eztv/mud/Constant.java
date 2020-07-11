@@ -14,4 +14,8 @@ public class Constant {
     public final static String NPC_PATH = "lua/npc/";//NPC目录
     public final static String Monster_PATH = "lua/monster/";//NPC目录
 
+
+
+    public final static boolean 通信检查 = true;
+    public  static long 通信延迟 = 0;
 }

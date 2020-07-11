@@ -11,6 +11,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import static com.eztv.mud.Constant.通信延迟;
+import static com.eztv.mud.Constant.通信检查;
+import static com.eztv.mud.utils.BArray.byteMerger;
 import static com.eztv.mud.utils.BArray.intToByteArray;
 
 public class Client {
@@ -84,14 +87,14 @@ public class Client {
                     if (!socket.isOutputShutdown()) {
                         try {
                             if(args instanceof byte[]){
-                                BDebug.trace("测试发送"+((byte[])args).length+"---"+new String((byte[])args));
-                                out.write(intToByteArray(((byte[])args).length,HEAD_LENGTH));
-                                out.write((byte[])args);
+                                if(通信检查)
+                                BDebug.trace("发送"+((byte[])args).length+"---"+new String((byte[])args));
+                                out.write(byteMerger(intToByteArray(((byte[])args).length,HEAD_LENGTH),(byte[])args));
                             }
                             if(args instanceof String){
-                                BDebug.trace("测试发送"+((String) args).getBytes().length+"---"+new String(((String) args).getBytes()));
-                                out.write(intToByteArray(((String) args).getBytes().length,HEAD_LENGTH));
-                                out.write(((String) args).getBytes());
+                                if(通信检查)
+                                BDebug.trace("发送"+((String) args).getBytes().length+"---"+new String(((String) args).getBytes()));
+                                out.write(byteMerger(intToByteArray(((String) args).getBytes().length,HEAD_LENGTH),((String) args).getBytes()));
                             }
                             out.flush();
                         } catch (Exception e) {

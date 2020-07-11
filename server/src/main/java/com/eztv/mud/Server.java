@@ -45,6 +45,7 @@ public class Server implements SocketServerCallback {
             GameHandler.onObjectOutRoom(client.getPlayer().getPlayerData().getRoom(),client.getPlayer());
             Word.getInstance().getRooms().get(client.getPlayer().getPlayerData().getRoom()).remove(client.getPlayer());
         }catch (Exception e){e.printStackTrace();}
+        if(通信检查)
         BDebug.trace("onClosed");
     }
 
@@ -52,14 +53,16 @@ public class Server implements SocketServerCallback {
         //连接成功添加包装Client
         Client client = new Client(socket,new Player());
         clients.add(client);
+        if(通信检查)
         BDebug.trace("onConnected");
     }
 
     public void onBuildFail(ServerSocket serverSocket, boolean needReconnect) {}
 
     public void onReceive(Client client, byte[] bytes) {
-        BDebug.trace("onReceive:"+new String(bytes));
         String jsonStr = new String(bytes);
+        if(通信检查)
+        BDebug.trace("onReceive:"+jsonStr);
         JSONObject json = new JSONObject();
         try{
             json = JSONObject.parseObject(jsonStr);
