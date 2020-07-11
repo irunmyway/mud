@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--view相关的,viewholder-->
+    <item name="tag_view_holder" type="id" />
+    <!--复用时的setOnClickListener-->
+    <item name="tag_view_click" type="id" />
+</resources>

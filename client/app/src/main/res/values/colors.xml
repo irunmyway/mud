@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#31C4CB</color>
+    <color name="colorPrimaryDark">#8C8C8C</color>
+    <color name="colorAccent">#E9DD5A86</color>
+
+
+    <color name="mainColor">#8a8a57</color>
+    <color name="login_hint_color">#a3a3a3</color>
+    <color name="divider_line_color">#ebebeb</color>
+
+
+    <!--    //自用颜色-->
+
+    <color name="red">#C02E2E</color>
+    <color name="brown">#52433d</color>
+    <color name="purple">#8a6bbe</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="darkwhite">#999</color>
+    <color name="white">#fff</color>
+    <color name="lightwhite">#E6FFFFFF</color>
+    <color name="lightgreen">#66aa55</color>
+    <color name="lightgreen2">#66ff66</color>
+    <color name="lightblue">#FA0099FF</color>
+    <color name="lightbluedeep">#0099ff</color>
+    <color name="lightgray">#8C8C8C</color>
+    <color name="black">#000</color>
+    <color name="blue">#31C4CB</color>
+    <color name="gray">#333333</color>
+    <color name="epg">#ffa7abac</color>
+    <color name="c_pink">#E9DD5A86</color>
+    <color name="c_setting">#320099FF</color>
+    <color name="c_white">#D0F5F1F1</color>
+    <color name="c_epg1">#434343</color>
+    <color name="c_epg">#434343</color>
+    <color name="femaleColor">#C3DD5A86</color>
+    <color name="maleColor">#C631C4CB</color>
+
+</resources>

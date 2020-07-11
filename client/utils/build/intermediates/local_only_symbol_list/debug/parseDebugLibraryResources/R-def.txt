@@ -1,0 +1,4 @@
+R_DEF: Internal format may change without notice
+local
+id tag_view_click
+id tag_view_holder
