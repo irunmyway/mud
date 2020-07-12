@@ -2,31 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/app/src/main/res/anim/pop_exit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/app/src/main/res/anim/pop_open.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/BagHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/lua/item/hsys.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Enum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/SendGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/SendGameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/net/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/net/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/net/RoomDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/net/RoomDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/adapter/GameObjectAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/adapter/GameObjectAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/callback/IGameObjectCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/callback/IGameObjectCallBack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/BaseWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/BaseWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameBagWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameBagWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameTalkWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameTalkWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/layout/window_talk.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/layout/window_talk.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameTalkWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/layout/window_talk.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/layout/window_normal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/values/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Enum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/SendGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/SendGameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/lua/monster/jszs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lua/monster/jszs.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Enum$messageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Enum$messageType.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Monster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Monster.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" afterDir="false" />
@@ -83,7 +84,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/mudmap2-master/mudmap2-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/lua/item" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -94,20 +95,20 @@
     <property name="settings.editor.selected.configurable" value="sshConsole" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\socket" />
-      <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\bean" />
-      <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\bean\net" />
-      <recent name="D:\android\mud\server\src\main\resources" />
-      <recent name="D:\android\mud\server\src\main\java\com\eztv\bean" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.eztv.mud.mapper" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\android\mud\server\src\main\resources\lib" />
       <recent name="D:\android\mud\server\src\main\resources" />
       <recent name="D:\android\mud\server\src\main\resources\lua" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.eztv.mud.mapper" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\android\mud\server\src\main\resources\lua\item" />
+      <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\socket" />
+      <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\bean" />
+      <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\bean\net" />
+      <recent name="D:\android\mud\server\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -228,7 +229,7 @@
       <workItem from="1594393276341" duration="660000" />
       <workItem from="1594427450515" duration="24803000" />
       <workItem from="1594467163179" duration="10744000" />
-      <workItem from="1594512075130" duration="9062000" />
+      <workItem from="1594512075130" duration="20742000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -258,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594481256545</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="完成了复活的功能，完美解决了套接字粘包问题。">
+      <created>1594526827007</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1594526827007</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +290,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="mud server" />
-    <option name="LAST_COMMIT_MESSAGE" value="mud server" />
+    <MESSAGE value="完成了复活的功能，完美解决了套接字粘包问题。" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成了复活的功能，完美解决了套接字粘包问题。" />
   </component>
 </project>

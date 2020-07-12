@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,15 +27,10 @@ import com.ez.utils.BDebug;
 import com.ez.utils.BObject;
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Chat;
-import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.Enum.*;
-import com.eztv.mud.bean.GameObject;
-import com.eztv.mud.bean.Monster;
 import com.eztv.mud.bean.Msg;
-import com.eztv.mud.bean.Npc;
 import com.eztv.mud.bean.SendGameObject;
 import com.eztv.mud.bean.net.AttackPack;
-import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.RoomDetail;
 import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.controller.MessageController;
@@ -46,10 +40,8 @@ import com.eztv.mud.recycleview.callback.IGameObjectCallBack;
 import com.eztv.mud.util.BAutoSize;
 import com.eztv.mud.util.Util;
 import com.eztv.mud.util.callback.IAnimatorListener;
-import com.eztv.mud.window.GameBagWindow;
 import com.eztv.mud.window.GameInputWindow;
-import com.eztv.mud.window.GameTalkWindow;
-import com.eztv.mud.window.callback.IChatWindow;
+import com.eztv.mud.window.GameWindow;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -59,7 +51,6 @@ import java.util.List;
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.bean.Cmd.*;
 import static com.eztv.mud.bean.Cmd.getAttribute;
-import static com.eztv.mud.bean.Enum.chat.公聊;
 import static com.eztv.mud.controller.MessageController.*;
 import static com.eztv.mud.recycleview.RvUtil.getGridLayoutManager;
 import static com.eztv.mud.recycleview.RvUtil.getLinearLayoutManager;
@@ -78,7 +69,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     GameChatAdapter gameChatAdapter;
     ProgressBar bar_hp,bar_mp,bar_exp;
     TextView tv_hp,tv_mp,tv_exp;
-    GameTalkWindow talkWindow = new GameTalkWindow();
+    GameWindow gameWindow = new GameWindow();
 
     Handler handler = new Handler(){
         @Override
@@ -103,6 +94,9 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                 break;
                                 case doTalk://玩家战斗总结
                                         onTalk(msg);
+                                    break;
+                                case "reward"://战斗奖惩
+                                    onReward(msg);
                                     break;
                             }
                         break;
@@ -140,6 +134,9 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                 case "relive":
                                     onUnHandWin(msg);
                             }
+                            break;
+                        case pop://可以关闭的弹窗
+                            onWin(msg);
                             break;
                     }
                 break;
@@ -183,8 +180,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
 
         //用户名和简单描述
         self_describe = findViewById(R.id.self_describe);
-        String self_describe_str = player.getSex()== sex.male?"<font color=\"#6495ED\">"+player.getName()+"</font> lv:"+player.getLevel():
-                "<font color=\"#FF69B4\">"+player.getName()+"</font> lv:"+player.getLevel();
+        String self_describe_str = player.getName()+"</font> lv:"+player.getLevel();
         self_describe.setText(Html.fromHtml(self_describe_str));
 
 
@@ -234,7 +230,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         btn_bag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new GameBagWindow().setContent("铜币999  元宝666").build(mActivity,getContentView(mActivity)).showBySimpleSize(mActivity);
+                send(msgBuild(messageType.pop, "getBag",player.getKey(),null));
             }
         });
 
@@ -332,7 +328,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
     //处理服务器发过来的信息，用来界面的展示//////////////////////////////////////////////////////////////////
     public void getMapDetail(Msg msg){//查看房间
-        talkWindow.dismiss();
+        gameWindow.dismiss();
         RoomDetail roomDetail =  JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),RoomDetail.class);
         gameObjectAdapter.clearAll();
         gameObjectAdapter.addList(roomDetail.getGameObjects());//添加npc
@@ -470,6 +466,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
             final TextView localTextView = new TextView(mActivity);
             localTextView.setText(Html.fromHtml(list.get(i)));
             localTextView.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
+            localTextView.setTextColor(getResources().getColor(R.color.white));
             final Rect localRect2 = new Rect(localRect1);
             localRect2.offset(0, -(list.size() - i-span) * BAutoSize.value2px(mActivity,1,WIDTH_DP));
             final Rect localRect3 = new Rect(localRect2);
@@ -510,8 +507,8 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
 
     private void onTalk(Msg msg) {//弹出对话框
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
-        talkWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),msg.getRole());
-        talkWindow.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);;
+        gameWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),msg.getRole());
+        gameWindow.setChoiceList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);;
     }
 
     private void onChatWin(Msg msg) {//弹出【聊天】输入框
@@ -522,8 +519,19 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
     private void onUnHandWin(Msg msg) {//不可操作弹窗
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
-        talkWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),null);
-        talkWindow.setList(winMessage.getChoice(),winMessage).showFull(mActivity);
+        gameWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),null);
+        gameWindow.setChoiceList(winMessage.getChoice(),winMessage).showFull(mActivity);
+    }
+    private void onWin(Msg msg) {//可以操作的弹窗
+        WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
+        gameWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),msg.getRole());
+        //设置物品items rv
+        gameWindow.setChoiceList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);
     }
 
+
+    private void onReward(Msg msg) {//奖惩
+        WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
+        showFloatMessage(winMessage.getFloatMessage(),findViewById(R.id.btn_north));
+    }
 }

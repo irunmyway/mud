@@ -47,9 +47,11 @@ public class BaseWindow {
         popupWindow.showAtLocation(targetView, Gravity.CENTER , 0, 0);
     }
 
+
     public void showBySimpleSize(Activity activity){
         popupWindow = new PopupWindow(view, getScreenWidth(activity)*9/10, -2);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setAnimationStyle(R.style.pop_animation);
         popupWindow.setFocusable(true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.update();
@@ -57,6 +59,7 @@ public class BaseWindow {
     }
     public void showFull(Activity activity){
         popupWindow = new PopupWindow(view, getScreenWidth(activity), getScreenHeight(activity));
+        popupWindow.setAnimationStyle(R.style.pop_animation);
         popupWindow.setFocusable(false);
         popupWindow.setOutsideTouchable(false);
         popupWindow.update();

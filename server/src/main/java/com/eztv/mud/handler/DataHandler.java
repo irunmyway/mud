@@ -3,9 +3,15 @@ package com.eztv.mud.handler;
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Client;
+import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.bean.net.WinMessage;
 
 import java.util.HashMap;
+import java.util.List;
+
+import static com.eztv.mud.GameUtil.msgBuild;
+import static com.eztv.mud.GameUtil.object2JsonStr;
 
 public class DataHandler {
 
@@ -28,5 +34,12 @@ public class DataHandler {
             }
         }
         return player;
+    }
+
+    //获取角色信息。绑定游戏数据专用函数
+    public static void sendReward(Client client , List<String> list) {
+        WinMessage winMessage = new WinMessage();
+        winMessage.setFloatMessage(list);
+        client.sendMsg(msgBuild(Enum.messageType.action,"reward",object2JsonStr(winMessage),null));
     }
 }

@@ -1,5 +1,6 @@
 package com.eztv.mud.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.utils.BDebug;
 
@@ -7,8 +8,11 @@ public class Monster extends GameObject implements Cloneable{
     private int id;
     private String name;
     private String desc="";
+    @JSONField(serialize = false)
     private String script;
+    @JSONField(serialize = false)
     private int num;
+    @JSONField(serialize = false)
     private int map;
     private String data;
     private String key;

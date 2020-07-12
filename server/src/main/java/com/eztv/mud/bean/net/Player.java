@@ -1,5 +1,6 @@
 package com.eztv.mud.bean.net;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.Enum;
 import com.eztv.mud.handler.core.Battle;
@@ -25,7 +26,6 @@ public class Player extends GameObject {
 
     //普通状态
     private Enum.playerState playerState;
-    private Attribute attribute = new Attribute();
 
     //存储的数据
     @Column()
@@ -39,7 +39,8 @@ public class Player extends GameObject {
     //发动攻击
     private Battle battle = new Battle();
 
-    private PlayerData playerData;
+    @JSONField(serialize = false)
+    private PlayerData playerData;//后端存储信息用的不传输
 
 
 

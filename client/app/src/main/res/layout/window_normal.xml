@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/win_talk_detail"
+            android:id="@+id/win_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -31,13 +31,21 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:visibility="gone" />
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/win_talk_rv_answer"
+            android:id="@+id/win_rv_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/win_rv_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
 
         </androidx.recyclerview.widget.RecyclerView>

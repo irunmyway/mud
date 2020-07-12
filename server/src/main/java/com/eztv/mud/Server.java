@@ -17,6 +17,7 @@ import java.net.Socket;
 
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.getAttribute;
+import static com.eztv.mud.handler.BagHandler.getBag;
 import static com.eztv.mud.handler.ChatHandler.doChat;
 import static com.eztv.mud.handler.ChatHandler.doChatWin;
 import static com.eztv.mud.handler.MapHandler.*;
@@ -128,6 +129,14 @@ public class Server implements SocketServerCallback {
                         break;
                 }
             break;
+            case "pop"://弹窗
+                msg =  JSONObject.toJavaObject(json,Msg.class);
+                switch (msg.getCmd()) {
+                    case "getBag":
+                        getBag(client, msg);
+                        break;
+                }
+                break;
         }
     }
 }

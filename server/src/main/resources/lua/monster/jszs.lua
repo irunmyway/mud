@@ -9,8 +9,17 @@ jszs:setMp(50);
 jszs:setMp_max(50);
 jszs:setExp(999);
 jszs:setExp_max(999);
-jszs:setAck(30);
+jszs:setAck(10);
 return gameUtil:object2JsonStr(jszs);
+end
+
+function reward()--奖励
+local util = luajava.newInstance("com.eztv.mud.bean.BeanUtil")
+local bag = luajava.newInstance("com.eztv.mud.bean.Bag")
+bag:setMoney(115);--铜币
+bag:setJbMoney(125);--金币
+bag:setYbMoney(135);--元宝
+return gameUtil:object2JsonStr(bag);
 end
 
 function choice()--基础功能

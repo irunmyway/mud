@@ -2,8 +2,17 @@ package com.eztv.mud.bean;
 
 public class PlayerData {
     private String room;
-    private Attribute attribute = new Attribute();
+    private Attribute attribute = new Attribute();//玩家的基础属性
+    private Bag bag = new Bag();
 
+
+    public Bag getBag() {
+        return bag;
+    }
+
+    public void setBag(Bag bag) {
+        this.bag = bag;
+    }
 
     public String getRoom() {
         return room;

@@ -1,12 +1,16 @@
 package com.eztv.mud.bean;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.SendGameObject;
 import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
+import org.luaj.vm2.LuaValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +29,14 @@ public abstract class GameObject{
     private String key;//唯一标识
     private String name;
     private  String objectName;
+    @JSONField(serialize = false)
     private int map;//当前地图
+    @JSONField(serialize = false)
     private long refreshment;//重新产出
     private Attribute attribute;//属性
     private String desc;//实体介绍说明
     private com.eztv.mud.bean.callback.IGameObject iGameObject;//死亡监听
+    @JSONField(serialize = false)
     private String script;//绑定的游戏脚本
     //攻击命令
     public GameObject Attack(GameObject gameObject,Client client) {
@@ -63,17 +70,19 @@ public abstract class GameObject{
             winMsg.setChoice(choice);
             winMsg.setDesc("您已经死亡</p><br>&emsp;"+"请选择如何转生。");
             client.sendMsg(msgBuild(Enum.messageType.unHandPop, "relive",object2JsonStr(winMsg),null).getBytes());
-            //不可操作弹窗
-            //弹窗提示死亡
-            //跳到指定地图
-                BDebug.trace("测试"+"主角死亡");
         }else{//移除玩家杀死的其他东西
+
+            client.getScriptExecutor().loadfile(diedObj.getScript() + ".lua").call();
+            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().get(LuaValue.valueOf("reward")).invoke().toString()), Bag.class);
+            DataHandler.sendReward(client, client.getPlayer().getPlayerData().getBag().toReward(reward));
+
             for (Client item:clients){
                 try {
                     Word.getInstance().getRooms().get(((Player)whoKill).getPlayerData().getRoom()).remove(diedObj);
                     item.sendMsg(msgBuild(Enum.messageType.normal,onObjectOutRoom,object2JsonStr(diedObj),null));
                 }catch (Exception e){}
             }
+
 
             if(diedObj.getRefreshment()==0)return;
             diedObj.iGameObject.onRefresh(client);

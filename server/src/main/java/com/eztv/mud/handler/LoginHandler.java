@@ -92,6 +92,11 @@ public class LoginHandler {
     public static Player getPlayer(String account, String password, Client client) {
         Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.sex,t1.level,t1.data,t1.createat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
         player.setKey(BDate.getNowMills() + "");
+        if(player.getSex()==Enum.sex.female){//女性
+            player.setName( "<font color=\"#FF69B4\">"+player.getName()+"</font>");
+        }else{
+            player.setName( "<font color=\"#6495ED\">"+player.getName()+"</font>");
+        }
         return DataHandler.getPlayer(client,player);
     }
 

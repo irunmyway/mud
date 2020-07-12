@@ -3,7 +3,7 @@ package com.eztv.mud.bean;
 public class Item extends GameObject{
     private String name;
     private int num;
-
+    private Enum.itemType type;
 
     public Item(String name, int num) {
         this.name = name;
@@ -26,8 +26,4 @@ public class Item extends GameObject{
         this.num = num;
     }
 
-    @Override
-    public Attribute getAttribute() {
-        return null;
-    }
 }

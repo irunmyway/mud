@@ -20,4 +20,9 @@
         <item name="android:typeface">serif</item>
     </style>
 
+    <style name="pop_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_open</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit</item>
+    </style>
+
 </resources>
