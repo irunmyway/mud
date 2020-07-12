@@ -10,6 +10,7 @@ import android.widget.PopupWindow;
 
 import com.eztv.mud.R;
 
+import static com.eztv.mud.util.BScreen.getScreenHeight;
 import static com.eztv.mud.util.BScreen.getScreenWidth;
 
 public class BaseWindow {
@@ -54,4 +55,12 @@ public class BaseWindow {
         popupWindow.update();
         popupWindow.showAtLocation(targetView, Gravity.CENTER , 0, 0);
     }
+    public void showFull(Activity activity){
+        popupWindow = new PopupWindow(view, getScreenWidth(activity), getScreenHeight(activity));
+        popupWindow.setFocusable(false);
+        popupWindow.setOutsideTouchable(false);
+        popupWindow.update();
+        popupWindow.showAtLocation(targetView, Gravity.CENTER , 0, 0);
+    }
+
 }

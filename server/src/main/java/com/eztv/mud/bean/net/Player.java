@@ -130,11 +130,10 @@ public class Player extends GameObject {
 
     public Attribute getAttribute() {
         return getPlayerData().getAttribute();
-        //return attribute;
     }
 
     public void setAttribute(Attribute attribute) {
-        this.attribute = attribute;
+        getPlayerData().setAttribute(attribute);
     }
 
     public SendGameObject toSendGameObject(){

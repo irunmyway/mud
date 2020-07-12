@@ -1,5 +1,6 @@
 package com.eztv.mud.bean.net;
 
+import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.PlayerData;
@@ -27,5 +28,17 @@ public class SendGameObject extends GameObject {
 
     public void setPlayerData(PlayerData playerData) {
         this.playerData = playerData;
+    }
+    public Attribute getAttribute() {
+        if(objType==Enum.gameObjectType.player)
+            return getPlayerData().getAttribute();
+        return super.getAttribute();
+    }
+    public void setAttribute(Attribute attribute) {
+        if(objType==Enum.gameObjectType.player){
+            getPlayerData().setAttribute(attribute);
+        }else{
+            super.setAttribute(attribute);
+        }
     }
 }

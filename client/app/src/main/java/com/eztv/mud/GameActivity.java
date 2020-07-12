@@ -34,6 +34,7 @@ import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.Monster;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.Npc;
+import com.eztv.mud.bean.SendGameObject;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.RoomDetail;
@@ -77,6 +78,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     GameChatAdapter gameChatAdapter;
     ProgressBar bar_hp,bar_mp,bar_exp;
     TextView tv_hp,tv_mp,tv_exp;
+    GameTalkWindow talkWindow = new GameTalkWindow();
 
     Handler handler = new Handler(){
         @Override
@@ -102,9 +104,6 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                 case doTalk://玩家战斗总结
                                         onTalk(msg);
                                     break;
-
-
-
                             }
                         break;
                         case chat:
@@ -134,6 +133,12 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                 case "chat":
                                     onChatWin(msg);
                                     break;
+                            }
+                            break;
+                        case unHandPop://不可关闭弹窗
+                            switch (msg.getCmd()){
+                                case "relive":
+                                    onUnHandWin(msg);
                             }
                             break;
                     }
@@ -204,11 +209,11 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         //地图详情模块
         rv_map_detail = findViewById(R.id.rv_map_detail);
         rv_map_detail.setLayoutManager(getGridLayoutManager(mContext,3));
-        List<GameObject> gameObjects = new ArrayList<>();
+        List<SendGameObject> gameObjects = new ArrayList<>();
         gameObjectAdapter = new GameObjectAdapter(this,gameObjects);
         gameObjectAdapter.setIGameObjectCallBack(new IGameObjectCallBack() {
             @Override
-            public void onClick(View view,GameObject obj) {//点击后查看该玩家
+            public void onClick(View view, SendGameObject obj) {//点击后查看该玩家
                 doTalk(obj.getKey());
             }
         });
@@ -327,11 +332,10 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
     //处理服务器发过来的信息，用来界面的展示//////////////////////////////////////////////////////////////////
     public void getMapDetail(Msg msg){//查看房间
+        talkWindow.dismiss();
         RoomDetail roomDetail =  JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),RoomDetail.class);
         gameObjectAdapter.clearAll();
-        gameObjectAdapter.addList((List<GameObject>)(Object)roomDetail.getNpcList());//添加npc
-        gameObjectAdapter.addList((List<GameObject>)(Object)roomDetail.getMonsterList());//添加怪物
-        gameObjectAdapter.addList((List<GameObject>)(Object)roomDetail.getPlayerList());//添加玩家
+        gameObjectAdapter.addList(roomDetail.getGameObjects());//添加npc
 
         tv_map_name.setText(roomDetail.getName());
         btn_center.setText(roomDetail.getName());
@@ -367,25 +371,13 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
 
     private void onObjectInRoom(Msg msg) {
-        GameObject obj ;
-        switch (msg.getRole()){
-            case "Monster":
-                obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),Monster.class);
-                break;
-            case "Npc":
-                obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), Npc.class);
-                break;
-            case "Player":
-                obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),Player.class);
-                break;
-                default:obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),GameObject.class);
-        }
+        SendGameObject obj=JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),SendGameObject.class) ;
         gameObjectAdapter.getList().add(obj);
         gameObjectAdapter.notifyItemInserted(gameObjectAdapter.getList().size());
         gameObjectAdapter.notifyItemRangeChanged(gameObjectAdapter.getList().size(),gameObjectAdapter.getList().size() - gameObjectAdapter.getList().size());
     }
     private void onObjectOutRoom(Msg msg) {
-        GameObject obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),GameObject.class);
+        SendGameObject obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),SendGameObject.class);
         gameObjectAdapter.remove(obj);
     }
     private void onAtackResponse(Msg msg) {
@@ -421,7 +413,6 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
 
             }
             whoView = rv_map_detail.getChildAt(gameObjectAdapter.findPosByKey(obj.getWho()));
-
         }
 
         showFloatMessage(floatMessage,targetView);
@@ -519,16 +510,20 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
 
     private void onTalk(Msg msg) {//弹出对话框
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
-        GameTalkWindow win = new GameTalkWindow();
-        win.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),msg.getRole());
-        win.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);;
+        talkWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),msg.getRole());
+        talkWindow.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);;
     }
 
-    private void onChatWin(Msg msg) {//弹出聊天输入框
+    private void onChatWin(Msg msg) {//弹出【聊天】输入框
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
         GameInputWindow inputWin =  new GameInputWindow();
         inputWin.build(mActivity,getContentView(mActivity),msg.getRole(),msg.getName());
         inputWin.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);
+    }
+    private void onUnHandWin(Msg msg) {//不可操作弹窗
+        WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
+        talkWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),null);
+        talkWindow.setList(winMessage.getChoice(),winMessage).showFull(mActivity);
     }
 
 }

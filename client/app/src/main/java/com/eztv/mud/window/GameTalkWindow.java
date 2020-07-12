@@ -81,4 +81,9 @@ public class GameTalkWindow extends BaseWindow implements IButtonCallBack {
         super.popupWindow.dismiss();
     }
 
+    public void dismiss(){
+        if(super.popupWindow!=null)
+        super.popupWindow.dismiss();
+    }
+
 }

@@ -11,8 +11,9 @@ import java.util.List;
 public  class GameObject{
      String objectName;
      String objectDesc;
+     private String name;
      private String desc;//实体介绍说明
-     String key;
+     private String key;
      private Attribute attribute = new Attribute();
 
      public String getObjectName() {
@@ -55,4 +56,12 @@ public  class GameObject{
           this.desc = desc;
      }
 
+
+     public String getName() {
+          return name;
+     }
+
+     public void setName(String name) {
+          this.name = name;
+     }
 }

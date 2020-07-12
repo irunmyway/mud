@@ -88,27 +88,12 @@ public class LoginHandler {
         client.sendMsg(JSONObject.parseObject(JSONObject.toJSON(msg).toString()).toJSONString());
     }
 
-    //获取角色信息。绑定游戏数据专用函数
+    //登录成功
     public static Player getPlayer(String account, String password, Client client) {
         Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.sex,t1.level,t1.data,t1.createat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
         player.setKey(BDate.getNowMills() + "");
-
-        if (client != null) {
-            //获取玩家基础属性
-            HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
-            Attribute base = attributes.get(player.getLevel() + "");
-            if (player.getAttribute().getExp() < 1) {//玩家身上没有信息
-                Attribute attribute = new Attribute();
-                attribute.setHp(base.getHp());
-                attribute.setMp(base.getMp());
-                attribute.setExp(base.getExp());
-                attribute.setHp_max(base.getHp());
-                attribute.setExp_max(base.getExp());
-                attribute.setMp_max(base.getMp());
-                attribute.setAck(base.getAck());
-                player.getPlayerData().setAttribute(attribute);
-            }
-        }
-        return player;
+        return DataHandler.getPlayer(client,player);
     }
+
+
 }

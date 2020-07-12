@@ -60,4 +60,11 @@ public class GameHandler {
         }
         client.sendMsg(msgBuild(messageType.action, doTAlk,object2JsonStr(winMsg),gameObject.getKey()).getBytes());
     }
+
+    //复活
+    public static void relive(Client client, Msg msg) {
+        DataHandler. getPlayer(client,client.getPlayer());
+        MapHandler.getMapDetail(client);
+        getAttribute(client);
+    }
 }

@@ -104,6 +104,10 @@ public class Server implements SocketServerCallback {
                     case Cmd.doTAlk://玩家对话
                         GameHandler.doTalk(client,msg);
                         break;
+                    case "relive"://玩家复活
+                        GameHandler.relive(client,msg);
+                        break;
+
                 }
                 break;
             case "input"://发送请求输入框

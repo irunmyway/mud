@@ -14,10 +14,12 @@ import com.ez.adapters.base.BaseViewHolder;
 import com.ez.utils.BDebug;
 import com.ez.utils.BObject;
 import com.eztv.mud.R;
+import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.Item;
 import com.eztv.mud.bean.Monster;
 import com.eztv.mud.bean.Npc;
+import com.eztv.mud.bean.SendGameObject;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.recycleview.callback.IGameObjectCallBack;
 
@@ -26,40 +28,39 @@ import java.util.List;
 
 import static com.eztv.mud.Constant.player;
 
-public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, GameObject> {
+public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, SendGameObject> {
     Activity activity;
     IGameObjectCallBack iGameObjectCallBack;
-    public GameObjectAdapter(@NonNull Activity activity, List<GameObject> list) {
+    public GameObjectAdapter(@NonNull Activity activity, List<SendGameObject> list) {
         super(activity, list);
         this.activity = activity;
     }
     @Override
-    protected void onBindVH(BaseViewHolder holder, int listPosition, GameObject obj) {
+    protected void onBindVH(BaseViewHolder holder, int listPosition, SendGameObject obj) {
         ProgressBar progressBar = holder.itemView.findViewById(R.id.hp_progress);
         String str = "";
-        if(obj instanceof Item)str+=((Item)obj).getName();//到时候添加物品颜色对照表
-        if(obj instanceof Player)str+=((Player)obj).getName()+"("+((Player)obj).getPlayerData().getAttribute().getHp()+")";
-        if(obj instanceof Npc)str+=((Npc)obj).getName()+"("+obj.getAttribute().getHp()+")";
-        if(obj instanceof Monster)str+=((Monster)obj).getName()+"("+obj.getAttribute().getHp()+")";
-        if(obj instanceof Item){
-            progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_blue));
-        }else if(obj instanceof Player){
-            progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_green));
-        }else if(obj instanceof Npc){
-            progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_blue));
-        }else if(obj instanceof Monster){
-            progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_brown));
-        }else{
-            progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_green));
+//        if(obj instanceof Item)str+=((Item)obj).getName();//到时候添加物品颜色对照表
+//        if(obj instanceof Item){
+//            progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_blue));
+        switch (obj.getObjType()){
+            case player:
+                str+=obj.getName()+"("+obj.getAttribute().getHp()+")";
+                progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_green));
+                break;
+            case npc:
+                str+=obj.getName()+"("+obj.getAttribute().getHp()+")";
+                progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_blue));
+                break;
+            case monster:
+                str+=obj.getName()+"("+obj.getAttribute().getHp()+")";
+                progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_brown));
+                break;
+                default:
+                    progressBar.setProgressDrawable(activity.getResources().getDrawable(R.drawable.progress_bar_green));
         }
         try{
-            if(obj instanceof Player){
-                progressBar.setMax((int) ((Player) obj).getPlayerData().getAttribute().getHp_max());
-                progressBar.setProgress((int)  ((Player) obj).getPlayerData().getAttribute().getHp());
-            }else{
-                progressBar.setMax((int) obj.getAttribute().getHp_max());
-                progressBar.setProgress((int) obj.getAttribute().getHp());
-            }
+            progressBar.setMax((int) obj.getAttribute().getHp_max());
+            progressBar.setProgress((int) obj.getAttribute().getHp());
         }catch(Exception e){}
 
         holder.setText(R.id.tv_game_object_name, Html.fromHtml(str)).setViewVisible(R.id.tv_game_object_name, str == null ? View.GONE : View.VISIBLE);
@@ -79,11 +80,11 @@ public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, GameObj
         this.iGameObjectCallBack = iGameObjectCallBack;
     }
 
-    public void setList(List<GameObject> list){
+    public void setList(List<SendGameObject> list){
         mList = list;
         notifyDataSetChanged();
     }
-    public void addList(List<GameObject> list){
+    public void addList(List<SendGameObject> list){
         mList.addAll(list);
         notifyDataSetChanged();
     }
@@ -92,7 +93,7 @@ public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, GameObj
         notifyDataSetChanged();
     }
 
-    public void remove(GameObject gameObject) {
+    public void remove(SendGameObject gameObject) {
         try{
             int pos=0;
             for (GameObject obj:mList) {
@@ -109,7 +110,7 @@ public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, GameObj
     }
     public int findPosByKey(String key){
         int i = 0;
-        for (GameObject obj : mList){
+        for (SendGameObject obj : mList){
             if(BObject.isNotEmpty(obj.getKey()))
                 if (obj.getKey().equals(key))
                     return i;
@@ -117,8 +118,8 @@ public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, GameObj
         }
         return i;
     }
-    public GameObject findObjByKey(String key){
-        for (GameObject obj : mList){
+    public SendGameObject findObjByKey(String key){
+        for (SendGameObject obj : mList){
             if(BObject.isNotEmpty(obj.getKey()))
                 if (obj.getKey().equals(key))
                     return obj;

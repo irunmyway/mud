@@ -106,12 +106,11 @@ public class Player extends GameObject {
         this.profession = profession;
     }
 
-    @Override
     public Attribute getAttribute() {
-        return attribute;
+        return getPlayerData().getAttribute();
+    }
+    public void setAttribute(Attribute attribute) {
+        getPlayerData().setAttribute(attribute);
     }
 
-    public void setAttribute(Attribute attribute) {
-        this.attribute = attribute;
-    }
 }

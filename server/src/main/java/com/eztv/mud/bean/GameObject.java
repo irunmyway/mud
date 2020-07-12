@@ -4,6 +4,7 @@ import com.eztv.mud.Word;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.SendGameObject;
+import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 
@@ -54,8 +55,17 @@ public abstract class GameObject{
     }
 
     public void onDied(GameObject whoKill, GameObject diedObj,Client client) {
+        WinMessage winMsg = new WinMessage();
+        List<Choice> choice = new ArrayList<>();
         //死亡回调
         if(client.getPlayer().equals(diedObj)){//主角死亡
+            choice.add(Choice.createChoice("复活", Enum.messageType.action,"relive", null));
+            winMsg.setChoice(choice);
+            winMsg.setDesc("您已经死亡</p><br>&emsp;"+"请选择如何转生。");
+            client.sendMsg(msgBuild(Enum.messageType.unHandPop, "relive",object2JsonStr(winMsg),null).getBytes());
+            //不可操作弹窗
+            //弹窗提示死亡
+            //跳到指定地图
                 BDebug.trace("测试"+"主角死亡");
         }else{//移除玩家杀死的其他东西
             for (Client item:clients){

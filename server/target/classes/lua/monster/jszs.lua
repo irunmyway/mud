@@ -9,7 +9,7 @@ jszs:setMp(50);
 jszs:setMp_max(50);
 jszs:setExp(999);
 jszs:setExp_max(999);
-jszs:setAck(10);
+jszs:setAck(30);
 return gameUtil:object2JsonStr(jszs);
 end
 

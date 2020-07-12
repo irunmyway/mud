@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.eztv.mud.R;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.Item;
+import com.eztv.mud.bean.SendGameObject;
 import com.eztv.mud.recycleview.RvUtil;
 import com.eztv.mud.recycleview.adapter.GameObjectAdapter;
 
@@ -56,13 +57,13 @@ public class GameBagWindow extends BaseWindow {
 
     void initBag(){
         rv_bag.setLayoutManager(RvUtil.getGridLayoutManager(activity,2));
-        List<GameObject> gameObjects = new ArrayList<>();
-        gameObjects.add(new Item("物品:小石头",3));
-        gameObjects.add(new Item("物品:小石头",3));
-        gameObjects.add(new Item("物品:金疮药金疮药",3));
-        gameObjects.add(new Item("物品:金疮药",3));
-        gameObjects.add(new Item("物品:金疮药",3));
-        rv_bag.setAdapter(new GameObjectAdapter(activity,gameObjects));
+        List<SendGameObject> gameObjects = new ArrayList<>();
+//        gameObjects.add(new Item("物品:小石头",3));
+//        gameObjects.add(new Item("物品:小石头",3));
+//        gameObjects.add(new Item("物品:金疮药金疮药",3));
+//        gameObjects.add(new Item("物品:金疮药",3));
+//        gameObjects.add(new Item("物品:金疮药",3));
+//        rv_bag.setAdapter(new GameObjectAdapter(activity,gameObjects));
     }
 
 
