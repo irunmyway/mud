@@ -40,7 +40,7 @@ public class Word {
         return Instance;
     }
 
-    private void initGG() {//加载公告
+    public void initGG() {//加载公告
         String src = System.getProperty("user.dir")+"/gg";
 //        String src = this.getClass().getClassLoader().getResource("gg").getPath();
         GG = BFile.readFromFile(src);

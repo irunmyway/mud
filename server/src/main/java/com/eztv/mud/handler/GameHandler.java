@@ -46,9 +46,9 @@ public class GameHandler {
         if(gameObject==null)return;
         List<Choice> choice = new ArrayList<>();
         if(gameObject instanceof Player){//是玩家
-            choice.add(Choice.createChoice("私聊", messageType.input,"私聊", gameObject.getKey()));
+            choice.add(Choice.createChoice("私聊", messageType.input,"私聊", gameObject.getKey(),null));
             winMsg.setChoice(choice);
-            winMsg.setDesc(((Player) gameObject).getName()+"</p><br>&emsp;"+"这是一位凶神恶煞的玩家");
+            winMsg.setDesc(gameObject.getName()+"</p><br>&emsp;"+"这是一位凶神恶煞的玩家");
         }else{
             client.getScriptExecutor().loadfile(gameObject.getScript() + ".lua").call();
             for (Object c:JSONObject.toJavaObject(jsonStr2JsonArr(client.getScriptExecutor().get(LuaValue.valueOf("choice")).invoke().toString()), List.class) ) {

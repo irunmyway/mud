@@ -66,7 +66,7 @@ public abstract class GameObject{
         List<Choice> choice = new ArrayList<>();
         //死亡回调
         if(client.getPlayer().equals(diedObj)){//主角死亡
-            choice.add(Choice.createChoice("复活", Enum.messageType.action,"relive", null));
+            choice.add(Choice.createChoice("复活", Enum.messageType.action,"relive", null,null));
             winMsg.setChoice(choice);
             winMsg.setDesc("您已经死亡</p><br>&emsp;"+"请选择如何转生。");
             client.sendMsg(msgBuild(Enum.messageType.unHandPop, "relive",object2JsonStr(winMsg),null).getBytes());

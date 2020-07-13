@@ -13,6 +13,7 @@ public class Constant {
 
     public final static String NPC_PATH = "lua/npc/";//NPC目录
     public final static String Monster_PATH = "lua/monster/";//NPC目录
+    public final static String Item_PATH = "lua/item/";//物品目录
 
 
 

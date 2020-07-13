@@ -42,4 +42,7 @@ public class DataHandler {
         winMessage.setFloatMessage(list);
         client.sendMsg(msgBuild(Enum.messageType.action,"reward",object2JsonStr(winMessage),null));
     }
+
+
+
 }

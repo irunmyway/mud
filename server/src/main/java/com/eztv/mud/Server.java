@@ -5,6 +5,7 @@ import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Cmd;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.handler.BagHandler;
 import com.eztv.mud.handler.GameHandler;
 import com.eztv.mud.handler.LoginHandler;
 import com.eztv.mud.socket.SocketServer;
@@ -107,6 +108,9 @@ public class Server implements SocketServerCallback {
                         break;
                     case "relive"://玩家复活
                         GameHandler.relive(client,msg);
+                        break;
+                    case "useClick"://玩家点击了物品，接下来要展示是查看物品 或者使用物品或者丢弃等等。。。
+                        BagHandler.useClick(client,msg);
                         break;
 
                 }

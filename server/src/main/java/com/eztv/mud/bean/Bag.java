@@ -1,5 +1,8 @@
 package com.eztv.mud.bean;
 
+import com.eztv.mud.Word;
+import com.eztv.mud.utils.BDebug;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +46,16 @@ public class Bag {
         this.items = items;
     }
 
+    public void addItem(int id,int num){
+        if(num<1)num=1;
+        for(Item item:Word.getInstance().getItems()){
+            if(item.getId()==id){
+                item.setNum(num);
+                items.add(item);
+            }
+        }
+    }
+
     public List<String> toReward(Bag reward){//变成奖励
         List<String > list = new ArrayList<>();
         this.money+=reward.getMoney();
@@ -54,6 +67,17 @@ public class Bag {
         list.add("金币 +"+reward.getJbMoney());
         if(reward.getYbMoney()>0)
         list.add("元宝 +"+reward.getYbMoney());
+
+        for(Item item:reward.items){
+            list.add("获得了 "+item.getName()+" +"+item.getNum());
+            int pos = this.items.indexOf(item);
+            if(pos>-1){//叠加
+                item.setNum(this.items.get(pos).getNum()+item.getNum());
+                this.items.set(pos,item);
+            }else{//新增
+                this.items.add(item);
+            }
+        }
         return list;
     }
 }

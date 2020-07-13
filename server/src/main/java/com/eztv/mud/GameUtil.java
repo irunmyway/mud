@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
+import static com.eztv.mud.Constant.clients;
 import static com.eztv.mud.bean.Cmd.getAttribute;
 
 public class GameUtil {
@@ -92,5 +93,33 @@ public class GameUtil {
     //获取玩家属性
     public static void getAttribute(Client client) {
         client.sendMsg(msgBuild(Enum.messageType.action, getAttribute,object2JsonStr(client.getPlayer().getPlayerData().getAttribute()),client.getRole()).getBytes());
+    }
+
+    public static Item findItemById(int id) {//发送给所有人
+        Item item =null;
+        for(Item it:Word.getInstance().getItems()){
+            if(it.getId()==id)
+                item = it;
+        }
+        return item;
+    }
+
+
+
+    public static void sendToAll(Client client,String str){//发送给所有人
+        for (Client item: clients) {
+            try{
+                item.sendMsg(str.getBytes());
+            }catch (Exception e){e.printStackTrace();}
+        }
+    }
+    public static void sendToSelf(Client client,String str){//发送给自己
+        for (Client item: clients) {
+            try{
+                if(item.equals(client)){
+                    item.sendMsg(str.getBytes());
+                }
+            }catch (Exception e){e.printStackTrace();}
+        }
     }
 }
