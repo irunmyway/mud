@@ -40,10 +40,14 @@ public class GameChatAdapter extends BaseAdapterRvList<BaseViewHolder, Chat> {
                     break;
                 case 私聊:
                     str += "<font color=\"#C71585\">【私聊】</font><u>";
-                    if (chat.getTo().equals(player.getKey()) && chat.getFrom().equals(player.getKey())) {
+                    if(chat.getTo()==null){
                         str += "我 对 自己说</u>:";
-                    } else {
-                        str += (chat.getFrom().equals(player.getKey()) ? "我" : chat.getFromName()) + " 对 " + (chat.getTo().equals(player.getKey()) ? "我" : chat.getToName()) + "说</u>:";
+                    }else{
+                        if (chat.getTo().equals(player.getKey()) && chat.getFrom().equals(player.getKey())) {
+                            str += "我 对 自己说</u>:";
+                        } else {
+                            str += (chat.getFrom().equals(player.getKey()) ? "我" : chat.getFromName()) + " 对 " + (chat.getTo().equals(player.getKey()) ? "我" : chat.getToName()) + "说</u>:";
+                        }
                     }
                     break;
                 case 系统:

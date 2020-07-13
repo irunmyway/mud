@@ -8,17 +8,19 @@ public class Choice implements Cloneable{
     private String name;
     private String cmd;
     private String msg;
+    private String key;
 
     public String getName() {
         return name;
     }
 
-    public static Choice createChoice(String name,Enum.messageType type, String cmd, String msg){
+    public static Choice createChoice(String name,Enum.messageType type, String cmd, String msg, String key){
         Choice c = new Choice();
         c.setName(name);
         c.setCmd(cmd);
         c.setMsg(msg);
         c.setType(type);
+        c.setKey(key);
         return c;
     }
 
@@ -49,7 +51,13 @@ public class Choice implements Cloneable{
     public void setType(Enum.messageType type) {
         this.type = type;
     }
+    public String getKey() {
+        return key;
+    }
 
+    public void setKey(String key) {
+        this.key = key;
+    }
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();

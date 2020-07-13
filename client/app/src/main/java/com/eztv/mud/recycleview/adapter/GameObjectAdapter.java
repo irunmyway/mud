@@ -26,6 +26,7 @@ import com.eztv.mud.recycleview.callback.IGameObjectCallBack;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ez.utils.BString.getHTMLStr;
 import static com.eztv.mud.Constant.player;
 
 public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, SendGameObject> {
@@ -63,7 +64,7 @@ public class GameObjectAdapter extends BaseAdapterRvList<BaseViewHolder, SendGam
             progressBar.setProgress((int) obj.getAttribute().getHp());
         }catch(Exception e){}
 
-        holder.setText(R.id.tv_game_object_name, Html.fromHtml(str)).setViewVisible(R.id.tv_game_object_name, str == null ? View.GONE : View.VISIBLE);
+        holder.setText(R.id.tv_game_object_name, getHTMLStr(str)).setViewVisible(R.id.tv_game_object_name, str == null ? View.GONE : View.VISIBLE);
         holder.itemView.setOnClickListener(view ->{
             if(iGameObjectCallBack!=null){
                 iGameObjectCallBack.onClick(holder.itemView,obj);

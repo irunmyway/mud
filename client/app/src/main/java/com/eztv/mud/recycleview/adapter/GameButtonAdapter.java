@@ -40,12 +40,9 @@ public class GameButtonAdapter extends BaseAdapterRvList<BaseViewHolder, Choice>
         if(obj==null) return;
         str = obj.getName();//到时候添加物品颜色对照表
         holder.setText(R.id.tv_game_object_name, Html.fromHtml(str)).setViewVisible(R.id.tv_game_object_name, str == null ? View.GONE : View.VISIBLE);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(iButtonCallBack!=null){
-                    iButtonCallBack.onClick(i,obj,key);
-                }
+        holder.itemView.setOnClickListener(view -> {
+            if(iButtonCallBack!=null){
+                iButtonCallBack.onClick(i,obj,key);
             }
         });
     }

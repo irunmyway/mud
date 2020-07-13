@@ -69,7 +69,7 @@ public class GameWindow extends BaseWindow implements IButtonCallBack {
             case "attack"://攻击
                 MessageController.doAttack(Enum.gameObjectType.monster,key);
                 break;
-                default:send(msgBuild(choice.getType(), choice.getCmd(),choice.getMsg(),key));
+                default:send(msgBuild(choice.getType(), choice.getCmd(),choice.getMsg(),choice.getKey()));
         }
         super.popupWindow.dismiss();
     }

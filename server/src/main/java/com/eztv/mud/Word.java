@@ -25,7 +25,9 @@ public class Word {
     private HashMap<String, Room> Rooms = new HashMap<String, Room>();
     private HashMap<String, LuaValue> npcScript = new HashMap<String, LuaValue>();
     private HashMap<String, LuaValue> monsterScript = new HashMap<String, LuaValue>();
+    private HashMap<String, LuaValue> itemScript = new HashMap<String, LuaValue>();
     private HashMap<String, Attribute> baseAttributes = new HashMap<String, Attribute>();
+    private List<Item> items;
     private Globals globals = JsePlatform.standardGlobals();
     private String GG = "";
     private static Word Instance;
@@ -39,16 +41,9 @@ public class Word {
     }
 
     private void initGG() {//加载公告
+        String src = System.getProperty("user.dir")+"/gg";
 //        String src = this.getClass().getClassLoader().getResource("gg").getPath();
-//        GG = BFile.readFromFile(src);
-        InputStream is = this.getClass().getResourceAsStream("/gg");
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String s = "";
-        try {
-            while ((s = br.readLine()) != null)
-                GG += s;
-        } catch (Exception e) {
-        }
+        GG = BFile.readFromFile(src);
         BDebug.trace("公告加载完成");
     }
 
@@ -184,14 +179,30 @@ public class Word {
         }
         BDebug.trace("基础属性加载完成 最高等级 : Attribute load max_level:【" + baseAttributes.size() + "】");
     }
+    private void initItem() {//初始化游戏物品
+        itemScript.clear();
+        items = DataBase.getInstance().init().createSQL("select * from t_item").list(Item.class);
+        for (Item item : items) {
+            try {
+                if (item.getScript().length() > 0) {//模板
+                    item.setScript(Item_PATH + item.getScript());
+                    itemScript.put(item.getId() + "", globals.loadfile(item.getScript() + ".lua"));
+                }
+            } catch (Exception e) {e.printStackTrace();}
+        }
+        BDebug.trace("游戏物品加载完成 数量 : Items load item_num:【" + items.size() + "】");
+    }
 
     public void init() {
         initGG();
         initRooms();
         initNPC();
         initMonster();
+        initItem();
         initBaseAttribute();
     }
+
+
 
     public HashMap<String, Room> getRooms() {
         return Rooms;
@@ -203,6 +214,14 @@ public class Word {
 
     public HashMap<String, LuaValue> getMonsterScript() {
         return monsterScript;
+    }
+
+    public HashMap<String, LuaValue> getItemScript() {
+        return itemScript;
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     public String getGG() {

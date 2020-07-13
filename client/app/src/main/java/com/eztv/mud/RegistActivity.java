@@ -1,5 +1,6 @@
 package com.eztv.mud;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,10 +41,9 @@ public class RegistActivity extends AppCompatActivity implements SocketCallback 
     String name,pwd,roleName;
     Enum.sex sex;
     Context mContext;
-    Handler handler = new Handler(){
+    private Handler handler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
+        public boolean handleMessage(@NonNull Message msg) {
             switch (msg.what){
                 case 1:
                     Toast.makeText(mContext, msg.obj.toString(), Toast.LENGTH_SHORT).show();
@@ -55,8 +55,9 @@ public class RegistActivity extends AppCompatActivity implements SocketCallback 
                     finish();
                     break;
             }
+            return false;
         }
-    };
+    });
 
     private void save() {
         BShareDB.saveData(mContext,"account",name);
@@ -114,6 +115,7 @@ public class RegistActivity extends AppCompatActivity implements SocketCallback 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
         setResult(1);
         finish();
     }

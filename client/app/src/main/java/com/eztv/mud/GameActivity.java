@@ -70,11 +70,9 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     ProgressBar bar_hp,bar_mp,bar_exp;
     TextView tv_hp,tv_mp,tv_exp;
     GameWindow gameWindow = new GameWindow();
-
-    Handler handler = new Handler(){
+    private Handler handler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(@NonNull Message m) {
-            super.handleMessage(m);
+        public boolean handleMessage(@NonNull Message m) {
             switch (m.what){
                 case 1:
                     Msg msg =  (Msg)m.obj;
@@ -83,7 +81,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                             switch (msg.getCmd()){
                                 case getMapDetail://获取地图信息
                                     getMapDetail(msg);
-                                break;
+                                    break;
                                 case getAttribute://获取玩家主角属性
                                     getAttribute(msg);
                                     break;
@@ -91,15 +89,15 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                     try{
                                         onAtackResponse(msg);
                                     }catch(Exception e){e.printStackTrace();}
-                                break;
+                                    break;
                                 case doTalk://玩家战斗总结
-                                        onTalk(msg);
+                                    onTalk(msg);
                                     break;
                                 case "reward"://战斗奖惩
                                     onReward(msg);
                                     break;
                             }
-                        break;
+                            break;
                         case chat:
                             switch (msg.getCmd()){//收到聊天内容
                                 case "公聊":
@@ -107,7 +105,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                     getChat(msg);
                                     break;
                             }
-                        break;
+                            break;
                         case normal:
                             switch (msg.getCmd()){
                                 case onObjectInRoom:
@@ -139,13 +137,14 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                             onWin(msg);
                             break;
                     }
-                break;
+                    break;
                 case 2:
                     Toast.makeText(mContext, m.obj.toString(), Toast.LENGTH_LONG).show();
                     break;
             }
+            return false;
         }
-    };
+    });
 
 
 
@@ -207,32 +206,17 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         rv_map_detail.setLayoutManager(getGridLayoutManager(mContext,3));
         List<SendGameObject> gameObjects = new ArrayList<>();
         gameObjectAdapter = new GameObjectAdapter(this,gameObjects);
-        gameObjectAdapter.setIGameObjectCallBack(new IGameObjectCallBack() {
-            @Override
-            public void onClick(View view, SendGameObject obj) {//点击后查看该玩家
-                doTalk(obj.getKey());
-            }
-        });
+        gameObjectAdapter.setIGameObjectCallBack((view, obj) -> {doTalk(obj.getKey()); });
         rv_map_detail.setAdapter(gameObjectAdapter);
 
 
         //聊天模块
         btn_chat = findViewById(R.id.game_btn_chat);
-        btn_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                send(msgBuild(messageType.input, "公聊",player.getKey(),"公聊"));
-            }
-        });
+        btn_chat.setOnClickListener(view -> send(msgBuild(messageType.input, "公聊",player.getKey(),"公聊")));
 
         //背包模块
         btn_bag = findViewById(R.id.game_btn_bag);
-        btn_bag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                send(msgBuild(messageType.pop, "getBag",player.getKey(),null));
-            }
-        });
+        btn_bag.setOnClickListener(view -> send(msgBuild(messageType.pop, "getBag",player.getKey(),null)));
 
         //地图全局模块
         btn_map = findViewById(R.id.game_btn_map);
@@ -242,6 +226,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
         setResult(2);
         finish();
     }
@@ -423,12 +408,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
             }
             @Override
             public void onAnimationFinish(Object Layout, View showView,View fromView,View toView) {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((ConstraintLayout)Layout).removeView(localImageView);
-                    }
-                },300);
+                handler.postDelayed(() -> ((ConstraintLayout)Layout).removeView(localImageView),300);
             }
 
         });
@@ -482,12 +462,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
 
                         @Override
                         public void onAnimationFinish(final Object Layout, View showView, View fromView, View toView) {
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ((ConstraintLayout) Layout).removeView(localTextView);
-                                }
-                            },2500);
+                            handler.postDelayed(() -> ((ConstraintLayout) Layout).removeView(localTextView),2500);
 
                         }
 
