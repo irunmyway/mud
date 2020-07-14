@@ -1,5 +1,7 @@
 package com.eztv.mud.bean;
 
+import com.eztv.mud.constant.Enum;
+
 public class Msg
 {
     String cmd;//指令

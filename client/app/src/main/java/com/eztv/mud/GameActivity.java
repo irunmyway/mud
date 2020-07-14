@@ -82,6 +82,9 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                                 case getMapDetail://获取地图信息
                                     getMapDetail(msg);
                                     break;
+                                case "getSelf"://查看玩家自身
+                                    getSelf(msg);
+                                    break;
                                 case getAttribute://获取玩家主角属性
                                     getAttribute(msg);
                                     break;
@@ -359,7 +362,13 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
     private void onObjectOutRoom(Msg msg) {
         SendGameObject obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),SendGameObject.class);
-        gameObjectAdapter.remove(obj);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                gameObjectAdapter.remove(obj);
+            }
+        },600);
+
     }
     private void onAtackResponse(Msg msg) {
         boolean isIAttack=true;//是由主角发起的
@@ -420,6 +429,14 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         Attribute obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), Attribute.class);
         player.setAttribute(obj);
         readAttribute(obj);
+    }
+    private void getSelf(Msg msg) {
+        SendGameObject obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), SendGameObject.class);
+        player.setLevel(obj.getLevel());
+        player.setAttribute(obj.getAttribute());
+        readAttribute(obj.getAttribute());
+        String self_describe_str = player.getName()+"</font> lv:"+player.getLevel();
+        self_describe.setText(Html.fromHtml(self_describe_str));
     }
     private void readAttribute(Attribute obj){
         bar_exp.setMax((int)obj.getExp_max());

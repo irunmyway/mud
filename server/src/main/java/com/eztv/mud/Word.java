@@ -2,8 +2,7 @@ package com.eztv.mud;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.Enum;
-import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BFile;
@@ -11,15 +10,12 @@ import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.bean.Cmd.onObjectInRoom;
+import static com.eztv.mud.constant.Cmd.onObjectInRoom;
 
 public class Word {
     private HashMap<String, Room> Rooms = new HashMap<String, Room>();

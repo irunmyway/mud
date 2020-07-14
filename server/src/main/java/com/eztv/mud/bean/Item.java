@@ -1,8 +1,6 @@
 package com.eztv.mud.bean;
 
-import online.sanen.cdm.template.jpa.Column;
-import online.sanen.cdm.template.jpa.Id;
-import online.sanen.cdm.template.jpa.Table;
+import com.eztv.mud.constant.Enum;
 
 public class Item extends GameObject implements Cloneable{
     private int id;

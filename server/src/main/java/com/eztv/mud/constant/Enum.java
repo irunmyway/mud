@@ -1,4 +1,4 @@
-package com.eztv.mud.bean;
+package com.eztv.mud.constant;
 
 public class Enum {
     //登录注册界面

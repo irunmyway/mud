@@ -1,7 +1,7 @@
 package com.eztv.mud.bean.net;
 
 import com.eztv.mud.bean.Attribute;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.PlayerData;
 
@@ -11,6 +11,7 @@ import com.eztv.mud.bean.PlayerData;
  用处：由于实体存在大量冗余信息 传输只传输部分
 **/
 public class SendGameObject extends GameObject {
+    private int level;
     private Enum.gameObjectType objType;
     private PlayerData playerData;
 
@@ -20,6 +21,14 @@ public class SendGameObject extends GameObject {
 
     public void setObjType(Enum.gameObjectType objType) {
         this.objType = objType;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public PlayerData getPlayerData() {

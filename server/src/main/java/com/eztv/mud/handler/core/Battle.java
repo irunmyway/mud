@@ -1,11 +1,7 @@
 package com.eztv.mud.handler.core;
 
 import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.Enum;
-import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
-import com.eztv.mud.handler.GameHandler;
-import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 
 import javax.swing.*;
@@ -14,7 +10,6 @@ import java.awt.event.ActionListener;
 
 import static com.eztv.mud.Constant.FIGHT_SPEED;
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.bean.Cmd.*;
 
 
 public class Battle implements ActionListener {

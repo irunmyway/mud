@@ -2,17 +2,15 @@ package com.eztv.mud.handler;
 
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.RoomDetail;
-
-import java.util.List;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
 import static com.eztv.mud.Constant.clients;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.GameUtil.object2JsonStr;
-import static com.eztv.mud.bean.Cmd.*;
+import static com.eztv.mud.constant.Cmd.*;
 
 public class MapHandler {
     public static void getMapDetail(Client client) {//查看房间

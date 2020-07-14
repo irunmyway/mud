@@ -1,6 +1,6 @@
 package com.eztv.mud.bean;
 
-import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.constant.Enum;
 
 public class Chat {
     private Enum.chat msgType=Enum.chat.公聊;

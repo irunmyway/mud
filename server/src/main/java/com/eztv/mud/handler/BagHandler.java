@@ -1,16 +1,13 @@
 package com.eztv.mud.handler;
 
-import com.eztv.mud.Word;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.WinMessage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.bean.Cmd.doTAlk;
 
 public class BagHandler {
 
@@ -25,7 +22,7 @@ public class BagHandler {
         desc+=bagDesc.getYbMoney();
         winMsg.setCol(3);
         for(Item item:bagDesc.getItems()){
-            choice.add(Choice.createChoice(item.getName()+(item.getNum()<2?"":" *"+item.getNum()), Enum.messageType.action,"useClick",item.getId()+"",null));
+            choice.add(Choice.createChoice(item.getName()+(item.getNum()<2?"":" *"+item.getNum()), Enum.messageType.action,"useClick",item.getId()+"",null,false));
         }
         winMsg.setChoice(choice);
         winMsg.setDesc("背包系统</p><br>&emsp; 铜币:"+desc);//显示当前玩家的金钱。元宝等等 交易信息。

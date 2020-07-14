@@ -1,6 +1,6 @@
 package com.eztv.mud.bean.net;
 
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
 import online.sanen.cdm.template.jpa.Column;
 import online.sanen.cdm.template.jpa.Id;
 import online.sanen.cdm.template.jpa.NoInsert;

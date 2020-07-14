@@ -1,4 +1,4 @@
-package com.eztv.mud.bean;
+package com.eztv.mud.constant;
 
 public class Cmd {
     public static final String getMapDetail = "getMapDetail";//查看当前地图所有详情
@@ -10,4 +10,6 @@ public class Cmd {
     public static final String doAttack  = "doAttack";//攻击或者战斗小结
     public static final String getGG  = "getGG";//获取公告
     public static final String doTAlk  = "doTAlk";//玩家对话 展示对话框
+
+    public static final String LOGIN_SUCCESS = "login_SUCCESS";//登录成功
 }

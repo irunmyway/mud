@@ -61,7 +61,9 @@ public class Attribute implements Cloneable{
     public void setExp(long exp) {
         this.exp = exp;
     }
-
+    public void addExp(long exp) {
+        this.exp += exp;
+    }
     public long getExp_max() {
         return exp_max;
     }

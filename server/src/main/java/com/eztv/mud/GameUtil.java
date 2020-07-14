@@ -3,14 +3,15 @@ package com.eztv.mud;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
+import com.eztv.mud.utils.BDebug;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
 import static com.eztv.mud.Constant.clients;
-import static com.eztv.mud.bean.Cmd.getAttribute;
+import static com.eztv.mud.constant.Cmd.getAttribute;
 
 public class GameUtil {
     //通过房间id获取房间实体
@@ -93,6 +94,11 @@ public class GameUtil {
     //获取玩家属性
     public static void getAttribute(Client client) {
         client.sendMsg(msgBuild(Enum.messageType.action, getAttribute,object2JsonStr(client.getPlayer().getPlayerData().getAttribute()),client.getRole()).getBytes());
+    }
+
+    //查看玩家自身
+    public static void getSelf(Client client) {
+        client.sendMsg(msgBuild(Enum.messageType.action, "getSelf",object2JsonStr(client.getPlayer().toSendGameObject()),client.getRole()).getBytes());
     }
 
     public static Item findItemById(int id) {//发送给所有人

@@ -9,6 +9,7 @@ public class Choice implements Cloneable{
     private String cmd;
     private String msg;
     private String key;
+    private boolean isClose=true;
 
     public String getName() {
         return name;
@@ -53,6 +54,14 @@ public class Choice implements Cloneable{
     }
     public String getKey() {
         return key;
+    }
+
+    public boolean isClose() {
+        return isClose;
+    }
+
+    public void setClose(boolean close) {
+        isClose = close;
     }
 
     public void setKey(String key) {

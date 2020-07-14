@@ -3,9 +3,10 @@ package com.eztv.mud.handler;
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Client;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.utils.BDebug;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,7 @@ import static com.eztv.mud.GameUtil.object2JsonStr;
 public class DataHandler {
 
     //获取角色信息。绑定游戏数据专用函数
-    public static Player getPlayer(Client client , Player player) {
+    public static Player getPlayer(Object client , Player player) {
         if (client != null) {
             //获取玩家基础属性
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
@@ -25,7 +26,8 @@ public class DataHandler {
                 Attribute attribute = new Attribute();
                 attribute.setHp(base.getHp());
                 attribute.setMp(base.getMp());
-                attribute.setExp(base.getExp());
+                if(player.getLevel()>1)
+                attribute.setExp(0);
                 attribute.setHp_max(base.getHp());
                 attribute.setExp_max(base.getExp());
                 attribute.setMp_max(base.getMp());
@@ -35,6 +37,27 @@ public class DataHandler {
         }
         return player;
     }
+
+    //获取角色信息。绑定游戏数据专用函数
+    public static Player getPlayerByUpLevel(Object client , Player player) {
+        if (client != null) {
+            //获取玩家基础属性
+            HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
+            Attribute base = attributes.get(player.getLevel() + "");
+            Attribute attribute = new Attribute();
+            attribute.setHp(base.getHp());
+            attribute.setMp(base.getMp());
+            if(player.getLevel()<2)
+                attribute.setExp(0);
+            attribute.setHp_max(base.getHp());
+            attribute.setExp_max(base.getExp());
+            attribute.setMp_max(base.getMp());
+            attribute.setAck(base.getAck());
+            player.getPlayerData().setAttribute(attribute);
+        }
+        return player;
+    }
+
 
     //获取角色信息。绑定游戏数据专用函数
     public static void sendReward(Client client , List<String> list) {

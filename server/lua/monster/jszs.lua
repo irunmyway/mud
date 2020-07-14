@@ -1,6 +1,6 @@
 local attribute = luajava.bindClass("com.eztv.mud.bean.Attribute")
 local gameUtil = luajava.bindClass("com.eztv.mud.GameUtil")
-
+local Choice = luajava.newInstance("com.eztv.mud.bean.Choice")
 local jszs = luajava.new(attribute)
 function init()--基础属性初始化
 jszs:setHp(40);
@@ -19,14 +19,15 @@ local bag = luajava.newInstance("com.eztv.mud.bean.Bag")
 bag:setMoney(115);--铜币
 bag:setJbMoney(125);--金币
 bag:setYbMoney(135);--元宝
+bag:setExp(1350);--经验
 bag:addItem(1,1);--id 为1的物品给与1个
 return gameUtil:object2JsonStr(bag);
 end
 
 function choice()--基础功能
 local util = luajava.newInstance("com.eztv.mud.bean.BeanUtil")
-local Enum = luajava.newInstance("com.eztv.mud.bean.Enum")
-util:getChoice():add(createChoice("攻击",Enum.messageType.normal,"attack",""));
+local Enum = luajava.newInstance("com.eztv.mud.constant.Enum")
+util:getChoice():add(Choice:createChoice("攻击",Enum.messageType.normal,"attack",""));
 return gameUtil:objectArr2JsonStr(util:getChoice());
 end
 

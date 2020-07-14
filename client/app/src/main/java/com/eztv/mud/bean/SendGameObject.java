@@ -10,8 +10,17 @@ import com.eztv.mud.bean.PlayerData;
  用处：由于实体存在大量冗余信息 传输只传输部分
 **/
 public class SendGameObject extends GameObject {
+    private int level;
     private Enum.gameObjectType objType;
     private PlayerData playerData;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public Enum.gameObjectType getObjType() {
         return objType;

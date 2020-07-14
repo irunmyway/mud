@@ -71,6 +71,7 @@ public class GameWindow extends BaseWindow implements IButtonCallBack {
                 break;
                 default:send(msgBuild(choice.getType(), choice.getCmd(),choice.getMsg(),choice.getKey()));
         }
+        if(choice.isClose())
         super.popupWindow.dismiss();
     }
 

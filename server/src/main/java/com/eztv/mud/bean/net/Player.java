@@ -1,21 +1,18 @@
 package com.eztv.mud.bean.net;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
+import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.core.Battle;
-import com.eztv.mud.utils.BDate;
+import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 import online.sanen.cdm.template.jpa.Column;
-import online.sanen.cdm.template.jpa.Id;
-import online.sanen.cdm.template.jpa.NoDB;
-import org.luaj.vm2.Globals;
-import org.luaj.vm2.lib.jse.JsePlatform;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
-public class Player extends GameObject {
+public class Player extends GameObject implements playerCallBack{
     private String key ;
     @Column
     private String name;
@@ -41,8 +38,12 @@ public class Player extends GameObject {
 
     @JSONField(serialize = false)
     private PlayerData playerData;//后端存储信息用的不传输
+    @JSONField(serialize = false)
+    private Client client;
 
-
+    public Player(Client client) {
+        this.client = client;
+    }
 
     public Player() {
     }
@@ -111,7 +112,7 @@ public class Player extends GameObject {
 
     public PlayerData getPlayerData() {
         if(playerData==null){
-            playerData = new PlayerData();
+            playerData = new PlayerData(this);
         }
         return playerData;
     }
@@ -124,6 +125,9 @@ public class Player extends GameObject {
         return profession;
     }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public void setProfession(String profession) {
         this.profession = profession;
@@ -139,6 +143,7 @@ public class Player extends GameObject {
 
     public SendGameObject toSendGameObject(){
         SendGameObject obj = new SendGameObject();
+        obj.setLevel(level);
         obj.setKey(key);
         obj.setName(name);
         obj.setObjType(Enum.gameObjectType.player);
@@ -146,4 +151,18 @@ public class Player extends GameObject {
         return obj;
     }
 
+    @Override
+    public void onUpLevel() {
+        if(getAttribute().getExp()>getAttribute().getExp_max()){
+            long tempExp = Math.abs(getAttribute().getExp()-getAttribute().getExp_max() );
+            this.level++;
+            DataHandler.getPlayerByUpLevel(client,this);
+            this.getAttribute().setExp(tempExp);
+            //然后发送属性
+            GameUtil.getSelf(client);
+        }
+    }
+}
+interface playerCallBack{
+    void onUpLevel();
 }

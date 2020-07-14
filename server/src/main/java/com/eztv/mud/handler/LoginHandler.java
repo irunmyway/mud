@@ -2,9 +2,8 @@ package com.eztv.mud.handler;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.DataBase;
-import com.eztv.mud.Word;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.Login;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.utils.BDate;
@@ -14,14 +13,13 @@ import com.eztv.mud.utils.BString;
 import online.sanen.cdm.api.condition.C;
 
 import java.util.Date;
-import java.util.HashMap;
 
 import static com.eztv.mud.Constant.clients;
-import static com.eztv.mud.bean.GameCmd.*;
+import static com.eztv.mud.constant.Cmd.LOGIN_SUCCESS;
 
 public class LoginHandler {
     public static void login(Client client, JSONObject jsonObject) {//登录注册模块
-        Player player = new Player();
+        Player player = new Player(client);
         Msg msg = new Msg();
         Login login = JSONObject.toJavaObject(jsonObject, Login.class);
         if (BObject.isNotEmpty(login.getLogin()))
@@ -49,7 +47,7 @@ public class LoginHandler {
                 } else {
                     msg.setType(Enum.messageType.normal);
                     msg.setCmd(LOGIN_SUCCESS);//返回Player
-                    player = getPlayer(login.getName(), login.getPasswd(), null);
+                    player = getPlayer(login.getName(), login.getPasswd(), client);
                     msg.setMsg(JSONObject.parseObject(JSONObject.toJSON(player).toString()).toJSONString());
                     for (Client item : clients) {
                         if (item.equals(client)) {
@@ -91,6 +89,7 @@ public class LoginHandler {
     //登录成功
     public static Player getPlayer(String account, String password, Client client) {
         Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.sex,t1.level,t1.data,t1.createat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
+        player.setClient(client);
         player.setKey(BDate.getNowMills() + "");
         if(player.getSex()==Enum.sex.female){//女性
             player.setName( "<font color=\"#FF69B4\">"+player.getName()+"</font>");

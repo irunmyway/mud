@@ -1,16 +1,9 @@
 package com.eztv.mud.bean;
 
-import com.eztv.mud.Word;
-import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.net.Player;
-import com.eztv.mud.handler.GameHandler;
-import com.eztv.mud.utils.BDebug;
-import com.eztv.mud.utils.BObject;
 import online.sanen.cdm.template.jpa.Column;
 import online.sanen.cdm.template.jpa.Id;
 import online.sanen.cdm.template.jpa.Table;
-import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.bean.Cmd.onObjectOutRoom;
 
 import java.util.ArrayList;
 import java.util.Date;

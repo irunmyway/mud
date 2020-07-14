@@ -2,7 +2,7 @@ package com.eztv.mud;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.Client;
-import com.eztv.mud.bean.Cmd;
+import com.eztv.mud.constant.Cmd;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.handler.BagHandler;

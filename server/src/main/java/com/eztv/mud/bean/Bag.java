@@ -13,6 +13,16 @@ public class Bag {
 
     List<Item> items = new ArrayList<>();
 
+    //奖励经验
+    private long exp;
+
+    public long getExp() {
+        return exp;
+    }
+
+    public void setExp(long exp) {
+        this.exp = exp;
+    }
 
     public long getMoney() {
         return money;
@@ -56,28 +66,5 @@ public class Bag {
         }
     }
 
-    public List<String> toReward(Bag reward){//变成奖励
-        List<String > list = new ArrayList<>();
-        this.money+=reward.getMoney();
-        this.ybMoney+=reward.getYbMoney();
-        this.jbMoney+=reward.getJbMoney();
-        if(reward.getMoney()>0)
-        list.add("铜币 +"+reward.getMoney());
-        if(reward.getJbMoney()>0)
-        list.add("金币 +"+reward.getJbMoney());
-        if(reward.getYbMoney()>0)
-        list.add("元宝 +"+reward.getYbMoney());
 
-        for(Item item:reward.items){
-            list.add("获得了 "+item.getName()+" +"+item.getNum());
-            int pos = this.items.indexOf(item);
-            if(pos>-1){//叠加
-                item.setNum(this.items.get(pos).getNum()+item.getNum());
-                this.items.set(pos,item);
-            }else{//新增
-                this.items.add(item);
-            }
-        }
-        return list;
-    }
 }

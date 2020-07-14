@@ -1,7 +1,7 @@
 package com.eztv.mud.bean.net;
 
 import com.eztv.mud.bean.Attribute;
-import com.eztv.mud.bean.Enum;
+import com.eztv.mud.constant.Enum;
 
 public class AttackPack {
     private String who;
