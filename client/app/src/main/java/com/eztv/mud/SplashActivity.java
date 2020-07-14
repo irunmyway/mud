@@ -6,22 +6,29 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ez.socket.SocketClient;
@@ -35,15 +42,23 @@ import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.util.BAutoSize;
 import com.eztv.mud.util.BShareDB;
 import com.eztv.mud.util.CheckUpdate;
+import com.eztv.mud.util.Util;
 import com.eztv.mud.util.callback.IUpdateCallBack;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.Socket;
+import java.net.URL;
 
 import static com.eztv.mud.Constant.IP;
 import static com.eztv.mud.Constant.Port;
 import static com.eztv.mud.Constant.player;
 import static com.eztv.mud.Constant.reconnectDelay;
+import static com.eztv.mud.util.BScreen.getScreenWidth;
 
 public class SplashActivity extends AppCompatActivity implements SocketCallback , IUpdateCallBack {
     Button btn_login,btn_register;
@@ -51,7 +66,12 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
     String strName,strPwd;
     String downUrl,updateText;
     public static Context mContext;
+    AppCompatActivity mActivity;
     private PopupWindow mUpdateWindow;
+    Button btn_update_ok,btn_update_cancel;
+    TextView tv_update_content;
+    ProgressBar progressbar;
+    String appName ="";
     boolean reconnect;
     Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -66,7 +86,7 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
                     startActivityForResult(it,1);
                     break;
                 case 3://升级
-
+                    showUpdate();
                     break;
             }
             return false;
@@ -79,10 +99,16 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
         BAutoSize.applyAdapt(super.getResources(), 375f, BAutoSize.WIDTH_DP);
         CheckGrant();
         mContext = this;
+        mActivity = this;
         MudApplication.getInstance().addActivity(this);
         CheckUpdate.getInstance().setiUpdateCallBack(this);//监听升级
         try{
             CheckUpdate.getInstance().checkUpdateByGithub(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
+        }catch(Exception e){e.printStackTrace();}
+        try{
+            appName= getPackageManager()
+                    .getApplicationLabel((getPackageManager().getPackageInfo(getPackageName(), 0).applicationInfo))
+                    .toString();
         }catch(Exception e){e.printStackTrace();}
         initSocket();
         initView();
@@ -150,12 +176,26 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
     }
 
     private void showUpdate(){
-        mUpdateWindow = new PopupWindow(ez_updateView, getScreenWidth() / 2, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutInflater inflater = getLayoutInflater();
+        View ez_updateView = inflater.inflate(R.layout.win_update, null);
+        btn_update_cancel =  ez_updateView.findViewById(R.id.btn_update_cancel);
+        tv_update_content = ez_updateView.findViewById(R.id.tv_update_content);
+        tv_update_content.setText(Html.fromHtml(updateText));
+        btn_update_ok =  ez_updateView.findViewById(R.id.btn_update_ok);
+        progressbar = (ez_updateView.findViewById(R.id.pb_downloading));
+        btn_update_cancel.setOnClickListener(view -> {if(mUpdateWindow!=null)mUpdateWindow.dismiss();});
+        btn_update_ok.setOnClickListener(view -> {
+            btn_update_ok.setVisibility(View.INVISIBLE);
+            btn_update_cancel.setVisibility(View.INVISIBLE);
+            progressbar.setVisibility(View.VISIBLE);
+            new download().start();
+        });
+        mUpdateWindow = new PopupWindow(ez_updateView, getScreenWidth(mContext) *9/ 10, ViewGroup.LayoutParams.WRAP_CONTENT);
         mUpdateWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mUpdateWindow.setFocusable(true);
-        mUpdateWindow.setOutsideTouchable(true);
+        mUpdateWindow.setFocusable(false);
+        mUpdateWindow.setOutsideTouchable(false);
         mUpdateWindow.update();
-        mUpdateWindow.showAtLocation(ijkVideoView, Gravity.CENTER, 0, 0);
+        mUpdateWindow.showAtLocation(Util.getContentView(mActivity), Gravity.CENTER, 0, 0);
     }
 
 
@@ -239,7 +279,8 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
         String[] permissions = {
                 "android.permission.READ_EXTERNAL_STORAGE",
                 "android.permission.WRITE_EXTERNAL_STORAGE",
-                "android.permission.SYSTEM_ALERT_WINDOW"};
+                "android.permission.SYSTEM_ALERT_WINDOW",
+                "android.permission.REQUEST_INSTALL_PACKAGES"};
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions, 1);
         }
@@ -260,5 +301,82 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
         this.downUrl = downUrl;
         this.updateText = text;
         sendHandleMessage(3,null);
+    }
+
+
+    String DIR_DIY_DOWN = Environment.getExternalStorageDirectory().getPath() + "/" +appName  + "/download/";
+    class download extends Thread {
+        @Override
+        public void run() {
+            HttpURLConnection connection = null;
+            InputStream input = null;
+            OutputStream output = null;
+            try {
+                File filefolder = new File(DIR_DIY_DOWN);
+                if (!filefolder.exists()) {
+                    filefolder.mkdirs();
+                }
+                URL url = new URL(downUrl);
+                connection = (HttpURLConnection) url.openConnection();
+//                boolean isGitee = Update.ez_url.indexOf("gitee") > 0;
+                if (true) {
+                    connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh;Intel Mac OS X 10_12_6) ");
+                    connection.setRequestProperty("Cookie", "user_locale=zh-CN; oschina_new_user=false; remember_user_token=BAhbB1sGaQMU%2BRZJIiIkMmEkMTAkVDRmRHlDVFdWdy80bHFJRjN1NXpDTwY6BkVU--fc8dfbe5fa543c081e5fbb808b80678cdea91384; remove_bulletin=gitee-maintain-1583921812; remote_way=svn; tz=Asia%2FShanghai; Hm_lvt_24f17767262929947cc3631f99bfd274=1584001314,1584004331,1584005905,1584006413; Hm_lpvt_24f17767262929947cc3631f99bfd274=1584028654; gitee-session-n=BAh7CUkiD3Nlc3Npb25faWQGOgZFVEkiJTY0ZjIxODhiZmI4N2QwOWIyZmJlOTcyOTBiYWQ3NDg5BjsAVEkiGXdhcmRlbi51c2VyLnVzZXIua2V5BjsAVFsHWwZpAxT5FkkiIiQyYSQxMCRUNGZEeUNUV1Z3LzRscUlGM3U1ekNPBjsAVEkiHXdhcmRlbi51c2VyLnVzZXIuc2Vzc2lvbgY7AFR7BkkiFGxhc3RfcmVxdWVzdF9hdAY7AFRJdToJVGltZQ2QCR7ANRFCDAk6CXpvbmVJIghVVEMGOwBGOg1uYW5vX251bWkBfToNbmFub19kZW5pBjoNc3VibWljcm8iBxJQSSIQX2NzcmZfdG9rZW4GOwBGSSIxTWVOT3hlem44NitURzI5YnBoU3RtaEVlM2cxSlVmaStJVHBFVE0weXAyVT0GOwBG--2b165ed10131fe19a0eecda8d8c614a9f056b393");
+                } else {
+                    connection.setRequestProperty("Accept-Encoding", "identity");
+                }
+                connection.connect();
+                File file = new File(DIR_DIY_DOWN, "mud.apk");
+                input = connection.getInputStream();
+                output = new FileOutputStream(file);
+                byte data[] = new byte[1024];
+                int count;
+                int total = 0;
+                int fileLength = 0;
+                if (true) {
+                    try {
+                        fileLength = 2 * 1000 * 1000;
+                    } catch (Exception e) {
+                        fileLength = 0;
+                    }
+
+                } else {
+                    fileLength = connection.getContentLength();
+                }
+                while ((count = input.read(data)) != -1) {
+                    output.write(data, 0, count);
+                    total += count;
+                    progressbar.setProgress(total * 100 / fileLength);
+                }
+                installAPK();
+            } catch (Exception e) {
+            } finally {
+                try {
+                    if (output != null)
+                        output.close();
+                    if (input != null)
+                        input.close();
+                } catch (IOException ignored) {
+                }
+                if (connection != null)
+                    connection.disconnect();
+            }
+
+        }
+    }
+
+    private void installAPK() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        String type = "application/vnd.android.package-archive";
+        File file = new File(DIR_DIY_DOWN, "mud.apk");
+        Uri apkPath = Uri.fromFile(file);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//7.0以上
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(getApplicationContext(), "com.eztv.mud.provider", file);
+            intent.setDataAndType(contentUri, type);
+        } else {
+            intent.setDataAndType(apkPath, type);
+        }
+        mContext.startActivity(intent);
     }
 }

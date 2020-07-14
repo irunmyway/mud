@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/bg_game">
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/tv_update_title"
@@ -23,9 +23,9 @@
         android:id="@+id/view_line"
         android:layout_width="fill_parent"
         android:layout_height="1.0px"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="50dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tv_update_title"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,43 +46,48 @@
 
     <TextView
         android:id="@+id/tv_update_content"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/view_line"
         app:layout_constraintLeft_toLeftOf="@id/tv_update_content_title"
+        app:layout_constraintStart_toStartOf="@+id/view_line"
         app:layout_constraintTop_toBottomOf="@id/tv_update_content_title" />
 
 
 
     <Button
-        android:id="@+id/tv_update_ok"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="50dp"
+        android:id="@+id/btn_update_ok"
+        android:layout_width="68dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:padding="5dp"
         android:background="@drawable/bg_update_button"
         android:gravity="center"
         android:text="立即更新"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="13sp"
         app:layout_constraintLeft_toLeftOf="@id/view_line"
         app:layout_constraintTop_toBottomOf="@id/tv_update_content" />
 
 
     <Button
-    android:id="@+id/tv_update_cancel"
-    android:layout_width="130dp"
-    android:layout_height="60dp"
+    android:id="@+id/btn_update_cancel"
+    android:layout_width="68dp"
+    android:layout_height="30dp"
     android:layout_marginBottom="30dp"
+    android:padding="5dp"
     android:background="@drawable/bg_update_button"
     android:gravity="center"
     android:text="放弃更新"
     android:textColor="@color/white"
-    android:textSize="20dp"
+    android:textSize="13sp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintRight_toRightOf="@id/view_line"
-    app:layout_constraintTop_toTopOf="@id/tv_update_ok" />
+    app:layout_constraintTop_toTopOf="@id/btn_update_ok" />
 
 
 
@@ -94,10 +99,11 @@
         android:layout_height="10.0dip"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="35dp"
+
         android:max="100"
         android:progress="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

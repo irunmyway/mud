@@ -27,8 +27,8 @@ public class CheckUpdate {
             public void run() {
                 try {
                     String json = "";
-                    try {httpget("https://gitee.com/qq1025334900/eztv", "UA");
-                        json = httpget("https://gitee.com/qq1025334900/mud/raw/master/mud.txt", "UA");
+                    try {
+                        json = httpget("https://gitee.com/qq1025334900/mud/raw/master/update.txt", "UA");
                     } catch (Exception e) {
                     }
                     JSONObject object = new JSONObject(json);
