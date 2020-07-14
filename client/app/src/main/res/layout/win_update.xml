@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_game">
+
+    <TextView
+        android:id="@+id/tv_update_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="版本更新"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="100dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/tv_update_title"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_update_content_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:text="更新内容："
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/view_line"
+        app:layout_constraintTop_toBottomOf="@id/view_line" />
+
+    <TextView
+        android:id="@+id/tv_update_content"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_update_content_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_update_content_title" />
+
+
+
+    <Button
+        android:id="@+id/tv_update_ok"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_update_button"
+        android:gravity="center"
+        android:text="立即更新"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintLeft_toLeftOf="@id/view_line"
+        app:layout_constraintTop_toBottomOf="@id/tv_update_content" />
+
+
+    <Button
+    android:id="@+id/tv_update_cancel"
+    android:layout_width="130dp"
+    android:layout_height="60dp"
+    android:layout_marginBottom="30dp"
+    android:background="@drawable/bg_update_button"
+    android:gravity="center"
+    android:text="放弃更新"
+    android:textColor="@color/white"
+    android:textSize="20dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintRight_toRightOf="@id/view_line"
+    app:layout_constraintTop_toTopOf="@id/tv_update_ok" />
+
+
+
+    <ProgressBar
+        android:id="@+id/pb_downloading"
+        android:visibility="gone"
+        style="@style/update_progress_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="10.0dip"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+</android.support.constraint.ConstraintLayout>

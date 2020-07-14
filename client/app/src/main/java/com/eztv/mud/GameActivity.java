@@ -362,13 +362,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
     private void onObjectOutRoom(Msg msg) {
         SendGameObject obj = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),SendGameObject.class);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                gameObjectAdapter.remove(obj);
-            }
-        },600);
-
+        gameObjectAdapter.remove(obj);
     }
     private void onAtackResponse(Msg msg) {
         boolean isIAttack=true;//是由主角发起的

@@ -38,7 +38,6 @@ public class Word {
 
     public void initGG() {//加载公告
         String src = System.getProperty("user.dir")+"/gg";
-//        String src = this.getClass().getClassLoader().getResource("gg").getPath();
         GG = BFile.readFromFile(src);
         BDebug.trace("公告加载完成");
     }

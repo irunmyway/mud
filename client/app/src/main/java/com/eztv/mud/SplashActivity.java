@@ -4,14 +4,19 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +34,8 @@ import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.util.BAutoSize;
 import com.eztv.mud.util.BShareDB;
+import com.eztv.mud.util.CheckUpdate;
+import com.eztv.mud.util.callback.IUpdateCallBack;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -38,16 +45,17 @@ import static com.eztv.mud.Constant.Port;
 import static com.eztv.mud.Constant.player;
 import static com.eztv.mud.Constant.reconnectDelay;
 
-public class SplashActivity extends AppCompatActivity implements SocketCallback {
+public class SplashActivity extends AppCompatActivity implements SocketCallback , IUpdateCallBack {
     Button btn_login,btn_register;
     EditText name,pwd;
     String strName,strPwd;
+    String downUrl,updateText;
     public static Context mContext;
+    private PopupWindow mUpdateWindow;
     boolean reconnect;
-    Handler handler = new Handler(){
+    Handler handler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
+        public boolean handleMessage(@NonNull Message msg) {
             switch (msg.what){//登录失败提示
                 case 1:
                     Toast.makeText(mContext, msg.obj.toString(), Toast.LENGTH_SHORT).show();
@@ -57,9 +65,13 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
                     Intent it = new Intent(mContext,GameActivity.class);
                     startActivityForResult(it,1);
                     break;
+                case 3://升级
+
+                    break;
             }
+            return false;
         }
-    };
+    });
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +80,20 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
         CheckGrant();
         mContext = this;
         MudApplication.getInstance().addActivity(this);
+        CheckUpdate.getInstance().setiUpdateCallBack(this);//监听升级
+        try{
+            CheckUpdate.getInstance().checkUpdateByGithub(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
+        }catch(Exception e){e.printStackTrace();}
         initSocket();
         initView();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
+
     private void initSocket(){
         //开启套接字监听
         try{
@@ -125,6 +148,18 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
         BShareDB.saveData(mContext,"account",strName);
         BShareDB.saveData(mContext,"pwd",strPwd);
     }
+
+    private void showUpdate(){
+        mUpdateWindow = new PopupWindow(ez_updateView, getScreenWidth() / 2, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mUpdateWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mUpdateWindow.setFocusable(true);
+        mUpdateWindow.setOutsideTouchable(true);
+        mUpdateWindow.update();
+        mUpdateWindow.showAtLocation(ijkVideoView, Gravity.CENTER, 0, 0);
+    }
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -218,5 +253,12 @@ public class SplashActivity extends AppCompatActivity implements SocketCallback 
             } else {
             }
         }
+    }
+
+    @Override
+    public void onUpdate(String downUrl, String text) {
+        this.downUrl = downUrl;
+        this.updateText = text;
+        sendHandleMessage(3,null);
     }
 }

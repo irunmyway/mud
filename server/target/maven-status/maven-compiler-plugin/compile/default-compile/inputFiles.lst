@@ -21,7 +21,6 @@ D:\android\mud\server\src\main\java\com\eztv\mud\utils\BNumber.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ZipEntry.java
 D:\android\mud\server\src\main\java\com\eztv\mud\handler\core\Battle.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\BEncode.java
-D:\android\mud\server\src\main\java\com\eztv\mud\bean\Enum.java
 D:\android\mud\server\src\main\java\com\eztv\mud\socket\HeartbeatClient.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\BString.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ZipShort.java
@@ -29,7 +28,6 @@ D:\android\mud\server\src\main\java\com\eztv\mud\bean\Bag.java
 D:\android\mud\server\src\main\java\com\eztv\mud\socket\callback\SocketCallback.java
 D:\android\mud\server\src\main\java\com\eztv\mud\socket\SocketServer.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\event\BEvents.java
-D:\android\mud\server\src\main\java\com\eztv\mud\bean\GameCmd.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ZipFile.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\UnrecognizedExtraField.java
 D:\android\mud\server\src\main\java\com\eztv\mud\handler\BagHandler.java
@@ -56,14 +54,15 @@ D:\android\mud\server\src\main\java\com\eztv\mud\bean\Client.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\event\BListener.java
 D:\android\mud\server\src\main\java\com\eztv\mud\handler\LoginHandler.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\callback\IGameObject.java
+D:\android\mud\server\src\main\java\com\eztv\mud\constant\Cmd.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\net\WinMessage.java
-D:\android\mud\server\src\main\java\com\eztv\mud\bean\Cmd.java
 D:\android\mud\server\src\main\java\com\eztv\mud\test\SocketServer.java
 D:\android\mud\server\src\main\java\com\eztv\mud\socket\SocketClient.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\net\Player.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\BDebug.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ExtraFieldUtils.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\Monster.java
+D:\android\mud\server\src\main\java\com\eztv\mud\constant\Enum.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\Choice.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\Item.java
 D:\android\mud\server\src\main\java\com\eztv\mud\test\Test.java

@@ -25,4 +25,11 @@
         <item name="android:windowExitAnimation">@anim/pop_exit</item>
     </style>
 
+    <style name="update_progress_horizontal" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:maxHeight">10.0dip</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/progress_indeterminate_horizontal</item>
+        <item name="android:minHeight">10.0dip</item>
+    </style>
+
 </resources>
