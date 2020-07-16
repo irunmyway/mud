@@ -10,14 +10,23 @@ public class Enum {
 
     //玩家类型
     public enum gameObjectType{player,monster,npc}
+
     //物品类型
     public enum itemType{装备,药水,道具}
+
     //移动
     public enum direct{left,right,top,down}
 
     //通信模块
     public enum messageType{normal,login,toast,action,chat,input,unHandPop,pop}
+
     //聊天类型
     public enum chat{公聊,系统,私聊,本地}
+
+    //任务状态
+    public enum taskState{可接,不可接,正在完成,已经完成}
+
+    //任务类型
+    public enum taskType{kill,item,level,talk}
 
 }

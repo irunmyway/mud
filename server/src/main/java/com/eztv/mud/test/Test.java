@@ -6,6 +6,8 @@ import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.Choice;
 import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.lang.reflect.Array;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
+    private int a = 0;
     public static void main(String[] args) {
         DataBase.getInstance().init();//加载数据库框架
         DataBase.getInstance().init().createSQL("delete from t_attribute").update();
@@ -72,6 +75,69 @@ public class Test {
 
     }
 
+    @org.junit.Test
+    public void test4(){
+        Globals globals = JsePlatform.debugGlobals();
+        globals.loadfile("lua/test.lua").call();
+        LuaValue lv  =CoerceJavaToLua.coerce(this); // Java to Lua
+         LuaValue[] dogs = { lv };
+        this.a=5;
+        String aVal = globals
+                .get(LuaValue.valueOf("getVal"))
+                .invoke(lv).toString();
+        BDebug.trace("测试"+aVal);
+    }
+    @org.junit.Test
+    public void test5(){
+        List<beanClass> list = new ArrayList<>();
+        beanClass b = new beanClass(2,3);
+        list.add(b);
+        b = new beanClass(3,4);
+        list.add(b);
+        b = new beanClass(4,5);
+        list.add(b);
+        for(beanClass bInstance :list){
+            BDebug.trace("测试"+bInstance.getI());
+            bInstance.setI(5);
+        }
+        for(beanClass bInstance :list){
+            BDebug.trace("测试"+bInstance.getI());
+        }
+    }
+    @org.junit.Test
+    public void test6(){
+        int b =5;
+        BDebug.trace("测试"+(b+=5));
+    }
+
+    public int getA() {
+        return a;
+    }
+}
+class beanClass{
+    int i=5;
+    int j=10;
+
+    public beanClass(int i, int j) {
+        this.i = i;
+        this.j = j;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public int getJ() {
+        return j;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
 }
 class testClass{
     static testClass t ;

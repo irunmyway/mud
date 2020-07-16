@@ -1,120 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>测试地图编辑器UI</title>
+    <!-- zui -->
+	<link href="https://cdn.bootcdn.net/ajax/libs/zui/1.9.2/css/zui.min.css" rel="stylesheet">
 
-//获取奖励悬浮
-ArrayList<String> list = new ArrayList<>();
-                ArrayList<Integer> colors = new ArrayList<Integer>();
-                list.add("成功杀死了 通天教主");
-                list.add("获得 通天教主勋章 *1");
-                list.add("达成成就 除魔卫道");
-                list.add("升级到 19 级");
-                list.add("获得 金疮药 *1");
-                list.add("铜币 + 9999");
-                colors.add(mContext.getResources().getColor(R.color.c_pink));
-                colors.add(mContext.getResources().getColor(R.color.blue));
-                colors.add(mContext.getResources().getColor(R.color.lightblue));
-                colors.add(mContext.getResources().getColor(R.color.white));
-                colors.add(mContext.getResources().getColor(R.color.mainColor));
-                Rect localRect1 = Util.getViewAbsRect(findViewById(R.id.btn_noth));
-                localRect1.offset(0, -125);
-                for (int i = 0; i < list.size(); i++) {
-                    final TextView localTextView = new TextView(mActivity);
-                    localTextView.setText(list.get(i));
-                    localTextView.setTextColor(colors.get((int)(Math.random()*4)));
-                    localTextView.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
-                    final Rect localRect2 = new Rect(localRect1);
-                    localRect2.offset(0, -(list.size() - i-1) * BAutoSize.value2px(mActivity,1,WIDTH_DP));
-                    final Rect localRect3 = new Rect(localRect2);
-                    localRect3.offset(0, -(list.size() - i-1) * BAutoSize.value2px(mActivity,25,WIDTH_DP));
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Util.calculateAnim(findViewById(R.id.game_layout), localTextView,localRect2, localRect3, new IAnimatorListener() {
-                                @Override
-                                public void onAnimationPrepare(Object Layout, View showView, View fromView, View toView) {
-                                    ((ConstraintLayout) Layout).addView(localTextView);
-                                }
+<style>
+.btn.map{
+    border-width: 5px;
+}
+.e-u{
+	border-top-color: #daa213;
+}
 
-                                @Override
-                                public void onAnimationFinish(final Object Layout, View showView, View fromView, View toView) {
-                                   handler.postDelayed(new Runnable() {
-                                       @Override
-                                       public void run() {
-                                           ((ConstraintLayout) Layout).removeView(localTextView);
-                                       }
-                                   },2500);
+.e-d{
+	border-bottom-color: #daa213;
+}
 
-                                }
+.e-l{
+	border-left-color: #daa213;
+}
+.e-r{
+	border-right-color: #daa213;
+}
+.btn.add{
+    border-width: 5px;
+	border-color: #999;
+}
+</style>
 
-                            });
-                        }
-                    },i*100);
+  </head>
+  <body>
+<div class="container-fluid">
+    <h1>测试地图编辑器UI</h1>
+	<div class='row'>
+		<div class='col-xs-2'>
+			<div class="switch">
+			  <input type="checkbox" checked="checked">
+			  <label>显示添加按钮</label>
+			</div>
+		</div>
+		<div class='col-xs-2'>
+		</div>
+		<div class='col-xs-2'>
+		</div>		
+	</div>
+<table class="table table-borderless table-auto" >
+  <tbody id="modo">
+    <tr>
+      <td></td>
+      <td><button class="btn add" type="button">添加位置</button></td>
+      <td></td>
+	</tr>
+    <tr>
+      <td><button class="btn add" type="button" >添加位置</button></td>
+      <td><button id="357" class="btn btn-info map e-u" type="button">测试场景</button></td>
+      <td><button class="btn add" type="button" >添加位置</button></td>
+	  </tr>
+    <tr>
+      <td></td>
+      <td><button class="btn add" type="button" >添加位置</button></td>
+      <td></td>
+	  </tr>
+  </tbody>
+</table>
+
+    <!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
+<script src="https://cdn.bootcdn.net/ajax/libs/zui/1.9.2/lib/jquery/jquery-3.4.1.min.js"></script>
+    <!-- ZUI Javascript组件 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/zui/1.9.2/js/zui.min.js"></script>
+<script>
+
+
+	$(document).ready(function(){
+		$("#modo").on("click",'.add',function(){
+			add(this,'auto');
+		});
+	  
+		$("#modo").on("click",'.map',function(){
+			var idata ={'type':'edit','id':$(this).attr('id')}
+			$.post("partial/remote-modal.php",idata,function(result){
+				(new $.zui.ModalTrigger({title:result.tit,custom: result.html})).show();
+			});
+		});
+	  
+		$(".switch").on("click",function(){
+			if ($(this).children().is(":checked")){
+				$(".add").show();
+			}else{
+				$(".add").hide();	
+			}
+		});
+	});
+  
+	function add(td,ext){
+		var row = $(td).parent().prevAll().length;
+		var col = $(td).parent().parent().prevAll().length ;
+		var up = $("#modo").find("tr").eq(col - 1).find("td").eq(row).find("button").eq(0).attr('id');
+		var down = $("#modo").find("tr").eq(col + 1).find("td").eq(row).find("button").eq(0).attr('id');
+		var left = $("#modo").find("tr").eq(col).find("td").eq(row - 1).find("button").eq(0).attr('id');
+		var right = $("#modo").find("tr").eq(col).find("td").eq(row + 1).find("button").eq(0).attr('id');
+		var idata ={'exit':ext,'up':up,'down':down,'left':left,'right':right}
+		$.post("partial/remote-modal.php",idata,function(result){
+			(new $.zui.ModalTrigger({title:result.tit,custom: result.html})).show();
+		});
+	 
+	}
+
+	$("#get_str").click(get_str);
+	$("#dele_row").click(dele_row);
+	$("#dele_col").click(dele_col);
+
+	function add_room(up,down,left,right){//判断需要添加房间的根房间ID和添加方向
+		if(down && right ){//左上角
+			update_room('U',down);
+			return;}
+		if(up && right){//左下角
+			update_room('D',up);
+			return;}
+		if(down && left){//右上角
+			update_room('U',down);
+			return;}
+		if(up && left){//右下角
+			update_room('D',up);
+			return;}
+		if(up){//向下添加
+			update_room('D',up);
+			return;}
+		if(down){//向上添加
+			update_room('U',down);
+			return;}
+		if(left){//向右添加
+			update_room('R',left);
+			return;}
+		if(right){//向左添加
+			update_room('L',right);
+			return;}
+	}
+
+	function update_room(ext,id){//更新房间，并尝试添加新的位置添加按钮
+		var name = $('#add_name').val();
+		var nid = $('#add_id').val();
+		var row = $('#'+id).parent().prevAll().length ;
+		var col = $('#'+id).parent().parent().prevAll().length;	
+		var h = $("#modo").find("tr").length; //行数
+		var l = $("#modo").find("tr").find("td").length / h ; //列数
+		switch(ext){
+			case 'U':
+				col = col - 1;	
+				console.log("添加行",col);
+				if(col ==0){
+					add_row('U',id);
+					var row = $('#'+id).parent().prevAll().length ;
+					var col = $('#'+id).parent().parent().prevAll().length -1;	
+					var h = $("#modo").find("tr").length; //行数
+					var l = $("#modo").find("tr").find("td").length / h ; //列数
+				}
+			break;
+			case 'D':
+				col = col + 1;
+				console.log("添加行" ,col);
+				if(col == h-1){
+					console.log("添加行");
+					add_row('D',id);
+					var row = $('#'+id).parent().prevAll().length ;
+					var col = $('#'+id).parent().parent().prevAll().length +1;	
+					var h = $("#modo").find("tr").length; //行数
+					var l = $("#modo").find("tr").find("td").length / h ; //列数
+				}
+			break;
+			case 'L':
+				row = row - 1;
+				if(row ==0){
+					console.log("添加列");
+					add_col('L',id);
+					var row = $('#'+id).parent().prevAll().length -1;
+					var col = $('#'+id).parent().parent().prevAll().length;	
+					var h = $("#modo").find("tr").length; //行数
+					var l = $("#modo").find("tr").find("td").length / h ; //列数
+				}
+			break;
+			case 'R':
+				row = row + 1;
+				if(row == l-1){
+					console.log("添加列");
+					add_col('R',id);
+					var row = $('#'+id).parent().prevAll().length + 1;
+					var col = $('#'+id).parent().parent().prevAll().length;	
+					var h = $("#modo").find("tr").length; //行数
+					var l = $("#modo").find("tr").find("td").length / h ; //列数
+				}
+			break;
+		}
+		$("#modo").find("tr").eq(col).find("td").eq(row).html("<button class='btn map btn-info' id='"+ nid +"'>"+name+"</button>");
+		var td_name = "";
+		$("#modo tr").each(function(f){
+			$(this).children("td").each(function(i){
+				td_name = $("#modo").find("tr").eq(f).find("td").eq(i).children().attr('id');
+				console.log(f,i,td_name);
+				var e8 = $("#modo").find("tr").eq(f-1).find("td").eq(i).children().attr('id');
+				var e2 = $("#modo").find("tr").eq(f+1).find("td").eq(i).children().attr('id');
+				var e4 = $("#modo").find("tr").eq(f).find("td").eq(i-1).children().attr('id');
+				var e6 = $("#modo").find("tr").eq(f).find("td").eq(i+1).children().attr('id');	
+				if(td_name){
+					if(!e8){
+						$("#modo").find("tr").eq(f-1).find("td").eq(i).html("<button class='btn add' >添加位置</button>");
+					}
+					if(!e2){
+						$("#modo").find("tr").eq(f+1).find("td").eq(i).html("<button class='btn add' >添加位置</button>");
+					}
+					if(!e4){
+						$("#modo").find("tr").eq(f).find("td").eq(i-1).html("<button class='btn add' >添加位置</button>");
+					}
+					if(!e6){
+						$("#modo").find("tr").eq(f).find("td").eq(i+1).html("<button class='btn add' >添加位置</button>");
+					}
+
+				}
+				if( !e6 && !e4 && !e8 && !e2){
+					$("#modo").find("tr").eq(f).find("td").eq(i).html('');
+				}
+			});
+		});
+	}
+
+
+    function add_row(UD,id) { //添加行方法
+		var h = $("#modo").find("tr").length; //行数
+		var l = $("#modo").find("tr").find("td").length / h; //列数
+		var mode_tr = "";
+		for (i = 0; i < l; i++) { 
+			mode_tr  += "<td></td>";
+		}
+		if( UD == 'D'){
+			var NH = h-2;
+		}else{
+			var NH = 0;
+		}
+		$('<tr>'+mode_tr+'</tr>').insertAfter($("#modo").find("tr").eq(NH));
+		var row = $('#'+id).parent().prevAll().length;
+		var col = $('#'+id).parent().parent().prevAll().length ;
+    }
+ 
+ 
+    function add_col(LR,id) { //添加列方法
+		var h = $("#modo").find("tr").length; //行数
+		var l = $("#modo").find("tr").find("td").length / h ; //列数
+        $("tr").each(function(index) {
+			if(LR == 'R'){
+				var NL = l-2;
+			}else{
+				var NL = 0;
+			} 
+			$("<td></td>").insertAfter($(this).find("td").eq(NL));
+        })
+    }
+ 
+    function get_str() { //提取内容
+                var str="";
+                var trLen = $("#test tr").length;
+                for(var i = 0;i<trLen;i++){
+                    var tr = $("#test").find("tr").eq(i);//获取每一行tr
+                    var tdLen = $(tr).find("td").length;
+                    for(var j = 0;j<tdLen;j++){
+                        td=$(tr).find("td").eq(j);//获取每行td
+                        str = str+$(td).text()+","
+                    }
+                    str = str+"|"//换行
                 }
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				//攻击
-				
-				
-				
-				final ImageView localImageView = new ImageView(mActivity);
-                localImageView.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
-                localImageView.setImageResource(R.mipmap.sword);
-                Util.fightAnim(findViewById(R.id.game_layout),localImageView, findViewById(R.id.self_describe), view, new IAnimatorListener() {
-                    @Override
-                    public void onAnimationPrepare(Object Layout, View showView,View fromView,View toView) {
-                        ((ConstraintLayout)Layout).addView(localImageView);
+                return str;
+            }
+ 
+    function dele_row() {
+                var row = $("#dele_row_text").val();
+                row = row - 1;
+                var tr = $("#test tr:eq(" + row + ")");
+ 
+                if(!confirm("确定要删除" + $(tr).find("td").eq(0).text() + "这一行？")) {
+                    return false
+                }
+ 
+                $(tr).remove();
+            }
+ 
+    function dele_col() {
+                var col = $("#dele_col_text").val();
+                col = col - 1;
+                var tr = $("tr");
+                $.each(tr, function(index) {
+                    if(index == 0) {
+                        if(confirm("确定要删除" + $(this).find("td").eq(col).text() + "这一列？") == 0) {
+                            return false;
+                        }
                     }
-                    @Override
-                    public void onAnimationFinish(Object Layout, View showView,View fromView,View toView) {
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                ((ConstraintLayout)Layout).removeView(localImageView);
-                            }
-                        },300);
-                    }
-
+                    $(this).find("td").eq(col).remove()
                 });
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				//调用lua
-				
-        globals.load(npcScript.get("1"));
-        globals.get(LuaValue.valueOf("hello")).call();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-战斗概述对所有在该地图的玩家发放（完成）
-公告 记录10条历史聊天（完成）
-死亡后还发送状态的问题（暂时没问题）
-多次点击攻击目标时候 攻击多次。。。（完成）
-死亡复活
-混淆
+ 
+            }
+ 
+        </script>
+  </body>
+</html>
+
+

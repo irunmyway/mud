@@ -6,7 +6,6 @@ import java.util.List;
 public class BeanUtil {
     private List<Choice> choice = new ArrayList<>();
 
-
     public List<Choice> getChoice() {
         return choice;
     }

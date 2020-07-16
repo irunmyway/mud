@@ -3,16 +3,18 @@ package com.eztv.mud.bean.net;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
+import com.eztv.mud.bean.callback.IPlayerCallBack;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.core.Battle;
+import com.eztv.mud.handler.core.TaskHandler;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 import online.sanen.cdm.template.jpa.Column;
 
 import java.util.Date;
 
-public class Player extends GameObject implements playerCallBack{
+public class Player extends GameObject implements IPlayerCallBack {
     private String key ;
     @Column
     private String name;
@@ -35,6 +37,9 @@ public class Player extends GameObject implements playerCallBack{
 
     //发动攻击
     private Battle battle = new Battle();
+
+    //任务检测
+    private TaskHandler taskHandler = new TaskHandler();
 
     @JSONField(serialize = false)
     private PlayerData playerData;//后端存储信息用的不传输
@@ -59,6 +64,10 @@ public class Player extends GameObject implements playerCallBack{
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public TaskHandler getTaskHandler() {
+        return taskHandler;
     }
 
     public String getData() {
@@ -162,7 +171,4 @@ public class Player extends GameObject implements playerCallBack{
             GameUtil.getSelf(client);
         }
     }
-}
-interface playerCallBack{
-    void onUpLevel();
 }

@@ -7,8 +7,12 @@ import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.SendGameObject;
 import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.bean.task.Task;
+import com.eztv.mud.bean.task.TaskAction;
+import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
+import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 import org.luaj.vm2.LuaValue;
 
@@ -26,6 +30,7 @@ import static com.eztv.mud.constant.Cmd.onObjectOutRoom;
  * 功能: 游戏物品人物等等所有元素的基类
  **/
 public abstract class GameObject {
+    private int id;//数据库标识
     private String key;//唯一标识
     private String name;
     private String objectName;
@@ -72,8 +77,32 @@ public abstract class GameObject {
             winMsg.setChoice(choice);
             winMsg.setDesc("您已经死亡</p><br>&emsp;" + "请选择如何转生。");
             client.sendMsg(msgBuild(Enum.messageType.unHandPop, "relive", object2JsonStr(winMsg), null).getBytes());
-        } else {//移除玩家杀死的其他东西
+        } else {
 
+            /**
+             作者：hhx QQ1025334900
+             日期: 2020-07-15 17:27
+             用处：任务触发 查看玩家任务 并且计数
+            **/
+
+            for (Task task:client.getPlayer().getPlayerData().getTasks()){
+//                if(task.getTaskState()==Enum.taskState.){
+                for (TaskCondition taskCondition :task.getTaskConditions()){
+                        for (TaskAction taskAction :taskCondition.getTaskActions()){
+                            if(taskAction.getId().equals(diedObj.getId()+"")){
+                                taskAction.addProcess(1);
+                                BDebug.trace("任务进度"+taskAction.getProcess());
+                            }
+                        }
+                    }
+//                }
+            }
+
+            /**
+             作者：hhx QQ1025334900
+             日期: 2020-07-15 17:26
+             用处：//移除玩家杀死的其他东西   奖励触发
+            **/
             client.getScriptExecutor().loadfile(diedObj.getScript() + ".lua").call();
             Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().get(LuaValue.valueOf("reward")).invoke().toString()), Bag.class);
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
@@ -85,7 +114,11 @@ public abstract class GameObject {
                 }
             }
 
-
+            /**
+             作者：hhx QQ1025334900
+             日期: 2020-07-15 17:26
+             用处：怪物刷新模块触发
+            **/
             if (diedObj.getRefreshment() == 0) return;
             diedObj.iGameObject.onRefresh(client);
         }
@@ -128,6 +161,13 @@ public abstract class GameObject {
         this.attribute = attribute;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setiGameObject(com.eztv.mud.bean.callback.IGameObject iGameObject) {
         this.iGameObject = iGameObject;

@@ -1,6 +1,6 @@
 local attribute = luajava.bindClass("com.eztv.mud.bean.Attribute")
 local gameUtil = luajava.bindClass("com.eztv.mud.GameUtil")
-
+local Choice = luajava.newInstance("com.eztv.mud.bean.Choice")
 local jszs = luajava.new(attribute)
 function init()--基础属性初始化
 jszs:setHp(40);
@@ -25,15 +25,7 @@ end
 function choice()--基础功能
 local util = luajava.newInstance("com.eztv.mud.bean.BeanUtil")
 local Enum = luajava.newInstance("com.eztv.mud.bean.Enum")
-util:getChoice():add(createChoice("攻击",Enum.messageType.normal,"attack",""));
+util:getChoice():add(Choice:createChoice("攻击",Enum.messageType.normal,"attack",""));
 return gameUtil:objectArr2JsonStr(util:getChoice());
 end
 
-function createChoice(name,type,cmd,msg)--创建选项
-local choiceRet = luajava.newInstance("com.eztv.mud.bean.Choice")
-choiceRet:setName(name);
-choiceRet:setCmd(cmd);
-choiceRet:setMsg(msg);
-choiceRet:setType(type);
-return choiceRet;
-end

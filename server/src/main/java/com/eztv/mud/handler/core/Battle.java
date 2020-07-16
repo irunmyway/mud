@@ -11,7 +11,11 @@ import java.awt.event.ActionListener;
 import static com.eztv.mud.Constant.FIGHT_SPEED;
 import static com.eztv.mud.GameUtil.*;
 
-
+/**
+ 作者：hhx QQ1025334900
+ 日期: 2020-07-15 10:01
+ 用处：战斗实现，但具体功能在《GameObject》 的Attack里，，哈哈哈
+**/
 public class Battle implements ActionListener {
     private GameObject who;
     private GameObject target;

@@ -37,6 +37,16 @@ public class GameUtil {
     }
 
     //Msg消息流生成器
+    public static byte[] msgBuildForBytes(Enum.messageType type, String cmd, String msgstr, String role) {
+        Msg msg = new Msg();
+        msg.setCmd(cmd);
+        msg.setMsg(msgstr);
+        msg.setRole(role);
+        msg.setType(type);
+        return object2JsonStr(msg).getBytes();
+    }
+
+    //Msg消息流生成器
     public static String msgBuild(Enum.messageType type, String cmd, String msgstr, String role,String name) {
         Msg msg = new Msg();
         msg.setCmd(cmd);
@@ -45,6 +55,17 @@ public class GameUtil {
         msg.setType(type);
         msg.setName(name);
         return object2JsonStr(msg);
+    }
+
+    //Msg消息流生成器
+    public static byte[] msgBuildForBytes(Enum.messageType type, String cmd, String msgstr, String role,String name) {
+        Msg msg = new Msg();
+        msg.setCmd(cmd);
+        msg.setMsg(msgstr);
+        msg.setRole(role);
+        msg.setType(type);
+        msg.setName(name);
+        return object2JsonStr(msg).getBytes();
     }
 
     //元素到json

@@ -103,7 +103,7 @@ public class Server implements SocketServerCallback {
                     case Cmd.doAttack://获取房间信息
                         GameHandler.doAttack(client,msg);
                         break;
-                    case Cmd.doTAlk://玩家对话
+                    case Cmd.doTalk://玩家对话
                         GameHandler.doTalk(client,msg);
                         break;
                     case "relive"://玩家复活

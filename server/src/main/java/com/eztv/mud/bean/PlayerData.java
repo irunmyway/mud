@@ -2,6 +2,7 @@ package com.eztv.mud.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.bean.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 public class PlayerData {
     private String room;
     private Attribute attribute = new Attribute();//玩家的基础属性
-    private Bag bag = new Bag();
+    private List<Task> tasks = new ArrayList<>();//玩家的任务集合
+    private Bag bag = new Bag();//玩家背包
     @JSONField(serialize = false)
     private Player player;
     public PlayerData(Player player) {
@@ -36,9 +38,14 @@ public class PlayerData {
         return attribute;
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
     public void setAttribute(Attribute attribute) {
         this.attribute = attribute;
     }
+
 
     public List<String> toReward(Bag reward){//变成奖励
         List<String > list = new ArrayList<>();
@@ -66,7 +73,6 @@ public class PlayerData {
                 getBag().getItems().add(item);
             }
         }
-
         return list;
     }
 }

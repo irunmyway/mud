@@ -78,6 +78,7 @@ public class MapHandler {
                 client.getPlayer().getPlayerData().setRoom(getRoom(getCurRoomId((client))).getDown() + "");
                 break;
         }
+        if(client.getPlayer().getPlayerData().getRoom()!=null)
         getMapDetail(client);
     }
 }

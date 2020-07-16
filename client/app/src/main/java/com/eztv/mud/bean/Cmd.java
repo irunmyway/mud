@@ -9,7 +9,7 @@ public class Cmd {
     public static final String getAttribute  = "getAttribute";//获取玩家属性
     public static final String doAttack  = "doAttack";//攻击或者战斗小结
     public static final String getGG  = "getGG";//获取公告
-    public static final String doTalk  = "doTAlk";//玩家对话 展示对话框
+    public static final String doTalk  = "doTalk";//玩家对话 展示对话框
 
 
 }
