@@ -96,7 +96,7 @@ public class GameUtil {
         return room == null ? new Room() : room;
     }
 
-    //查找游戏元素
+    //通过动态id查找游戏元素
     public static GameObject getGameObject(Client client, String key) {
         GameObject gameObject=null;
         List<GameObject> list = new ArrayList<>();
@@ -105,6 +105,18 @@ public class GameUtil {
         list.addAll(getCurRoom(client).getPlayerList());
         for (GameObject o:list) {
             if(o.getKey().equals(key)){
+                gameObject = o;
+                break;
+            }
+        }
+        return gameObject;
+    }
+    //通过静态id查找游戏元素
+    public static GameObject getMonstertById(String id) {
+        GameObject gameObject=null;
+        List<Monster> list = Word.getInstance().getMonsters();
+        for (GameObject o:list) {
+            if((o.getId()+"").equals(id)){
                 gameObject = o;
                 break;
             }

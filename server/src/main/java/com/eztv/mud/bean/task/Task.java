@@ -1,4 +1,6 @@
 package com.eztv.mud.bean.task;
+import com.eztv.mud.GameUtil;
+import com.eztv.mud.Word;
 import com.eztv.mud.bean.Bag;
 import com.eztv.mud.bean.Monster;
 import com.eztv.mud.constant.Enum;
@@ -57,6 +59,7 @@ public class Task {
 
 	public void setReward(Bag reward) {
 		this.reward = reward;
+		taskState= Enum.taskState.cant;//默认设为不可接
 	}
 
 	public String getDesc() {
@@ -75,7 +78,21 @@ public class Task {
 		this.taskConditions = taskConditions;
 	}
 
-
+    public String showTaskDetail(){
+	    String str="";
+        //this.getTaskState()
+	    for(TaskCondition taskCondition:this.getTaskConditions()){
+	        for (TaskAction taskAction:taskCondition.getTaskActions()){
+	            switch (taskCondition.getType()){
+                    case kill:
+                        str+="击杀"+GameUtil.getMonstertById(taskAction.getId()).getName()+" 进度 "+taskAction.getProcess()+"/"+taskAction.getNum();
+                        str+="\n";
+                        break;
+                }
+            }
+        }
+	    return str;
+    }
 
 	@Override
 	public boolean equals(Object obj) {

@@ -24,6 +24,7 @@ public class Word {
     private HashMap<String, LuaValue> itemScript = new HashMap<String, LuaValue>();
     private HashMap<String, Attribute> baseAttributes = new HashMap<String, Attribute>();
     private List<Item> items;
+    private List<Monster> monsters;
     private Globals globals = JsePlatform.standardGlobals();
     private String GG = "";
     private static Word Instance;
@@ -112,7 +113,7 @@ public class Word {
 
     private void initMonster() {//加载所有怪物 和他的脚本
         monsterScript.clear();
-        List<Monster> monsters = DataBase.getInstance().init().createSQL("select * from t_monster").list(Monster.class);
+        monsters = DataBase.getInstance().init().createSQL("select * from t_monster").list(Monster.class);
         for (Monster monster : monsters) {
             try {
                 Attribute attribute = new Attribute();
@@ -213,6 +214,10 @@ public class Word {
 
     public HashMap<String, LuaValue> getItemScript() {
         return itemScript;
+    }
+
+    public List<Monster> getMonsters() {
+        return monsters;
     }
 
     public List<Item> getItems() {

@@ -2,10 +2,12 @@ package com.eztv.mud;
 
 import com.eztv.mud.bean.Bag;
 import com.eztv.mud.bean.Choice;
+import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.utils.BDebug;
 
 import java.util.ArrayList;
@@ -41,7 +43,12 @@ public class LuaUtil {
         //taskActions.clear();
         return this;
     }
-
+    public void senReward(Client client,Bag reward){
+        DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
+    }
+    public void setReward(Bag reward) {
+        this.task.setReward(reward);
+    }
 
     public Task getTask() {
         return task;

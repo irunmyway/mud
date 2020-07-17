@@ -24,7 +24,7 @@ public class Enum {
     public enum chat{公聊,系统,私聊,本地}
 
     //任务状态
-    public enum taskState{可接,不可接,正在完成,已经完成}
+    public enum taskState{can,cant,processing,finished}
 
     //任务类型
     public enum taskType{kill,item,level,talk}

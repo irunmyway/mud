@@ -2,47 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、完成战斗升级功能，并保留经验叠加&#10;2、修战斗逻辑">
-      <change afterPath="$PROJECT_DIR$/com.eztv.mud.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lua/test.lua" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/callback/IPlayerCallBack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/task/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/task/TaskAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/task/TaskCondition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Cmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Cmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Enum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/layout/item_game_object.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/layout/item_game_object.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/item/hsys.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/item/hsys.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/monster/jszs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/monster/jszs.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lua/npc/cunzhang.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/npc/cunzhang.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/BeanUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/BeanUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Cmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Cmd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/task/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/task/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/TaskHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/BeanUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/BeanUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/testClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/testClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../代码暂存.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../代码暂存.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -261,6 +234,7 @@
       <workItem from="1594776072742" duration="15882000" />
       <workItem from="1594811335149" duration="12178000" />
       <workItem from="1594862806238" duration="22353000" />
+      <workItem from="1594952513367" duration="7411000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
