@@ -12,6 +12,7 @@ public class PlayerData {
     private Attribute attribute = new Attribute();//玩家的基础属性
     private List<Task> tasks = new ArrayList<>();//玩家的任务集合
     private Bag bag = new Bag();//玩家背包
+    private Equip equip = new Equip(); //玩家装备
     @JSONField(serialize = false)
     private Player player;
     public PlayerData(Player player) {
@@ -36,6 +37,10 @@ public class PlayerData {
 
     public Attribute getAttribute() {
         return attribute;
+    }
+
+    public Equip getEquip() {
+        return equip;
     }
 
     public List<Task> getTasks() {

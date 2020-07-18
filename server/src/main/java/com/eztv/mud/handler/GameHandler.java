@@ -69,4 +69,16 @@ public class GameHandler {
         MapHandler.getMapDetail(client);
         getAttribute(client);
     }
+    public static void geMine(Client client, Msg msg) {
+        WinMessage winMsg = new WinMessage();
+        List<Choice> choice = new ArrayList<>();
+        winMsg.setDesc("我的");
+        choice.add(Choice.createChoice("我的装备", messageType.input,"", null,null));
+        choice.add(Choice.createChoice("我的技能", messageType.input,"", null,null));
+
+        winMsg.setChoice(choice);
+        client.sendMsg(msgBuild(messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());
+    }
+
+
 }

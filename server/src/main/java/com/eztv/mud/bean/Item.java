@@ -8,6 +8,7 @@ public class Item extends GameObject implements Cloneable{
     private String script;
     private int num;
     private Enum.itemType type;
+    private Enum.equipType equipType;
 
 //    public Item(String name, int num) {
 //        this.name = name;
@@ -52,6 +53,15 @@ public class Item extends GameObject implements Cloneable{
     public void setScript(String script) {
         this.script = script;
     }
+
+    public Enum.equipType getEquipType() {
+        return equipType;
+    }
+
+    public void setEquipType(Enum.equipType equipType) {
+        this.equipType = equipType;
+    }
+
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();

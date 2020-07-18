@@ -111,7 +111,7 @@ public class GameUtil {
         }
         return gameObject;
     }
-    //通过静态id查找游戏元素
+    //通过静态id查找游戏怪物
     public static GameObject getMonstertById(String id) {
         GameObject gameObject=null;
         List<Monster> list = Word.getInstance().getMonsters();
@@ -123,7 +123,16 @@ public class GameUtil {
         }
         return gameObject;
     }
-
+    //通过静态id查找游戏物品
+    public static Item getItemById(String id) {
+        Item item = null;
+       for(int i=0;i< Word.getInstance().getItems().size();i++){
+           if((Word.getInstance().getItems().get(i).getId()+"").equals(id)){
+               item = Word.getInstance().getItems().get(i);
+           }
+       }
+       return item;
+    }
     //获取玩家属性
     public static void getAttribute(Client client) {
         client.sendMsg(msgBuild(Enum.messageType.action, getAttribute,object2JsonStr(client.getPlayer().getPlayerData().getAttribute()),client.getRole()).getBytes());

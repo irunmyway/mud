@@ -1,12 +1,16 @@
 package com.eztv.mud.handler;
 
+import com.eztv.mud.Word;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.WinMessage;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eztv.mud.Constant.Item_PATH;
 import static com.eztv.mud.GameUtil.*;
 
 public class BagHandler {
@@ -40,13 +44,31 @@ public class BagHandler {
         WinMessage winMsg = new WinMessage();
         winMsg.setCol(3);
         List<Choice> choice = new ArrayList<>();//背包物品以选择显示
-        choice.add(Choice.createChoice("使用", Enum.messageType.action,"Item_use",itemId+"",null));
-        choice.add(Choice.createChoice("查看", Enum.messageType.action,"Item_look",itemId+"",null));
-        choice.add(Choice.createChoice("丢弃", Enum.messageType.action,"Item_drop",itemId+"",null));
-        choice.add(Choice.createChoice("全部丢弃", Enum.messageType.action,"Item_drop_all",itemId+"",null));
+        choice.add(Choice.createChoice("使用", Enum.messageType.action,"item_use",itemId+"",null));
+        choice.add(Choice.createChoice("查看", Enum.messageType.action,"item_look",itemId+"",null));
+        choice.add(Choice.createChoice("丢弃", Enum.messageType.action,"item_drop",itemId+"",null));
+        choice.add(Choice.createChoice("全部丢弃", Enum.messageType.action,"item_drop_all",itemId+"",null));
         winMsg.setChoice(choice);
         winMsg.setDesc(item.getName());//显示当前玩家的金钱。元宝等等 交易信息。
         client.sendMsg(msgBuild(Enum.messageType.pop, null,object2JsonStr(winMsg),null).getBytes());
 
     }
+    public static void item_use(Client client, Msg msg) {//使用
+        //执行物品脚本
+        Item item = getItemById(msg.getMsg());
+        if(item==null)return;
+        LuaValue clientLua  = CoerceJavaToLua.coerce(client);
+        LuaValue itemjLua  = CoerceJavaToLua.coerce(item);
+        LuaValue msgLua  = CoerceJavaToLua.coerce(msg);
+        LuaValue[] objs = { clientLua, itemjLua,msgLua};
+        client.getScriptExecutor().loadfile(item.getScript() + ".lua").call();
+        client.getScriptExecutor().get(LuaValue.valueOf("item_use")).invoke(objs);
+    }
+    public static void item_look(Client client, Msg msg){//查看物品
+        //执行物品脚本
+        Item item = getItemById(msg.getMsg());
+        if(item==null)return;
+    }
+
+
 }

@@ -15,7 +15,7 @@ public class Main {
 
         boolean run = true;
         Scanner sc = new Scanner(System.in);
-        String notice = "《指令提示》\n重新加载公告:gg\n";
+        String notice = "《指令提示》\n重新加载公告:gg\n通信检查:cknet\n";
         while(run){
             String cmd = sc.nextLine();
             switch (cmd){
@@ -24,6 +24,9 @@ public class Main {
                     break;
                 case "gg":
                     Word.getInstance().initGG();
+                    break;
+                case "cknet":
+                    System.out.println((Constant.set通信检查()?"打开了通信检测":"关闭了通信检查"));
                     break;
                 default:System.out.println(notice);
             }

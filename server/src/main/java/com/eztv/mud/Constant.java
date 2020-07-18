@@ -17,6 +17,11 @@ public class Constant {
 
 
 
-    public final static boolean 通信检查 = true;
+    public static boolean 通信检查 = true;
     public  static long 通信延迟 = 0;
+
+
+    public static boolean set通信检查() {
+        return Constant.通信检查 = !Constant.通信检查;
+    }
 }

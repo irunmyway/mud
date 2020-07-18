@@ -221,6 +221,12 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         btn_bag = findViewById(R.id.game_btn_bag);
         btn_bag.setOnClickListener(view -> send(msgBuild(messageType.pop, "getBag",player.getKey(),null)));
 
+
+        //我的模块
+        btn_state = findViewById(R.id.game_btn_state);
+        btn_state.setOnClickListener(view -> send(msgBuild(messageType.pop, "getMine",player.getKey(),null)));
+
+
         //地图全局模块
         btn_map = findViewById(R.id.game_btn_map);
 

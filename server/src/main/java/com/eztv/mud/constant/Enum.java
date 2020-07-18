@@ -14,6 +14,9 @@ public class Enum {
     //物品类型
     public enum itemType{装备,药水,道具}
 
+    //装备类型
+    public enum equipType{weapon,head,cloth,pants,shoes}
+
     //移动
     public enum direct{left,right,top,down}
 

@@ -40,12 +40,11 @@ function testTask(client,win,msg,gameObj)--测试任务 第一个任务
     bag:setExp(1350);--经验
     bag:addItem(1,1);--id 为1的物品给与1个
     task:taskCreate("kill1",nil,nil,"击杀两只怪物");
-    task:taskCreateAction(1,2);
+    task:taskCreateAction(1,2);--id为1的怪物杀两只
     task:taskAddCondition(Enum.taskType.kill);
     task:setReward(bag);
     --任务接受 逻辑 查看玩家是否接了任务，没有则添加，看是否完成
     local mTask = client:getPlayer():getTaskHandler():checkTask(client,task:getTask());--我身上的任务查  看玩家是否接了任务，没有则添加，看是否完成
-
     if(Enum.taskState.finished==mTask:getTaskState())then--任务完成 发放奖励
         win:setDesc("少侠做的不错！这是给你的奖励");
         luaUtil:getChoice():add(Choice:createChoice("小事一桩",Enum.messageType.action,"doTalk","","testTask",true));

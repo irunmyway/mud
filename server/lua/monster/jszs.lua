@@ -20,7 +20,7 @@ bag:setMoney(115);--铜币
 bag:setJbMoney(125);--金币
 bag:setYbMoney(135);--元宝
 bag:setExp(1350);--经验
-bag:addItem(1,1);--id 为1的物品给与1个
+bag:addItem(2,1);--id 为1的物品给与1个
 return gameUtil:object2JsonStr(bag);
 end
 

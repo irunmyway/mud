@@ -3,6 +3,7 @@ package com.eztv.mud;
 import com.eztv.mud.bean.Bag;
 import com.eztv.mud.bean.Choice;
 import com.eztv.mud.bean.Client;
+import com.eztv.mud.bean.Item;
 import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
@@ -61,5 +62,35 @@ public class LuaUtil {
     }
     public void setChoice(List<Choice> choice) {
         this.choice = choice;
+    }
+
+    ///////////////////////////////////////玩家自身部分//////////////////////////////////////////
+    public int getLevel(Client client){
+        return client.getPlayer().getLevel();
+    }
+    public void doEquip(Client client, Item item){//装备上当前物品
+        switch (item.getEquipType()){
+            case shoes:
+                client.getPlayer().getPlayerData().getEquip().setShoes(null);//卸掉身上的装备回背包
+                client.getPlayer().getPlayerData().getEquip().setShoes(item);
+                break;
+            case cloth:
+                client.getPlayer().getPlayerData().getEquip().setCloth(null);//卸掉身上的装备回背包
+                client.getPlayer().getPlayerData().getEquip().setCloth(item);
+                break;
+            case head:
+                client.getPlayer().getPlayerData().getEquip().setHead(null);//卸掉身上的装备回背包
+                client.getPlayer().getPlayerData().getEquip().setHead(item);
+                break;
+            case pants:
+                client.getPlayer().getPlayerData().getEquip().setPants(null);//卸掉身上的装备回背包
+                client.getPlayer().getPlayerData().getEquip().setPants(item);
+                break;
+            case weapon:
+                client.getPlayer().getPlayerData().getEquip().setWeapon(null);//卸掉身上的装备回背包
+                client.getPlayer().getPlayerData().getEquip().setWeapon(item);
+                break;
+        }
+
     }
 }

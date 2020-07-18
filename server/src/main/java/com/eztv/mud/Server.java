@@ -18,9 +18,10 @@ import java.net.Socket;
 
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.getAttribute;
-import static com.eztv.mud.handler.BagHandler.getBag;
+import static com.eztv.mud.handler.BagHandler.*;
 import static com.eztv.mud.handler.ChatHandler.doChat;
 import static com.eztv.mud.handler.ChatHandler.doChatWin;
+import static com.eztv.mud.handler.GameHandler.geMine;
 import static com.eztv.mud.handler.MapHandler.*;
 
 public class Server implements SocketServerCallback {
@@ -112,6 +113,12 @@ public class Server implements SocketServerCallback {
                     case "useClick"://玩家点击了物品，接下来要展示是查看物品 或者使用物品或者丢弃等等。。。
                         BagHandler.useClick(client,msg);
                         break;
+                    case "item_use"://物品使用
+                        item_use(client,msg);
+                        break;
+                    case "item_look"://物品查看
+                        item_look(client,msg);
+                        break;
 
                 }
                 break;
@@ -138,6 +145,9 @@ public class Server implements SocketServerCallback {
                 switch (msg.getCmd()) {
                     case "getBag":
                         getBag(client, msg);
+                        break;
+                    case "getMine":
+                        geMine(client, msg);
                         break;
                 }
                 break;
