@@ -58,12 +58,40 @@ public class Bag {
 
     public void addItem(int id,int num){
         if(num<1)num=1;
+        Item addItem = null;
         for(Item item:Word.getInstance().getItems()){
             if(item.getId()==id){
-                item.setNum(num);
-                items.add(item);
+                addItem = item;
             }
         }
+        if(addItem==null) return;
+        int pos = items.indexOf(addItem);
+        if(pos>-1){//背包中有了
+            addItem.setNum(addItem.getNum()+num);
+        }else{
+            addItem.setNum(num);
+        }
+        items.add(addItem);
+
+    }
+    public void delItem(int id,int num){
+        if(num<1)num=1;
+        Item   delItem  =null;
+        for(Item item:items){
+            if(item.getId()==id){
+                if(item.getNum()>1){
+                    if(item.getNum()-num<1){
+                        delItem = item;
+                    }else{
+                        item.setNum(item.getNum()-num);
+                    }
+                }else{
+                    delItem = item;
+                }
+            }
+        }
+        if(delItem!=null)
+        items.remove(delItem);
     }
 
 

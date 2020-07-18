@@ -21,6 +21,10 @@ public class Constant {
     public  static long 通信延迟 = 0;
 
 
+    //游戏展示
+    public final static String STR_TITLE = "</p><br>&emsp;";
+
+
     public static boolean set通信检查() {
         return Constant.通信检查 = !Constant.通信检查;
     }

@@ -24,13 +24,13 @@ public class DataHandler {
             Attribute base = attributes.get(player.getLevel() + "");
             if (player.getAttribute().getHp() < 1) {//玩家身上没有信息
                 Attribute attribute = new Attribute();
-                attribute.setHp(base.getHp());
-                attribute.setMp(base.getMp());
+                attribute.setHp(base.getHp_max());
+                attribute.setMp(base.getMp_max());
                 if(player.getLevel()>1)
                 attribute.setExp(0);
-                attribute.setHp_max(base.getHp());
-                attribute.setExp_max(base.getExp());
-                attribute.setMp_max(base.getMp());
+                attribute.setHp_max(base.getHp_max());
+                attribute.setExp_max(base.getExp_max());
+                attribute.setMp_max(base.getMp_max());
                 attribute.setAck(base.getAck());
                 player.getPlayerData().setAttribute(attribute);
             }
@@ -45,13 +45,13 @@ public class DataHandler {
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
             Attribute base = attributes.get(player.getLevel() + "");
             Attribute attribute = new Attribute();
-            attribute.setHp(base.getHp());
-            attribute.setMp(base.getMp());
+            attribute.setHp(base.getHp_max());
+            attribute.setMp(base.getMp_max());
             if(player.getLevel()<2)
                 attribute.setExp(0);
-            attribute.setHp_max(base.getHp());
-            attribute.setExp_max(base.getExp());
-            attribute.setMp_max(base.getMp());
+            attribute.setHp_max(base.getHp_max());
+            attribute.setExp_max(base.getExp_max());
+            attribute.setMp_max(base.getMp_max());
             attribute.setAck(base.getAck());
             player.getPlayerData().setAttribute(attribute);
         }
@@ -66,6 +66,12 @@ public class DataHandler {
         client.sendMsg(msgBuild(Enum.messageType.action,"reward",object2JsonStr(winMessage),null));
     }
 
-
+    //获取基础属性//不包括当前血量等等
+    public static Attribute getBaseAttribute( int level) {
+        HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
+        Attribute base = attributes.get(level + "");
+        Attribute attribute = new Attribute();
+        return attribute.add(base);
+    }
 
 }

@@ -1,10 +1,13 @@
 package com.eztv.mud.bean;
 
+import online.sanen.cdm.template.jpa.Column;
+import online.sanen.cdm.template.jpa.NoDB;
+import online.sanen.cdm.template.jpa.Table;
+
 import java.util.HashMap;
 
 public class Attribute implements Cloneable{
     private int level;
-
     private long hp;
     private long hp_max;
     private long mp;
@@ -76,6 +79,19 @@ public class Attribute implements Cloneable{
         this.ack = ack;
     }
 
+    public Attribute add(Attribute target){//基础属性的相加
+        Attribute attribute = new Attribute();
+        attribute.setAck(this.getAck()+target.getAck());
+        attribute.setHp_max(this.getHp_max()+target.getHp_max());
+        attribute.setMp_max(this.getMp_max()+target.getMp_max());
+        return attribute;
+    }
+    public Attribute addTmp(Attribute target){//包含当前属性的相加
+        target.setHp(this.getHp()+target.getHp());
+        target.setMp(this.getMp()+target.getMp());
+        target.setExp(this.getExp()+target.getExp());
+        return target;
+    }
     public void setExp_max(long exp_max) {
         this.exp_max = exp_max;
     }

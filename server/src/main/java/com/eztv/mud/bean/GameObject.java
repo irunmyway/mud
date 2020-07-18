@@ -38,7 +38,7 @@ public abstract class GameObject {
     private int map;//当前地图
     @JSONField(serialize = false)
     private long refreshment;//重新产出
-    private Attribute attribute;//属性
+    private Attribute attribute=new Attribute();//属性
     private String desc;//实体介绍说明
     private com.eztv.mud.bean.callback.IGameObject iGameObject;//死亡监听
     @JSONField(serialize = false)

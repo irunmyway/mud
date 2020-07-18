@@ -12,7 +12,7 @@ public class Enum {
     public enum gameObjectType{player,monster,npc}
 
     //物品类型
-    public enum itemType{装备,药水,道具}
+    public enum itemType{equip,Potion,help}//装备，药水，道具
 
     //装备类型
     public enum equipType{weapon,head,cloth,pants,shoes}

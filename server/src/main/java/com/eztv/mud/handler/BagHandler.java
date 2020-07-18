@@ -44,30 +44,40 @@ public class BagHandler {
         WinMessage winMsg = new WinMessage();
         winMsg.setCol(3);
         List<Choice> choice = new ArrayList<>();//背包物品以选择显示
-        choice.add(Choice.createChoice("使用", Enum.messageType.action,"item_use",itemId+"",null));
+        choice.add(Choice.createChoice("使用", Enum.messageType.action,"item_use",itemId+"",null,true));
         choice.add(Choice.createChoice("查看", Enum.messageType.action,"item_look",itemId+"",null));
-        choice.add(Choice.createChoice("丢弃", Enum.messageType.action,"item_drop",itemId+"",null));
-        choice.add(Choice.createChoice("全部丢弃", Enum.messageType.action,"item_drop_all",itemId+"",null));
+        choice.add(Choice.createChoice("丢弃", Enum.messageType.action,"item_drop",itemId+"",null,true));
+        choice.add(Choice.createChoice("全部丢弃", Enum.messageType.action,"item_drop_all",itemId+"",null,true));
         winMsg.setChoice(choice);
         winMsg.setDesc(item.getName());//显示当前玩家的金钱。元宝等等 交易信息。
         client.sendMsg(msgBuild(Enum.messageType.pop, null,object2JsonStr(winMsg),null).getBytes());
 
     }
     public static void item_use(Client client, Msg msg) {//使用
+        WinMessage winMsg = new WinMessage();
         //执行物品脚本
         Item item = getItemById(msg.getMsg());
         if(item==null)return;
         LuaValue clientLua  = CoerceJavaToLua.coerce(client);
-        LuaValue itemjLua  = CoerceJavaToLua.coerce(item);
+        LuaValue itemLua  = CoerceJavaToLua.coerce(item);
+        LuaValue winLua  = CoerceJavaToLua.coerce(winMsg);
         LuaValue msgLua  = CoerceJavaToLua.coerce(msg);
-        LuaValue[] objs = { clientLua, itemjLua,msgLua};
+        LuaValue[] objs = { clientLua, itemLua,winLua,msgLua};
         client.getScriptExecutor().loadfile(item.getScript() + ".lua").call();
         client.getScriptExecutor().get(LuaValue.valueOf("item_use")).invoke(objs);
     }
     public static void item_look(Client client, Msg msg){//查看物品
+        WinMessage winMsg = new WinMessage();
         //执行物品脚本
         Item item = getItemById(msg.getMsg());
         if(item==null)return;
+        LuaValue clientLua  = CoerceJavaToLua.coerce(client);
+        LuaValue itemLua  = CoerceJavaToLua.coerce(item);
+        LuaValue winLua  = CoerceJavaToLua.coerce(winMsg);
+        LuaValue msgLua  = CoerceJavaToLua.coerce(msg);
+        LuaValue[] objs = { clientLua, itemLua,winLua,msgLua};
+        client.getScriptExecutor().loadfile(item.getScript() + ".lua").call();
+        client.getScriptExecutor().get(LuaValue.valueOf("item_look")).invoke(objs);
     }
 
 

@@ -169,6 +169,7 @@ public class Word {
     private void initBaseAttribute() {
         //加载属性上线 基础公式表
         baseAttributes.clear();
+
         List<Attribute> attributeList = DataBase.getInstance().init().createSQL("select * from t_attribute").list(Attribute.class);
         for (Attribute attribute : attributeList) {
             baseAttributes.put(attribute.getLevel() + "", attribute);

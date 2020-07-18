@@ -1,11 +1,11 @@
 package com.eztv.mud.bean;
 
 public class Equip {
-    private Item weapon;//武器
-    private Item head;//头冠
-    private Item cloth;//衣服
-    private Item pants;//裤子
-    private Item shoes;//鞋子
+    private Item weapon= new Item();//武器
+    private Item head=new Item();//头冠
+    private Item cloth=new Item();;//衣服
+    private Item pants=new Item();;//裤子
+    private Item shoes=new Item();;//鞋子
 
 
     public Item getWeapon() {
@@ -46,6 +46,10 @@ public class Equip {
 
     public void setShoes(Item shoes) {
         this.shoes = shoes;
+    }
+
+    public Attribute calculate(){//装备的总属性
+       return weapon.getAttribute().add(head.getAttribute()).add(cloth.getAttribute()).add(pants.getAttribute()).add(shoes.getAttribute());
     }
 
 }

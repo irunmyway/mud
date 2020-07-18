@@ -2,6 +2,9 @@ package com.eztv.mud.bean;
 
 import com.eztv.mud.constant.Enum;
 
+import static com.eztv.mud.Constant.STR_TITLE;
+
+
 public class Item extends GameObject implements Cloneable{
     private int id;
     private String name;
@@ -52,6 +55,17 @@ public class Item extends GameObject implements Cloneable{
 
     public void setScript(String script) {
         this.script = script;
+    }
+
+    public String toDesc(Enum.itemType type){
+        String str="";
+        str+=name+STR_TITLE;
+        switch (type){
+            case equip:
+                str+="攻击力:"+getAttribute().getAck()+"<br>";
+                break;
+        }
+        return str;
     }
 
     public Enum.equipType getEquipType() {

@@ -58,14 +58,14 @@ public class PlayerData {
         getBag().setYbMoney(getBag().getYbMoney()+reward.getYbMoney());
         getBag().setJbMoney(getBag().getJbMoney()+reward.getJbMoney());
         if(reward.getMoney()>0)
-            list.add("铜币 +"+reward.getMoney());
+            list.add("<font color=\"#D2691E\">铜币 +"+reward.getMoney()+"</font>");
         if(reward.getJbMoney()>0)
-            list.add("金币 +"+reward.getJbMoney());
+            list.add("<font color=\"#FFD700\">金币 +"+reward.getJbMoney()+"</font>");
         if(reward.getYbMoney()>0)
-            list.add("元宝 +"+reward.getYbMoney());
+            list.add("<font color=\"#DAA520\">元宝 +"+reward.getYbMoney()+"</font>");
         if(reward.getExp()>0){
             getAttribute().addExp(reward.getExp());
-            list.add("得到经验 +"+reward.getExp());
+            list.add("<font color=\"#00BFFF\">得到经验 +"+reward.getExp()+"</font>");
             if(getAttribute().getExp()>getAttribute().getExp_max())player.onUpLevel();//升级触发
         }
         for(Item item:reward.items){
