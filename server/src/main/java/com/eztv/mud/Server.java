@@ -119,6 +119,17 @@ public class Server implements SocketServerCallback {
                     case "item_look"://物品查看
                         item_look(client,msg);
                         break;
+                    case "item_unload"://卸载装备
+                        item_unload(client,msg);
+                        client.getPlayer().onAttributeChange();
+                        break;
+                    case "my_equip":
+                        my_equip(client,msg);
+                        break;
+                    case "my_state":
+                        my_state(client,msg);
+                        break;
+
 
                 }
                 break;

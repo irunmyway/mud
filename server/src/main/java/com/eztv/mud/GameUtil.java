@@ -170,4 +170,21 @@ public class GameUtil {
             }catch (Exception e){e.printStackTrace();}
         }
     }
+
+    public static String colorString(String str){
+        if(str!=null)
+            if(str.contains("<")){
+                if(str.contains("<red>"))str = str.replaceAll("<red>","<font color=\"#C02E2E\">");
+                if(str.contains("<blue>"))str = str.replaceAll("<blue>","<font color=\"#4682B4\">");
+                if(str.contains("<green>"))str = str.replaceAll("<green>","<font color=\"#32CD32\">");
+                if(str.contains("<gray>"))str = str.replaceAll("<gray>","<font color=\"#BDB76B\">");
+                if(str.contains("<yellow>"))str = str.replaceAll("<yellow>","<font color=\"#FFD700\">");
+                if(str.contains("<purple>"))str = str.replaceAll("<purple>","<font color=\"#8a6bbe\">");
+                if(str.contains("<white>"))str = str.replaceAll("<white>","<font color=\"#ffffff\">");
+                if(str.contains("<pink>"))str = str.replaceAll("<pink>","<font color=\"#FF69B4\">");
+
+                if(str.contains("</>"))str = str.replaceAll("</>","</font>");
+            }
+        return str;
+    }
 }

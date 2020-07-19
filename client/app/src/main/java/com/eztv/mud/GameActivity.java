@@ -467,7 +467,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
             final Rect localRect2 = new Rect(localRect1);
             localRect2.offset(0, -(list.size() - i-span) * BAutoSize.value2px(mActivity,1,WIDTH_DP));
             final Rect localRect3 = new Rect(localRect2);
-            localRect3.offset(0, -(list.size() - i-span) * BAutoSize.value2px(mActivity,25,WIDTH_DP));
+            localRect3.offset(0, -(list.size() - i-span) * BAutoSize.value2px(mActivity,20,WIDTH_DP));
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

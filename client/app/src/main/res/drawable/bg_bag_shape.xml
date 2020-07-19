@@ -7,7 +7,7 @@
 <!--    <stroke-->
 <!--        android:width="2dp"-->
 <!--        android:color="@color/c_pink"/>-->
-    <solid android:color="#F218181A"/>
+    <solid android:color="#dc000000"/>
     <!-- 这个可以不加，padding用不上 -->
     <!--<padding-->
     <!--android:bottom="1dp"-->

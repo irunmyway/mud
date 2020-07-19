@@ -1,14 +1,19 @@
 package com.eztv.mud.handler;
 
+import com.eztv.mud.GameUtil;
+import com.eztv.mud.PropertiesUtil;
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.utils.BDebug;
+import com.eztv.mud.utils.BString;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import static com.eztv.mud.Constant.Item_PATH;
 import static com.eztv.mud.GameUtil.*;
@@ -79,6 +84,85 @@ public class BagHandler {
         client.getScriptExecutor().loadfile(item.getScript() + ".lua").call();
         client.getScriptExecutor().get(LuaValue.valueOf("item_look")).invoke(objs);
     }
+    public static void my_equip(Client client, Msg msg) {//查看装备
+        WinMessage winMsg = new WinMessage();
+        Equip equip = client.getPlayer().getPlayerData().getEquip();
+        winMsg.setCol(2);
+        winMsg.setDesc("我的装备");//显示当前玩家的金钱。元宝等等 交易信息。
+        List<Choice> choice = new ArrayList<>();//装备集合
+        choice.add(Choice.createChoice((equip.getWeapon().getName()==null?"武器:未装备":"武器:"+equip.getWeapon().getName()), Enum.messageType.action,"item_look",equip.getWeapon().getId()+"","weapon",true));
+        choice.add(Choice.createChoice((equip.getHead().getName()==null?"头部:未装备":"头部:"+equip.getHead().getName()), Enum.messageType.action,"item_look",equip.getHead().getId()+"","head",true));
+        choice.add(Choice.createChoice((equip.getCloth().getName()==null?"衣服:未装备":"衣服:"+equip.getCloth().getName()), Enum.messageType.action,"item_look",equip.getCloth().getKey(),"cloth",true));
+        choice.add(Choice.createChoice((equip.getPants().getName()==null?"裤子:未装备":"裤子:"+equip.getPants().getName()), Enum.messageType.action,"item_look",equip.getPants().getKey(),"pants",true));
+        choice.add(Choice.createChoice((equip.getShoes().getName()==null?"靴子:未装备":"靴子:"+equip.getShoes().getName()), Enum.messageType.action,"item_look",equip.getShoes().getKey(),"shoes",true));
+        winMsg.setChoice(choice);
+        client.sendMsg(msgBuild(Enum.messageType.pop, null,object2JsonStr(winMsg),null).getBytes());
+    }
+    public static void item_unload(Client client, Msg msg) {//卸载装备
+        Equip equip = client.getPlayer().getPlayerData().getEquip();
+        List<Item> list = new ArrayList<>();
+        list.add(equip.getCloth());
+        list.add(equip.getHead());
+        list.add(equip.getWeapon());
+        list.add(equip.getPants());
+        list.add(equip.getShoes());
+        int id = 0;
+        Enum.equipType type = Enum.equipType.weapon;
+        Properties Config = PropertiesUtil.getInstance().getProp();
+        String str =colorString(String.format(Config.get("equip_drop").toString()));
+        for(Item item:list){
+            if((item.getId()+"").equals(msg.getMsg())){
+                id = item.getId();
+                type = item.getEquipType();
+            }
+        }
+        if(id>0)
+        switch (type){
+            case shoes:
+                str+= equip.getShoes().getName();
+                if(id>0)equip.setShoes(new Item());
+                break;
+            case cloth:
+                str+= equip.getCloth().getName();
+                if(id>0)equip.setCloth(new Item());
+                break;
+            case head:
+                str+= equip.getHead().getName();
+                if(id>0)equip.setHead(new Item());
+                break;
+            case pants:
+                str+= equip.getPants().getName();
+                if(id>0)equip.setPants(new Item());
+                break;
+            case weapon:
+                str+= equip.getWeapon().getName();
+                if(id>0)equip.setWeapon(new Item());
+                break;
+        }
+        if(id>0){
+            client.getPlayer().getPlayerData().getBag().addItem(id,1);
+            Chat chat = new Chat();
+            chat.setContent(str);
+            chat.setMsgType(Enum.chat.系统);
+            GameUtil.sendToSelf(client,msgBuild(Enum.messageType.chat, "公聊",object2JsonStr(chat),""));
+        }
+    }
+    public static void my_state(Client client, Msg msg) {//查看装备
+        Properties Config = PropertiesUtil.getInstance().getProp();
+        WinMessage winMsg = new WinMessage();
+        Equip equip = client.getPlayer().getPlayerData().getEquip();
+        winMsg.setCol(2);
+        String str = "我的状态<br>";
+        str+=colorString(String.format(Config.get("my_state").toString(),
+                client.getPlayer().getAttribute().getAck(),
+                client.getPlayer().getAttribute().getHp_max()));
+        winMsg.setDesc(str);//显示当前玩家状态
+        List<Choice> choice = new ArrayList<>();//装备集合
+        choice.add(Choice.createChoice("原来如此", Enum.messageType.action,"",null,null,true));
+        winMsg.setChoice(choice);
+        client.sendMsg(msgBuild(Enum.messageType.pop, null,object2JsonStr(winMsg),null).getBytes());
+    }
+
 
 
 }

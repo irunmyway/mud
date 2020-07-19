@@ -28,9 +28,13 @@ end
 function item_look(client,item,win,msg)--装备物品函数
     item:setEquipType(Enum.equipType.weapon);
     item:setAttribute(attribute);
+
     luaUtil = luajava.newInstance("com.eztv.mud.LuaUtil")--工具
     win:setDesc(item:toDesc(Enum.itemType.equip));
     luaUtil:getChoice():add(Choice:createChoice("原来如此",Enum.messageType.action,"doTalk","","testTask",true));
+    if(msg:getRole()~=nil)then
+        luaUtil:getChoice():add(Choice:createChoice("卸下",Enum.messageType.action,"item_unload",item:getId(),nil,true));
+    end
     win:setChoice(luaUtil:getChoice());
     win:setCol(2);
     client:sendMsg(gameUtil:msgBuildForBytes(Enum.messageType.action,"doTalk",gameUtil:object2JsonStr(win),key));

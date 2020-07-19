@@ -1,30 +1,30 @@
 package com.eztv.mud.bean;
 
+import com.eztv.mud.PropertiesUtil;
 import com.eztv.mud.constant.Enum;
 
+import java.util.Properties;
+
 import static com.eztv.mud.Constant.STR_TITLE;
+import static com.eztv.mud.GameUtil.colorString;
 
 
 public class Item extends GameObject implements Cloneable{
     private int id;
-    private String name;
     private String script;
+    //private String name;
     private int num;
     private Enum.itemType type;
     private Enum.equipType equipType;
 
-//    public Item(String name, int num) {
-//        this.name = name;
-//        this.num = num;
+//
+//    public String getName() {
+//        return name;
 //    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public int getNum() {
         return num;
@@ -58,11 +58,12 @@ public class Item extends GameObject implements Cloneable{
     }
 
     public String toDesc(Enum.itemType type){
+        Properties Config = PropertiesUtil.getInstance().getProp();
         String str="";
-        str+=name+STR_TITLE;
+        str+=getName()+"</p><br>";
         switch (type){
             case equip:
-                str+="攻击力:"+getAttribute().getAck()+"<br>";
+                str+=colorString(String.format(Config.get("equip_detail_hit").toString(),getAttribute().getAck()));
                 break;
         }
         return str;

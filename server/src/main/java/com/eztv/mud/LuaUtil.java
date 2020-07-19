@@ -10,8 +10,12 @@ import com.eztv.mud.utils.BDebug;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import static com.eztv.mud.Constant.STR_TITLE;
+import static com.eztv.mud.GameUtil.colorString;
+import static com.eztv.mud.GameUtil.getAttribute;
+import static com.eztv.mud.constant.Cmd.getAttribute;
 import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
 
 public class LuaUtil {
@@ -106,21 +110,17 @@ public class LuaUtil {
             }
             //移除背包的
             client.getPlayer().getPlayerData().getBag().delItem(item.getId(),1);
+            getAttribute(client);
         }
 
-
         //开始装备对比
-        //计算角色改变后的数据
-        Attribute attribute = client.getPlayer().getPlayerData().getEquip().calculate();//装备叠加的
         Attribute cur = getBaseAttribute(client.getPlayer().getLevel());//当前的；
-
-        str+="属性变化"+"<br>";
-        str+="&emsp;攻击力 :"+cur.getAck()+" --> +"+item.getAttribute().getAck()+"<br>";
-        str+="&emsp;血上线 :"+cur.getHp_max()+" --> +"+item.getAttribute().getHp_max();
-
+        str+=colorString(String.format( PropertiesUtil.getInstance().getProp().get("equip_variable_show").toString(),
+                cur.getAck(),item.getAttribute().getAck(),
+                cur.getHp_max(),item.getAttribute().getHp_max()
+        ));
         //基础的，加装备叠加的，加临时的
-        client.getPlayer().getPlayerData().setAttribute(cur.add(attribute).addTmp(client.getPlayer().getPlayerData().getAttribute()));
-//        client.getPlayer().getAttribute().getAck()
+        client.getPlayer().onAttributeChange();
         return str;
     }
 }

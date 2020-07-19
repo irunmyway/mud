@@ -110,6 +110,13 @@ public class Test {
         BDebug.trace("测试"+(b+=5));
     }
 
+    @org.junit.Test
+    public void test7(){
+        String s = "<red>asd";
+        s =  s.replaceAll("<red>","123");
+        BDebug.trace("测试"+s);
+    }
+
     public int getA() {
         return a;
     }

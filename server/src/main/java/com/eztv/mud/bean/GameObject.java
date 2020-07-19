@@ -2,6 +2,8 @@ package com.eztv.mud.bean;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.eztv.mud.GameUtil;
+import com.eztv.mud.PropertiesUtil;
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
@@ -18,6 +20,7 @@ import org.luaj.vm2.LuaValue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import static com.eztv.mud.Constant.clients;
 import static com.eztv.mud.GameUtil.*;
@@ -47,8 +50,8 @@ public abstract class GameObject {
     //攻击命令
     public GameObject Attack(GameObject gameObject, Client client) {
         AttackPack ap = new AttackPack();
-
-        ap.setDesc("<font color=\"#ffffff\">造成伤害 -" + this.getAttribute().getAck() + "</font>");
+        Properties dbConfig = PropertiesUtil.getInstance().getProp();
+        ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),this.getAttribute().getAck())));
         ap.setWho(this.getKey());
         if (gameObject == null) return null;
         ap.setTarget(gameObject.getKey());
@@ -183,8 +186,9 @@ public abstract class GameObject {
     }
 
     public String getName() {
-        return name;
+        return colorString(name);
     }
+
 
     public void setName(String name) {
         this.name = name;

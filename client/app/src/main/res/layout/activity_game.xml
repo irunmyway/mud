@@ -158,9 +158,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="3dp"
             >
-
             <TextView
                 android:id="@+id/tv_map_name"
                 android:layout_width="wrap_content"
@@ -169,7 +168,7 @@
                 android:gravity="center"
                 android:text="恶魔镇"
                 android:textColor="@color/c_pink"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -179,11 +178,18 @@
         android:layout_height="0dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="友方"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/guideline2"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -217,7 +223,8 @@
     <Button
         android:id="@+id/btn_center"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="33dp"
+        android:textSize="13sp"
         android:layout_marginTop="5dp"
         android:background="@drawable/bg_simple_select_shape_center"
         android:text="恶魔镇"
@@ -229,7 +236,8 @@
     <Button
         android:id="@+id/btn_east"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="33dp"
+        android:textSize="13sp"
         android:layout_marginLeft="5dp"
         android:onClick="goRight"
         android:background="@drawable/bg_simple_select"
@@ -241,7 +249,8 @@
     <Button
         android:id="@+id/btn_west"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="33dp"
+        android:textSize="13sp"
         android:onClick="goLeft"
         android:layout_marginRight="5dp"
         android:background="@drawable/bg_simple_select"
@@ -253,7 +262,8 @@
     <Button
         android:id="@+id/btn_north"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="33dp"
+        android:textSize="13sp"
         android:layout_marginTop="15dp"
         android:background="@drawable/bg_simple_select"
         android:onClick="goTop"
@@ -265,7 +275,8 @@
     <Button
         android:id="@+id/btn_south"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="33dp"
+        android:textSize="13sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/bg_simple_select"

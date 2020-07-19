@@ -19,7 +19,7 @@
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:id="@+id/hp_progress"
-            android:padding="2dp"
+            android:padding="1.8dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <LinearLayout
@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/white"
                 android:text=""
-                android:padding="9dp"
+                android:padding="8dp"
                 android:textSize="13sp" />
         </LinearLayout>
     </FrameLayout>
