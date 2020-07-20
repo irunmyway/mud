@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+
+
+    <stroke
+        android:width="3px"
+        android:color="@color/epg"/>
+
+    <!-- 这个可以不加，padding用不上 -->
+    <!--<padding-->
+    <!--android:bottom="1dp"-->
+    <!--android:left="0.5dp"-->
+    <!--android:right="0.5dp"-->
+    <!--android:top="0dp" />-->
+
+    <!--圆角-->
+    <corners
+        android:bottomLeftRadius="3dp"
+        android:bottomRightRadius="3dp"
+        android:topLeftRadius="3dp"
+        android:topRightRadius="3dp" />
+    <solid
+        android:color="@color/transparent">
+
+    </solid>
+
+</shape>

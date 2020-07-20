@@ -5,6 +5,8 @@
     <string name="game_map">地图</string>
     <string name="game_state">我的</string>
     <string name="game_chat">聊天</string>
+    <string name="game_trade">交易</string>
+
 
     <string name="game_login_notice">账号密码必须5-16位长度英数。</string>
     <string name="game_login_notice1">名称必须为中文</string>

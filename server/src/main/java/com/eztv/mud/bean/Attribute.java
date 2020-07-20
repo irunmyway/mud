@@ -15,7 +15,10 @@ public class Attribute implements Cloneable{
     private long exp;
     private long exp_max;
 
-    private long ack;//攻击力
+    private long atk;//攻击力
+    private long def;//防御
+    private long acc;//命中
+    private long eva;//闪躲
 
     public int getLevel() {
         return level;
@@ -31,6 +34,30 @@ public class Attribute implements Cloneable{
 
     public void setHp(long hp) {
         this.hp = hp;
+    }
+
+    public long getDef() {
+        return def;
+    }
+
+    public void setDef(long def) {
+        this.def = def;
+    }
+
+    public long getAcc() {
+        return acc;
+    }
+
+    public void setAcc(long acc) {
+        this.acc = acc;
+    }
+
+    public long getEva() {
+        return eva;
+    }
+
+    public void setEva(long eva) {
+        this.eva = eva;
     }
 
     public long getHp_max() {
@@ -71,26 +98,29 @@ public class Attribute implements Cloneable{
         return exp_max;
     }
 
-    public long getAck() {
-        return ack;
+    public long getAtk() {
+        return atk;
     }
 
-    public void setAck(long ack) {
-        this.ack = ack;
+    public void setAtk(long atk) {
+        this.atk = atk;
     }
 
     public Attribute add(Attribute target){//基础属性的相加
         Attribute attribute = new Attribute();
-        attribute.setAck(this.getAck()+target.getAck());
+        attribute.setAtk(this.getAtk()+target.getAtk());
         attribute.setHp_max(this.getHp_max()+target.getHp_max());
         attribute.setMp_max(this.getMp_max()+target.getMp_max());
+        attribute.setDef(this.getDef()+target.getDef());
+        attribute.setAcc(this.getAcc()+target.getAcc());
+        attribute.setEva(this.getEva()+target.getEva());
         return attribute;
     }
     public Attribute addTmp(Attribute target){//包含当前属性的相加
-        target.setHp(this.getHp()+target.getHp());
-        target.setMp(this.getMp()+target.getMp());
-        target.setExp(this.getExp()+target.getExp());
-        return target;
+        this.setHp(this.getHp()+target.getHp());
+        this.setMp(this.getMp()+target.getMp());
+        this.setExp(this.getExp()+target.getExp());
+        return this;
     }
     public void setExp_max(long exp_max) {
         this.exp_max = exp_max;

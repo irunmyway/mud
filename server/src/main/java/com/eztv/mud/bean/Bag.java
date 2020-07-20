@@ -93,6 +93,20 @@ public class Bag {
         if(delItem!=null)
         items.remove(delItem);
     }
+    public int delItemBundle(int id){
+        int num =0;
+        Item   delItem  =null;
+        for(Item item:items){
+            if(item.getId()==id){
+                delItem = item;
+            }
+        }
+        if(delItem!=null){
+            num=delItem.getNum();
+            items.remove(delItem);
+        }
+        return num;
+    }
 
 
 }

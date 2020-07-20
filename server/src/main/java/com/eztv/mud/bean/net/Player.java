@@ -14,6 +14,8 @@ import online.sanen.cdm.template.jpa.Column;
 
 import java.util.Date;
 
+import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
+
 public class Player extends GameObject implements IPlayerCallBack {
     private String key ;
     @Column
@@ -170,5 +172,13 @@ public class Player extends GameObject implements IPlayerCallBack {
             //然后发送属性
             GameUtil.getSelf(client);
         }
+    }
+
+    @Override
+    public void onAttributeChange() {
+        //计算角色改变后的数据
+        Attribute attribute = client.getPlayer().getPlayerData().getEquip().calculate();//装备叠加的
+        Attribute cur = getBaseAttribute(client.getPlayer().getLevel());//当前的；
+        this.getPlayerData().setAttribute(cur.add(attribute).addTmp(client.getPlayer().getPlayerData().getAttribute()));
     }
 }

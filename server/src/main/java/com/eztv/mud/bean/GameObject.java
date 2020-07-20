@@ -14,6 +14,7 @@ import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
+import com.eztv.mud.syn.WordSyn;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 import org.luaj.vm2.LuaValue;
@@ -51,7 +52,7 @@ public abstract class GameObject {
     public GameObject Attack(GameObject gameObject, Client client) {
         AttackPack ap = new AttackPack();
         Properties dbConfig = PropertiesUtil.getInstance().getProp();
-        ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),this.getAttribute().getAck())));
+        ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),this.getAttribute().getAtk())));
         ap.setWho(this.getKey());
         if (gameObject == null) return null;
         ap.setTarget(gameObject.getKey());
@@ -64,7 +65,7 @@ public abstract class GameObject {
                     item.sendMsg(msgBuild(Enum.messageType.action, doAttack, object2JsonStr(ap), client.getRole()).getBytes());
         }
         if (gameObject != null)
-            if ((gameObject.getAttribute().Attack(this.getAttribute().getAck()) < 1)) {
+            if ((gameObject.getAttribute().Attack(this.getAttribute().getAtk()) < 1)) {
                 onDied(this, gameObject, client);
                 return null;
             }
@@ -112,7 +113,7 @@ public abstract class GameObject {
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
             for (Client item : clients) {
                 try {
-                    Word.getInstance().getRooms().get(((Player) whoKill).getPlayerData().getRoom()).remove(diedObj);
+                    WordSyn.InOutRoom(diedObj,((Player) whoKill).getPlayerData().getRoom(),false);
                     item.sendMsg(msgBuild(Enum.messageType.normal, onObjectOutRoom, object2JsonStr(diedObj), null));
                 } catch (Exception e) {
                 }

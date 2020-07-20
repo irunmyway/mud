@@ -49,7 +49,7 @@ public class GameButtonAdapter extends BaseAdapterRvList<BaseViewHolder, Choice>
     @NonNull
     @Override
     protected BaseViewHolder onCreateVH(ViewGroup parent, LayoutInflater inflater) {
-        return new BaseViewHolder(parent,R.layout.item_game_object);
+        return new BaseViewHolder(parent,R.layout.item_game_win_button);
     }
 
     public void setButtonCallBack(IButtonCallBack iButtonCallBack) {

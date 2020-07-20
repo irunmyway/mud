@@ -14,6 +14,7 @@ D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ZipExtraField.java
 D:\android\mud\server\src\main\java\com\eztv\mud\socket\callback\EmptyCallbackImpl.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\BDate.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\net\AttackPack.java
+D:\android\mud\server\src\main\java\com\eztv\mud\bean\Equip.java
 D:\android\mud\server\src\main\java\com\eztv\mud\handler\GameHandler.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ZipOutputStream.java
 D:\android\mud\server\src\main\java\com\eztv\mud\Word.java
@@ -26,6 +27,7 @@ D:\android\mud\server\src\main\java\com\eztv\mud\utils\BString.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ZipShort.java
 D:\android\mud\server\src\main\java\com\eztv\mud\bean\Bag.java
 D:\android\mud\server\src\main\java\com\eztv\mud\socket\callback\SocketCallback.java
+D:\android\mud\server\src\main\java\com\eztv\mud\PropertiesUtil.java
 D:\android\mud\server\src\main\java\com\eztv\mud\socket\SocketServer.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\event\BEvents.java
 D:\android\mud\server\src\main\java\com\eztv\mud\utils\zip\ZipFile.java

@@ -23,16 +23,11 @@ public class DataHandler {
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
             Attribute base = attributes.get(player.getLevel() + "");
             if (player.getAttribute().getHp() < 1) {//玩家身上没有信息
-                Attribute attribute = new Attribute();
-                attribute.setHp(base.getHp_max());
-                attribute.setMp(base.getMp_max());
+                base.setHp(base.getHp_max());
+                base.setMp(base.getMp_max());
                 if(player.getLevel()>1)
-                attribute.setExp(0);
-                attribute.setHp_max(base.getHp_max());
-                attribute.setExp_max(base.getExp_max());
-                attribute.setMp_max(base.getMp_max());
-                attribute.setAck(base.getAck());
-                player.getPlayerData().setAttribute(attribute);
+                base.setExp(0);
+                player.getPlayerData().setAttribute(base);
             }
         }
         return player;
@@ -44,16 +39,11 @@ public class DataHandler {
             //获取玩家基础属性
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
             Attribute base = attributes.get(player.getLevel() + "");
-            Attribute attribute = new Attribute();
-            attribute.setHp(base.getHp_max());
-            attribute.setMp(base.getMp_max());
+            base.setHp(base.getHp_max());
+            base.setMp(base.getMp_max());
             if(player.getLevel()<2)
-                attribute.setExp(0);
-            attribute.setHp_max(base.getHp_max());
-            attribute.setExp_max(base.getExp_max());
-            attribute.setMp_max(base.getMp_max());
-            attribute.setAck(base.getAck());
-            player.getPlayerData().setAttribute(attribute);
+                base.setExp(0);
+            player.getPlayerData().setAttribute(base);
         }
         return player;
     }

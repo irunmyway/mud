@@ -116,7 +116,7 @@ public class LuaUtil {
         //开始装备对比
         Attribute cur = getBaseAttribute(client.getPlayer().getLevel());//当前的；
         str+=colorString(String.format( PropertiesUtil.getInstance().getProp().get("equip_variable_show").toString(),
-                cur.getAck(),item.getAttribute().getAck(),
+                cur.getAtk(),item.getAttribute().getAtk(),
                 cur.getHp_max(),item.getAttribute().getHp_max()
         ));
         //基础的，加装备叠加的，加临时的

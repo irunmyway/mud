@@ -1,6 +1,7 @@
 package com.eztv.mud.handler;
 
 import com.alibaba.fastjson.JSONObject;
+import com.eztv.mud.PropertiesUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.constant.Enum.*;
@@ -72,9 +73,15 @@ public class GameHandler {
     public static void geMine(Client client, Msg msg) {
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
-        winMsg.setDesc("我的");
+        String str =colorString(String.format(PropertiesUtil.getInstance().getProp().get("my_state").toString(),
+                client.getPlayer().getName(),
+                client.getPlayer().getAttribute().getAtk(),
+                client.getPlayer().getAttribute().getDef(),
+                client.getPlayer().getAttribute().getAcc(),
+                client.getPlayer().getAttribute().getEva()
+                ));
+        winMsg.setDesc(str);//显示当前玩家状态
         choice.add(Choice.createChoice("我的装备", messageType.action,"my_equip", null,null));
-        choice.add(Choice.createChoice("我的状态", messageType.action,"my_state", null,null));
 
         winMsg.setChoice(choice);
         client.sendMsg(msgBuild(messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());

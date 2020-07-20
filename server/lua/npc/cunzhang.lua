@@ -11,7 +11,7 @@ function init()--初始属性
     attribute:setMp_max(50);
     attribute:setExp(999);
     attribute:setExp_max(999);
-    attribute:setAck(10);
+    attribute:setAtk(10);
 return gameUtil:object2JsonStr(attribute);
 end
 

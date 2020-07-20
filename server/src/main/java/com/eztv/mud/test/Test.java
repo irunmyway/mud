@@ -22,14 +22,20 @@ public class Test {
         Long hp = 100L;
         Long mp = 100L;
         Long exp = 1000L;
-        Long ack = 5L;
+        Long atk = 5L;
+        Long def = 3L;
+        Long acc = 3L;
+        Long eva = 3L;
         for (int i=1;i<100;i++){//角色公式生成
             DataBase.getInstance().init().createSQL("insert into t_attribute values('"+i+"','"+hp+"','"+mp+"'," +
-                    "'"+exp+"','"+ack+"')").update();
+                    "'"+exp+"','"+atk+"','"+def+"','"+acc+"','"+eva+"')").update();
             hp+=i*30;
             mp+=i*50;
             exp+=i*100;
-            ack+=i*5;
+            atk+=i*5;
+            def+=i*5;
+            acc+=i*5;
+            eva+=i*5;
         }
 //        int a = 10;
 //        System.out.println(a -= 5);

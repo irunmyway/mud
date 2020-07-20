@@ -32,7 +32,7 @@ public class Room extends GameObject {
     @Column(name = "south")
     private int down = -1;
     private int capacity;
-
+    private String script;
     private int lv;//限制等级
 
     private Date createat;
@@ -117,6 +117,16 @@ public class Room extends GameObject {
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
+    }
+
+    @Override
+    public String getScript() {
+        return script==null?"":script;
+    }
+
+    @Override
+    public void setScript(String script) {
+        this.script = script;
     }
 
     public int getLeft() {

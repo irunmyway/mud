@@ -52,7 +52,7 @@ public class BagHandler {
         choice.add(Choice.createChoice("使用", Enum.messageType.action,"item_use",itemId+"",null,true));
         choice.add(Choice.createChoice("查看", Enum.messageType.action,"item_look",itemId+"",null));
         choice.add(Choice.createChoice("丢弃", Enum.messageType.action,"item_drop",itemId+"",null,true));
-        choice.add(Choice.createChoice("全部丢弃", Enum.messageType.action,"item_drop_all",itemId+"",null,true));
+        choice.add(Choice.createChoice("全部丢弃", Enum.messageType.action,"item_drop",itemId+"","all",true));
         winMsg.setChoice(choice);
         winMsg.setDesc(item.getName());//显示当前玩家的金钱。元宝等等 交易信息。
         client.sendMsg(msgBuild(Enum.messageType.pop, null,object2JsonStr(winMsg),null).getBytes());
@@ -147,22 +147,27 @@ public class BagHandler {
             GameUtil.sendToSelf(client,msgBuild(Enum.messageType.chat, "公聊",object2JsonStr(chat),""));
         }
     }
-    public static void my_state(Client client, Msg msg) {//查看装备
-        Properties Config = PropertiesUtil.getInstance().getProp();
-        WinMessage winMsg = new WinMessage();
-        Equip equip = client.getPlayer().getPlayerData().getEquip();
-        winMsg.setCol(2);
-        String str = "我的状态<br>";
-        str+=colorString(String.format(Config.get("my_state").toString(),
-                client.getPlayer().getAttribute().getAck(),
-                client.getPlayer().getAttribute().getHp_max()));
-        winMsg.setDesc(str);//显示当前玩家状态
-        List<Choice> choice = new ArrayList<>();//装备集合
-        choice.add(Choice.createChoice("原来如此", Enum.messageType.action,"",null,null,true));
-        winMsg.setChoice(choice);
-        client.sendMsg(msgBuild(Enum.messageType.pop, null,object2JsonStr(winMsg),null).getBytes());
-    }
+    public static void item_drop(Client client, Msg msg) {//卸载装备
+        Chat chat = new Chat();
+        chat.setMsgType(Enum.chat.系统);
+        int id = -1;
+        if(BString.isNumber(msg.getMsg()))
+        id = Integer.parseInt(msg.getMsg()) ;
+        if(id>-1){
+            Item item = findItemById(id);
+            if(item!=null){
+                if(msg.getRole()!=null){//丢弃全部
+                    int num = client.getPlayer().getPlayerData().getBag().delItemBundle(id);
+                    chat.setContent(colorString(String.format(PropertiesUtil.getInstance().getProp().get("item_drop").toString(),item.getName(),num)));
+                }else{
+                    client.getPlayer().getPlayerData().getBag().delItem(id,1);
+                    chat.setContent(colorString(String.format(PropertiesUtil.getInstance().getProp().get("item_drop").toString(),item.getName(),1)));
+                }
+                GameUtil.sendToSelf(client,msgBuild(Enum.messageType.chat, "公聊",object2JsonStr(chat),""));
+            }
+        }
 
+    }
 
 
 }

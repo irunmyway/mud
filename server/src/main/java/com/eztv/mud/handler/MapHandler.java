@@ -5,6 +5,7 @@ import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.RoomDetail;
+import com.eztv.mud.syn.WordSyn;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
 import static com.eztv.mud.Constant.clients;
@@ -16,7 +17,7 @@ public class MapHandler {
     public static void getMapDetail(Client client) {//查看房间
         String roomId = getCurRoomId(client);
         client.getPlayer().getPlayerData().setRoom(roomId);//进入房间
-        Word.getInstance().getRooms().get(roomId + "").add(client.getPlayer());//清除其他房间自己的镜像
+        WordSyn.InOutRoom(client.getPlayer(),roomId,true);
         RoomDetail room = new RoomDetail();
         for (GameObject obj : getRoom(roomId).getNpcList()) {
             room.addGameObject(obj.toSendGameObject());
@@ -52,7 +53,7 @@ public class MapHandler {
 
     public static void onObjectOutRoom(String roomId, Player player) {
         if (roomId == null) roomId = DEFAULT_ROOM_ID;
-        Word.getInstance().getRooms().get(roomId + "").remove(player);
+        WordSyn.InOutRoom(player, roomId, false);
         for (Client item : clients) {
             try {
                 if (item.getPlayer().getPlayerData().getRoom().equals(roomId) && item.getPlayer() != player)
@@ -64,6 +65,7 @@ public class MapHandler {
 
     public static void playerMove(Client client, Msg msg) {//玩家移动模块
         onObjectOutRoom(client.getPlayer().getPlayerData().getRoom(), client.getPlayer());
+        //执行lua脚本
         switch (msg.getMsg()) {
             case "left":
                 client.getPlayer().getPlayerData().setRoom(getRoom(getCurRoomId((client))).getLeft() + "");

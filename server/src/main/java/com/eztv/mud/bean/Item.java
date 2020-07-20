@@ -63,7 +63,7 @@ public class Item extends GameObject implements Cloneable{
         str+=getName()+"</p><br>";
         switch (type){
             case equip:
-                str+=colorString(String.format(Config.get("equip_detail_hit").toString(),getAttribute().getAck()));
+                str+=colorString(String.format(Config.get("equip_detail_hit").toString(),getAttribute().getAtk()));
                 break;
         }
         return str;

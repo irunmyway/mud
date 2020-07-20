@@ -10,6 +10,7 @@ import com.eztv.mud.handler.GameHandler;
 import com.eztv.mud.handler.LoginHandler;
 import com.eztv.mud.socket.SocketServer;
 import com.eztv.mud.socket.callback.SocketServerCallback;
+import com.eztv.mud.syn.WordSyn;
 import com.eztv.mud.utils.BDebug;
 
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class Server implements SocketServerCallback {
     public void onClosed(ServerSocket serverSocket,Socket socket,Client client) {
         try {
             onObjectOutRoom(client.getPlayer().getPlayerData().getRoom(),client.getPlayer());
-            Word.getInstance().getRooms().get(client.getPlayer().getPlayerData().getRoom()).remove(client.getPlayer());
+            WordSyn.InOutRoom(client.getPlayer(),client.getPlayer().getPlayerData().getRoom(),false);
         }catch (Exception e){e.printStackTrace();}
         if(通信检查)
         BDebug.trace("onClosed");
@@ -123,11 +124,11 @@ public class Server implements SocketServerCallback {
                         item_unload(client,msg);
                         client.getPlayer().onAttributeChange();
                         break;
+                    case "item_drop":
+                        item_drop(client,msg);
+                        break;
                     case "my_equip":
                         my_equip(client,msg);
-                        break;
-                    case "my_state":
-                        my_state(client,msg);
                         break;
 
 

@@ -143,7 +143,7 @@ public class GameUtil {
         client.sendMsg(msgBuild(Enum.messageType.action, "getSelf",object2JsonStr(client.getPlayer().toSendGameObject()),client.getRole()).getBytes());
     }
 
-    public static Item findItemById(int id) {//发送给所有人
+    public static Item findItemById(int id) {
         Item item =null;
         for(Item it:Word.getInstance().getItems()){
             if(it.getId()==id)
