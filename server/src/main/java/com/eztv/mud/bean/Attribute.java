@@ -98,9 +98,7 @@ public class Attribute implements Cloneable{
         return exp_max;
     }
 
-    public long getAtk() {
-        return atk;
-    }
+    public long getAtk() { return atk;}
 
     public void setAtk(long atk) {
         this.atk = atk;

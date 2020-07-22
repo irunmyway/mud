@@ -5,31 +5,39 @@ import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.callback.IPlayerCallBack;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.handler.DataBaseHandler;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.core.Battle;
 import com.eztv.mud.handler.core.TaskHandler;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
-import online.sanen.cdm.template.jpa.Column;
+import online.sanen.cdm.template.jpa.*;
 
+import javax.naming.Name;
 import java.util.Date;
 
 import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
-
+@Table(name = "role")
 public class Player extends GameObject implements IPlayerCallBack {
+    @JSONField(serialize = false)
+    @NoDB
+    @Id
+    private String account;
     private String key ;
-    @Column
+    @NoUpdate
     private String name;
     private int level;
     private Enum.sex sex;
     private String profession;//职业
     private String desc;//
+    private int faction;//帮派
 
     //普通状态
     private Enum.playerState playerState;
 
     //存储的数据
     @Column()
+    @NoUpdate
     private String data;
 
     //属性
@@ -42,6 +50,9 @@ public class Player extends GameObject implements IPlayerCallBack {
 
     //任务检测
     private TaskHandler taskHandler = new TaskHandler();
+
+    //人物数据处理
+    private DataBaseHandler dataBaseHandler = new DataBaseHandler();
 
     @JSONField(serialize = false)
     private PlayerData playerData;//后端存储信息用的不传输
@@ -88,6 +99,14 @@ public class Player extends GameObject implements IPlayerCallBack {
         this.sex = sex;
     }
 
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
     public String getName() {
         return name;
     }
@@ -110,6 +129,18 @@ public class Player extends GameObject implements IPlayerCallBack {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public DataBaseHandler getDataBaseHandler() {
+        return dataBaseHandler;
+    }
+
+    public int getFaction() {
+        return faction;
+    }
+
+    public void setFaction(int faction) {
+        this.faction = faction;
     }
 
     public Battle getBattle() {

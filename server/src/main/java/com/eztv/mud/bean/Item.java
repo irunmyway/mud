@@ -1,5 +1,6 @@
 package com.eztv.mud.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.PropertiesUtil;
 import com.eztv.mud.constant.Enum;
 
@@ -12,6 +13,8 @@ import static com.eztv.mud.GameUtil.colorString;
 public class Item extends GameObject implements Cloneable{
     private int id;
     private String script;
+    @JSONField(serialize = false)
+    private Attribute attribute;
     //private String name;
     private int num;
     private Enum.itemType type;

@@ -3,7 +3,7 @@ local gameUtil = luajava.bindClass("com.eztv.mud.GameUtil")
 local Choice = luajava.newInstance("com.eztv.mud.bean.Choice")
 local Enum = luajava.newInstance("com.eztv.mud.constant.Enum")
 local luaUtil = luajava.newInstance("com.eztv.mud.LuaUtil")--工具
-attribute:setAck(10);--设置10点攻击
+attribute:setAtk(10);--设置10点攻击
 function item_use(client,item,win,msg)--装备物品函数
     item:setEquipType(Enum.equipType.weapon);
     item:setAttribute(attribute);

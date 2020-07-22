@@ -36,10 +36,10 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.controller.MessageController;
 import com.eztv.mud.recycleview.adapter.GameChatAdapter;
 import com.eztv.mud.recycleview.adapter.GameObjectAdapter;
-import com.eztv.mud.recycleview.callback.IGameObjectCallBack;
 import com.eztv.mud.util.BAutoSize;
 import com.eztv.mud.util.Util;
 import com.eztv.mud.util.callback.IAnimatorListener;
+import com.eztv.mud.window.GameChatWindow;
 import com.eztv.mud.window.GameInputWindow;
 import com.eztv.mud.window.GameWindow;
 
@@ -127,6 +127,9 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                             switch (msg.getCmd()){
                                 case "chat":
                                     onChatWin(msg);
+                                    break;
+                                default:
+                                    onInputWin(msg);
                                     break;
                             }
                             break;
@@ -505,7 +508,14 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
 
     private void onChatWin(Msg msg) {//弹出【聊天】输入框
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
+        GameChatWindow inputWin =  new GameChatWindow();
+        inputWin.build(mActivity,getContentView(mActivity),msg.getRole(),msg.getName());
+        inputWin.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);
+    }
+    private void onInputWin(Msg msg) {//弹出【窗口】输入框
+        WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
         GameInputWindow inputWin =  new GameInputWindow();
+        inputWin.setContent(winMessage.getDesc());
         inputWin.build(mActivity,getContentView(mActivity),msg.getRole(),msg.getName());
         inputWin.setList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);
     }

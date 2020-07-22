@@ -44,48 +44,14 @@ public class GameHandler {
         if(gameObject instanceof Player){//是玩家
             choice.add(Choice.createChoice("私聊", messageType.input,"私聊", gameObject.getKey(),null));
             winMsg.setChoice(choice);
+            winMsg.setDesc(gameObject.getName());
             client.sendMsg(msgBuild(messageType.action, doTalk,object2JsonStr(winMsg),gameObject.getKey()).getBytes());
-            //winMsg.setDesc(gameObject.getName()+"</p><br>&emsp;"+"这是一位凶神恶煞的玩家");
         }else{
-            LuaValue clientLua  = CoerceJavaToLua.coerce(client);
-            LuaValue winLua  = CoerceJavaToLua.coerce(winMsg);
-            LuaValue gameObjLua  = CoerceJavaToLua.coerce(gameObject);
-            LuaValue msgLua  = CoerceJavaToLua.coerce(msg);
-            LuaValue[] objs = { clientLua, winLua,msgLua,gameObjLua};
-            client.getScriptExecutor().loadfile(gameObject.getScript() + ".lua").call();
-            client.getScriptExecutor().get(LuaValue.valueOf("talk")).invoke(objs);
-//            for (Object c:JSONObject.toJavaObject(jsonStr2JsonArr(client.getScriptExecutor().get(LuaValue.valueOf("choice")).invoke(LuaValue.valueOf((msg.getRole()==null?"":msg.getRole()))).toString()), List.class) ) {
-//                Choice co = JSONObject.toJavaObject(JSONObject.parseObject(JSONObject.toJSON(c).toString()), Choice.class);
-//                co.setMsg(msg.getMsg());
-//                choice.add(co);
-//            }
-//            winMsg.setChoice(choice);
-//            winMsg.setDesc(gameObject.getName()+"</p><br>&emsp;"+(gameObject.getDesc()==null?"":gameObject.getDesc()));
+            client.getScriptExecutor().loadFile(null,gameObject.getScript() + ".lua")
+                    .execute("talk",client,winMsg,msg,gameObject);
         }
     }
 
-    //复活
-    public static void relive(Client client, Msg msg) {
-        DataHandler. getPlayer(client,client.getPlayer());
-        MapHandler.getMapDetail(client);
-        getAttribute(client);
-    }
-    public static void geMine(Client client, Msg msg) {
-        WinMessage winMsg = new WinMessage();
-        List<Choice> choice = new ArrayList<>();
-        String str =colorString(String.format(PropertiesUtil.getInstance().getProp().get("my_state").toString(),
-                client.getPlayer().getName(),
-                client.getPlayer().getAttribute().getAtk(),
-                client.getPlayer().getAttribute().getDef(),
-                client.getPlayer().getAttribute().getAcc(),
-                client.getPlayer().getAttribute().getEva()
-                ));
-        winMsg.setDesc(str);//显示当前玩家状态
-        choice.add(Choice.createChoice("我的装备", messageType.action,"my_equip", null,null));
-
-        winMsg.setChoice(choice);
-        client.sendMsg(msgBuild(messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());
-    }
 
 
 }

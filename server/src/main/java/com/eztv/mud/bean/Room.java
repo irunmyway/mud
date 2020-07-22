@@ -44,7 +44,7 @@ public class Room extends GameObject {
 
 
 
-    public  void add(GameObject obj){
+    public synchronized void add(GameObject obj){
         if(obj instanceof Monster){
             monsterList.remove(obj);
             monsterList.add(obj);
@@ -58,7 +58,7 @@ public class Room extends GameObject {
             playerList.add(obj);
         }
     }
-    public void remove(GameObject obj){
+    public synchronized void remove(GameObject obj){
         if(obj instanceof Monster)monsterList.remove(obj);
         if(obj instanceof Npc)npcList.remove(obj);
         if(obj instanceof Player)playerList.remove(obj);

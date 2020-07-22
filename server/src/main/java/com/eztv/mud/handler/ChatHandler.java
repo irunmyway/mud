@@ -5,6 +5,7 @@ import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BString;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class ChatHandler {
         winMsg.setChoice(choice);
         GameObject gameObject = GameUtil.getGameObject(client,msg.getRole());
         String name ="";//发给谁
-        if(gameObject!=null)name = gameObject.getName();
+        if(gameObject!=null) name = gameObject.getName();
         //聊天窗口 对方id  对方名字
         client.sendMsg(msgBuild(Enum.messageType.input, chat,object2JsonStr(winMsg),msg.getMsg(),name).getBytes());
     }

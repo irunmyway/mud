@@ -49,13 +49,13 @@ public class GameWindow extends BaseWindow implements IButtonCallBack {
             tv_title.setVisibility(View.VISIBLE);
         }
         rv_answer = talkView.findViewById(R.id.win_rv_answer);
-        rv_items =  talkView.findViewById(R.id.win_rv_items);
+        //rv_items =  talkView.findViewById(R.id.win_rv_items);
         super.setViewAndTarget(talkView,target);
         return this;
     }
     public GameWindow setChoiceList(List<Choice> choices, WinMessage winMessage){
         rv_answer.setLayoutManager(RvUtil.getGridLayoutManager(activity,winMessage.getCol()));
-        rv_items.setLayoutManager(RvUtil.getGridLayoutManager(activity,3));
+        //rv_items.setLayoutManager(RvUtil.getGridLayoutManager(activity,3));
         if(choices==null)choices = new ArrayList<>();
         gameButtonAdapter = new GameButtonAdapter(activity,choices,key);
         gameButtonAdapter.setButtonCallBack(this::onClick);

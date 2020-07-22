@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.DataBase;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.Choice;
+import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
@@ -118,9 +119,7 @@ public class Test {
 
     @org.junit.Test
     public void test7(){
-        String s = "<red>asd";
-        s =  s.replaceAll("<red>","123");
-        BDebug.trace("测试"+s);
+        BDebug.trace("测试"+BDate.getNowMillsByTen());
     }
 
     public int getA() {

@@ -27,7 +27,7 @@
             android:textColor="@color/white"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:text="说点什么吧。"
+            android:text=""
             android:padding="2dp"
             android:textSize="15sp" />
         <EditText
@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:textColorHint="@color/epg"
             android:textColor="@color/white"
-            android:hint="说些什么..."
+            android:hint=""
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"/>

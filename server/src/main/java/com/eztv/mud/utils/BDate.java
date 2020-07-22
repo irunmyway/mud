@@ -70,7 +70,10 @@ public class BDate {
     public static long getNowMills() {
         return System.currentTimeMillis();
     }
-
+    //获取当前毫秒时间戳
+    public static int getNowMillsByTen() {
+        return (int)(System.currentTimeMillis()/1000);
+    }
     //获取当前时间字符串
     public static String getNowString( final DateFormat format) {
         return millis2String(System.currentTimeMillis(), format);

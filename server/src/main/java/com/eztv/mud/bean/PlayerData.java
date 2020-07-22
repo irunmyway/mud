@@ -1,6 +1,7 @@
 package com.eztv.mud.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.task.Task;
 
@@ -79,6 +80,10 @@ public class PlayerData {
             }
         }
         return list;
+    }
+
+    public String toJson(){
+       return GameUtil.object2JsonStr(this);
     }
 }
 

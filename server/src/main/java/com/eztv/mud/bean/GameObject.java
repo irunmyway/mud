@@ -5,6 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.PropertiesUtil;
 import com.eztv.mud.Word;
+import com.eztv.mud.algorithm.AttackAlgorithm;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.SendGameObject;
@@ -25,6 +26,7 @@ import java.util.Properties;
 
 import static com.eztv.mud.Constant.clients;
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.algorithm.AttackAlgorithm.computeRealAtk;
 import static com.eztv.mud.constant.Cmd.doAttack;
 import static com.eztv.mud.constant.Cmd.onObjectOutRoom;
 
@@ -50,22 +52,25 @@ public abstract class GameObject {
 
     //攻击命令
     public GameObject Attack(GameObject gameObject, Client client) {
+        float realAtc = computeRealAtk(this,gameObject);
+        boolean isAttack = AttackAlgorithm.computeAccuracy(this,gameObject);
         AttackPack ap = new AttackPack();
         Properties dbConfig = PropertiesUtil.getInstance().getProp();
-        ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),this.getAttribute().getAtk())));
+        if(isAttack){
+            ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),(int)realAtc)));
+        }else{
+            ap.setDesc(GameUtil.colorString(dbConfig.get("fight_eva").toString()));
+        }
         ap.setWho(this.getKey());
         if (gameObject == null) return null;
         ap.setTarget(gameObject.getKey());
         Attribute attribute;
         attribute = (gameObject instanceof Player) ? ((Player) gameObject).getPlayerData().getAttribute() : gameObject.getAttribute();
         ap.setTargetAttribute(attribute);
-        for (Client item : clients) {
-            if (BObject.isNotEmpty(item.getPlayer().getPlayerData().getRoom()) && BObject.isNotEmpty(client.getPlayer().getPlayerData().getRoom()))
-                if (item.getPlayer().getPlayerData().getRoom().equals(client.getPlayer().getPlayerData().getRoom()))
-                    item.sendMsg(msgBuild(Enum.messageType.action, doAttack, object2JsonStr(ap), client.getRole()).getBytes());
-        }
-        if (gameObject != null)
-            if ((gameObject.getAttribute().Attack(this.getAttribute().getAtk()) < 1)) {
+        //发送房间战斗消息
+        GameUtil.sendToRoom(client, msgBuild(Enum.messageType.action, doAttack, object2JsonStr(ap), client.getRole()));
+        if (gameObject != null&&isAttack)
+            if ((gameObject.getAttribute().Attack((long)realAtc) < 1)) {//攻击后血量小于1 死亡
                 onDied(this, gameObject, client);
                 return null;
             }
@@ -108,8 +113,8 @@ public abstract class GameObject {
              日期: 2020-07-15 17:26
              用处：//移除玩家杀死的其他东西   奖励触发
              **/
-            client.getScriptExecutor().loadfile(diedObj.getScript() + ".lua").call();
-            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().get(LuaValue.valueOf("reward")).invoke().toString()), Bag.class);
+            client.getScriptExecutor().loadFile(GameObject.class,diedObj.getScript() + ".lua");
+            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute("reward").toString()), Bag.class);
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
             for (Client item : clients) {
                 try {

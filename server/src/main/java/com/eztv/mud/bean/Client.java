@@ -1,6 +1,7 @@
 package com.eztv.mud.bean;
 
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.script.ScriptExecutor;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 import org.luaj.vm2.Globals;
@@ -25,7 +26,7 @@ public class Client {
     private final int HEAD_LENGTH=2;//包头长度存储空间
 
 
-    private Globals scriptExecutor = JsePlatform.standardGlobals();//给每个玩家添加独立的脚本执行器
+    private ScriptExecutor scriptExecutor = new ScriptExecutor();//给每个玩家添加独立的脚本执行器
 
     public Client(Socket socket, Player player) {
         this.socket = socket;
@@ -68,11 +69,11 @@ public class Client {
         this.role = role;
     }
 
-    public Globals getScriptExecutor() {
+    public ScriptExecutor getScriptExecutor() {
         return scriptExecutor;
     }
 
-    public void setScriptExecutor(Globals scriptExecutor) {
+    public void setScriptExecutor(ScriptExecutor scriptExecutor) {
         this.scriptExecutor = scriptExecutor;
     }
 

@@ -3,6 +3,7 @@ package com.eztv.mud;
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.handler.bean.CommandSetHandler;
 import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BFile;
@@ -194,7 +195,12 @@ public class Word {
         }
         BDebug.trace("游戏物品加载完成 数量 : Items load item_num:【" + items.size() + "】");
     }
-
+    //装载指令
+    private void initHandler() {
+        CommandSetHandler.initActionCommandSet();
+        CommandSetHandler.initPanelCommandSet();
+        BDebug.trace("装载游戏指令完成");
+    }
     public void init() {
         initGG();
         initRooms();
@@ -202,7 +208,9 @@ public class Word {
         initMonster();
         initItem();
         initBaseAttribute();
+        initHandler();
     }
+
 
 
 

@@ -5,24 +5,24 @@ import com.eztv.mud.bean.Client;
 import com.eztv.mud.constant.Cmd;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.Player;
-import com.eztv.mud.handler.BagHandler;
 import com.eztv.mud.handler.GameHandler;
 import com.eztv.mud.handler.LoginHandler;
+import com.eztv.mud.handler.bean.CommandSetHandler;
+import com.eztv.mud.handler.bean.commands.BaseCommand;
 import com.eztv.mud.socket.SocketServer;
 import com.eztv.mud.socket.callback.SocketServerCallback;
 import com.eztv.mud.syn.WordSyn;
 import com.eztv.mud.utils.BDebug;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.getAttribute;
-import static com.eztv.mud.handler.BagHandler.*;
 import static com.eztv.mud.handler.ChatHandler.doChat;
 import static com.eztv.mud.handler.ChatHandler.doChatWin;
-import static com.eztv.mud.handler.GameHandler.geMine;
 import static com.eztv.mud.handler.MapHandler.*;
 
 public class Server implements SocketServerCallback {
@@ -49,6 +49,10 @@ public class Server implements SocketServerCallback {
     public void onError(Exception e) {e.printStackTrace();BDebug.trace("onError"+e.toString());}
 
     public void onClosed(ServerSocket serverSocket,Socket socket,Client client) {
+        try{
+            //保存测试
+            client.getPlayer().getDataBaseHandler().saveAll(client.getPlayer());
+        }catch (Exception e){}
         try {
             onObjectOutRoom(client.getPlayer().getPlayerData().getRoom(),client.getPlayer());
             WordSyn.InOutRoom(client.getPlayer(),client.getPlayer().getPlayerData().getRoom(),false);
@@ -108,30 +112,20 @@ public class Server implements SocketServerCallback {
                     case Cmd.doTalk://玩家对话
                         GameHandler.doTalk(client,msg);
                         break;
-                    case "relive"://玩家复活
-                        GameHandler.relive(client,msg);
-                        break;
-                    case "useClick"://玩家点击了物品，接下来要展示是查看物品 或者使用物品或者丢弃等等。。。
-                        BagHandler.useClick(client,msg);
-                        break;
-                    case "item_use"://物品使用
-                        item_use(client,msg);
-                        break;
-                    case "item_look"://物品查看
-                        item_look(client,msg);
-                        break;
-                    case "item_unload"://卸载装备
-                        item_unload(client,msg);
-                        client.getPlayer().onAttributeChange();
-                        break;
-                    case "item_drop":
-                        item_drop(client,msg);
-                        break;
-                    case "my_equip":
-                        my_equip(client,msg);
-                        break;
-
-
+                    default:
+                        //指派类去执行
+                        String key =msg.getCmd();
+                        if(msg.getCmd().contains("item_"))key="item_action";//物品操作集合
+                        if(CommandSetHandler.actionCommandSet.containsKey(key)){
+                            Class clazz = CommandSetHandler.actionCommandSet.get(key);
+                            try {
+                                Constructor c = clazz.getConstructor(Client.class, Msg.class,String.class);
+                                BaseCommand command = (BaseCommand)c.newInstance(client, msg,key);
+                            }catch ( Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    break;
                 }
                 break;
             case "input"://发送请求输入框
@@ -154,13 +148,15 @@ public class Server implements SocketServerCallback {
             break;
             case "pop"://弹窗
                 msg =  JSONObject.toJavaObject(json,Msg.class);
-                switch (msg.getCmd()) {
-                    case "getBag":
-                        getBag(client, msg);
-                        break;
-                    case "getMine":
-                        geMine(client, msg);
-                        break;
+                //指派类去执行
+                if(CommandSetHandler.panelCommandSet.containsKey(msg.getCmd())){
+                    Class clazz = CommandSetHandler.panelCommandSet.get(msg.getCmd());
+                    try {
+                        Constructor c = clazz.getConstructor(Client.class, Msg.class,String.class);
+                        BaseCommand command = (BaseCommand)c.newInstance(client, msg,null);
+                    }catch ( Exception e){
+                        e.printStackTrace();
+                    }
                 }
                 break;
         }

@@ -5,12 +5,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDebug;
+import com.eztv.mud.utils.BObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
 import static com.eztv.mud.Constant.clients;
+import static com.eztv.mud.constant.Cmd.doAttack;
 import static com.eztv.mud.constant.Cmd.getAttribute;
 
 public class GameUtil {
@@ -98,18 +100,16 @@ public class GameUtil {
 
     //通过动态id查找游戏元素
     public static GameObject getGameObject(Client client, String key) {
-        GameObject gameObject=null;
         List<GameObject> list = new ArrayList<>();
         list.addAll(getCurRoom(client).getMonsterList());
         list.addAll(getCurRoom(client).getNpcList());
         list.addAll(getCurRoom(client).getPlayerList());
         for (GameObject o:list) {
             if(o.getKey().equals(key)){
-                gameObject = o;
-                break;
+                return o;
             }
         }
-        return gameObject;
+        return null;
     }
     //通过静态id查找游戏怪物
     public static GameObject getMonstertById(String id) {
@@ -161,6 +161,13 @@ public class GameUtil {
             }catch (Exception e){e.printStackTrace();}
         }
     }
+    public static void sendToRoom(Client client,String str){//向该地图的人发送战斗内容
+        for (Client item : clients) {//向该地图的人发送战斗内容
+            if (BObject.isNotEmpty(item.getPlayer().getPlayerData().getRoom()) && BObject.isNotEmpty(client.getPlayer().getPlayerData().getRoom()))
+                if (item.getPlayer().getPlayerData().getRoom().equals(client.getPlayer().getPlayerData().getRoom()))
+                    item.sendMsg(str.getBytes());
+        }
+    }
     public static void sendToSelf(Client client,String str){//发送给自己
         for (Client item: clients) {
             try{
@@ -182,6 +189,7 @@ public class GameUtil {
                 if(str.contains("<purple>"))str = str.replaceAll("<purple>","<font color=\"#8a6bbe\">");
                 if(str.contains("<white>"))str = str.replaceAll("<white>","<font color=\"#ffffff\">");
                 if(str.contains("<pink>"))str = str.replaceAll("<pink>","<font color=\"#FF69B4\">");
+                if(str.contains("<brown>"))str = str.replaceAll("<brown>","<font color=\"#52433d\">");
 
                 if(str.contains("</>"))str = str.replaceAll("</>","</font>");
             }
