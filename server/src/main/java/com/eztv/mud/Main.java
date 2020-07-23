@@ -12,7 +12,6 @@ public class Main {
 
         Word.getInstance().init();//初始化整个世界地图及详细内容
 
-
         boolean run = true;
         Scanner sc = new Scanner(System.in);
         String notice = "《指令提示》\n重新加载公告:gg\n通信检查:cknet\n";
