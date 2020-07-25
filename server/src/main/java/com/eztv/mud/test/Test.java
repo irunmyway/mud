@@ -4,14 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.DataBase;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.Choice;
-import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,23 +93,6 @@ public class Test {
         BDebug.trace("测试"+aVal);
     }
     @org.junit.Test
-    public void test5(){
-        List<beanClass> list = new ArrayList<>();
-        beanClass b = new beanClass(2,3);
-        list.add(b);
-        b = new beanClass(3,4);
-        list.add(b);
-        b = new beanClass(4,5);
-        list.add(b);
-        for(beanClass bInstance :list){
-            BDebug.trace("测试"+bInstance.getI());
-            bInstance.setI(5);
-        }
-        for(beanClass bInstance :list){
-            BDebug.trace("测试"+bInstance.getI());
-        }
-    }
-    @org.junit.Test
     public void test6(){
         int b =5;
         BDebug.trace("测试"+(b+=5));
@@ -119,44 +100,24 @@ public class Test {
 
     @org.junit.Test
     public void test7(){
-        BDebug.trace("测试"+BDate.getNowMillsByTen());
+        A a = new A();
+        a.setA(5);
+        A b = a;
+        b.setA(2);
+        BDebug.trace("测试"+a.getA());
     }
+
+}
+
+class A{
+    int a =1;
 
     public int getA() {
         return a;
     }
-}
-class beanClass{
-    int i=5;
-    int j=10;
 
-    public beanClass(int i, int j) {
-        this.i = i;
-        this.j = j;
-    }
-
-    public int getI() {
-        return i;
-    }
-
-    public void setI(int i) {
-        this.i = i;
-    }
-
-    public int getJ() {
-        return j;
-    }
-
-    public void setJ(int j) {
-        this.j = j;
+    public void setA(int a) {
+        this.a = a;
     }
 }
-class testClass{
-    static testClass t ;
-    public static testClass getT(){
-        if(t==null){
-            t= new testClass();
-        }
-        return t;
-    }
-}
+

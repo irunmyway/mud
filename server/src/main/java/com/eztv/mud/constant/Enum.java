@@ -32,4 +32,7 @@ public class Enum {
     //任务类型
     public enum taskType{kill,item,level,talk}
 
+    //窗口类型
+    public  enum winAction{open,close,closeAll};
+
 }

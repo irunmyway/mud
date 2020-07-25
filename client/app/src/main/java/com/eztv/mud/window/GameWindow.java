@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ez.utils.BDebug;
 import com.eztv.mud.R;
 import com.eztv.mud.bean.Choice;
 import com.eztv.mud.bean.Enum;
@@ -71,8 +72,15 @@ public class GameWindow extends BaseWindow implements IButtonCallBack {
                 break;
                 default:send(msgBuild(choice.getType(), choice.getCmd(),choice.getMsg(),choice.getKey()));
         }
-        if(choice.isClose())
-        super.popupWindow.dismiss();
+        Enum.winAction action =  choice.getAction();
+        switch (action){
+            case close:
+                super.popupWindow.dismiss();
+                break;
+            case closeAll:
+                super.closeAll();
+                break;
+        }
     }
 
     public void dismiss(){

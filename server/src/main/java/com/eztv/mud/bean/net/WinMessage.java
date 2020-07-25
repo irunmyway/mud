@@ -1,5 +1,6 @@
 package com.eztv.mud.bean.net;
 
+import com.eztv.mud.LuaUtil;
 import com.eztv.mud.bean.Choice;
 
 import java.util.ArrayList;
@@ -42,5 +43,12 @@ public class WinMessage {
 
     public void setCol(int col) {
         this.col = col;
+    }
+
+    public void 添加选项集合(LuaUtil luaUtil){
+        this.choice.addAll(luaUtil.getChoice());
+    }
+    public void 添加选项(Choice c){
+        this.choice.add(c);
     }
 }

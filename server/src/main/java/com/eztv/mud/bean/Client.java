@@ -4,15 +4,12 @@ import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.script.ScriptExecutor;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
-import org.luaj.vm2.Globals;
-import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import static com.eztv.mud.Constant.通信延迟;
 import static com.eztv.mud.Constant.通信检查;
 import static com.eztv.mud.utils.BArray.byteMerger;
 import static com.eztv.mud.utils.BArray.intToByteArray;

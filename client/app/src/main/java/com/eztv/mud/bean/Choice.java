@@ -1,15 +1,18 @@
 package com.eztv.mud.bean;
 
+import com.ez.utils.BDebug;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Choice implements Cloneable{
+
+    private Enum.winAction action= Enum.winAction.close;
     private Enum.messageType type;
     private String name;
     private String cmd;
     private String msg;
     private String key;
-    private boolean isClose=true;
 
     public String getName() {
         return name;
@@ -56,12 +59,12 @@ public class Choice implements Cloneable{
         return key;
     }
 
-    public boolean isClose() {
-        return isClose;
+    public Enum.winAction getAction() {
+        return action;
     }
 
-    public void setClose(boolean close) {
-        isClose = close;
+    public void setAction(Enum.winAction action) {
+        this.action = action;
     }
 
     public void setKey(String key) {

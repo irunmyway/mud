@@ -23,4 +23,6 @@ public class Enum {
     //聊天类型
     public enum chat{公聊,系统,私聊,本地}
 
+    //窗口类型
+    public  enum winAction{open,close,closeAll};
 }

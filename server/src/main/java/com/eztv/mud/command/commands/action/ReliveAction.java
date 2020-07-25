@@ -1,10 +1,10 @@
-package com.eztv.mud.handler.bean.commands.action;
+package com.eztv.mud.command.commands.action;
 
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.MapHandler;
-import com.eztv.mud.handler.bean.commands.BaseCommand;
+import com.eztv.mud.command.commands.BaseCommand;
 
 import static com.eztv.mud.GameUtil.getAttribute;
 

@@ -1,12 +1,11 @@
 package com.eztv.mud.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.eztv.mud.PropertiesUtil;
+import com.eztv.mud.utils.BProp;
 import com.eztv.mud.constant.Enum;
 
 import java.util.Properties;
 
-import static com.eztv.mud.Constant.STR_TITLE;
 import static com.eztv.mud.GameUtil.colorString;
 
 
@@ -15,20 +14,9 @@ public class Item extends GameObject implements Cloneable{
     private String script;
     @JSONField(serialize = false)
     private Attribute attribute;
-    //private String name;
     private int num;
     private Enum.itemType type;
     private Enum.equipType equipType;
-
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-
     public int getNum() {
         return num;
     }
@@ -61,7 +49,7 @@ public class Item extends GameObject implements Cloneable{
     }
 
     public String toDesc(Enum.itemType type){
-        Properties Config = PropertiesUtil.getInstance().getProp();
+        Properties Config = BProp.getInstance().getProp();
         String str="";
         str+=getName()+"</p><br>";
         switch (type){

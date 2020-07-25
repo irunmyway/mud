@@ -1,4 +1,4 @@
-package com.eztv.mud;
+package com.eztv.mud.utils;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,18 +14,18 @@ import static com.eztv.mud.GameUtil.colorString;
  * @date 2019/03/02 15:46
  * @since 1.0
  */
-public class PropertiesUtil {
+public class BProp {
 
     /**
      * properties文件
      */
     private static Properties prop;
-    private static PropertiesUtil propertiesUtil;
+    private static BProp propertiesUtil;
 
-    public static PropertiesUtil getInstance() {
+    public static BProp getInstance() {
         if (propertiesUtil==null){
             prop = new Properties(); // 属性集合对象
-            propertiesUtil=new PropertiesUtil();
+            propertiesUtil=new BProp();
         }
         return propertiesUtil;
     }

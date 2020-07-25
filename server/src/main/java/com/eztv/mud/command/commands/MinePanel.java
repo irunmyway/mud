@@ -1,6 +1,6 @@
-package com.eztv.mud.handler.bean.commands;
+package com.eztv.mud.command.commands;
 
-import com.eztv.mud.PropertiesUtil;
+import com.eztv.mud.utils.BProp;
 import com.eztv.mud.bean.Choice;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
@@ -13,6 +13,11 @@ import java.util.List;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.constant.Cmd.doTalk;
 
+/**
+ * 作者: hhx QQ1025334900
+ * 时间: 2020-07-23 14:53
+ * 功能: 我的面板
+ **/
 public class MinePanel extends BaseCommand{
     public MinePanel(Client client, Msg msg, String key) {
         super(client, msg, key);
@@ -22,7 +27,7 @@ public class MinePanel extends BaseCommand{
     public void execute() {
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
-        String str =colorString(String.format(PropertiesUtil.getInstance().getProp().get("my_state").toString(),
+        String str =colorString(String.format(BProp.getInstance().getProp().get("my_state").toString(),
                 getClient().getPlayer().getName(),
                 getClient().getPlayer().getAttribute().getAtk(),
                 getClient().getPlayer().getAttribute().getDef(),
@@ -30,8 +35,8 @@ public class MinePanel extends BaseCommand{
                 getClient().getPlayer().getAttribute().getEva()
         ));
         winMsg.setDesc(str);//显示当前玩家状态
-        choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null));
-        choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null));
+        choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null, Enum.winAction.open));
+        choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null, Enum.winAction.open));
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(Enum.messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());
     }

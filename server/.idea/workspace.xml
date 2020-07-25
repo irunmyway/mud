@@ -19,32 +19,109 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、完善了指令的新映射方法&#10;2、加入了门派系统">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/luaj_v5_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lua/other/faction.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/luaj-v5.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Skill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/FactionCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/ItemCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/MonsterCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/NpcCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RoomCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ConfirmPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/DestroyFaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/LexState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/计划.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/release/output.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Choice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/Enum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/BaseWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/BaseWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameChatWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameChatWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameInputWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameInputWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/layout/activity_game.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/layout/activity_game.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.eztv.mud.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/item/xmj.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/item/xmj.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/monster/jszs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/monster/jszs.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/npc/cunzhang.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/npc/cunzhang.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/room/yacc.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/room/yacc.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/PropertiesUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/utils/BProp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Choice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Faction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Faction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/WinMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/WinMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/CommandSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/BaseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/BaseCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/MinePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/action/ItemAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ItemAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/action/ReliveAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ReliveAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/action/UsePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/UsePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/bag/BagPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/bag/BagPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/equip/EquipPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/equip/EquipPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/faction/CreateFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/CreateFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/faction/FactionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/FactionPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/bean/commands/faction/JoinFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/JoinFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/syn/WordSyn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/syn/WordSyn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/DataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/DataBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Choice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Choice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/WinMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/WinMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/testClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -87,15 +164,15 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/luaj-v5.0.2.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -105,15 +182,70 @@
       <recent name="D:\android\mud\server\src\main\resources\lua" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.eztv.mud.bean" />
       <recent name="com.eztv.mud.mapper" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\android\mud\server\lua\other" />
       <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\script" />
       <recent name="D:\android\mud\server\lua\room" />
       <recent name="D:\android\mud\server\lua\item" />
       <recent name="D:\android\mud\server\lua" />
-      <recent name="D:\android\mud\server\src\main\java\com\eztv\mud\bean" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.eztv.mud.Main" />
+      <module name="com.eztv.mud" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.eztv.mud.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test.test7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.eztv.mud" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.eztv.mud.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.eztv.mud.test" />
+      <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.Test" />
+      <option name="METHOD_NAME" value="test7" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test.test8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.eztv.mud" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.eztv.mud.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.eztv.mud.test" />
+      <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.Test" />
+      <option name="METHOD_NAME" value="test8" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.Test.test7" />
+        <item itemvalue="JUnit.Test.test8" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -159,7 +291,23 @@
       <workItem from="1595466695159" duration="71000" />
       <workItem from="1595469204918" duration="448000" />
       <workItem from="1595469777626" duration="210000" />
-      <workItem from="1595470025342" duration="185000" />
+      <workItem from="1595470025342" duration="1589000" />
+      <workItem from="1595471664366" duration="435000" />
+      <workItem from="1595472131751" duration="5713000" />
+      <workItem from="1595487191546" duration="16474000" />
+      <workItem from="1595514175701" duration="149000" />
+      <workItem from="1595514362240" duration="39000" />
+      <workItem from="1595514434575" duration="68000" />
+      <workItem from="1595514535845" duration="1234000" />
+      <workItem from="1595516841670" duration="2039000" />
+      <workItem from="1595579061488" duration="340000" />
+      <workItem from="1595579443187" duration="803000" />
+      <workItem from="1595584804411" duration="1384000" />
+      <workItem from="1595589691100" duration="1108000" />
+      <workItem from="1595637302031" duration="604000" />
+      <workItem from="1595637969561" duration="28000" />
+      <workItem from="1595638043289" duration="30000" />
+      <workItem from="1595638294318" duration="27979000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -252,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595431432824</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="1、完善了指令的新映射方法&#10;2、加入了门派系统">
+      <created>1595470247274</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1595470247274</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,45 +455,124 @@
     <option name="LAST_COMMIT_MESSAGE" value="1、完善了指令的新映射方法&#10;2、加入了门派系统" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="121" y="0" key="#Project_Structure" timestamp="1595469361424">
+    <state x="493" y="239" key="#Custom_Plugin_Repositories" timestamp="1595513649908">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1595469361424" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595470214586">
+    <state x="493" y="239" key="#Custom_Plugin_Repositories/0.0.1280.680@0.0.1280.680" timestamp="1595513649908" />
+    <state x="392" y="57" key="#HTTP_Proxy" timestamp="1595513644589">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1595470214586" />
+    <state x="392" y="57" key="#HTTP_Proxy/0.0.1280.680@0.0.1280.680" timestamp="1595513644589" />
+    <state x="524" y="202" key="#Notifications" timestamp="1595514187617">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="524" y="202" key="#Notifications/0.0.1280.680@0.0.1280.680" timestamp="1595514187617" />
+    <state x="121" y="0" key="#Project_Structure" timestamp="1595678804307">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1595678804307" />
+    <state x="336" y="169" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1595472501749">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="169" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/0.0.1280.680@0.0.1280.680" timestamp="1595472501749" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595472226252">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1595472226252" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1595689738414">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1595689738414" />
     <state x="371" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1595470182648">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1595470182648" />
-    <state x="492" y="109" key="FileChooserDialogImpl" timestamp="1595469911070">
+    <state x="260" y="263" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1595488913197">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="492" y="109" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1595469911070" />
-    <state width="1237" height="277" key="GridCell.Tab.0.bottom" timestamp="1595470163134">
+    <state x="260" y="263" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1595488913197" />
+    <state x="247" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1595490067105">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="277" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1595470163134" />
-    <state width="1237" height="277" key="GridCell.Tab.0.center" timestamp="1595470163134">
+    <state x="247" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1595490067105" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595497792200">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="277" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1595470163134" />
-    <state width="1237" height="277" key="GridCell.Tab.0.left" timestamp="1595470163134">
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1595497792200" />
+    <state x="492" y="60" key="FileChooserDialogImpl" timestamp="1595648472021">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="277" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1595470163134" />
-    <state width="1237" height="277" key="GridCell.Tab.0.right" timestamp="1595470163134">
+    <state x="492" y="60" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1595648472021" />
+    <state width="1237" height="204" key="GridCell.Tab.0.bottom" timestamp="1595691572287">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="277" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1595470163134" />
-    <state x="105" y="0" key="SettingsEditor" timestamp="1595470077727">
+    <state width="1237" height="204" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1595691572287" />
+    <state width="1237" height="204" key="GridCell.Tab.0.center" timestamp="1595691572287">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="105" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1595470077727" />
+    <state width="1237" height="204" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1595691572287" />
+    <state width="1237" height="204" key="GridCell.Tab.0.left" timestamp="1595691572287">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1595691572287" />
+    <state width="1237" height="204" key="GridCell.Tab.0.right" timestamp="1595691572287">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1595691572287" />
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1595691572288">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1595691572288" />
+    <state width="1237" height="204" key="GridCell.Tab.1.center" timestamp="1595691572287">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1595691572287" />
+    <state width="1237" height="204" key="GridCell.Tab.1.left" timestamp="1595691572287">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1595691572287" />
+    <state width="1237" height="204" key="GridCell.Tab.1.right" timestamp="1595691572288">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1595691572288" />
+    <state x="221" y="83" key="IDE.errors.dialog" timestamp="1595514394528">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="221" y="83" key="IDE.errors.dialog/0.0.1280.680@0.0.1280.680" timestamp="1595514394528" />
+    <state x="303" y="43" key="NewModule_or_Project.wizard" timestamp="1595643240775">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="43" key="NewModule_or_Project.wizard/0.0.1280.680@0.0.1280.680" timestamp="1595643240775" />
+    <state x="35" y="0" width="1245" height="680" key="SettingsEditor" timestamp="1595648799405">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="35" y="0" width="1245" height="680" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1595648799405" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1595470249462">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1595470249462" />
+    <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1595472850156">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1595472850156" />
+    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1595653348032">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1595653348032" />
     <state x="404" y="213" width="625" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1595469911888">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="404" y="213" width="625" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1280.680@0.0.1280.680" timestamp="1595469911888" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1595691409458">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1595691409458" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo typeName="com.eztv.mud.test.Test" fieldName="a" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

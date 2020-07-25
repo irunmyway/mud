@@ -1,23 +1,65 @@
 package com.eztv.mud.handler;
 
-import com.eztv.mud.Word;
-import com.eztv.mud.bean.*;
-import com.eztv.mud.constant.Enum;
+import com.eztv.mud.bean.Client;
+import com.eztv.mud.bean.GameObject;
+import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.RoomDetail;
+import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.syn.WordSyn;
+import org.luaj.vm2.LuaValue;
 
-import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
-import static com.eztv.mud.Constant.clients;
+import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.*;
 
 public class MapHandler {
+
+    public static void playerMove(Client client, Msg msg) {//玩家移动模块
+        String outRoom = client.getPlayer().getPlayerData().getRoom();
+        String targetRoom = "";
+        switch (msg.getMsg()) {
+            case "left":
+                targetRoom = getRoom(getCurRoomId((client))).getLeft() + "";
+                break;
+            case "right":
+                targetRoom = getRoom(getCurRoomId((client))).getRight() + "";
+                break;
+            case "top":
+                targetRoom = getRoom(getCurRoomId((client))).getTop() + "";
+                break;
+            case "down":
+                targetRoom = getRoom(getCurRoomId((client))).getDown() + "";
+                break;
+        }
+        if(!outRoom.equals(targetRoom)&& targetRoom!=""){
+            //执行lua 预处理脚本
+            WinMessage win = new WinMessage();
+            LuaValue luaValue = client.getScriptExecutor().loadFile(null,getRoom(targetRoom).getScript())
+            .execute(LUA_进入房间,client,win,msg);
+            if((luaValue==null?"1":luaValue.toString()).equals("1")||
+                    getRoom(targetRoom).getScript()=="") {//代表允许进入
+                changeRoom(client, outRoom,targetRoom);
+            }
+        }
+        targetRoom=null;
+    }
+
+    public static void changeRoom(Client client, String outRoom,String targetRoom) {
+        //设置到达新房间
+        client.getPlayer().getPlayerData().setRoom(targetRoom);
+        //退出房间 并到达新房间
+        if (client.getPlayer().getPlayerData().getRoom() != null) {
+            onObjectOutRoom(outRoom, client.getPlayer());
+            getMapDetail(client);
+        }
+    }
+
     public static void getMapDetail(Client client) {//查看房间
         String roomId = getCurRoomId(client);
         client.getPlayer().getPlayerData().setRoom(roomId);//进入房间
-        WordSyn.InOutRoom(client.getPlayer(),roomId,true);
+        WordSyn.InOutRoom(client.getPlayer(), roomId, true);
         RoomDetail room = new RoomDetail();
         for (GameObject obj : getRoom(roomId).getNpcList()) {
             room.addGameObject(obj.toSendGameObject());
@@ -63,24 +105,5 @@ public class MapHandler {
         }
     }
 
-    public static void playerMove(Client client, Msg msg) {//玩家移动模块
-        onObjectOutRoom(client.getPlayer().getPlayerData().getRoom(), client.getPlayer());
-        //执行lua脚本
-        switch (msg.getMsg()) {
-            case "left":
-                client.getPlayer().getPlayerData().setRoom(getRoom(getCurRoomId((client))).getLeft() + "");
-                break;
-            case "right":
-                client.getPlayer().getPlayerData().setRoom(getRoom(getCurRoomId((client))).getRight() + "");
-                break;
-            case "top":
-                client.getPlayer().getPlayerData().setRoom(getRoom(getCurRoomId((client))).getTop() + "");
-                break;
-            case "down":
-                client.getPlayer().getPlayerData().setRoom(getRoom(getCurRoomId((client))).getDown() + "");
-                break;
-        }
-        if(client.getPlayer().getPlayerData().getRoom()!=null)
-        getMapDetail(client);
-    }
+
 }

@@ -1,12 +1,16 @@
-package com.eztv.mud.handler.bean;
+package com.eztv.mud.command;
 
-import com.eztv.mud.handler.bean.commands.*;
-import com.eztv.mud.handler.bean.commands.action.*;
-import com.eztv.mud.handler.bean.commands.bag.BagPanel;
-import com.eztv.mud.handler.bean.commands.equip.*;
-import com.eztv.mud.handler.bean.commands.faction.CreateFaction;
-import com.eztv.mud.handler.bean.commands.faction.FactionPanel;
-import com.eztv.mud.handler.bean.commands.faction.JoinFaction;
+import com.eztv.mud.command.commands.MinePanel;
+import com.eztv.mud.command.commands.action.ConfirmPanel;
+import com.eztv.mud.command.commands.action.ItemAction;
+import com.eztv.mud.command.commands.action.ReliveAction;
+import com.eztv.mud.command.commands.action.UsePanel;
+import com.eztv.mud.command.commands.bag.BagPanel;
+import com.eztv.mud.command.commands.equip.EquipPanel;
+import com.eztv.mud.command.commands.faction.CreateFaction;
+import com.eztv.mud.command.commands.faction.DestroyFaction;
+import com.eztv.mud.command.commands.faction.FactionPanel;
+import com.eztv.mud.command.commands.faction.JoinFaction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +26,8 @@ public class CommandSetHandler {
         actionCommandSet.put("relive", ReliveAction.class);//玩家预复活处理
         actionCommandSet.put("joinFaction", JoinFaction.class);//加入门派
         actionCommandSet.put("createFaction", CreateFaction.class);//创立门派
+        actionCommandSet.put("destroyFaction", DestroyFaction.class);//门派 面板
+
     }
 
     public static void initPanelCommandSet(){
@@ -30,6 +36,8 @@ public class CommandSetHandler {
         panelCommandSet.put("getBag", BagPanel.class);//背包面板
         panelCommandSet.put("getMine", MinePanel.class);//我的 面板
         panelCommandSet.put("factionPanel", FactionPanel.class);//门派 面板
+        panelCommandSet.put("confirmPanel", ConfirmPanel.class);//确认 面板
+
 
     }
 

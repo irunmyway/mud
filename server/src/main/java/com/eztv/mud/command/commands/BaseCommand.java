@@ -1,4 +1,4 @@
-package com.eztv.mud.handler.bean.commands;
+package com.eztv.mud.command.commands;
 
 
 import com.eztv.mud.bean.Client;
@@ -8,14 +8,15 @@ public abstract class BaseCommand {
     private Client client;
     private Msg msg;
     private String key;
-    public BaseCommand(Client client, Msg msg,String key) {
+
+    public BaseCommand(Client client, Msg msg, String key) {
         this.client = client;
         this.msg = msg;
         this.key = key;
         execute();
     }
 
-    public abstract void execute() ;
+    public abstract void execute();
 
     public Client getClient() {
         return client;

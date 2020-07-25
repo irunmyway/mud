@@ -3,8 +3,8 @@ package com.eztv.mud;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
+import com.eztv.mud.cache.MonsterCache;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ import java.util.List;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
 import static com.eztv.mud.Constant.clients;
-import static com.eztv.mud.constant.Cmd.doAttack;
 import static com.eztv.mud.constant.Cmd.getAttribute;
 
 public class GameUtil {
@@ -114,7 +113,7 @@ public class GameUtil {
     //通过静态id查找游戏怪物
     public static GameObject getMonstertById(String id) {
         GameObject gameObject=null;
-        List<Monster> list = Word.getInstance().getMonsters();
+        List<Monster> list = MonsterCache.getMonsters();
         for (GameObject o:list) {
             if((o.getId()+"").equals(id)){
                 gameObject = o;

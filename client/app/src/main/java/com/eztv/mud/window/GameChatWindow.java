@@ -96,7 +96,15 @@ public class GameChatWindow extends BaseWindow implements IButtonCallBack {
                 break;
             default:send(msgBuild(choice.getType(), choice.getCmd(),str, key));
         }
-        if(choice.isClose())
-        super.popupWindow.dismiss();
+        Enum.winAction action =  choice.getAction();
+        switch (action){
+            case close:
+                super.popupWindow.dismiss();
+                break;
+            case closeAll:
+                super.closeAll();
+                break;
+        }
+
     }
 }

@@ -230,6 +230,17 @@
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/rv_map_detail"
         app:layout_constraintTop_toTopOf="@+id/btn_north" />
+
+    <Button
+        android:id="@+id/game_btn_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/bg_button_solid_select"
+        android:text="@string/game_skill"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_south"
+        app:layout_constraintEnd_toEndOf="@+id/line0" />
     <Button
         android:id="@+id/btn_center"
         android:layout_width="wrap_content"
@@ -286,13 +297,12 @@
         android:id="@+id/btn_south"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:textSize="13sp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/bg_button_select"
         android:onClick="goDown"
         android:text="寒江岭"
         android:textColor="@color/white"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/btn_center"
         app:layout_constraintTop_toBottomOf="@+id/btn_center" />
 

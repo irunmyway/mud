@@ -1,5 +1,6 @@
 package com.eztv.mud.bean;
 
+import online.sanen.cdm.template.jpa.Column;
 import online.sanen.cdm.template.jpa.Id;
 import online.sanen.cdm.template.jpa.Table;
 
@@ -12,8 +13,11 @@ import online.sanen.cdm.template.jpa.Table;
 public class Faction {
     @Id
     private int id;
+    @Column
     private String name;
+    @Column
     private String desc;
+    @Column
     private int level;
 
 

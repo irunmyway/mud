@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -325,7 +326,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
     //处理服务器发过来的信息，用来界面的展示//////////////////////////////////////////////////////////////////
     public void getMapDetail(Msg msg){//查看房间
-        gameWindow.dismiss();
+        gameWindow.closeAll();
         RoomDetail roomDetail =  JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()),RoomDetail.class);
         gameObjectAdapter.clearAll();
         gameObjectAdapter.addList(roomDetail.getGameObjects());//添加npc

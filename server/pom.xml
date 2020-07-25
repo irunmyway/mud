@@ -30,11 +30,11 @@
             <artifactId>cdm-all</artifactId>
             <version>2.2.8</version>
         </dependency>
-        <dependency>
-            <groupId>org.luaj</groupId>
-            <artifactId>luaj-jse</artifactId>
-            <version>3.0.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.luaj</groupId>-->
+<!--            <artifactId>luaj-jse</artifactId>-->
+<!--            <version>3.0.1</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -50,7 +50,6 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
-
 
     </dependencies>
 
@@ -82,9 +81,9 @@
                         <!-- JDK目标版本1.8-->
                         <option>-target 1.8</option>
                         <!-- 不做收缩（删除注释、未被引用代码）-->
-                        <option>-dontshrink</option>
+<!--                        <option>-dontshrink</option>-->
                         <!-- 不做优化（变更代码实现逻辑）-->
-                        <option>-dontoptimize</option>
+<!--                        <option>-dontoptimize</option>-->
                         <!-- 不路过非公用类文件及成员-->
                         <option>-dontskipnonpubliclibraryclasses</option>
                         <option>-dontskipnonpubliclibraryclassmembers</option>
@@ -96,7 +95,7 @@
                         <!-- 确定统一的混淆类的成员名称来增加混淆-->
                         <option>-useuniqueclassmembernames</option>
                         <!-- 不混淆所有包名-->
-                        <option>-keeppackagenames</option>
+<!--                        <option>-keeppackagenames</option>-->
 
                         <!-- 需要保持的属性：异常，注解等-->
                         <option>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LocalVariable*Table,*Annotation*,Synthetic,EnclosingMethod</option>
@@ -106,6 +105,7 @@
                         <!--不混淆包下的所有类名，且类中的方法也不混淆  -->
                         <option>-keep class com.eztv.mud.bean.**{*;}</option>
                         <option>-keep class com.eztv.mud.bean.**</option>
+                        <option>-keep class com.eztv.mud.command.**{*;}</option>
 
                         <option>-keepclassmembers enum * {
                             public static **[] values();

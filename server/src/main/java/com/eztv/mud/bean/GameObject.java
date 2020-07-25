@@ -3,8 +3,7 @@ package com.eztv.mud.bean;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.GameUtil;
-import com.eztv.mud.PropertiesUtil;
-import com.eztv.mud.Word;
+import com.eztv.mud.utils.BProp;
 import com.eztv.mud.algorithm.AttackAlgorithm;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
@@ -16,15 +15,12 @@ import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.syn.WordSyn;
-import com.eztv.mud.utils.BDebug;
-import com.eztv.mud.utils.BObject;
-import org.luaj.vm2.LuaValue;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static com.eztv.mud.Constant.clients;
+import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.algorithm.AttackAlgorithm.computeRealAtk;
 import static com.eztv.mud.constant.Cmd.doAttack;
@@ -55,7 +51,7 @@ public abstract class GameObject {
         float realAtc = computeRealAtk(this,gameObject);
         boolean isAttack = AttackAlgorithm.computeAccuracy(this,gameObject);
         AttackPack ap = new AttackPack();
-        Properties dbConfig = PropertiesUtil.getInstance().getProp();
+        Properties dbConfig = BProp.getInstance().getProp();
         if(isAttack){
             ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),(int)realAtc)));
         }else{
@@ -113,8 +109,8 @@ public abstract class GameObject {
              日期: 2020-07-15 17:26
              用处：//移除玩家杀死的其他东西   奖励触发
              **/
-            client.getScriptExecutor().loadFile(GameObject.class,diedObj.getScript() + ".lua");
-            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute("reward").toString()), Bag.class);
+            client.getScriptExecutor().loadFile(null,diedObj.getScript() + ".lua");
+            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute(LUA_击杀奖励).toString()), Bag.class);
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
             for (Client item : clients) {
                 try {

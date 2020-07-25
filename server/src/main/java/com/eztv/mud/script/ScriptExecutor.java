@@ -1,14 +1,6 @@
 package com.eztv.mud.script;
 
-import java.io.File;
-
-import org.luaj.vm2.Globals;
-import org.luaj.vm2.LuaDouble;
-import org.luaj.vm2.LuaError;
-import org.luaj.vm2.LuaFunction;
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.Varargs;
+import org.luaj.vm2.*;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
@@ -22,12 +14,13 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 public class ScriptExecutor {
 
     private Globals luaGlobals = null;
-    private Class entity;
+    private Object entity;
 
     public ScriptExecutor() {
     }
 
-    public ScriptExecutor loadFile(Class entity, String scriptPath) {
+    public ScriptExecutor loadFile(Object entity, String scriptPath) {
+        if(!scriptPath.endsWith(".lua"))scriptPath = scriptPath+".lua";
         this.entity = entity;
         // set API references
         if(luaGlobals==null)luaGlobals = JsePlatform.standardGlobals();
@@ -39,7 +32,7 @@ public class ScriptExecutor {
         try {
             LuaValue script = luaGlobals.loadfile(scriptPath).call();
         } catch (LuaError e1) {
-            e1.printStackTrace();
+            //e1.printStackTrace();
         }
         return this;
     }
