@@ -8,12 +8,9 @@ import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataBaseHandler;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.core.Battle;
-import com.eztv.mud.handler.core.TaskHandler;
-import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
 import online.sanen.cdm.template.jpa.*;
 
-import javax.naming.Name;
 import java.util.Date;
 
 import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
@@ -48,8 +45,6 @@ public class Player extends GameObject implements IPlayerCallBack {
     //发动攻击
     private Battle battle = new Battle();
 
-    //任务检测
-    private TaskHandler taskHandler = new TaskHandler();
 
     //人物数据处理
     private DataBaseHandler dataBaseHandler = new DataBaseHandler();
@@ -79,9 +74,6 @@ public class Player extends GameObject implements IPlayerCallBack {
         this.key = key;
     }
 
-    public TaskHandler getTaskHandler() {
-        return taskHandler;
-    }
 
     public String getData() {
         return data;
@@ -208,8 +200,12 @@ public class Player extends GameObject implements IPlayerCallBack {
     @Override
     public void onAttributeChange() {
         //计算角色改变后的数据
-        Attribute attribute = client.getPlayer().getPlayerData().getEquip().calculate();//装备叠加的
+        Attribute skillAttr = client.getPlayer().getPlayerData().getSkill().calculate();
+        Attribute equipAttr = client.getPlayer().getPlayerData().getEquip().calculate();//装备叠加的
         Attribute cur = getBaseAttribute(client.getPlayer().getLevel());//当前的；
-        this.getPlayerData().setAttribute(cur.add(attribute).addTmp(client.getPlayer().getPlayerData().getAttribute()));
+        this.getPlayerData().setAttribute(cur.//叠加属性
+                add(skillAttr).
+                add(equipAttr).
+                addTmp(client.getPlayer().getPlayerData().getAttribute()));
     }
 }

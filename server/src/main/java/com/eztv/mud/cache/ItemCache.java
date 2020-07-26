@@ -29,6 +29,19 @@ public class ItemCache {
         BDebug.trace("游戏物品加载完成 数量 : Items load item_num:【" + items.size() + "】");
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static List<Item> getItems() {
         return items;
     }

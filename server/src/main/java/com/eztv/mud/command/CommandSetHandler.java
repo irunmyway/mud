@@ -1,16 +1,14 @@
 package com.eztv.mud.command;
 
 import com.eztv.mud.command.commands.MinePanel;
-import com.eztv.mud.command.commands.action.ConfirmPanel;
-import com.eztv.mud.command.commands.action.ItemAction;
-import com.eztv.mud.command.commands.action.ReliveAction;
-import com.eztv.mud.command.commands.action.UsePanel;
+import com.eztv.mud.command.commands.action.*;
 import com.eztv.mud.command.commands.bag.BagPanel;
 import com.eztv.mud.command.commands.equip.EquipPanel;
 import com.eztv.mud.command.commands.faction.CreateFaction;
 import com.eztv.mud.command.commands.faction.DestroyFaction;
 import com.eztv.mud.command.commands.faction.FactionPanel;
 import com.eztv.mud.command.commands.faction.JoinFaction;
+import com.eztv.mud.command.commands.pop.SkillAttackPanel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +25,7 @@ public class CommandSetHandler {
         actionCommandSet.put("joinFaction", JoinFaction.class);//加入门派
         actionCommandSet.put("createFaction", CreateFaction.class);//创立门派
         actionCommandSet.put("destroyFaction", DestroyFaction.class);//门派 面板
+        actionCommandSet.put("useSkill", UseSkill.class);//使用技能
 
     }
 
@@ -37,6 +36,7 @@ public class CommandSetHandler {
         panelCommandSet.put("getMine", MinePanel.class);//我的 面板
         panelCommandSet.put("factionPanel", FactionPanel.class);//门派 面板
         panelCommandSet.put("confirmPanel", ConfirmPanel.class);//确认 面板
+        panelCommandSet.put("getSkill", SkillAttackPanel.class);//技能 面板
 
 
     }

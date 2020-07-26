@@ -1,19 +1,18 @@
 package com.eztv.mud.command.commands.action;
 
 import com.eztv.mud.GameUtil;
-import com.eztv.mud.utils.BProp;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.net.WinMessage;
-import com.eztv.mud.constant.Enum;
 import com.eztv.mud.command.commands.BaseCommand;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BString;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
+import static com.eztv.mud.Constant.LUA_物品使用;
+import static com.eztv.mud.Constant.LUA_物品查看;
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.GameUtil.object2JsonStr;
 
 /**
  作者：hhx QQ1025334900
@@ -53,7 +52,7 @@ public class ItemAction extends BaseCommand {
         Item item = getItemById(getMsg().getMsg());
         if(item==null)return;
         getClient().getScriptExecutor().loadFile(null,item.getScript() + ".lua")
-        .execute("item_look",getClient(),item,winMsg,getMsg());
+        .execute(LUA_物品查看,getClient(),item,winMsg,getMsg());
     }
     private void item_use(){
         WinMessage winMsg = new WinMessage();
@@ -61,7 +60,7 @@ public class ItemAction extends BaseCommand {
         Item item = getItemById(getMsg().getMsg());
         if(item==null)return;
         getClient().getScriptExecutor().loadFile(null,item.getScript() + ".lua")
-                .execute("item_use",getClient(),item,winMsg,getMsg());
+                .execute(LUA_物品使用,getClient(),item,winMsg,getMsg());
     }
     private void item_unload(){
         Equip equip = getClient().getPlayer().getPlayerData().getEquip();
@@ -73,8 +72,7 @@ public class ItemAction extends BaseCommand {
         list.add(equip.getShoes());
         int id = 0;
         Enum.equipType type = Enum.equipType.weapon;
-        Properties Config = BProp.getInstance().getProp();
-        String str =colorString(String.format(Config.get("equip_drop").toString()));
+        String str =getProp("equip_drop");
         for(Item item:list){
             if((item.getId()+"").equals(getMsg().getMsg())){
                 id = item.getId();
@@ -123,10 +121,11 @@ public class ItemAction extends BaseCommand {
             if(item!=null){
                 if(getMsg().getRole()!=null){//丢弃全部
                     int num = getClient().getPlayer().getPlayerData().getBag().delItemBundle(id);
-                    chat.setContent(colorString(String.format(BProp.getInstance().getProp().get("item_drop").toString(),item.getName(),num)));
+                    chat.setContent(getProp("item_drop",item.getName(),
+                            num));
                 }else{
                     getClient().getPlayer().getPlayerData().getBag().delItem(id,1);
-                    chat.setContent(colorString(String.format(BProp.getInstance().getProp().get("item_drop").toString(),item.getName(),1)));
+                    chat.setContent(getProp("item_drop",item.getName(),1));
                 }
                 GameUtil.sendToSelf(getClient(),msgBuild(Enum.messageType.chat, "公聊",object2JsonStr(chat),""));
             }

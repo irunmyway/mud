@@ -1,12 +1,9 @@
 package com.eztv.mud.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.eztv.mud.utils.BProp;
 import com.eztv.mud.constant.Enum;
 
-import java.util.Properties;
-
-import static com.eztv.mud.GameUtil.colorString;
+import static com.eztv.mud.GameUtil.getProp;
 
 
 public class Item extends GameObject implements Cloneable{
@@ -49,12 +46,11 @@ public class Item extends GameObject implements Cloneable{
     }
 
     public String toDesc(Enum.itemType type){
-        Properties Config = BProp.getInstance().getProp();
         String str="";
         str+=getName()+"</p><br>";
         switch (type){
             case equip:
-                str+=colorString(String.format(Config.get("equip_detail_hit").toString(),getAttribute().getAtk()));
+                str+= getProp("equip_detail_hit",getAttribute().getAtk());
                 break;
         }
         return str;

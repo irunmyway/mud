@@ -40,5 +40,7 @@ public class Constant {
     public final static String LUA_击杀奖励="击杀奖励";
     public final static String LUA_初始化="初始化";
     public final static String LUA_进入房间="进入房间";
+    public final static String LUA_物品使用="物品使用";
+    public final static String LUA_物品查看="物品查看";
 
 }

@@ -1,6 +1,5 @@
 package com.eztv.mud.command.commands;
 
-import com.eztv.mud.utils.BProp;
 import com.eztv.mud.bean.Choice;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
@@ -27,13 +26,12 @@ public class MinePanel extends BaseCommand{
     public void execute() {
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
-        String str =colorString(String.format(BProp.getInstance().getProp().get("my_state").toString(),
+        String str = getProp("my_state",
                 getClient().getPlayer().getName(),
                 getClient().getPlayer().getAttribute().getAtk(),
                 getClient().getPlayer().getAttribute().getDef(),
                 getClient().getPlayer().getAttribute().getAcc(),
-                getClient().getPlayer().getAttribute().getEva()
-        ));
+                getClient().getPlayer().getAttribute().getEva());
         winMsg.setDesc(str);//显示当前玩家状态
         choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null, Enum.winAction.open));
         choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null, Enum.winAction.open));

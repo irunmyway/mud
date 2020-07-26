@@ -3,7 +3,6 @@ package com.eztv.mud.bean;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.GameUtil;
-import com.eztv.mud.utils.BProp;
 import com.eztv.mud.algorithm.AttackAlgorithm;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
@@ -15,12 +14,14 @@ import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.syn.WordSyn;
+import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static com.eztv.mud.Constant.*;
+import static com.eztv.mud.Constant.LUA_击杀奖励;
+import static com.eztv.mud.Constant.clients;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.algorithm.AttackAlgorithm.computeRealAtk;
 import static com.eztv.mud.constant.Cmd.doAttack;
@@ -57,6 +58,9 @@ public abstract class GameObject {
         }else{
             ap.setDesc(GameUtil.colorString(dbConfig.get("fight_eva").toString()));
         }
+        if (gameObject != null&&isAttack)//攻击后血量小于1 死亡
+            if ((gameObject.getAttribute().Attack((long)realAtc) < 1)) onDied(this, gameObject, client);
+
         ap.setWho(this.getKey());
         if (gameObject == null) return null;
         ap.setTarget(gameObject.getKey());
@@ -65,11 +69,6 @@ public abstract class GameObject {
         ap.setTargetAttribute(attribute);
         //发送房间战斗消息
         GameUtil.sendToRoom(client, msgBuild(Enum.messageType.action, doAttack, object2JsonStr(ap), client.getRole()));
-        if (gameObject != null&&isAttack)
-            if ((gameObject.getAttribute().Attack((long)realAtc) < 1)) {//攻击后血量小于1 死亡
-                onDied(this, gameObject, client);
-                return null;
-            }
         return gameObject;
     }
 
@@ -89,7 +88,6 @@ public abstract class GameObject {
              日期: 2020-07-15 17:27
              用处：任务触发 查看玩家任务 并且计数
              **/
-
             for (Task task : client.getPlayer().getPlayerData().getTasks()) {
                 if (task.getTaskState() == Enum.taskState.processing) {
                     task.setTaskState(Enum.taskState.finished);
@@ -221,6 +219,8 @@ public abstract class GameObject {
             obj.setObjType(Enum.gameObjectType.player);
         return obj;
     }
+
+
 }
 
 

@@ -15,13 +15,13 @@ public class Enum {
     public enum itemType{equip,Potion,help}//装备，药水，道具
 
     //装备类型
-    public enum equipType{weapon,head,cloth,pants,shoes}
+    public enum equipType{weapon,head,cloth,pants,shoes,skill}
 
     //移动
     public enum direct{left,right,top,down}
 
     //通信模块
-    public enum messageType{normal,login,toast,action,chat,input,unHandPop,pop}
+    public enum messageType{normal,login,toast,action,chat,input,unHandPop,pop,mapPop}
 
     //聊天类型
     public enum chat{公聊,系统,私聊,本地}

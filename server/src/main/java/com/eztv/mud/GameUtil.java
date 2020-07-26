@@ -6,9 +6,11 @@ import com.eztv.mud.bean.*;
 import com.eztv.mud.cache.MonsterCache;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BObject;
+import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
 import static com.eztv.mud.Constant.clients;
@@ -175,6 +177,11 @@ public class GameUtil {
                 }
             }catch (Exception e){e.printStackTrace();}
         }
+    }
+
+    public static String getProp(String prop,Object... args){
+        Properties Config = BProp.getInstance().getProp();
+        return colorString(String.format(Config.get(prop).toString(),args));
     }
 
     public static String colorString(String str){

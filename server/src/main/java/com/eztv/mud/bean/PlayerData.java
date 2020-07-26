@@ -49,6 +49,10 @@ public class PlayerData {
         return tasks;
     }
 
+    public Skill getSkill() {
+        return skill;
+    }
+
     public void setAttribute(Attribute attribute) {
         this.attribute = attribute;
     }

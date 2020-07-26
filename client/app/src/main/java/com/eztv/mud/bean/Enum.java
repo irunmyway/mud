@@ -18,7 +18,7 @@ public class Enum {
     public enum direct{left,right,top,down}
 
     //通信模块
-    public enum messageType{normal,login,toast,action,chat,input,unHandPop,pop}
+    public enum messageType{normal,login,toast,action,chat,input,unHandPop,pop,mapPop}
 
     //聊天类型
     public enum chat{公聊,系统,私聊,本地}

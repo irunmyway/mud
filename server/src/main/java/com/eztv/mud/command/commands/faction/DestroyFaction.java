@@ -8,7 +8,6 @@ import com.eztv.mud.bean.Msg;
 import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BProp;
 
 import static com.eztv.mud.GameUtil.*;
 
@@ -26,7 +25,8 @@ public class DestroyFaction extends BaseCommand {
             getClient().getPlayer().setFaction(0);
             getClient().getPlayer().getDataBaseHandler().savePlayer(getClient().getPlayer());
             //发送帮派解散成功消息
-            String sendStr = colorString(String.format(BProp.getInstance().getProp().get("faction_destroy_success").toString(),  getClient().getPlayer().getName(),""));
+            String sendStr = getProp("faction_destroy_success",
+            getClient().getPlayer().getName(),"");
             Chat chat = new Chat();
             chat.setContent(sendStr);
             chat.setMsgType(Enum.chat.系统);

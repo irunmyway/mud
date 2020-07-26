@@ -63,7 +63,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     TextView self_describe,tv_map_name;
     RecyclerView rv_chat;
     RecyclerView rv_map_detail;
-    Button btn_chat,btn_map,btn_bag,btn_state;
+    Button btn_chat,btn_map,btn_bag,btn_state,game_btn_skill;
     Button btn_west,btn_east,btn_north,btn_south,btn_center;
     AppCompatActivity mActivity;
     GameObjectAdapter gameObjectAdapter;
@@ -142,6 +142,9 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                             break;
                         case pop://可以关闭的弹窗
                             onWin(msg);
+                            break;
+                        case mapPop://可以关闭的弹窗
+                            onSkillAttackWin(msg);
                             break;
                     }
                     break;
@@ -229,6 +232,11 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         //我的模块
         btn_state = findViewById(R.id.game_btn_state);
         btn_state.setOnClickListener(view -> send(msgBuild(messageType.pop, "getMine",player.getKey(),null)));
+
+        //技能模块
+        game_btn_skill= findViewById(R.id.game_btn_skill);
+        game_btn_skill.setOnClickListener(view -> send(msgBuild(messageType.pop, "getSkill",player.getKey(),null)));
+
 
 
         //地图全局模块
@@ -527,11 +535,15 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     }
     private void onWin(Msg msg) {//可以操作的弹窗
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
-        gameWindow.setContent(winMessage.getDesc()).build(mActivity,getContentView(mActivity),msg.getRole());
+        gameWindow.setContent(winMessage.getDesc()).build(mActivity,self_describe,msg.getRole());
         //设置物品items rv
         gameWindow.setChoiceList(winMessage.getChoice(),winMessage).showBySimpleSize(mActivity);
     }
-
+    private void onSkillAttackWin(Msg msg) {//地图行走位置的弹窗
+        WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
+        gameWindow.setContent(winMessage.getDesc()).build(mActivity,self_describe,msg.getRole());
+        gameWindow.setChoiceList(winMessage.getChoice(),winMessage).showBySkill(mActivity);
+    }
 
     private void onReward(Msg msg) {//奖惩
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);

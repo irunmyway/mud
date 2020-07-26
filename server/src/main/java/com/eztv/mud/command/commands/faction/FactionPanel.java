@@ -8,7 +8,6 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +32,11 @@ public class FactionPanel extends BaseCommand {
             choice.add(Choice.createChoice("加入门派", Enum.messageType.action,"joinFaction", null,null));
         }else{//有门派了 查看门派信息
             Faction mFaction = FactionCache.factions.get(faction+"");
-            String str=colorString(String.format(BProp.getInstance().getProp().get("faction_panel").toString(),
-                    mFaction.getName(),mFaction.getLevel(),mFaction.getDesc()
-                    ));
+            String str=getProp("faction_panel",
+                        mFaction.getName(),
+                        mFaction.getLevel(),
+                        mFaction.getDesc()
+                    );
             winMsg.setDesc(str);
             choice.add(Choice.createChoice("解散门派", Enum.messageType.pop,"confirmPanel", "destroyFaction","这将会解散你的帮派，你确定吗？"));
         }

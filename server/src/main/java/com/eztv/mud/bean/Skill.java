@@ -9,7 +9,7 @@ import java.util.List;
  * 功能: 玩家技能
  **/
 public class Skill {
-    private Item curSkill;//当前出招技能
+    private Item curSkill = new Item();//当前出招技能
     private List<Item> skills = new ArrayList<>();//玩家所有技能
 
     public Skill() {
@@ -30,5 +30,9 @@ public class Skill {
 
     public void setSkills(List<Item> skills) {
         this.skills = skills;
+    }
+
+    public Attribute calculate(){
+        return curSkill.getAttribute();
     }
 }
