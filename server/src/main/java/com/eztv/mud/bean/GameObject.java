@@ -53,9 +53,19 @@ public abstract class GameObject {
         boolean isAttack = AttackAlgorithm.computeAccuracy(this,gameObject);
         AttackPack ap = new AttackPack();
         Properties dbConfig = BProp.getInstance().getProp();
-        if(isAttack){
-            ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),(int)realAtc)));
-        }else{
+        if(isAttack){ //攻击
+            Item curSkill = client.getPlayer().getPlayerData().getSkill().getCurSkill();
+            if (curSkill!=null){
+                if(!getAttribute().AttackMp(curSkill.getAttribute().getMp())){//普通技能
+                    client.getPlayer().getPlayerData().getSkill().setCurSkill(null);
+                    ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),(int)realAtc)));
+                }else{
+                    ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit_skill").toString(),curSkill.getName(),(int)realAtc)));
+                }
+            }else{//普通技能
+                ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),(int)realAtc)));
+            }
+        }else{//闪避
             ap.setDesc(GameUtil.colorString(dbConfig.get("fight_eva").toString()));
         }
         if (gameObject != null&&isAttack)//攻击后血量小于1 死亡
@@ -94,8 +104,9 @@ public abstract class GameObject {
                     for (TaskCondition taskCondition : task.getTaskConditions()) {
                         for (TaskAction taskAction : taskCondition.getTaskActions()) {
                             if (taskAction.getId().equals(diedObj.getId() + "")) {
-                                if(taskAction.addProcess(1)<taskAction.getNum())
+                                if(taskAction.addProcess(1)<taskAction.getNum()){
                                     task.setTaskState(Enum.taskState.processing);
+                                }
                             }
                         }
                     }

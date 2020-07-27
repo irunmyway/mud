@@ -33,8 +33,8 @@ public class MinePanel extends BaseCommand{
                 getClient().getPlayer().getAttribute().getAcc(),
                 getClient().getPlayer().getAttribute().getEva());
         winMsg.setDesc(str);//显示当前玩家状态
-        choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null, Enum.winAction.open));
-        choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null, Enum.winAction.open));
+        choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null, Enum.winAction.open).setBgColor(Enum.color.red));
+        choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null, Enum.winAction.open).setBgColor(Enum.color.blue));
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(Enum.messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());
     }

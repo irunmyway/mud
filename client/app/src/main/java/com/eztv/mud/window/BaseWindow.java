@@ -64,12 +64,18 @@ public class BaseWindow implements PopupWindow.OnDismissListener {
         popupWindow.setOnDismissListener(this);
         popupWindows.add(popupWindow);
     }
-    public void showBySkill(Activity activity){
+    public void showBySkill(Activity activity,String role){
         popupWindow = new PopupWindow(view, getScreenWidth(activity)*9/10, -2);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setAnimationStyle(R.style.pop_animation);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(true);
+        role= role==null?"":role;
+        if(role.equals("unHand")){
+            popupWindow.setFocusable(false);
+            popupWindow.setOutsideTouchable(false);
+        }else {
+            popupWindow.setFocusable(true);
+            popupWindow.setOutsideTouchable(true);
+        }
         popupWindow.update();
         popupWindow.showAtLocation(targetView, Gravity.TOP , 0, (int)(getScreenHeight(activity)*0.65));
         popupWindow.setOnDismissListener(this);

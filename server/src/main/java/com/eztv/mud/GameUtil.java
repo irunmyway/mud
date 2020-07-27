@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.cache.MonsterCache;
+import com.eztv.mud.cache.SkillCache;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BObject;
 import com.eztv.mud.utils.BProp;
@@ -134,6 +135,19 @@ public class GameUtil {
        }
        return item;
     }
+    //通过静态id查找游戏技能
+    public static Item getSkillById(String id) {
+        Item item = null;
+        for(int i = 0; i< SkillCache.getSkills().size(); i++){
+            if((SkillCache.getSkills().get(i).getId()+"").equals(id)){
+                item = SkillCache.getSkills().get(i);
+            }
+        }
+        return item;
+    }
+
+
+
     //获取玩家属性
     public static void getAttribute(Client client) {
         client.sendMsg(msgBuild(Enum.messageType.action, getAttribute,object2JsonStr(client.getPlayer().getPlayerData().getAttribute()),client.getRole()).getBytes());

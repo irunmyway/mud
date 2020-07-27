@@ -12,7 +12,7 @@ public class Enum {
     public enum gameObjectType{player,monster,npc}
 
     //物品类型
-    public enum itemType{equip,Potion,help}//装备，药水，道具
+    public enum itemType{equip,Potion,help,skill,normal}//装备，药水，道具 技能
 
     //装备类型
     public enum equipType{weapon,head,cloth,pants,shoes,skill}
@@ -34,5 +34,8 @@ public class Enum {
 
     //窗口类型
     public  enum winAction{open,close,closeAll};
+
+    //颜色
+    public  enum color{blue,red,gray,yellow,normal};
 
 }

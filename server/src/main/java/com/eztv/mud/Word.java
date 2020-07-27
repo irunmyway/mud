@@ -33,6 +33,7 @@ public class Word {
         MonsterCache.initMonster(globals,Rooms);//加载怪物
         FactionCache.initFactionCache();//加载行会
         ItemCache.initItem(globals);//加载物品
+        SkillCache.initSkill(globals);//加载技能
         initBaseAttribute();//加载基础属性
         initHandler();//装载指令
     }

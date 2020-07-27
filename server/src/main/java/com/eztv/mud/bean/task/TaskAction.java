@@ -1,5 +1,7 @@
 package com.eztv.mud.bean.task;
 
+import com.eztv.mud.utils.BDebug;
+
 public class TaskAction {
     private String id;//目标id
     private int num;//目标数量

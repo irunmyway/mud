@@ -2,11 +2,12 @@ package com.eztv.mud.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.script.LuaOpen;
 
 import static com.eztv.mud.GameUtil.getProp;
 
 
-public class Item extends GameObject implements Cloneable{
+public class Item extends GameObject implements Cloneable, LuaOpen.LuaItem {
     private int id;
     private String script;
     @JSONField(serialize = false)
@@ -47,7 +48,6 @@ public class Item extends GameObject implements Cloneable{
 
     public String toDesc(Enum.itemType type){
         String str="";
-        str+=getName()+"</p><br>";
         switch (type){
             case equip:
                 str+= getProp("equip_detail_hit",getAttribute().getAtk());
@@ -81,5 +81,32 @@ public class Item extends GameObject implements Cloneable{
             }
         }
         return false ;
+    }
+
+    @Override
+    public void 类型(String type) {
+        this.equipType = Enum.equipType.valueOf(type);
+    }
+
+    @Override
+    public void 属性(Attribute attribute) {
+        setAttribute(attribute);
+    }
+
+    @Override
+    public void 内容(String string) {
+        setDesc(string);
+    }
+
+    @Override
+    public String 到文本(String type) {
+        String str="";
+        Enum.itemType itemType = Enum.itemType.valueOf(type);
+        switch (itemType){
+            case equip:
+                str+= getProp("equip_detail_hit",getAttribute().getAtk());
+                break;
+        }
+        return str;
     }
 }

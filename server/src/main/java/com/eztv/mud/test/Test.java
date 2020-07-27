@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.DataBase;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.Choice;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
@@ -97,6 +98,13 @@ public class Test {
         int b =5;
         BDebug.trace("测试"+(b+=5));
     }
+    @org.junit.Test
+    public void test10(){
+        int b =5;
+        BDebug.trace("测试"+( Enum.itemType.skill).toString());
+    }
+
+
 
     @org.junit.Test
     public void test7(){

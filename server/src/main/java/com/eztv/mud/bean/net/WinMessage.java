@@ -2,11 +2,12 @@ package com.eztv.mud.bean.net;
 
 import com.eztv.mud.LuaUtil;
 import com.eztv.mud.bean.Choice;
+import com.eztv.mud.script.LuaOpen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinMessage {
+public class WinMessage implements LuaOpen.LuaWin{
     private List<String> floatMessage = new ArrayList<>();
     private String desc;
     private List<Choice> choice = new ArrayList<>();
@@ -47,8 +48,22 @@ public class WinMessage {
 
     public void 添加选项集合(LuaUtil luaUtil){
         this.choice.addAll(luaUtil.getChoice());
+        luaUtil.getChoice().clear();
     }
+
+    @Override
+    public void 内容(String string) {
+        this.desc = string;
+    }
+
+    @Override
+    public void 列数(int col) {
+        this.col = col;
+    }
+
     public void 添加选项(Choice c){
         this.choice.add(c);
     }
+
+
 }

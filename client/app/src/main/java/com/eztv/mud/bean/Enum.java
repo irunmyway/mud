@@ -12,7 +12,10 @@ public class Enum {
     public enum gameObjectType{player,monster,npc}
 
     //物品类型
-    public enum itemType{装备,药水,道具}
+    public enum itemType{equip,Potion,help,skill,normal}//装备，药水，道具 技能
+
+    //装备类型
+    public enum equipType{weapon,head,cloth,pants,shoes,skill}
 
     //移动
     public enum direct{left,right,top,down}
@@ -23,6 +26,16 @@ public class Enum {
     //聊天类型
     public enum chat{公聊,系统,私聊,本地}
 
+    //任务状态
+    public enum taskState{can,cant,processing,finished}
+
+    //任务类型
+    public enum taskType{kill,item,level,talk}
+
     //窗口类型
     public  enum winAction{open,close,closeAll};
+
+    //颜色
+    public  enum color{blue,red,gray,yellow,normal};
+
 }

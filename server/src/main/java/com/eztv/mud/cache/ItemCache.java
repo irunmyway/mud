@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static com.eztv.mud.Constant.Item_PATH;
+import static com.eztv.mud.constant.Enum.itemType.normal;
 
 public class ItemCache {
     private static HashMap<String, LuaValue> itemScript = new HashMap<String, LuaValue>();
@@ -24,6 +25,7 @@ public class ItemCache {
                     item.setScript(Item_PATH + item.getScript());
                     itemScript.put(item.getId() + "", globals.loadfile(item.getScript() + ".lua"));
                 }
+                if(item.getType()==null)item.setType(normal);
             } catch (Exception e) {e.printStackTrace();}
         }
         BDebug.trace("游戏物品加载完成 数量 : Items load item_num:【" + items.size() + "】");

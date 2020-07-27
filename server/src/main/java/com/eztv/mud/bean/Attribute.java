@@ -1,11 +1,5 @@
 package com.eztv.mud.bean;
 
-import online.sanen.cdm.template.jpa.Column;
-import online.sanen.cdm.template.jpa.NoDB;
-import online.sanen.cdm.template.jpa.Table;
-
-import java.util.HashMap;
-
 public class Attribute implements Cloneable{
     private int level;
     private long hp;
@@ -126,6 +120,14 @@ public class Attribute implements Cloneable{
     public long Attack(long hp){
         setHp(getHp()-hp);
         return getHp();
+    }
+    public boolean AttackMp(long mp){
+        if(getMp()>mp){
+            setMp(getMp()-mp);
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

@@ -1,7 +1,7 @@
 package com.eztv.mud.bean;
 
 import com.eztv.mud.Word;
-import com.eztv.mud.utils.BDebug;
+import com.eztv.mud.cache.SkillCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +56,39 @@ public class Bag {
         this.items = items;
     }
 
-    public void addItem(int id,int num){
+    /**
+     * 作者: hhx QQ1025334900
+     * 时间: 2020-07-27 10:29
+     * 功能: 给物品
+     **/
+    public void giveItem(int id, int num){
         if(num<1)num=1;
         Item addItem = null;
         for(Item item:Word.getInstance().getItems()){
+            if(item.getId()==id){
+                addItem = item;
+            }
+        }
+        if(addItem==null) return;
+        int pos = items.indexOf(addItem);
+        if(pos>-1){//背包中有了
+            addItem.setNum(addItem.getNum()+num);
+        }else{
+            addItem.setNum(num);
+        }
+        items.add(addItem);
+
+    }
+
+    /**
+     * 作者: hhx QQ1025334900
+     * 时间: 2020-07-27 10:29
+     * 功能: 给技能书
+     **/
+    public void giveSkill(int id,int num){
+        if(num<1)num=1;
+        Item addItem = null;
+        for(Item item: SkillCache.getSkills()){
             if(item.getId()==id){
                 addItem = item;
             }

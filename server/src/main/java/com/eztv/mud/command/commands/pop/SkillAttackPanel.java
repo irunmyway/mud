@@ -14,6 +14,7 @@ import java.util.List;
 import static com.eztv.mud.GameUtil.msgBuild;
 import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.doTalk;
+import static com.eztv.mud.constant.Enum.winAction.*;
 
 public class SkillAttackPanel extends BaseCommand {
     public SkillAttackPanel(Client client, Msg msg, String key) {
@@ -29,18 +30,22 @@ public class SkillAttackPanel extends BaseCommand {
         choice.add(Choice.createChoice(
                "普通攻击",
                 Enum.messageType.action,
-                "useSkill", null,null));
+                "useSkill", null,null,open));
         for (Item skill :skills) {
             choice.add(Choice.createChoice(
                     skill.getName(),
                     Enum.messageType.action,
-                    "useSkill", skill.getId()+"",null));
+                    "useSkill", skill.getId()+"",null,open));
         }
+        choice.add(Choice.createChoice(
+                "『关闭』",
+                Enum.messageType.action,
+                "", null,null,closeAll));
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(
                 Enum.messageType.mapPop,
                 doTalk,
                 object2JsonStr(winMsg),
-                null).getBytes());
+                "unHand").getBytes());
     }
 }

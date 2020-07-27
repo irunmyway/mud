@@ -13,6 +13,7 @@ public class Choice implements Cloneable{
     private String cmd;
     private String msg;
     private String key;
+    private Enum.color color;
 
     public String getName() {
         return name;
@@ -57,6 +58,14 @@ public class Choice implements Cloneable{
     }
     public String getKey() {
         return key;
+    }
+
+    public Enum.color getColor() {
+        return color;
+    }
+
+    public void setColor(Enum.color color) {
+        this.color = color;
     }
 
     public Enum.winAction getAction() {

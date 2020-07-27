@@ -542,7 +542,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
     private void onSkillAttackWin(Msg msg) {//地图行走位置的弹窗
         WinMessage winMessage = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), WinMessage.class);
         gameWindow.setContent(winMessage.getDesc()).build(mActivity,self_describe,msg.getRole());
-        gameWindow.setChoiceList(winMessage.getChoice(),winMessage).showBySkill(mActivity);
+        gameWindow.setChoiceList(winMessage.getChoice(),winMessage).showBySkill(mActivity,msg.getRole());
     }
 
     private void onReward(Msg msg) {//奖惩

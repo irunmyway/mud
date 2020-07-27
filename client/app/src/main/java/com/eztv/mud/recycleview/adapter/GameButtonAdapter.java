@@ -45,6 +45,21 @@ public class GameButtonAdapter extends BaseAdapterRvList<BaseViewHolder, Choice>
                 iButtonCallBack.onClick(i,obj,key);
             }
         });
+        obj.setColor(obj.getColor()==null? Enum.color.normal:obj.getColor());
+        switch (obj.getColor()){
+            case red:
+                holder.itemView.setBackgroundResource(R.drawable.anniured);
+                break;
+            case blue:
+                holder.itemView.setBackgroundResource(R.drawable.anniulan);
+                break;
+            case gray:
+                holder.itemView.setBackgroundResource(R.drawable.anniugray);
+                break;
+            case yellow:
+                holder.itemView.setBackgroundResource(R.drawable.anniu05);
+                break;
+        }
     }
     @NonNull
     @Override

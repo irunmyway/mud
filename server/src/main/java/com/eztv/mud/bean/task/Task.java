@@ -1,17 +1,15 @@
 package com.eztv.mud.bean.task;
 import com.eztv.mud.GameUtil;
-import com.eztv.mud.Word;
 import com.eztv.mud.bean.Bag;
-import com.eztv.mud.bean.Monster;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BDebug;
+import com.eztv.mud.script.LuaOpen;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Task {
+public class Task implements LuaOpen.LuaTask {
 	private String id;//任务编号
 	private Enum.taskState taskState;//任务状态{可接,不可接,正在完成,已经完成}
 	private String desc;
@@ -81,16 +79,16 @@ public class Task {
     public String showTaskDetail(){
 	    String str="";
         //this.getTaskState()
-	    for(TaskCondition taskCondition:this.getTaskConditions()){
-	        for (TaskAction taskAction:taskCondition.getTaskActions()){
-	            switch (taskCondition.getType()){
-                    case kill:
-                        str+="击杀"+GameUtil.getMonstertById(taskAction.getId()).getName()+" 进度 "+taskAction.getProcess()+"/"+taskAction.getNum();
-                        str+="\n";
-                        break;
-                }
-            }
-        }
+		for(TaskCondition taskCondition:this.taskConditions){
+			for (TaskAction taskAction:taskCondition.getTaskActions()){
+				switch (taskCondition.getType()){
+					case kill:
+						str+="击杀"+GameUtil.getMonstertById(taskAction.getId()).getName()+" 进度 "+taskAction.getProcess()+"/"+taskAction.getNum();
+						str+="\n";
+						break;
+				}
+			}
+		}
 	    return str;
     }
 
@@ -106,5 +104,27 @@ public class Task {
 			}
 		}
 		return false ;
+	}
+
+	@Override
+	public String 任务详情() {
+		String str="";
+		//this.getTaskState()
+		for(TaskCondition taskCondition:this.taskConditions){
+			for (TaskAction taskAction:taskCondition.getTaskActions()){
+				switch (taskCondition.getType()){
+					case kill:
+						str+="击杀"+GameUtil.getMonstertById(taskAction.getId()).getName()+" 进度 "+taskAction.getProcess()+"/"+taskAction.getNum();
+						str+="\n";
+						break;
+				}
+			}
+		}
+		return str;
+	}
+
+	@Override
+	public String 状态() {
+		return taskState.toString();
 	}
 }

@@ -49,7 +49,12 @@ public class ItemAction extends BaseCommand {
     private void item_look(){
         WinMessage winMsg = new WinMessage();
         //执行物品脚本
-        Item item = getItemById(getMsg().getMsg());
+        Item item=null;
+        if (getMsg().getRole().equals("skill")){
+            item = getSkillById(getMsg().getMsg());
+        }else{
+            item = getItemById(getMsg().getMsg());
+        }
         if(item==null)return;
         getClient().getScriptExecutor().loadFile(null,item.getScript() + ".lua")
         .execute(LUA_物品查看,getClient(),item,winMsg,getMsg());
@@ -57,7 +62,12 @@ public class ItemAction extends BaseCommand {
     private void item_use(){
         WinMessage winMsg = new WinMessage();
         //执行物品脚本
-        Item item = getItemById(getMsg().getMsg());
+        Item item=null;
+        if (getMsg().getRole().equals("skill")){
+            item = getSkillById(getMsg().getMsg());
+        }else{
+            item = getItemById(getMsg().getMsg());
+        }
         if(item==null)return;
         getClient().getScriptExecutor().loadFile(null,item.getScript() + ".lua")
                 .execute(LUA_物品使用,getClient(),item,winMsg,getMsg());
@@ -103,7 +113,7 @@ public class ItemAction extends BaseCommand {
                     break;
             }
         if(id>0){
-            getClient().getPlayer().getPlayerData().getBag().addItem(id,1);
+            getClient().getPlayer().getPlayerData().getBag().giveItem(id,1);
             Chat chat = new Chat();
             chat.setContent(str);
             chat.setMsgType(Enum.chat.系统);
