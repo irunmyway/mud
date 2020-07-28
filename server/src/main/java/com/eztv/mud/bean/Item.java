@@ -8,10 +8,6 @@ import static com.eztv.mud.GameUtil.getProp;
 
 
 public class Item extends GameObject implements Cloneable, LuaOpen.LuaItem {
-    private int id;
-    private String script;
-    @JSONField(serialize = false)
-    private Attribute attribute;
     private int num;
     private Enum.itemType type;
     private Enum.equipType equipType;
@@ -23,13 +19,6 @@ public class Item extends GameObject implements Cloneable, LuaOpen.LuaItem {
         this.num = num;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Enum.itemType getType() {
         return type;
@@ -38,13 +27,7 @@ public class Item extends GameObject implements Cloneable, LuaOpen.LuaItem {
     public void setType(Enum.itemType type) {
         this.type = type;
     }
-    public String getScript() {
-        return script;
-    }
 
-    public void setScript(String script) {
-        this.script = script;
-    }
 
     public String toDesc(Enum.itemType type){
         String str="";
@@ -76,7 +59,7 @@ public class Item extends GameObject implements Cloneable, LuaOpen.LuaItem {
         }
         if (obj instanceof Item){
             Item item = (Item) obj;
-            if(item.getId() == this.id){
+            if(item.getId() == getId()){
                 return true ;
             }
         }

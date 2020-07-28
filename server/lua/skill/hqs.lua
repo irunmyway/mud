@@ -19,9 +19,9 @@ function 物品使用(client, 物品, 窗口, msg)
     end
     local flag = lua工具:学习技能(client, 物品);
     if flag then
-        lua工具:自己系统消息(client, "你学习了技能 火球术");
+        lua工具:返回系统消息(client, "你学习了技能 火球术");
     else
-        lua工具:自己系统消息(client, "你已经会了");
+        lua工具:返回系统消息(client, "你已经会了");
     end
 end
 

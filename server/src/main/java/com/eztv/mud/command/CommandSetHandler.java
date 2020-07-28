@@ -9,6 +9,10 @@ import com.eztv.mud.command.commands.faction.DestroyFaction;
 import com.eztv.mud.command.commands.faction.FactionPanel;
 import com.eztv.mud.command.commands.faction.JoinFaction;
 import com.eztv.mud.command.commands.pop.SkillAttackPanel;
+import com.eztv.mud.command.commands.pop.TradePanel;
+import com.eztv.mud.command.commands.store.JbStore;
+import com.eztv.mud.command.commands.store.JmStore;
+import com.eztv.mud.command.commands.store.YbStore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +30,9 @@ public class CommandSetHandler {
         actionCommandSet.put("createFaction", CreateFaction.class);//创立门派
         actionCommandSet.put("destroyFaction", DestroyFaction.class);//门派 面板
         actionCommandSet.put("useSkill", UseSkill.class);//使用技能
+        actionCommandSet.put("jbStore", JbStore.class);//寄卖商城
+        actionCommandSet.put("ybStore", YbStore.class);//元宝商城
+        actionCommandSet.put("jmStore", JmStore.class);//寄卖商城
 
     }
 
@@ -37,6 +44,7 @@ public class CommandSetHandler {
         panelCommandSet.put("factionPanel", FactionPanel.class);//门派 面板
         panelCommandSet.put("confirmPanel", ConfirmPanel.class);//确认 面板
         panelCommandSet.put("getSkill", SkillAttackPanel.class);//技能 面板
+        panelCommandSet.put("getTrade", TradePanel.class);//交易 面板
 
 
     }

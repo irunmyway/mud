@@ -2,17 +2,16 @@ package com.eztv.mud.bean;
 
 import com.eztv.mud.Word;
 import com.eztv.mud.cache.SkillCache;
+import com.eztv.mud.script.LuaOpen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bag {
+public class Bag implements LuaOpen.LuaBag {
+    List<Item> items = new ArrayList<>();
     private long money;
     private long jbMoney;
     private long ybMoney;
-
-    List<Item> items = new ArrayList<>();
-
     //奖励经验
     private long exp;
 
@@ -56,86 +55,119 @@ public class Bag {
         this.items = items;
     }
 
-    /**
-     * 作者: hhx QQ1025334900
-     * 时间: 2020-07-27 10:29
-     * 功能: 给物品
-     **/
-    public void giveItem(int id, int num){
-        if(num<1)num=1;
+
+    public void giveItem(int id, int num) {
+        if (num < 1) num = 1;
         Item addItem = null;
-        for(Item item:Word.getInstance().getItems()){
-            if(item.getId()==id){
+        for (Item item : Word.getInstance().getItems()) {
+            if (item.getId() == id) {
                 addItem = item;
             }
         }
-        if(addItem==null) return;
+        if (addItem == null) return;
         int pos = items.indexOf(addItem);
-        if(pos>-1){//背包中有了
-            addItem.setNum(addItem.getNum()+num);
-        }else{
+        if (pos > -1) {//背包中有了
+            addItem.setNum(addItem.getNum() + num);
+        } else {
             addItem.setNum(num);
         }
         items.add(addItem);
 
     }
 
-    /**
-     * 作者: hhx QQ1025334900
-     * 时间: 2020-07-27 10:29
-     * 功能: 给技能书
-     **/
-    public void giveSkill(int id,int num){
-        if(num<1)num=1;
+
+    public void giveSkill(int id, int num) {
+        if (num < 1) num = 1;
         Item addItem = null;
-        for(Item item: SkillCache.getSkills()){
-            if(item.getId()==id){
+        for (Item item : SkillCache.getSkills()) {
+            if (item.getId() == id) {
                 addItem = item;
             }
         }
-        if(addItem==null) return;
+        if (addItem == null) return;
         int pos = items.indexOf(addItem);
-        if(pos>-1){//背包中有了
-            addItem.setNum(addItem.getNum()+num);
-        }else{
+        if (pos > -1) {//背包中有了
+            addItem.setNum(addItem.getNum() + num);
+        } else {
             addItem.setNum(num);
         }
         items.add(addItem);
 
     }
-    public void delItem(int id,int num){
-        if(num<1)num=1;
-        Item   delItem  =null;
-        for(Item item:items){
-            if(item.getId()==id){
-                if(item.getNum()>1){
-                    if(item.getNum()-num<1){
+
+    public void delItem(int id, int num) {
+        if (num < 1) num = 1;
+        Item delItem = null;
+        for (Item item : items) {
+            if (item.getId() == id) {
+                if (item.getNum() > 1) {
+                    if (item.getNum() - num < 1) {
                         delItem = item;
-                    }else{
-                        item.setNum(item.getNum()-num);
+                    } else {
+                        item.setNum(item.getNum() - num);
                     }
-                }else{
+                } else {
                     delItem = item;
                 }
             }
         }
-        if(delItem!=null)
-        items.remove(delItem);
+        if (delItem != null)
+            items.remove(delItem);
     }
-    public int delItemBundle(int id){
-        int num =0;
-        Item   delItem  =null;
-        for(Item item:items){
-            if(item.getId()==id){
+
+    public int delItemBundle(int id) {
+        int num = 0;
+        Item delItem = null;
+        for (Item item : items) {
+            if (item.getId() == id) {
                 delItem = item;
             }
         }
-        if(delItem!=null){
-            num=delItem.getNum();
+        if (delItem != null) {
+            num = delItem.getNum();
             items.remove(delItem);
         }
         return num;
     }
 
 
+    @Override
+    public void 给物品(int id, int num) {
+        giveItem(id, num);
+    }
+
+    @Override
+    public void 给技能(int id, int num) {
+        giveSkill(id, num);
+    }
+
+    @Override
+    public void 删物品(int id, int num) {
+        delItem(id, num);
+    }
+
+    @Override
+    public void 删物品集(int id) {
+        delItemBundle(id);
+    }
+
+    @Override
+    public void 给经验(long exp) {
+        setExp(exp);
+    }
+
+    @Override
+    public void 给铜币(long money) {
+        setMoney(money);
+    }
+
+    @Override
+    public void 给金币(long jb) {
+        setJbMoney(jb);
+    }
+
+    @Override
+    public void 给元宝(long yb) {
+        setYbMoney(yb);
+    }
 }

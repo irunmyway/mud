@@ -21,8 +21,8 @@ function 击杀奖励()
     奖励:setJbMoney(125);--金币
     奖励:setYbMoney(135);--元宝
     奖励:setExp(1350);--经验
-    奖励:giveItem(2, 1);--id 为1的物品给与1个
-    奖励:giveSkill(1, 1);--id 为1的物品给与1个
+    奖励:给物品(2, 1);--id 为1的物品给与1个
+    奖励:给技能(1, 1);--id 为1的物品给与1个
     return 游戏工具:object2JsonStr(奖励);
 end
 
@@ -36,6 +36,6 @@ function 对话(client, 窗口, 消息, 目标)
     end
     luaUtil:添加选项("攻击", Enum.messageType.normal, "attack", 消息:getMsg(), nil)
     窗口:添加选项集合(luaUtil);
-    luaUtil:发送消息(client,游戏工具:msgBuildForBytes(Enum.messageType.action, "doTalk", 游戏工具:object2JsonStr(窗口), 目标:getKey()));
+    luaUtil:返回元素消息(client,"action","doTalk",目标:getKey(),窗口);
 end
 

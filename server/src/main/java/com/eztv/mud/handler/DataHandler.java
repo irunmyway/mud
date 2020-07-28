@@ -3,11 +3,13 @@ package com.eztv.mud.handler;
 import com.eztv.mud.Word;
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Client;
-import com.eztv.mud.constant.Enum;
+import com.eztv.mud.bean.PlayerData;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.WinMessage;
-import com.eztv.mud.utils.BDebug;
+import com.eztv.mud.constant.Enum;
+import com.google.gson.Gson;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,10 +17,15 @@ import static com.eztv.mud.GameUtil.msgBuild;
 import static com.eztv.mud.GameUtil.object2JsonStr;
 
 public class DataHandler {
-
+    static Gson gson = new Gson();
     //获取角色信息。绑定游戏数据专用函数
-    public static Player getPlayer(Object client , Player player) {
+    public synchronized static Player getPlayer(Object client , Player player) {
         if (client != null) {
+            try{
+                String data = new String(Base64.getDecoder().decode(player.getData()));
+                PlayerData pd =  gson.fromJson(data, PlayerData.class);
+                player.setPlayerData(pd);
+            }catch(Exception e){e.printStackTrace();}
             //获取玩家基础属性
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
             Attribute base = attributes.get(player.getLevel() + "");

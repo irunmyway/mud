@@ -38,6 +38,12 @@ public class Word {
         initHandler();//装载指令
     }
 
+    public void initEnvironment(){
+        RoomCache.initRooms();//加载房间
+        NpcCache.initNPC(globals,Rooms);//加载NPC
+        MonsterCache.initMonster(globals,Rooms);//加载怪物
+    }
+
 
     public void initGG() {//加载公告
         String src = System.getProperty("user.dir")+"/gg";
@@ -77,5 +83,9 @@ public class Word {
 
     public String getGG() {
         return GG;
+    }
+
+    public Globals getGlobals() {
+        return globals;
     }
 }

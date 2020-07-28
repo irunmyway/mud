@@ -1,10 +1,5 @@
 package com.eztv.mud;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -16,10 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ez.socket.SocketClient;
@@ -28,7 +27,8 @@ import com.ez.utils.BDebug;
 import com.ez.utils.BObject;
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Chat;
-import com.eztv.mud.bean.Enum.*;
+import com.eztv.mud.bean.Enum.direct;
+import com.eztv.mud.bean.Enum.messageType;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.SendGameObject;
 import com.eztv.mud.bean.net.AttackPack;
@@ -49,21 +49,31 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.eztv.mud.Constant.*;
-import static com.eztv.mud.bean.Cmd.*;
+import static com.eztv.mud.Constant.player;
+import static com.eztv.mud.Constant.reconnectDelay;
+import static com.eztv.mud.bean.Cmd.doAttack;
+import static com.eztv.mud.bean.Cmd.doTalk;
 import static com.eztv.mud.bean.Cmd.getAttribute;
-import static com.eztv.mud.controller.MessageController.*;
+import static com.eztv.mud.bean.Cmd.getGG;
+import static com.eztv.mud.bean.Cmd.getMapDetail;
+import static com.eztv.mud.bean.Cmd.onObjectInRoom;
+import static com.eztv.mud.bean.Cmd.onObjectOutRoom;
+import static com.eztv.mud.controller.MessageController.doTalk;
+import static com.eztv.mud.controller.MessageController.gotByDirect;
+import static com.eztv.mud.controller.MessageController.send;
 import static com.eztv.mud.recycleview.RvUtil.getGridLayoutManager;
 import static com.eztv.mud.recycleview.RvUtil.getLinearLayoutManager;
 import static com.eztv.mud.util.BAutoSize.WIDTH_DP;
-import static com.eztv.mud.util.Util.*;
+import static com.eztv.mud.util.Util.getContentView;
+import static com.eztv.mud.util.Util.jsonStr2Json;
+import static com.eztv.mud.util.Util.msgBuild;
 
 public class GameActivity extends AppCompatActivity implements SocketCallback {
     Context mContext;
     TextView self_describe,tv_map_name;
     RecyclerView rv_chat;
     RecyclerView rv_map_detail;
-    Button btn_chat,btn_map,btn_bag,btn_state,game_btn_skill;
+    Button btn_chat,btn_map,btn_bag,btn_state,game_btn_skill,game_btn_trade;
     Button btn_west,btn_east,btn_north,btn_south,btn_center;
     AppCompatActivity mActivity;
     GameObjectAdapter gameObjectAdapter;
@@ -236,6 +246,10 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         //技能模块
         game_btn_skill= findViewById(R.id.game_btn_skill);
         game_btn_skill.setOnClickListener(view -> send(msgBuild(messageType.pop, "getSkill",player.getKey(),null)));
+
+        //交易模块
+        game_btn_trade= findViewById(R.id.game_btn_trade);
+        game_btn_trade.setOnClickListener(view -> send(msgBuild(messageType.pop, "getTrade",player.getKey(),null)));
 
 
 

@@ -57,6 +57,7 @@ public class Server implements SocketServerCallback {
         try {
             //保存测试
             client.getPlayer().getDataBaseHandler().saveAll(client.getPlayer());
+            clients.remove(socket);
         } catch (Exception e) {
         }
         try {

@@ -20,13 +20,9 @@ public class Player extends GameObject implements IPlayerCallBack {
     @NoDB
     @Id
     private String account;
-    private String key ;
-    @NoUpdate
-    private String name;
     private int level;
     private Enum.sex sex;
     private String profession;//职业
-    private String desc;//
     private int faction;//帮派
 
     //普通状态
@@ -62,17 +58,10 @@ public class Player extends GameObject implements IPlayerCallBack {
     }
 
     public Player(String name, int level) {
-        this.name = name;
+        setName(name);
         this.level = level;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 
 
     public String getData() {
@@ -99,13 +88,6 @@ public class Player extends GameObject implements IPlayerCallBack {
         this.account = account;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getLevel() {
         return level;
@@ -115,13 +97,6 @@ public class Player extends GameObject implements IPlayerCallBack {
         this.level = level;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 
     public DataBaseHandler getDataBaseHandler() {
         return dataBaseHandler;
@@ -152,6 +127,9 @@ public class Player extends GameObject implements IPlayerCallBack {
     }
 
     public void setPlayerData(PlayerData playerData) {
+        try{
+            playerData.setPlayer(this);
+        }catch(Exception e){}
         this.playerData = playerData;
     }
 
@@ -178,8 +156,8 @@ public class Player extends GameObject implements IPlayerCallBack {
     public SendGameObject toSendGameObject(){
         SendGameObject obj = new SendGameObject();
         obj.setLevel(level);
-        obj.setKey(key);
-        obj.setName(name);
+        obj.setKey(getKey());
+        obj.setName(getName());
         obj.setObjType(Enum.gameObjectType.player);
         obj.setPlayerData(this.playerData);
         return obj;

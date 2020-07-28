@@ -17,6 +17,7 @@ public class Constant {
     public final static String Skill_PATH = "lua/skill/";//物品目录
     public final static String Room_PATH = "lua/room/";//房间目录
     public final static String Other_PATH = "lua/other/";//房间目录
+    public final static String Store_PATH = "lua/other/store/";//商城目录
 
 
     public static boolean 通信检查 = true;

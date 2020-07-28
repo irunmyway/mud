@@ -41,10 +41,10 @@ public class LuaUtil implements LuaOpen.LuaAction {
     List<TaskAction> taskActions = new ArrayList<>();
     List<Choice> choice = new ArrayList<>();
     Task task = new Task();
-    public LuaUtil 创建任务(String id, Enum.taskState taskState, String nextId, String desc) {//任务状态
+    public LuaUtil 任务创建(String id, String taskState, String nextId, String desc) {//任务状态
         taskActions.clear();
         task.setId(id);
-        task.setTaskState(taskState);
+        task.setTaskState(Enum.taskState.valueOf(taskState));
         task.setNextId(nextId);
         task.setDesc(desc);
         return this;
@@ -53,7 +53,7 @@ public class LuaUtil implements LuaOpen.LuaAction {
     public Task 取任务() {
         return task;
     }
-    public LuaUtil 创建任务条件(String id, int num) {//添加具体任务
+    public LuaUtil 任务创建条件(String id, int num) {//添加具体任务
         TaskAction taskAction = new TaskAction();
         taskAction.setId(id);
         taskAction.setNum(num);
@@ -61,7 +61,7 @@ public class LuaUtil implements LuaOpen.LuaAction {
         return this;
     }
 
-    public LuaUtil 添加条件到任务(String taskType) {//添加一个任务任务类型
+    public LuaUtil 任务添加条件集(String taskType) {//添加一个任务任务类型
         TaskCondition taskCondition = new TaskCondition();
         taskCondition.setType(Enum.taskType.valueOf(taskType));
         taskCondition.setTaskActions(taskActions);
@@ -85,7 +85,7 @@ public class LuaUtil implements LuaOpen.LuaAction {
         }
     }
 
-    public void 设置奖励(Bag reward) {
+    public void 任务设置奖励(Bag reward) {
         this.task.setReward(reward);
     }
 
@@ -227,7 +227,7 @@ public class LuaUtil implements LuaOpen.LuaAction {
         return false;
     }
 
-    public void 自己系统消息(Client client, String  str){
+    public void 返回系统消息(Client client, String  str){
         Chat chat = new Chat();
         chat.setContent(str);
         chat.setMsgType(Enum.chat.系统);

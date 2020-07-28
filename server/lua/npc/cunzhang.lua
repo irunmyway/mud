@@ -32,25 +32,24 @@ function 对话(client, 窗口, 消息, 目标)
 end
 
 function 任务1(client, 窗口, 消息, gameObj)
-    --测试任务 第一个任务
     --任务创建部分
     local 任务 = luajava.newInstance("com.eztv.mud.LuaUtil");
     local 奖励 = luajava.newInstance("com.eztv.mud.bean.Bag")--奖励
-    奖励:setExp(1350);--经验
-    奖励:giveItem(1, 1);--id 为1的物品给与1个
-    任务:创建任务("kill1", nil, nil, "击杀两只怪物");
-    任务:创建任务条件(1, 2);--id为1的怪物杀两只
-    任务:添加条件到任务("kill");
-    任务:设置奖励(奖励);
+    奖励:给经验(1350);--经验
+    奖励:给物品(1, 1);--id 为1的物品给与1个
+    任务:任务创建("kill1", nil, nil, "击杀两只怪物");
+    任务:任务创建条件(1, 2);--id为1的怪物杀两只
+    任务:任务添加条件集("kill");
+    任务:任务设置奖励(奖励);
     --任务接受 逻辑 查看玩家是否接了任务，没有则添加，看是否完成
     local 该任务 =lua工具:检查任务状态(client, 任务:取任务());--我身上的任务查  看玩家是否接了任务，没有则添加，看是否完成
-    if ("finished" == 该任务:状态()) then
+    if ("finished" == 该任务:取状态()) then
         窗口:内容("少侠做的不错！这是给你的奖励");
         lua工具:添加选项("小事一桩", "action", "doTalk", "", "testTask", true);
         lua工具:发送奖励(client, 奖励);
         该任务:setTaskState(Enum.taskState.cant);--设置为不可接 以后循环任务可以操作
-    elseif ("processing" == 该任务:状态()) then
-        窗口:内容(任务:getTask():getDesc() .. "\n" .. 该任务:任务详情());
+    elseif ("processing" == 该任务:取状态()) then
+        窗口:内容(任务:getTask():getDesc() .. "\n" .. 该任务:取任务详情());
         lua工具:添加选项("我这就去把他们击溃", "action", "doTalk", "", "testTask", true);
     else--已经做完任务
         窗口:内容("少侠快去别的地方探索吧");

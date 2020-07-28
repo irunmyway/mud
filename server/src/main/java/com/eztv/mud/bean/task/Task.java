@@ -107,7 +107,7 @@ public class Task implements LuaOpen.LuaTask {
 	}
 
 	@Override
-	public String 任务详情() {
+	public String 取任务详情() {
 		String str="";
 		//this.getTaskState()
 		for(TaskCondition taskCondition:this.taskConditions){
@@ -124,7 +124,7 @@ public class Task implements LuaOpen.LuaTask {
 	}
 
 	@Override
-	public String 状态() {
+	public String 取状态() {
 		return taskState.toString();
 	}
 }

@@ -6,7 +6,6 @@ import com.eztv.mud.bean.Bag;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Item;
 import com.eztv.mud.bean.task.Task;
-import com.eztv.mud.constant.Enum;
 
 public class LuaOpen {
 
@@ -20,22 +19,21 @@ public class LuaOpen {
 
         public int 当前等级(Client client);
 
-        //选项创建
 
         //任务部分
-        public LuaUtil 创建任务(String id, Enum.taskState taskState, String nextId, String desc);//任务状态
+        public LuaUtil 任务创建(String id, String taskState, String nextId, String desc);//任务状态
 
-        public void 设置奖励(Bag reward);
+        public void 任务设置奖励(Bag reward);
 
-        public LuaUtil 创建任务条件(String id, int num);//添加具体任务
+        public LuaUtil 任务创建条件(String id, int num);//添加具体任务
 
-        public LuaUtil 添加条件到任务(String taskType);//添加一个任务任务类型
+        public LuaUtil 任务添加条件集(String taskType);//添加一个任务任务类型
 
 
         //通信部分
         void 发送消息(Client client, byte[] msg);
 
-        void 自己系统消息(Client client, String str);
+        void 返回系统消息(Client client, String str);
 
         void 返回数组消息(Client client, String messageType, String cmd, String key, Object obj);
 
@@ -59,8 +57,19 @@ public class LuaOpen {
     }
 
     public interface LuaTask {
-        String 任务详情();
-        String 状态();
+        String 取任务详情();
+        String 取状态();
+    }
+    public interface LuaBag {
+        void 给物品(int id, int num);
+        void 给技能(int id, int num);
+        void 删物品(int id, int num);
+        void 删物品集(int id);
+        void 给经验(long exp);
+        void 给铜币(long money);
+        void 给金币(long jb);
+        void 给元宝(long yb);
+
     }
 
 }

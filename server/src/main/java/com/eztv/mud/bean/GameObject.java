@@ -14,6 +14,7 @@ import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.syn.WordSyn;
+import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
@@ -120,6 +121,9 @@ public abstract class GameObject {
              **/
             client.getScriptExecutor().loadFile(null,diedObj.getScript() + ".lua");
             Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute(LUA_击杀奖励).toString()), Bag.class);
+            for (Item i:reward.getItems()){
+                BDebug.trace("测试"+i.getNum());
+            }
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
             for (Client item : clients) {
                 try {

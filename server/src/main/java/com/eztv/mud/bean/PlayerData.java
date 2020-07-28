@@ -87,6 +87,26 @@ public class PlayerData {
         return list;
     }
 
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void setEquip(Equip equip) {
+        this.equip = equip;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public String toJson(){
        return GameUtil.object2JsonStr(this);
     }
