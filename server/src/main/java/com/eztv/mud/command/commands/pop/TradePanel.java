@@ -24,6 +24,7 @@ public class TradePanel extends BaseCommand {
     public void execute() {
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
+        winMsg.setDesc("欢迎来到商城。");
         choice.add(Choice.createChoice("金币商城",
                 Enum.messageType.action,
                 "jbStore", null,null,open

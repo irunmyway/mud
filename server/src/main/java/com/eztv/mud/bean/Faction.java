@@ -19,7 +19,8 @@ public class Faction {
     private String desc;
     @Column
     private int level;
-
+    private long exp;
+    private String leader;
 
     public int getId() {
         return id;
@@ -51,5 +52,23 @@ public class Faction {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public String getLeader() {
+        return leader;
+    }
+
+    public void setLeader(String leader) {
+        this.leader = leader;
+    }
+
+    public long getExp() {
+        return exp;
+    }
+    public String getExpDesc() {
+        return exp+"/"+"1000";
+    }
+    public void setExp(long exp) {
+        this.exp = exp;
     }
 }

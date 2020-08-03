@@ -1,7 +1,5 @@
 package com.eztv.mud.bean;
 
-import com.eztv.mud.utils.BDebug;
-
 public class Npc extends GameObject implements Cloneable{
     private int id;
     private String name;
@@ -33,6 +31,7 @@ public class Npc extends GameObject implements Cloneable{
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
 
     public int getNum() {
         return num;

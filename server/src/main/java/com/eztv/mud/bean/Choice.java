@@ -1,8 +1,9 @@
 package com.eztv.mud.bean;
 
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.script.LuaOpen;
 
-public class Choice implements Cloneable{
+public class Choice implements Cloneable , LuaOpen.LuaChoice {
 
     private Enum.winAction action= Enum.winAction.close;
     private Enum.messageType type;
@@ -95,5 +96,11 @@ public class Choice implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    @Override
+    public Choice 背景颜色(String colo) {
+        this.setColor(Enum.color.valueOf(colo));
+        return this;
     }
 }

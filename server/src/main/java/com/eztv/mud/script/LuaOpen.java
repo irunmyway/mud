@@ -1,10 +1,7 @@
 package com.eztv.mud.script;
 
 import com.eztv.mud.LuaUtil;
-import com.eztv.mud.bean.Attribute;
-import com.eztv.mud.bean.Bag;
-import com.eztv.mud.bean.Client;
-import com.eztv.mud.bean.Item;
+import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.task.Task;
 
 public class LuaOpen {
@@ -40,6 +37,11 @@ public class LuaOpen {
         void 返回元素消息(Client client, String messageType, String cmd, String key, Object obj);
 
         Task 取任务();
+
+        void 购买(Client client,String id,String num,long price);
+        void 购买技能(Client client,String id,String num,long price);
+        void 元宝购买(Client client,String id,String num,long price);
+        void 元宝购买技能(Client client,String id,String num,long price);
     }
 
     public interface LuaWin {
@@ -70,6 +72,10 @@ public class LuaOpen {
         void 给金币(long jb);
         void 给元宝(long yb);
 
+    }
+
+    public interface LuaChoice {
+        Choice 背景颜色(String colo);
     }
 
 }

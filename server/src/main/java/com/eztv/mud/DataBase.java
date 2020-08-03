@@ -35,7 +35,8 @@ public class DataBase {
                     .setDriver(DriverOption.MYSQL)
                     .setUsername(dbConfig.getProperty("db_Username"))
                     .setPassword(dbConfig.getProperty("db_Password"))
-                    .setIsFormat(false).build();
+                    .setIsFormat(false)
+                    .build();
 
         }
         return _db;

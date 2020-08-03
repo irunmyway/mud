@@ -1,8 +1,6 @@
 package com.eztv.mud.utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class BFile {
 
@@ -19,5 +17,17 @@ public class BFile {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static boolean writeFile(String src,String content){
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(src));
+            bw.write(content);
+            bw.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -40,7 +40,7 @@ public class SkillAttackPanel extends BaseCommand {
         choice.add(Choice.createChoice(
                 "『关闭』",
                 Enum.messageType.action,
-                "", null,null,closeAll));
+                "", null,null,closeAll).setBgColor(Enum.color.red));
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(
                 Enum.messageType.mapPop,

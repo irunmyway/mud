@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="api" type="Lua">
+  <library name="commons-lang3-3.9">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../lua-api/api.zip!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.9.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

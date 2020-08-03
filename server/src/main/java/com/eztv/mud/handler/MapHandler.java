@@ -8,6 +8,7 @@ import com.eztv.mud.bean.net.RoomDetail;
 import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.syn.WordSyn;
+import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.LuaValue;
 
 import static com.eztv.mud.Constant.*;
@@ -38,6 +39,7 @@ public class MapHandler {
             WinMessage win = new WinMessage();
             LuaValue luaValue = client.getScriptExecutor().loadFile(null,getRoom(targetRoom).getScript())
             .execute(LUA_进入房间,client,win,msg);
+            BDebug.trace("测试"+luaValue);
             if((luaValue==null?"1":luaValue.toString()).equals("1")||
                     getRoom(targetRoom).getScript()=="") {//代表允许进入
                 changeRoom(client, outRoom,targetRoom);

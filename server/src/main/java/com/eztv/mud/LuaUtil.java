@@ -53,6 +53,39 @@ public class LuaUtil implements LuaOpen.LuaAction {
     public Task 取任务() {
         return task;
     }
+
+    @Override
+    public void 购买(Client client, String id, String num, long price) {
+        Bag bag = new Bag();
+        bag.给铜币(-price);
+        bag.给物品(Integer.parseInt(id),Integer.parseInt(num));
+        发送奖励(client,bag);
+    }
+
+    @Override
+    public void 购买技能(Client client, String id, String num, long price) {
+        Bag bag = new Bag();
+        bag.给铜币(-price);
+        bag.给技能(Integer.parseInt(id),Integer.parseInt(num));
+        发送奖励(client,bag);
+    }
+
+    @Override
+    public void 元宝购买(Client client, String id, String num, long price) {
+        Bag bag = new Bag();
+        bag.给元宝(-price);
+        bag.给技能(Integer.parseInt(id),Integer.parseInt(num));
+        发送奖励(client,bag);
+    }
+
+    @Override
+    public void 元宝购买技能(Client client, String id, String num, long price) {
+        Bag bag = new Bag();
+        bag.给元宝(-price);
+        bag.给技能(Integer.parseInt(id),Integer.parseInt(num));
+        发送奖励(client,bag);
+    }
+
     public LuaUtil 任务创建条件(String id, int num) {//添加具体任务
         TaskAction taskAction = new TaskAction();
         taskAction.setId(id);
@@ -122,7 +155,7 @@ public class LuaUtil implements LuaOpen.LuaAction {
     public void 添加选项( Choice c){
         choice.add(c);
     }
-    public void 添加执行选项(String name, String cmd, String msg, String key,String winAction){
+    public void 添加执行选项(String name, String cmd, String msg, String key,String winAction,String color){
         Choice c = new Choice();
         c.setName(name);
         c.setCmd(cmd);
@@ -130,6 +163,7 @@ public class LuaUtil implements LuaOpen.LuaAction {
         c.setType(Enum.messageType.action);
         c.setKey(key);
         c.setAction(Enum.winAction.valueOf(winAction));
+        c.setColor(Enum.color.valueOf(color));
         choice.add(c);
     }
     public void 添加面板选项(String name, String cmd, String msg, String key,String winAction){

@@ -18,6 +18,7 @@ import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -47,6 +48,7 @@ public abstract class GameObject {
     private com.eztv.mud.bean.callback.IGameObject iGameObject;//死亡监听
     @JSONField(serialize = false)
     private String script;//绑定的游戏脚本
+    private Date createat;
 
     //攻击命令
     public GameObject Attack(GameObject gameObject, Client client) {
@@ -165,6 +167,14 @@ public abstract class GameObject {
 
     public void setRefreshment(long refreshment) {
         this.refreshment = refreshment;
+    }
+
+    public Date getCreateat() {
+        return createat;
+    }
+
+    public void setCreateat(Date createat) {
+        this.createat = createat;
     }
 
     public String getKey() {

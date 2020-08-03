@@ -42,9 +42,10 @@ public class CreateFaction extends BaseCommand {
                     faction.setDesc("");
                     try {
                         //创建帮派
+                        faction.setLeader(getPlayer().getAccount());
                         DataBase.getInstance().init().query(faction).insert();
                         //设置自身的帮派id为当前帮派id
-                        getClient().getPlayer().setFaction(factionId);
+                        getPlayer().setFaction(factionId);
                         FactionCache.factions.put(factionId+"",faction);
                         getClient().getScriptExecutor().loadFile(null,Other_PATH+"faction")
                                 .execute("create",getClient());

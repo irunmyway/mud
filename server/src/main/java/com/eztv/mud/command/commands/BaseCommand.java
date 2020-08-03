@@ -3,6 +3,7 @@ package com.eztv.mud.command.commands;
 
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
+import com.eztv.mud.bean.net.Player;
 
 public abstract class BaseCommand {
     private Client client;
@@ -20,6 +21,9 @@ public abstract class BaseCommand {
 
     public Client getClient() {
         return client;
+    }
+    public Player getPlayer() {
+        return client.getPlayer();
     }
 
     public void setClient(Client client) {

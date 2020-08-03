@@ -34,8 +34,6 @@ public class Player extends GameObject implements IPlayerCallBack {
     private String data;
 
     //属性
-    @Column()
-    private Date createat;
     private Date updateat;
 
     //发动攻击

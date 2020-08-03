@@ -35,11 +35,18 @@ public class FactionPanel extends BaseCommand {
             String str=getProp("faction_panel",
                         mFaction.getName(),
                         mFaction.getLevel(),
-                        mFaction.getDesc()
+                        mFaction.getDesc(),
+                        mFaction.getExpDesc()
                     );
             winMsg.setDesc(str);
-            choice.add(Choice.createChoice("解散门派", Enum.messageType.pop,"confirmPanel", "destroyFaction","这将会解散你的帮派，你确定吗？")
-            .setBgColor(Enum.color.red));
+            //是帮主才能显示解散门派
+            choice.add(Choice.createChoice("帮派任务", Enum.messageType.pop,"factionTask", "","")
+                    .setBgColor(Enum.color.blue));
+            if(getClient().getPlayer().getAccount().equals(mFaction.getLeader())){
+                choice.add(Choice.createChoice("解散门派", Enum.messageType.pop,"confirmPanel", "destroyFaction","这将会解散你的帮派，你确定吗？")
+                        .setBgColor(Enum.color.red));
+            }
+
         }
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(Enum.messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());

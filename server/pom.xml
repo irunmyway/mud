@@ -18,28 +18,43 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <dependencies>
+        <!--        json处理-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.72</version>
         </dependency>
+        <!--        json处理-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.5</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/online.sanen/cdm-all -->
+        <!-- 数据库操作 -->
         <dependency>
             <groupId>online.sanen</groupId>
             <artifactId>cdm-all</artifactId>
             <version>2.2.8</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.luaj</groupId>-->
-<!--            <artifactId>luaj-jse</artifactId>-->
-<!--            <version>3.0.1</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>agoirunmyway</groupId>-->
+        <!--            <artifactId>luaj</artifactId>-->
+        <!--            <scope>system</scope>-->
+        <!--            <systemPath>F:/JavaWeb/repository/agoirunmyway/luaj/v5.0.2/luaj-v5.0.2.jar</systemPath>-->
+        <!--            <version>v5.0.2</version>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.luaj</groupId>
+            <artifactId>luaj-jse</artifactId>
+            <version>3.0.1</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -55,7 +70,18 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.3.2.RELEASE</version>
+            <exclusions>
+                <!-- 排除自带的logback依赖 -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -86,9 +112,9 @@
                         <!-- JDK目标版本1.8-->
                         <option>-target 1.8</option>
                         <!-- 不做收缩（删除注释、未被引用代码）-->
-<!--                        <option>-dontshrink</option>-->
+                        <!--                        <option>-dontshrink</option>-->
                         <!-- 不做优化（变更代码实现逻辑）-->
-<!--                        <option>-dontoptimize</option>-->
+                        <!--                        <option>-dontoptimize</option>-->
                         <!-- 不路过非公用类文件及成员-->
                         <option>-dontskipnonpubliclibraryclasses</option>
                         <option>-dontskipnonpubliclibraryclassmembers</option>
@@ -100,10 +126,12 @@
                         <!-- 确定统一的混淆类的成员名称来增加混淆-->
                         <option>-useuniqueclassmembernames</option>
                         <!-- 不混淆所有包名-->
-<!--                        <option>-keeppackagenames</option>-->
+                        <!--                        <option>-keeppackagenames</option>-->
 
                         <!-- 需要保持的属性：异常，注解等-->
-                        <option>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LocalVariable*Table,*Annotation*,Synthetic,EnclosingMethod</option>
+                        <option>-keepattributes
+                            Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LocalVariable*Table,*Annotation*,Synthetic,EnclosingMethod
+                        </option>
                         <!-- 不混淆所有的set/get方法 -->
                         <option>-keepclassmembers public class * {void set*(***);*** get*();}</option>
 
@@ -111,14 +139,15 @@
                         <option>-keep class com.eztv.mud.bean.**{*;}</option>
                         <option>-keep class com.eztv.mud.bean.**</option>
                         <option>-keep class com.eztv.mud.command.**{*;}</option>
-
                         <option>-keepclassmembers enum * {
                             public static **[] values();
                             public static ** valueOf(java.lang.String);
-                            }</option>
+                            }
+                        </option>
                         <option>-keep public class com.eztv.mud.constant.* {
                             public *;
-                            }</option>
+                            }
+                        </option>
                         <option>-keep class com.eztv.mud.GameUtil{*;}</option>
                         <option>-keep class com.eztv.mud.GameUtil</option>
                         <option>-keep class com.eztv.mud.Main{*;}</option>
@@ -136,7 +165,10 @@
                     <injar>classes</injar>
                     <!-- 输出目录-->
                     <outputDirectory>${project.build.directory}</outputDirectory>
+                    <proguardInclude>${project.basedir}/proguard.cfg</proguardInclude>
+                    <inFilter>!META-INF/versions/9/**.class,!module-info.class</inFilter>
                 </configuration>
+
             </plugin>
 
             <plugin>
@@ -190,4 +222,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

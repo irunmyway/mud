@@ -15,6 +15,7 @@ public class ScriptExecutor {
 
     private Globals luaGlobals = null;
     private Object entity;
+    private String curFile;
 
     public ScriptExecutor() {
     }
@@ -30,6 +31,7 @@ public class ScriptExecutor {
 
         // load and compile script
         try {
+            curFile = scriptPath;
             LuaValue script = luaGlobals.loadfile(scriptPath).call();
         } catch (LuaError e1) {
             //e1.printStackTrace();
@@ -39,8 +41,8 @@ public class ScriptExecutor {
 
     public LuaValue execute(String function, Object... args) {
         LuaValue func = luaGlobals.get(function);
-        if (func == null || func == LuaValue.NIL) {
-            // function not found
+        if(curFile==null) return null;
+        if (func == null || func == LuaValue.NIL||curFile.equals(".lua")) {
             return null;
         }
 
@@ -58,18 +60,20 @@ public class ScriptExecutor {
             for (int i = 0; i < args.length; ++i) {
                 luaArgs[i] = CoerceJavaToLua.coerce(args[i]);
             }
+            try{
+                // execute with parameters
+                Varargs v = func.invoke(LuaValue.varargsOf(luaArgs));
 
-            // execute with parameters
-            Varargs v = func.invoke(LuaValue.varargsOf(luaArgs));
-
-            // return according value
-            if (v.narg() <= 0) {
-                return LuaValue.NIL;
-            } else if (v.narg() == 1) {
-                return v.arg1();
-            } else {
-                return new LuaTable(v);
-            }
+                // return according value
+                if (v.narg() <= 0) {
+                    return LuaValue.NIL;
+                } else if (v.narg() == 1) {
+                    return v.arg1();
+                } else {
+                    return new LuaTable(v);
+                }
+            }catch(Exception e){e.printStackTrace();}
+            return LuaValue.NIL;
         }
     }
 
