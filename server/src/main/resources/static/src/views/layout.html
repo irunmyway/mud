@@ -1,0 +1,200 @@
+<div class="layui-layout layui-layout-admin">
+  <!-- 头部区域 -->
+  <div class="layui-header">
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item layadmin-flexible" lay-unselect>
+        <a href="javascript:;" layadmin-event="flexible" title="侧边收缩">
+          <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i
+        ></a>
+      </li>
+      <!-- <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+          <i class="layui-icon layui-icon-website"></i>
+        </a>
+      </li> -->
+      <li class="layui-nav-item" lay-unselect>
+        <a href="javascript:;" layadmin-event="refresh" title="刷新">
+          <i class="layui-icon layui-icon-refresh"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <input
+          type="text"
+          placeholder="搜索..."
+          autocomplete="off"
+          class="layui-input layui-input-search"
+          layadmin-event="search"
+          lay-action="/template/search/keywords="
+        />
+      </li>
+    </ul>
+
+    <ul class="layui-nav layui-layout-right" lay-filter="LAY-filter-header-right">
+      <li class="layui-nav-item" lay-unselect>
+        <a lay-href="app/message/" layadmin-event="message" title="消息中心">
+          <i class="layui-icon layui-icon-notice"></i>
+          <!-- 如果有新消息,则显示小圆点 -->
+          <script type="text/html" template lay-url="{{ layui.setter.api }}json/message/newMsg.json">
+            {{# if(d.data.newMsg){ }}
+              <span class="layui-badge-dot"></span>
+            {{# } }}
+          </script>
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="javascript:;" layadmin-event="theme">
+          <i class="layui-icon layui-icon-theme"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="javascript:;" layadmin-event="note">
+          <i class="layui-icon layui-icon-note"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="javascript:;" layadmin-event="fullscreen">
+          <i class="layui-icon layui-icon-screen-full"></i>
+        </a>
+      </li>
+      <!-- <li class="layui-nav-item" lay-unselect>
+        <script
+          type="text/html"
+          template
+          lay-url="{{ layui.setter.api }}json/user/session.json"
+          lay-done="layui.element.render('nav', 'LAY-filter-header-right')"
+        >
+          <a href="javascript:;"><cite>{{ d.data.username }}</cite></a>
+          <dl class="layui-nav-child">
+            <dd><a lay-href="set/user/info">基本资料</a></dd>
+            <dd><a lay-href="set/user/password">修改密码</a></dd>
+            <hr />
+            <dd layadmin-event="logout" class="layui-text-center">
+              <a>退出</a>
+            </dd>
+          </dl>
+        </script>
+      </li> -->
+      <!-- <li class="layui-nav-item layui-hide-xs" lay-unselect>
+        <a href="javascript:;" layadmin-event="about">
+          <i class="layui-icon layui-icon-more-vertical"></i>
+        </a>
+      </li> -->
+      <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
+        <a href="javascript:;" layadmin-event="more">
+          <i class="layui-icon layui-icon-more-vertical"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 侧边菜单 -->
+  <div class="layui-side layui-side-menu">
+    <div class="layui-side-scroll">
+      <script
+        type="text/html"
+        template
+        lay-url="{{ layui.setter.api }}json/menu.json"
+        lay-done="layui.element.render('nav','LAY-filter-side-menu')"
+      >
+        <div class="layui-logo" lay-href="">
+          <img src="{{ layui.setter.api }}images/logo.gif" alt="logo" />
+          <span>{{ layui.setter.name || '管理员' }}</span>
+        </div>
+        <ul class="layui-nav layui-nav-tree" id="LAY_app_side_menu" lay-filter="LAY-filter-side-menu" lay-shrink="all">
+          {{# let path = layui.router().path,
+              pathURL = layui.admin.correctRouter(path.join('/'));
+            layui.each(d.data, (index1, item1) => {
+              let hasChild1 = typeof item1.child === 'object' && item1.child.length > 0,
+              classSelected1 = () => {
+                let match1 = item1.is_spread || path[0] === item1.name || (index1 === 0 && !path[0]) || (item1.jump && pathURL === layui.admin.correctRouter(item1.jump));
+                if(match1) {
+                  return hasChild1 ? 'layui-nav-itemed' : 'layui-this'
+                }
+                return ''
+              },
+              url1 = (item1.jump && typeof item1.jump === 'string') ? item1.jump : item1.name
+          }}
+            <li data-name="{{ item1.name || '' }}" data-jump="{{ item1.jump || '' }}" class="layui-nav-item {{ classSelected1() }}">
+              <a href="javascript:;" {{ hasChild1 ? '' : 'lay-href="'+ url1 +'"' }} lay-tips="{{ item1.title }}" lay-direction="2">
+                <i class="layui-icon {{ item1.icon }}"></i>
+                <cite>{{ item1.title }}</cite>
+              </a>
+              {{# if(hasChild1){ }}
+                <dl class="layui-nav-child">
+                  {{# layui.each(item1.child, (index2, item2) => {
+                    let hasChild2 = typeof item2.child === 'object' && item2.child.length > 0,
+                    classSelected2 = () => {
+                      let match2 = item2.is_spread || (path[0] === item1.name && path[1] === item2.name) || (item2.jump && pathURL === layui.admin.correctRouter(item2.jump));
+                      if(match2) {
+                        return hasChild2 ? 'layui-nav-itemed' : 'layui-this'
+                      }
+                      return ''
+                    },
+                    url2 = (item2.jump && typeof item2.jump === 'string') ? item2.jump : [item1.name, item2.name,''].join('/')
+                  }}
+                    <dd data-name="{{ item2.name || '' }}" data-jump="{{ item2.jump || '' }}" class="{{ classSelected2() }}">
+                      <a href="javascript:;" {{ hasChild2 ? '' : 'lay-href="'+ url2 +'"' }}>{{ item2.title }}</a>
+                      {{# if(hasChild2){ }}
+                        <dl class="layui-nav-child">
+                          {{# layui.each(item2.child, (index3, item3) => {
+                            let match3 = (path[0] === item1.name && path[1] === item2.name && path[2] === item3.name) || (item3.jump && pathURL === layui.admin.correctRouter(item3.jump)),
+                            url3 = (item3.jump && typeof item3.jump === 'string') ? item3.jump : [item1.name, item2.name, item3.name].join('/')
+                          }}
+                            <dd data-name="{{ item3.name || '' }}" data-jump="{{ item3.jump || '' }}" {{ match3 ? 'class="layui-this"' : '' }}>
+                              <a href="javascript:;" lay-href="{{ url3 }}">{{ item3.title }}</a>
+                            </dd>
+                          {{# }) }}
+                        </dl>
+                      {{# } }}
+                    </dd>
+                  {{# }) }}
+                </dl>
+              {{# } }}
+            </li>
+          {{# }) }}
+          <!-- <li data-name="im" class="layui-nav-item" lay-unselect>
+            <a href="javascript:;" layadmin-event="im">
+              <i class="layui-icon layui-icon-service"></i>
+              <cite>LayIM 通讯系统</cite>
+            </a>
+          </li> -->
+        </ul>
+      </script>
+    </div>
+  </div>
+
+  <!-- 页面标签 -->
+  <script type="text/html" templae lay-done="layui.element.render('nav','LAY-filter-tabs-operate')">
+    {{# if(layui.setter.pageTabs){ }}
+      <div class="layadmin-pageTabs" id="LAY_app_tabs">
+        <div class="layui-icon layui-icon-prev layadmin-tabs-control" layadmin-event="leftPage"></div>
+        <div class="layui-icon layui-icon-next layadmin-tabs-control" layadmin-event="rightPage"></div>
+        <div class="layui-icon layui-icon-down layadmin-tabs-control">
+          <ul class="layui-nav layadmin-tabs-select" lay-filter="LAY-filter-tabs-operate">
+            <li class="layui-nav-item" lay-unselect>
+              <a href="javascript:;"></a>
+              <dl class="layui-nav-child layui-anim-fadein">
+                <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
+                <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
+                <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="LAY-filter-layout-tabs">
+          <ul class="layui-tab-title" id="LAY_app_tabsHeader">
+            <li lay-id="/"><i class="layui-icon layui-icon-home"></i></li>
+          </ul>
+        </div>
+      </div>
+    {{# } }}
+  </script>
+
+  <!-- 主体内容 -->
+  <div class="layui-body" id="LAY_app_body">
+    <div class="LAY-tabsBody-item layui-show"></div>
+  </div>
+
+  <!-- 辅助元素 用于移动端设备下的遮罩 -->
+  <div class="layadmin-body-shade" layadmin-event="shade"></div>
+</div>

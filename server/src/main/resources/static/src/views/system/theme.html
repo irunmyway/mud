@@ -1,0 +1,20 @@
+<script type="text/html" template>
+  {{#
+    let local = layui.data(layui.setter.tableName),
+    theme = local.theme || {},
+    themeColorIndex = parseInt((theme && theme.color) ? theme.color.index : 0) || 0
+  }}
+  <div class="layui-card-header">配色方案</div>
+  <div class="layui-card-body layadmin-setTheme">
+    <ul class="layadmin-setTheme-color">
+      {{# layui.each(layui.setter.theme.color, (index, item) => { }}
+      <li layadmin-event="setTheme" data-index="{{ index }}" data-alias="{{ item.alias }}" title="{{ item.alias }}" {{ index === themeColorIndex ? 'class="layui-this"' : ''}}>
+        <div class="layadmin-setTheme-header" style="background-color: {{ item.header || 'white' }}"></div>
+        <div class="layadmin-setTheme-side" style="background-color: {{ item.main }}">
+          <div class="layadmin-setTheme-logo" style="background-color: {{ item.logo || 'transparent' }}"></div>
+        </div>
+      </li>
+      {{# }) }}
+    </ul>
+  </div>
+</script>

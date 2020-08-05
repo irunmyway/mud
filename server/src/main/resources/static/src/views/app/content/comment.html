@@ -1,0 +1,98 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>应用</cite></a>
+    <a><cite>评论管理</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header layui-form layadmin-card-header-auto" lay-filter="LAY-filter-comment-list">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">ID</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="cid"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">评论者</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="username"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layadmin-btn-comment" lay-submit lay-filter="LAY-filter-comment-search">
+                <i class="layui-icon layui-icon-search layadmin-icon-search-btn"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <div style="padding-bottom: 10px;">
+            <button class="layui-btn layadmin-btn-comment" data-type="batchDel">
+              删除
+            </button>
+          </div>
+          <table id="LAY-id-comment-list" lay-filter="LAY-filter-comment-list"></table>
+          <script type="text/html" id="LAY-id-rowToolTpl">
+            <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+            <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</button>
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('contlist', layui.factory('contlist')).use('table', () => {
+    let $ = layui.$,
+      admin = layui.admin,
+      table = layui.table,
+      form = layui.form,
+      event = {
+        batchDel() {
+          let checkStatus = table.checkStatus('LAY-id-comment-list'),
+            checkData = checkStatus.data
+
+          if (checkData.length === 0) return layer.msg('请选择数据')
+          layer.confirm('确定删除选中的数据吗？', { icon: 3, title: '提示' }, (index) => {
+            //执行 Ajax 后重载
+            // $.ajax({})
+            table.reload('LAY-id-comment-list')
+            layer.msg('已删除')
+          })
+        },
+      }
+    form.render(null, 'LAY-filter-comment-list')
+    admin.setInputFocusEnd($('.layui-form').find('[name=cid]'))
+
+    // 监听搜索
+    form.on('submit(LAY-filter-comment-search)', (data) => {
+      let field = data.field
+      table.reload('LAY-id-comment-list', { where: field })
+    })
+
+    $('.layadmin-btn-comment').on('click', function () {
+      let type = $(this).data('type')
+      event[type] && event[type].call(this)
+    })
+  })
+</script>

@@ -34,6 +34,7 @@ public class Constant {
 
     //数据库语句
     public final static String FactionListSql = "select * from t_faction";
+    public final static String FactionMembersSql = "select t2.* from t_faction t1,role t2 where t1.id = t2.faction";
 
 
 

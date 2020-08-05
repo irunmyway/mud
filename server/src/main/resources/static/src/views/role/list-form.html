@@ -1,0 +1,50 @@
+<div class="layui-form" id="LAY-id-roleList-form" lay-filter="LAY-filter-roleList-form" style="padding: 20px 30px 0 0;">
+  <div class="layui-form-item">
+    <label class="layui-form-label">角色</label>
+    <div class="layui-input-block">
+      <script type="text/html" template>
+        <select name="role" lay-verify="required">
+          <option value="0" {{ d.params.role === 0 ? 'selected' : '' }}>管理员</option>
+          <option value="1" {{ d.params.role === 1 ? 'selected' : '' }}>超级管理员</option>
+          <option value="2" {{ d.params.role === 2 ? 'selected' : '' }}>纠错员</option>
+          <option value="3" {{ d.params.role === 3 ? 'selected' : '' }}>采购员</option>
+          <option value="4" {{ d.params.role === 4 ? 'selected' : '' }}>推销员</option>
+          <option value="5" {{ d.params.role === 5 ? 'selected' : '' }}>运营人员</option>
+          <option value="6" {{ d.params.role === 6 ? 'selected' : '' }}>编辑</option>
+          <option value="7" {{ d.params.role === 7 ? 'selected' : '' }}>统计人员</option>
+          <option value="8" {{ d.params.role === 8 ? 'selected' : '' }}>评估员</option>
+        </select>
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">权限</label>
+    <div class="layui-input-block">
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="内容系统" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="社区系统" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="用户" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="角色" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="评论审核" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="发货" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="采购" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="系统设置" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="发邮件" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="发短信" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="审核" />
+      <input type="checkbox" class="layui-input" name="limits[]" lay-skin="primary" title="删库跑路" />
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">具体描述</label>
+    <div class="layui-input-block">
+      <script type="text/html" template>
+        <textarea class="layui-textarea" name="descr" lay-verify="required" placeholder="请输入内容" >{{ d.params.descr || '' }}</textarea>
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item layui-text-center">
+    <button class="layui-btn" id="LAY-id-role-submit" lay-submit lay-filter="LAY-filter-role-submit">
+      提交
+    </button>
+  </div>
+</div>

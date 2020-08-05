@@ -35,13 +35,13 @@ public class JoinFaction extends BaseCommand {
             }
         }
         WinMessage winMsg = new WinMessage();
-        winMsg.setDesc("选择加入帮派");
+        winMsg.setDesc("门派消息");
         winMsg.setCol(2);
         List<Choice> choice = new ArrayList<>();
         //查询所有门派
-        List<Faction> factions =    DataBase.getInstance().init().createSQL(FactionListSql).list(Faction.class);
+        List<Faction> factions =  DataBase.getInstance().init().createSQL(FactionListSql).list(Faction.class);
         for (Faction faction:factions) {
-            choice.add(Choice.createChoice(faction.getName()+" /"+faction.getLevel(), getMsg().getType(), "joinFaction", faction.getId()+"", "do", Enum.winAction.closeAll));
+            choice.add(Choice.createChoice(faction.getName()+" /"+faction.getLevel(), getMsg().getType(), "", faction.getId()+"", "do", Enum.winAction.closeAll));
         }
         winMsg.setChoice(choice);
         GameUtil.sendToSelf(getClient(), msgBuild(Enum.messageType.pop, "createFaction", object2JsonStr(winMsg), getMsg().getMsg(), null));

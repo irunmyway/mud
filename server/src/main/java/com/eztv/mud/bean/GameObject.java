@@ -123,9 +123,6 @@ public abstract class GameObject {
              **/
             client.getScriptExecutor().loadFile(null,diedObj.getScript() + ".lua");
             Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute(LUA_击杀奖励).toString()), Bag.class);
-            for (Item i:reward.getItems()){
-                BDebug.trace("测试"+i.getNum());
-            }
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
             for (Client item : clients) {
                 try {

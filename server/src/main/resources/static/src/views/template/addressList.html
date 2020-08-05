@@ -1,0 +1,57 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>页面</cite></a>
+    <a><cite>通讯录</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <script type="text/html" template>
+      {{# for(let i=0; i<9; i++){ }}
+      <div class="layui-col-md4 layui-col-sm6">
+        <div class="layadmin-contact-box">
+          <div class="layui-col-md4 layui-col-sm6">
+            <a href="javascript:;">
+              <div class="layui-text-center">
+                <img
+                  src="{{ layui.setter.api }}images/character.jpg"
+                  class="layui-circle"
+                />
+                <strong>演员</strong>
+              </div>
+            </a>
+          </div>
+          <div
+            class="layui-col-md8 layui-col-sm6"
+            style="padding-left: 20px;"
+          >
+            <a href="javascript:;">
+              <h3 class="layadmin-title">
+                <strong>胡歌</strong>
+              </h3>
+              <div class="layadmin-location">
+                <i class="layui-icon layui-icon-location"></i>
+                上海
+              </div>
+            </a>
+            <div class="layadmin-address">
+              <a href="javascript:;">
+                <strong>Hu Ge studio</strong>
+                <br />
+                E-mail:xxx@baidu.com
+                <br />
+                Weibo: https://weibo.com/hu_ge
+                <br />
+                <address title="phone">Tel:</address>
+                (123) 456-7890
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{# } }}
+    </script>
+  </div>
+</div>

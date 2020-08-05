@@ -1,0 +1,114 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>应用</cite></a>
+    <a><cite>工单系统</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header layui-form layadmin-card-header-auto" lay-filter="LAY-filter-order-list">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">工单号</label>
+              <div class="layui-input-block">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="orderid"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">工单标题</label>
+              <div class="layui-input-block">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="title"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">业务性质</label>
+              <div class="layui-input-block">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="attr"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">受理人</label>
+              <div class="layui-input-block">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="accept"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layadmin-btn-order" lay-submit lay-filter="LAY-filter-order-search">
+                <i class="layui-icon layui-icon-search layadmin-icon-search-btn"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <table id="LAY-id-order-list" lay-filter="LAY-filter-order-list"></table>
+          <script type="text/html" id="LAY-id-progressTpl">
+            <div class="layui-progress layadmin-order-progress" lay-filter="LAY-filter-progress-{{ d.orderid }}" lay-showPercent="yes">
+              <div class="layui-progress-bar layui-bg-blue" lay-percent={{ d.progress }}></div>
+            </div>
+          </script>
+          <script type="text/html" id="LAY-id-stateTpl">
+            {{# if( d.state==='已处理' ){ }}
+              <button class="layui-btn layui-btn-normal layui-btn-xs">已处理</button>
+            {{# }else if( d.state=== '未分配' ){ }}
+              <button class="layui-btn layui-btn-primary layui-btn-xs">未分配</button>
+            {{# }else{ }}
+              <button class="layui-btn layui-btn-warm layui-btn-xs">处理中</button>
+            {{# } }}
+          </script>
+          <script type="text/html" id="LAY-id-rowToolTpl">
+            <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+              <i class="layui-icon layui-icon-edit"></i>编辑
+            </button>
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('workorder', layui.factory('workorder')).use('workorder', () => {
+    let $ = layui.$,
+      admin = layui.admin,
+      form = layui.form,
+      table = layui.table
+
+    form.render(null, 'LAY-filter-order-list')
+    admin.setInputFocusEnd($('.layui-form').find('[name=orderid]'))
+    form.on('submit(LAY-filter-order-search)', (data) => {
+      let field = data.field
+      table.reload('LAY-id-order-list', { where: field })
+    })
+  })
+</script>

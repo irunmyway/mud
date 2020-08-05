@@ -42,14 +42,13 @@
             <groupId>online.sanen</groupId>
             <artifactId>cdm-all</artifactId>
             <version>2.2.8</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>lombok</artifactId>
+                    <groupId>org.projectlombok</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>agoirunmyway</groupId>-->
-        <!--            <artifactId>luaj</artifactId>-->
-        <!--            <scope>system</scope>-->
-        <!--            <systemPath>F:/JavaWeb/repository/agoirunmyway/luaj/v5.0.2/luaj-v5.0.2.jar</systemPath>-->
-        <!--            <version>v5.0.2</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.luaj</groupId>
             <artifactId>luaj-jse</artifactId>
@@ -79,6 +78,20 @@
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>tomcat-embed-websocket</artifactId>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter</artifactId>
+                    <groupId>org.springframework.boot</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -148,10 +161,6 @@
                             public *;
                             }
                         </option>
-                        <option>-keep class com.eztv.mud.GameUtil{*;}</option>
-                        <option>-keep class com.eztv.mud.GameUtil</option>
-                        <option>-keep class com.eztv.mud.Main{*;}</option>
-                        <option>-keep class com.eztv.mud.Main</option>
 
                     </options>
                     <!--class 混淆后输出的jar包-->

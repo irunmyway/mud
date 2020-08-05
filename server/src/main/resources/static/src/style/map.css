@@ -1,0 +1,25 @@
+    #game_map {
+        width: 100px;
+        height: 100px;
+        border: 1px solid lightgray;
+    }
+
+    code {
+        font-size: 14px;
+        background: #dddddd;
+    }
+
+    p {
+        max-width: 600px;
+    }
+
+    .indented {
+        margin-left: 30px;
+    }
+
+    .sep {
+        height: 1px;
+        width: 35%;
+        margin-left: 40px;
+        background-color: #dddddd;
+    }

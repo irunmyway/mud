@@ -1,0 +1,112 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>高级</cite></a>
+    <a><cite>Echarts集成</cite></a>
+    <a><cite>折线图</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md6">
+      <div class="layui-card">
+        <div class="layui-card-header">标准折线图</div>
+        <div class="layui-card-body">
+          <div
+            class="layui-carousel layadmin-carousel layadmin-dataview"
+            data-anim="fade"
+            lay-filter="LAY-filter-normal-line"
+          >
+            <div carousel-item id="LAY-id-normal-line">
+              <div>
+                <i class="layui-icon layui-icon-loading-1 layadmin-loading"> </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">堆积折线图</div>
+        <div class="layui-card-body">
+          <div
+            class="layui-carousel layadmin-carousel layadmin-dataview"
+            data-anim="fade"
+            lay-filter="LAY-filter-heap-line"
+          >
+            <div carousel-item id="LAY-id-heap-line">
+              <div>
+                <i class="layui-icon layui-icon-loading-1 layadmin-loading"> </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">不等距折线图</div>
+        <div class="layui-card-body">
+          <div
+            class="layui-carousel layadmin-carousel layadmin-dataview"
+            data-anim="fade"
+            lay-filter="LAY-filter-diff-line"
+          >
+            <div carousel-item id="LAY-id-diff-line">
+              <div>
+                <i class="layui-icon layui-icon-loading-1 layadmin-loading"> </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-md6">
+      <div class="layui-card">
+        <div class="layui-card-header">堆积面积图</div>
+        <div class="layui-card-body">
+          <div
+            class="layui-carousel layadmin-carousel layadmin-dataview"
+            data-anim="fade"
+            lay-filter="LAY-filter-heap-area"
+          >
+            <div carousel-item id="LAY-id-heap-area">
+              <div>
+                <i class="layui-icon layui-icon-loading-1 layadmin-loading"> </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">面积图</div>
+        <div class="layui-card-body">
+          <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-filter-area">
+            <div carousel-item id="LAY-id-area">
+              <div>
+                <i class="layui-icon layui-icon-loading-1 layadmin-loading"> </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">对数轴</div>
+        <div class="layui-card-body">
+          <div
+            class="layui-carousel layadmin-carousel layadmin-dataview"
+            data-anim="fade"
+            lay-filter="LAY-filter-log-line"
+          >
+            <div carousel-item id="LAY-id-log-line">
+              <div>
+                <i class="layui-icon layui-icon-loading-1 layadmin-loading"> </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('senior', layui.factory('senior'))
+</script>

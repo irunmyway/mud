@@ -29,21 +29,26 @@ public class FactionPanel extends BaseCommand {
         winMsg.setDesc("门派");
         if(faction<1){//暂无门派
             choice.add(Choice.createChoice("创建门派", Enum.messageType.action,"createFaction", null,null).setBgColor(Enum.color.blue));
-            choice.add(Choice.createChoice("加入门派", Enum.messageType.action,"joinFaction", null,null).setBgColor(Enum.color.yellow));
+            choice.add(Choice.createChoice("查看门派", Enum.messageType.action,"joinFaction", null,null).setBgColor(Enum.color.yellow));
         }else{//有门派了 查看门派信息
             Faction mFaction = FactionCache.factions.get(faction+"");
-            String str=getProp("faction_panel",
-                        mFaction.getName(),
+            String str=getPropByFile("faction","faction_panel",
+                        mFaction.getName()+mFaction.getAlias(),
                         mFaction.getLevel(),
                         mFaction.getDesc(),
                         mFaction.getExpDesc()
                     );
             winMsg.setDesc(str);
             //是帮主才能显示解散门派
+            choice.add(Choice.createChoice("帮派成员", Enum.messageType.pop,"memberFaction", "","", Enum.winAction.open)
+                    .setBgColor(Enum.color.gray));
             choice.add(Choice.createChoice("帮派任务", Enum.messageType.pop,"factionTask", "","")
                     .setBgColor(Enum.color.blue));
             if(getClient().getPlayer().getAccount().equals(mFaction.getLeader())){
                 choice.add(Choice.createChoice("解散门派", Enum.messageType.pop,"confirmPanel", "destroyFaction","这将会解散你的帮派，你确定吗？")
+                        .setBgColor(Enum.color.red));
+            }else{
+                choice.add(Choice.createChoice("退出门派", Enum.messageType.pop,"confirmPanel", "exitFaction","离开该帮派吗？")
                         .setBgColor(Enum.color.red));
             }
 

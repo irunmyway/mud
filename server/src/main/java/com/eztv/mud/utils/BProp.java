@@ -3,6 +3,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import static com.eztv.mud.GameUtil.colorString;
@@ -20,6 +22,7 @@ public class BProp {
      * properties文件
      */
     private static Properties prop;
+    private static Map<String,Properties> props = new HashMap<>();
     private static BProp propertiesUtil;
 
     public static BProp getInstance() {
@@ -36,7 +39,6 @@ public class BProp {
         try {
             fis = new FileInputStream(path);
             prop.load(new InputStreamReader(fis, "UTF-8"));
-//            prop.load(fis);
         }catch (Exception e){e.printStackTrace();}
         finally {
             try {
@@ -51,7 +53,9 @@ public class BProp {
     public  Properties getProp() {
         return prop;
     }
-
+    public Properties getProp(String name) {
+        return props.get(name);
+    }
     public  Boolean updatePro(String path, String key, String value) throws IOException {
         load(path);
         prop.setProperty(key, value);
@@ -62,9 +66,33 @@ public class BProp {
         fos.close(); // 关闭流
         return true;
     }
+    public String get(String propName,String key) {
+        Properties prop = props.get(propName);
+        if(prop==null){
+            FileInputStream fis=null;
+            try {
+                Properties newProp = new Properties();
+                String path = System.getProperty("user.dir")+"/conf/"+propName+".properties";
+                fis = new FileInputStream(path);
+                newProp.load(new InputStreamReader(fis, "UTF-8"));
+                props.put(propName,newProp);
+                String str = newProp.getProperty(key);
+                return colorString(str);
+            }catch (Exception e){e.printStackTrace();return "";}
+            finally {
+                try {
+                    fis.close(); // 关闭流
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }else{
+            String str = prop.getProperty(key);
+            return colorString(str);
+        }
+    }
 
-
-    public  String get(String key) throws IOException {
+    public  String get(String key){
         String str = prop.getProperty(key);
         return colorString(str);
     }

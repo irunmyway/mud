@@ -1,0 +1,364 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "updateLogs": [
+      {
+        "icon": "layui-icon-water",
+        "title": "flow",
+        "link": "http://www.layui.com/doc/modules/flow.html",
+        "content": "修复开启 isLazyimg:true 后,图片懒加载但是图片不存在的报错问题",
+        "module": "流加载",
+        "date": "7 天前"
+      },
+      {
+        "icon": "layui-icon-upload-circle",
+        "title": "upload",
+        "link": "http://www.layui.com/doc/modules/upload.html",
+        "content": "修复开启 size 参数后，文件超出规定大小时，提示信息有误的问题",
+        "module": "文件上传",
+        "date": "7 天前"
+      },
+      {
+        "icon": "layui-icon-form",
+        "title": "form",
+        "link": "http://www.layui.com/doc/modules/form.html",
+        "content": "增加 form.val(filter, fields)方法，用于给指定表单集合的元素初始赋值",
+        "module": "表单",
+        "date": "7 天前"
+      },
+      {
+        "icon": "layui-icon-form",
+        "title": "form",
+        "link": "http://www.layui.com/doc/modules/form.html",
+        "content": "对 select 组件新增上下键（↑ ↓）回车键（Enter）选择功能",
+        "module": "表单",
+        "date": "7 天前"
+      },
+      {
+        "icon": "layui-icon-form",
+        "title": "form",
+        "link": "http://www.layui.com/doc/modules/form.html",
+        "content": "优化 switch 开关组件，让其能根据文本自由伸缩宽",
+        "module": "表单",
+        "date": "7 天前"
+      },
+      {
+        "icon": "layui-icon-form",
+        "title": "form",
+        "link": "http://www.layui.com/doc/modules/form.html",
+        "content": "修复 checkbox 复选框组件在高分辨屏下出现的样式不雅问题",
+        "module": "表单",
+        "date": "7 天前"
+      }
+    ],
+    "userNews": [
+      {
+        "user": "胡歌",
+        "avatar": "images/logo.gif",
+        "text": "在 <a class='layui-text-blue' href='http://fly.layui.com/vipclub/list/layuiadmin/' target='_blank'>layuiadmin专区</a> 回答问题",
+        "date": "几秒前"
+      },
+      {
+        "user": "彭于晏",
+        "avatar": "images/logo.gif",
+        "text": "在 <a class='layui-text-blue' href='http://fly.layui.com/vipclub/list/layuiadmin/' target='_blank'>layuiadmin专区</a> 进行了 <a class='layui-text-blue' href='http://fly.layui.com/vipclub/list/layuiadmin/column/quiz/' target='_blank'>提问</a>",
+        "date": "2天前"
+      },
+      {
+        "user": "贤心",
+        "avatar": "images/logo.gif",
+        "text": "将 <a class='layui-text-blue' href='http://www.layui.com/' target='_blank'>layui</a> 更新至 2.3.0 版本",
+        "date": "7天前"
+      },
+      {
+        "user": "吴尊",
+        "avatar": "images/logo.gif",
+        "text": "在 <a class='layui-text-blue' href='http://fly.layui.com/' target='_blank'>Fly社区</a> 发布了 <a class='layui-text-blue' href='http://fly.layui.com/column/suggest/' target='_blank'>建议</a>",
+        "date": "7天前"
+      },
+      {
+        "user": "许上进",
+        "avatar": "images/logo.gif",
+        "text": "在 <a class='layui-text-blue' href='http://fly.layui.com/' target='_blank'>Fly社区</a> 发布了 <a class='layui-text-blue' href='http://fly.layui.com/column/suggest/' target='_blank'>建议</a>",
+        "date": "8天前"
+      },
+      {
+        "user": "小蚊子",
+        "avatar": "images/logo.gif",
+        "text": "在 <a class='layui-text-blue' href='http://fly.layui.com/vipclub/list/layuiadmin/' target='_blank'>layuiadmin专区</a> 进行了 <a class='layui-text-blue' href='http://fly.layui.com/vipclub/list/layuiadmin/column/quiz/' target='_blank'>提问</a>",
+        "date": "8天前"
+      }
+    ],
+    "components": [
+      {
+        "link": "http://www.layui.com/doc/modules/table.html",
+        "img": "images/logo.gif",
+        "text": "数据表格"
+      },
+      {
+        "link": "http://www.layui.com/doc/modules/layim.html",
+        "img": "images/logo.gif",
+        "text": "即时通讯"
+      },
+      {
+        "link": "http://www.layui.com/doc/modules/form.html",
+        "img": "images/logo.gif",
+        "text": "表单"
+      },
+      {
+        "link": "http://www.layui.com/doc/modules/layer.html",
+        "img": "images/logo.gif",
+        "text": "弹出层"
+      },
+      {
+        "link": "http://www.layui.com/doc/modules/upload.html",
+        "img": "images/logo.gif",
+        "text": "文件上传"
+      },
+      {
+        "link": "http://www.layui.com/doc/modules/rate.html",
+        "img": "images/logo.gif",
+        "text": "评分"
+      }
+    ],
+    "players": [
+      {
+        "title": {
+          "subtext": "完全实况球员数据",
+          "textStyle": {
+            "fontSize": 14
+          }
+        },
+        "tooltip": {
+          "trigger": "axis"
+        },
+        "legend": {
+          "x": "left",
+          "data": ["罗纳尔多", "舍普琴科"]
+        },
+        "polar": [
+          {
+            "indicator": [
+              { "text": "进攻", "max": 100 },
+              { "text": "防守", "max": 100 },
+              { "text": "体能", "max": 100 },
+              { "text": "速度", "max": 100 },
+              { "text": "力量", "max": 100 },
+              { "text": "技巧", "max": 100 }
+            ],
+            "radius": 130
+          }
+        ],
+        "series": [
+          {
+            "type": "radar",
+            "center": ["50%", "50%"],
+            "itemStyle": {
+              "normal": {
+                "areaStyle": {
+                  "type": "default"
+                }
+              }
+            },
+            "data": [
+              { "value": [97, 42, 88, 94, 90, 86], "name": "舍普琴科" },
+              { "value": [97, 32, 74, 95, 88, 92], "name": "罗纳尔多" }
+            ]
+          }
+        ]
+      }
+    ],
+    "cardList": [
+      {
+        "title": "访问量",
+        "badgeText": "周",
+        "badgeBg": "layui-bg-blue",
+        "content": "9,999,666",
+        "bottomText": "总计访问量",
+        "bottomSpan": "88万",
+        "bottomIcon": "layui-icon-flag"
+      },
+      {
+        "title": "下载",
+        "badgeText": "月",
+        "badgeBg": "layui-bg-cyan",
+        "content": "33,555",
+        "bottomText": "新下载",
+        "bottomSpan": "10%",
+        "bottomIcon": "layui-icon-face-smile-b"
+      },
+      {
+        "title": "收入",
+        "badgeText": "年",
+        "badgeBg": "layui-bg-green",
+        "content": "999,666",
+        "bottomText": "总收入",
+        "bottomSpan": "***",
+        "bottomIcon": "layui-icon-dollar"
+      },
+      {
+        "title": "活跃用户",
+        "badgeText": "月",
+        "badgeBg": "layui-bg-orange",
+        "content": "66,666",
+        "bottomText": "最近一个月",
+        "bottomSpan": "15%",
+        "bottomIcon": "layui-icon-user"
+      }
+    ],
+    "pageView": [
+      {
+        "tooltip": {
+          "trigger": "axis"
+        },
+        "calculable": true,
+        "legend": {
+          "data": ["访问量", "下载量", "平均访问量"]
+        },
+
+        "xAxis": [
+          {
+            "type": "category",
+            "data": ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+          }
+        ],
+        "yAxis": [
+          {
+            "type": "value",
+            "name": "访问量",
+            "axisLabel": {
+              "formatter": "{value} 万"
+            }
+          },
+          {
+            "type": "value",
+            "name": "下载量",
+            "axisLabel": {
+              "formatter": "{value} 万"
+            }
+          }
+        ],
+        "series": [
+          {
+            "name": "访问量",
+            "type": "line",
+            "data": [900, 850, 950, 1000, 1100, 1050, 1000, 1150, 1250, 1370, 1250, 1100]
+          },
+          {
+            "name": "下载量",
+            "type": "line",
+            "yAxisIndex": 1,
+            "data": [850, 850, 800, 950, 1000, 950, 950, 1150, 1100, 1240, 1000, 950]
+          },
+          {
+            "name": "平均访问量",
+            "type": "line",
+            "data": [870, 850, 850, 950, 1050, 1000, 980, 1150, 1000, 1300, 1150, 1000]
+          }
+        ]
+      }
+    ],
+    "userNotes": [
+      {
+        "id": "7",
+        "user": "贤心",
+        "content": "作为layui官方推出的后台模板，从初版的饱受争议，到后续的埋头丰富，逐步占据了国内后台系统应用的主要市场。",
+        "date": "5月30日 00:00"
+      },
+      {
+        "id": "5",
+        "user": "诸葛亮",
+        "content": "皓首匹夫！苍髯老贼！你枉活九十有六，一生未立寸功，只会摇唇鼓舌！助曹为虐！一条断脊之犬，还敢在我军阵前狺狺狂吠，我从未见过有如此厚颜无耻之人！",
+        "date": "5月02日 00:00"
+      },
+      {
+        "id": "6",
+        "user": "胡歌",
+        "content": "你以为只要长得漂亮就有男生喜欢？你以为只要有了钱漂亮妹子就自己贴上来了？你以为学霸就能找到好工作？我告诉你吧，这些都是真的！",
+        "date": "5月11日 00:00"
+      },
+      {
+        "id": "2",
+        "user": "杜甫",
+        "content": "人才虽高，不务学问，不能致圣。刘向十日画一水，五日画一石。",
+        "date": "4月11日 00:00"
+      },
+      {
+        "id": "4",
+        "user": "鲁迅",
+        "content": "路本是无所谓有和无的，走的人多了，就没路了。。",
+        "date": "4月28日 00:00"
+      },
+      {
+        "id": "1",
+        "user": "张爱玲",
+        "content": "于千万人之中遇到你所要遇到的人，于千万年之中，时间的无涯的荒野中，没有早一步，也没有晚一步，刚巧赶上了，那也没有别的话好说，唯有轻轻的问一声：“噢，原来你也在这里？”",
+        "date": "4月11日 00:00"
+      }
+    ],
+    "userMap": [
+      {
+        "title": {
+          "text": "全国的 layui 用户分布",
+          "subtext": "不完全统计"
+        },
+        "tooltip": {
+          "trigger": "item"
+        },
+        "dataRange": {
+          "orient": "horizontal",
+          "min": 0,
+          "max": 60000,
+          "text": ["高", "低"],
+          "splitNumber": 0
+        },
+        "series": [
+          {
+            "name": "全国的 layui 用户分布",
+            "type": "map",
+            "mapType": "china",
+            "selectedMode": "multiple",
+            "itemStyle": {
+              "normal": { "label": { "show": true } },
+              "emphasis": { "label": { "show": true } }
+            },
+            "data": [
+              { "name": "西藏", "value": 60 },
+              { "name": "青海", "value": 167 },
+              { "name": "宁夏", "value": 210 },
+              { "name": "海南", "value": 252 },
+              { "name": "甘肃", "value": 502 },
+              { "name": "贵州", "value": 570 },
+              { "name": "新疆", "value": 661 },
+              { "name": "云南", "value": 8890 },
+              { "name": "重庆", "value": 10010 },
+              { "name": "吉林", "value": 5056 },
+              { "name": "山西", "value": 2123 },
+              { "name": "天津", "value": 9130 },
+              { "name": "江西", "value": 10170 },
+              { "name": "广西", "value": 6172 },
+              { "name": "陕西", "value": 9251 },
+              { "name": "黑龙江", "value": 5125 },
+              { "name": "内蒙古", "value": 1435 },
+              { "name": "安徽", "value": 9530 },
+              { "name": "北京", "value": 51919 },
+              { "name": "福建", "value": 3756 },
+              { "name": "上海", "value": 59190 },
+              { "name": "湖北", "value": 37109 },
+              { "name": "湖南", "value": 8966 },
+              { "name": "四川", "value": 31020 },
+              { "name": "辽宁", "value": 7222 },
+              { "name": "河北", "value": 3451 },
+              { "name": "河南", "value": 9693 },
+              { "name": "浙江", "value": 62310 },
+              { "name": "山东", "value": 39231 },
+              { "name": "江苏", "value": 35911 },
+              { "name": "广东", "value": 55891 }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

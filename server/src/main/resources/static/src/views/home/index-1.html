@@ -1,0 +1,71 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>主页一</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md8">
+      <div class="layui-card">
+        <div class="layui-card-header">
+          更新日志
+          <a href="http://www.layui.com/doc/base/changelog.html" class="layui-a-tips layui-text-blue" target="_blank"
+            >全部更新</a
+          >
+        </div>
+        <div class="layui-card-body" id="LAY-id-updateLogs"></div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">用户动态</div>
+        <div class="layui-card-body">
+          <dl class="layadmin-user-news" id="LAY-id-userNews"></dl>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-md4">
+      <div class="layui-card">
+        <div class="layui-card-header">便捷导航</div>
+        <div class="layui-card-body">
+          <div class="layadmin-card-link">
+            <a href="javascript:;">操作一</a>
+            <a href="javascript:;">操作二</a>
+            <a href="javascript:;">操作三</a>
+            <a href="javascript:;">操作四</a>
+            <a href="javascript:;">操作五</a>
+            <a href="javascript:;">操作六</a>
+            <button class="layui-btn layui-btn-primary layui-btn-xs">
+              <i class="layui-icon layui-icon-add-1" style="position: relative; top: -1px;"></i>添加
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">八卦新闻</div>
+        <div class="layui-card-body">
+          <div
+            class="layui-carousel layadmin-carousel layadmin-dataview"
+            data-anim="fade"
+            lay-filter="LAY-filter-players"
+          >
+            <div carousel-item id="LAY-id-players">
+              <div>
+                <i class="layui-icon layui-icon-loading-1 layadmin-loading"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">重点组件</div>
+        <div class="layui-card-body">
+          <ul class="layui-row layadmin-components" id="LAY-id-components"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('sample', layui.factory('sample'))
+</script>

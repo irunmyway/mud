@@ -1,0 +1,29 @@
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <script
+          type="text/html"
+          template
+          lay-url="{{ layui.setter.api }}json/message/detail.json?id={{ layui.router().search.id }}"
+        >
+          <div class="layui-card-body layui-text">
+            <div class="layadmin-text">
+              {{ d.data.content }}
+              <blockquote class="layui-elem-quote">
+                注：这里读取的是静态的模拟接口，实际应用时，您可以在该页面源代码中，修改成以下任意一种方式
+                <ul>
+                  <li>将 <em>lay-url=""</em> 改成你的真实接口，系统会自动识别该动态模板，直接前端渲染。</li>
+                  <li>剔除 script 动态模板标签，改成服务端渲染。</li>
+                </ul>
+              </blockquote>
+            </div>
+            <div style="padding-top:30px">
+              <button class="layui-btn layui-btn-primary layui-btn-sm" layadmin-event="back">返回上级</button>
+            </div>
+          </div>
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

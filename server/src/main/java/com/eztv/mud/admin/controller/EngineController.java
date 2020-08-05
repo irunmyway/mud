@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/engine/")
+@RequestMapping("/game/api/engine/")
 public class EngineController {
     @RequestMapping("saveGG")
     public String saveGG(String content){

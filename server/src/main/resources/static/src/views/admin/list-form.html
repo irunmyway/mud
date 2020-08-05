@@ -1,0 +1,67 @@
+<div
+  class="layui-form"
+  id="LAY-id-adminList-form"
+  lay-filter="LAY-filter-adminList-form"
+  style="padding: 20px 30px 0 0;"
+>
+  <div class="layui-form-item">
+    <label class="layui-form-label">登入名</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="loginName" value="{{ d.params.loginName || '' }}" lay-verify="required" placeholder="请输入登入名" autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">手机号码</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="phone" value="{{ d.params.phone || '' }}" lay-verify="phone" placeholder="请输入手机号码" autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">邮箱</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="email" value="{{ d.params.email || '' }}" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">角色</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <select name="role" lay-verify="required">
+          <option value="0" {{ d.params.role === 0 ? 'selected' : '' }}>管理员</option>
+          <option value="1" {{ d.params.role === 1 ? 'selected' : '' }}>超级管理员</option>
+          <option value="2" {{ d.params.role === 2 ? 'selected' : '' }}>纠错员</option>
+          <option value="3" {{ d.params.role === 3 ? 'selected' : '' }}>采购员</option>
+          <option value="4" {{ d.params.role === 4 ? 'selected' : '' }}>推销员</option>
+          <option value="5" {{ d.params.role === 5 ? 'selected' : '' }}>运营人员</option>
+          <option value="6" {{ d.params.role === 6 ? 'selected' : '' }}>编辑</option>
+        </select>
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">审核状态</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input
+          type="checkbox"
+          name="check"
+          lay-filter="LAY-filter-check"
+          lay-skin="switch"
+          lay-text="通过|待审核"
+          {{ d.params.check ? 'checked' : '' }}
+        />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item layui-text-center">
+    <button class="layui-btn" id="LAY-id-admin-submit" lay-submit lay-filter="LAY-filter-admin-submit">
+      提交
+    </button>
+  </div>
+</div>

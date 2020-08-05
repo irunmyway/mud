@@ -1,0 +1,159 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>应用</cite></a>
+    <a><cite>文章列表</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header layui-form layadmin-card-header-auto" lay-filter="LAY-filter-article-list">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">文章ID</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="id"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">作者</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="author"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">标题</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="title"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">文章标签</label>
+              <div class="layui-input-inline">
+                <select name="label" lay-verify="required">
+                  <option value="">请选择标签</option>
+                  <option value="0">美食</option>
+                  <option value="1">新闻</option>
+                  <option value="2">八卦</option>
+                  <option value="3">体育</option>
+                  <option value="4">音乐</option>
+                  <option value="5">历史</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layadmin-btn-list" lay-submit lay-filter="LAY-filter-article-search">
+                <i class="layui-icon layui-icon-search layadmin-icon-search-btn"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <div style="padding-bottom: 10px;">
+            <button class="layui-btn layadmin-btn-list" data-type="batchDel">
+              删除
+            </button>
+            <button class="layui-btn layadmin-btn-list" data-type="add">
+              添加
+            </button>
+          </div>
+          <table id="LAY-id-article-list" lay-filter="LAY-filter-article-list"></table>
+          <script type="text/html" id="LAY-id-statusTpl">
+            {{# if(d.status){ }}
+            <button class="layui-btn layui-btn-xs">已发布</button>
+            {{# }else{ }}
+            <button class="layui-btn layui-btn-xs layui-btn-primary">待修改</button>
+            {{# } }}
+          </script>
+          <script type="text/html" id="LAY-id-rowToolTpl">
+            <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+            <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</button>
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('contlist', layui.factory('contlist')).use('table', () => {
+    let $ = layui.$,
+      view = layui.view,
+      admin = layui.admin,
+      form = layui.form,
+      table = layui.table,
+      event = {
+        batchDel() {
+          let checkStatus = table.checkStatus('LAY-id-article-list'),
+            checkData = checkStatus.data
+
+          if (checkData.length === 0) return layer.msg('请选择数据')
+          layer.confirm('确定删除选中的数据吗', { icon: 3, title: '提示' }, (index) => {
+            //执行 Ajax 后重载
+            // $.ajax({})
+            table.reload('LAY-id-article-list')
+            layer.msg('已删除')
+          })
+        },
+        add() {
+          layer.open({
+            type: 1,
+            title: '添加文章',
+            id: 'LAY-popup-article-add',
+            area: ['550px', '500px'],
+            success(layero, index) {
+              view(this.id)
+                .render('app/content/article-form')
+                .done(() => {
+                  form.render(null, 'LAY-filter-articleList-form')
+                  admin.setInputFocusEnd(layero.find('[name=title]'))
+                  form.on('submit(LAY-filter-article-submit)', (data) => {
+                    let field = data.field
+                    //提交 Ajax 成功后，静态更新表格中的数据
+                    // $.ajax({})
+                    table.reload('LAY-id-article-list') // 数据刷新
+                    layer.close(index) // 关闭弹层
+                  })
+                })
+            },
+          })
+        },
+      }
+    form.render(null, 'LAY-filter-article-list')
+    admin.setInputFocusEnd($('.layui-form').find('[name=id]'))
+
+    // 监听搜索
+    form.on('submit(LAY-filter-article-search)', (data) => {
+      let field = data.field
+      table.reload('LAY-id-article-list', { where: field })
+    })
+
+    $('.layadmin-btn-list').on('click', function () {
+      let type = $(this).data('type')
+      event[type] && event[type].call(this)
+    })
+  })
+</script>

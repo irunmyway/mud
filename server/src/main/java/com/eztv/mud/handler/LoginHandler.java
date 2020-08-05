@@ -88,7 +88,7 @@ public class LoginHandler {
 
     //登录成功
     public static Player getPlayer(String account, String password, Client client) {
-        Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.sex,t1.faction,t1.level,t1.data,t1.createat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
+        Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.faction_position,t1.sex,t1.faction,t1.level,t1.data,t1.createat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
         try{
             player.setAccount(account);
             player.setClient(client);

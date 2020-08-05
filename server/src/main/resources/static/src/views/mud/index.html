@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>后台首页</title>
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0 minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+</head>
+
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space10">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">Npc管理</div>
+          <div class="layui-card-body">
+            <div class="layui-btn-container">
+
+            </div>
+            <div class="layui-form" style="margin-bottom: 10px;">
+              <label class="layui-form-label">搜索</label>
+              <div class="layui-input-inline">
+                <input oninput="search($(this).val())" class="layui-input" type="text">
+              </div>
+              <button class="layui-btn" onclick="createNpc()">
+                创建Npc
+              </button>
+            </div>
+            <table class="layui-hide" id="LAY-id-table-operate" lay-filter="LAY-filter-table-operate"></table>
+            <script type="text/html" id="LAY-id-toolbarTpl">
+              <div class="layui-btn-container">
+                <button class="layui-btn" data-type="getCheckData">
+                  选中行
+                </button>
+                <button class="layui-btn" data-type="getCheckLength">
+                  选中数目
+                </button>
+                <button class="layui-btn" data-type="isAll">
+                 是否全选
+                </button>
+                 <button class="layui-btn" data-type="createNpc">
+                 创建Npc
+                </button>
+              </div>
+            </script>
+            <script type="text/html" id="LAY-id-rowToolTpl">
+              <!-- <button class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</button> -->
+            <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
+            <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>123
+    layui
+      .use(['index', 'table'], () => {
+        let $ = layui.$,
+          setter = layui.setter,
+          table = layui.table,
+          event = {
+            getCheckData() {
+              let checkStatus = table.checkStatus('LAY-id-table-operate'),
+                data = checkStatus.data
+
+              layer.alert(JSON.stringify(data))
+            },
+            getCheckLength() {
+              let checkStatus = table.checkStatus('LAY-id-table-operate'),
+                data = checkStatus.data
+              layer.msg(`选中了：${data.length} 个`)
+            },
+            isAll() {
+              let checkStatus = table.checkStatus('LAY-id-table-operate')
+              console.log(checkStatus)
+              layer.msg(checkStatus.isAll ? '全选' : '未全选')
+            },
+          }
+
+        table.render({
+          elem: '#LAY-id-table-operate',
+          url: setter.mud_api + 'game/api/npc/getNpcList',
+          cols: [
+            [
+              { type: 'checkbox', fixed: 'left' },
+
+              { field: 'name', title: '名称', width: 80, },
+              {
+                field: 'id',
+                title: 'ID',
+                sort: true,
+                width: 80,
+              },
+              { field: 'desc', title: '描述', sort: true, width: 160 },
+              { field: 'map', title: '地图ID', width: 80 },
+              { field: 'mapName', title: '地图名', width: 80 },
+              { field: 'script', title: '脚本', width: 150 },
+              { field: 'num', title: '数量', sort: true, width: 70 },
+              {
+                title: '操作',
+                align: 'center',
+                fixed: 'right',
+                templet: '#LAY-id-rowToolTpl',
+                width: 120,
+              },
+            ],
+          ],
+          page: true,
+        })
+
+        // 监听表格复选框选择
+        table.on('checkbox(LAY-filter-table-operate)', (obj) => {
+          // console.log(obj)
+        })
+        // 监听工具条
+        table.on('tool(LAY-filter-table-operate)', (obj) => {
+          let data = obj.data
+          if (obj.event === 'detail') {
+            layer.msg(`ID: ${data.id} 的查看操作`)
+          } else if (obj.event === 'edit') {
+            editNpc(data);
+          } else if (obj.event === 'del') {
+            layer.confirm('确定删除该行吗', (index) => {
+              doDel(obj);
+              layer.close(index)
+            })
+          }
+        })
+
+        $('.layui-btn-container .layui-btn').on('click', function () {
+          let type = $(this).data('type')
+          event[type] && event[type].call(this)
+        })
+      })
+  </script>
+</body>
+
+</html>
+<script>
+
+  /**
+  * 作者: hhx QQ1025334900
+  * 功能: 编辑npc
+  **/
+  editNpc = function (data) {
+    layerIndex = layer.open({
+      type: 1,
+      title: '修改npc',
+      shadeClose: true,
+      shade: 0.6,
+      // area: ['320px', '500px'],
+      content: '<div class="layui-card-body">\n' +
+        '          <form omsubmit="return true" class="layui-form">\n' +
+        '            <div class="layui-form-item">\n' +
+        '              <label class="layui-form-label">名称</label>\n' +
+        '              <div class="layui-input-block">\n' +
+        '                <input id="edt_name" value="' + (data.name == undefined ? "" : data.name) + '" type="text" class="layui-input" autocomplete="off"lay-verify="required" />\n' +
+        '              </div>\n' +
+        '            </div>\n' +
+        '            <div class="layui-form-item">\n' +
+        '                <label class="layui-form-label">描述</label>\n' +
+        '                <div class="layui-input-block">\n' +
+        '                  <input id="edt_desc" value="' + (data.desc == undefined ? "" : data.desc) + '" type="text" class="layui-input" autocomplete="off"lay-verify="required" />\n' +
+        '                </div>\n' +
+        '              </div>\n' +
+        '              <div class="layui-form-item">\n' +
+        '                <label class="layui-form-label">地图id</label>\n' +
+        '                <div class="layui-input-block">\n' +
+        '                  <input id="edt_map" value="' + (data.map == undefined ? "" : data.map) + '" type="text" class="layui-input"autocomplete="off"lay-verify="required" />\n' +
+        '                </div>\n' +
+        '              </div>\n' +
+        '              <div class="layui-form-item">\n' +
+        '                <label class="layui-form-label">脚本</label>\n' +
+        '                <div class="layui-input-block">\n' +
+        '                  <input id="edt_script" value="' + (data.script == undefined ? "" : data.script) + '" type="text" class="layui-input" autocomplete="off"lay-verify="required" />\n' +
+        '                </div>\n' +
+        '              </div>\n' +
+        '              <div class="layui-form-item">\n' +
+        '                <label class="layui-form-label">数量</label>\n' +
+        '                <div class="layui-input-block">\n' +
+        '                  <input id="edt_num" value="' + (data.num == undefined ? "" : 0) + '" type="text" class="layui-input" autocomplete="off"lay-verify="required" />\n' +
+        '                </div>\n' +
+        '              </div>\n' +
+        '            <div class="layui-form-item">\n' +
+        '              <div class="layui-input-block">\n' +
+        '                <input type="button" onclick="doEdit(' + data.id + ')" class="layui-btn" value="修改" />\n' +
+        '                  \n' +
+        '                <button type="reset" class="layui-btn layui-btn-primary">\n' +
+        '                  重置\n' +
+        '                </button>\n' +
+        '              </div>\n' +
+        '            </div>\n' +
+        '          </form>\n' +
+        '        </div>'
+    });
+  }
+  doEdit = function (id) {
+    var name = $("#edt_name").val();
+    var desc = $("#edt_desc").val();
+    var map = $("#edt_map").val();
+    var script = $("#edt_script").val();
+    var num = $("#edt_num").val();
+    $.ajax({
+      url: layui.setter.mud_api + 'game/api/npc/saveNpc',
+      data: { id: id, name: name, desc: desc, map: map, script: script, num: num },
+      type: "post",
+      success: function (code) {
+        layui.table.reload('LAY-id-table-operate');
+      },
+      error: function () {
+        alert("修改失败了。");
+      }
+    });
+    layer.close(layerIndex);
+    return false;
+  }
+  doDel = function (obj) {
+    $.ajax({
+      url: layui.setter.mud_api + 'game/api/npc/delNpc',
+      data: { id: obj.data.id },
+      type: "post",
+      success: function (code) {
+        obj.del()
+      },
+      error: function () {
+        alert("删除失败了。");
+      }
+    });
+
+  }
+
+  function createNpc() {
+    $.ajax({
+      url: layui.setter.mud_api + 'game/api/npc/createNpc',
+      data: {},
+      type: "post",
+      success: function (code) {
+        layui.table.reload('LAY-id-table-operate');
+      },
+      error: function () {
+        alert("创建失败了。");
+      }
+    });
+
+  }
+
+  function search(val) {
+    layui.table.reload('LAY-id-table-operate', {
+      where: {
+        value: val
+      }
+    });
+
+  }
+
+</script>

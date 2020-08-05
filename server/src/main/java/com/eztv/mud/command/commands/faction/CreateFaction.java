@@ -43,14 +43,16 @@ public class CreateFaction extends BaseCommand {
                     try {
                         //创建帮派
                         faction.setLeader(getPlayer().getAccount());
+                        faction.setAlias();
                         DataBase.getInstance().init().query(faction).insert();
                         //设置自身的帮派id为当前帮派id
                         getPlayer().setFaction(factionId);
+                        getPlayer().setFaction_position(5);
                         FactionCache.factions.put(factionId+"",faction);
                         getClient().getScriptExecutor().loadFile(null,Other_PATH+"faction")
                                 .execute("create",getClient());
                         //发送创建帮派成功消息
-                        String sendStr = getProp("faction_create_success",
+                        String sendStr = getPropByFile("faction","faction_create_success",
                                 factionName,
                                 getClient().getPlayer().getName());
                         Chat chat = new Chat();
@@ -59,7 +61,7 @@ public class CreateFaction extends BaseCommand {
                         GameUtil.sendToAll(getClient(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
 
                     } catch (Exception e) {//帮派名称已存在
-                        winMsg.setDesc(getProp("faction_exist", factionName));
+                        winMsg.setDesc(getPropByFile("faction","faction_exist", factionName));
                         choice.add(Choice.createChoice("原来如此", Enum.messageType.action, "got", null, null, Enum.winAction.close));
                         winMsg.setChoice(choice);
                         GameUtil.sendToSelf(getClient(), msgBuild(Enum.messageType.pop, "", object2JsonStr(winMsg), getMsg().getMsg(), null));
@@ -67,7 +69,7 @@ public class CreateFaction extends BaseCommand {
                     //保存玩家状态
                     getClient().getPlayer().getDataBaseHandler().savePlayer(getClient().getPlayer());
                 } else {//创建失败提示
-                    winMsg.setDesc(getProp("faction_create_norm"));
+                    winMsg.setDesc(getPropByFile("faction","faction_create_norm"));
                     choice.add(Choice.createChoice("原来如此", Enum.messageType.action, "got", null, null, Enum.winAction.close));
                     winMsg.setChoice(choice);
                     GameUtil.sendToSelf(getClient(), msgBuild(Enum.messageType.pop, "", object2JsonStr(winMsg), getMsg().getMsg(), null));
@@ -75,7 +77,7 @@ public class CreateFaction extends BaseCommand {
                 return;
             }
         }
-        winMsg.setDesc(getProp("faction_create_notice"));
+        winMsg.setDesc(getPropByFile("faction","faction_create_notice"));
         choice.add(Choice.createChoice("建立", Enum.messageType.action, "createFaction", null, "do", Enum.winAction.closeAll));
         winMsg.setChoice(choice);
         GameUtil.sendToSelf(getClient(), msgBuild(Enum.messageType.input, "createFaction", object2JsonStr(winMsg), getMsg().getMsg(), null));

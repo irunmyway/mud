@@ -2,7 +2,7 @@ package com.eztv.mud;
 
 import com.eztv.mud.cache.ItemCache;
 import com.eztv.mud.cache.SkillCache;
-import org.springframework.boot.SpringApplication;
+import com.eztv.mud.handler.core.Cache;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
@@ -10,10 +10,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+//        SpringApplication.run(Main.class, args);
         Server.getInstance().init();//加载服务端套接字0
         DataBase.getInstance().init();//加载数据库框架
         Word.getInstance().init();//初始化整个世界地图及详细内容
+        Cache cache = new Cache();//创建缓存器
         boolean run = true;
         Scanner sc = new Scanner(System.in);
         String notice = "《指令提示》\n" +

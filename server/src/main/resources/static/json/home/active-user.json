@@ -1,0 +1,48 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "username": "胡歌",
+      "lastLogin": "11:20",
+      "status": "在线",
+      "praise": "22"
+    },
+    {
+      "username": "彭于晏",
+      "lastLogin": "10:40",
+      "status": "在线",
+      "praise": "21"
+    },
+    {
+      "username": "靳东",
+      "lastLogin": "01:30",
+      "status": "离线",
+      "praise": "66"
+    },
+    {
+      "username": "吴尊",
+      "lastLogin": "21:18",
+      "status": "离线",
+      "praise": "45"
+    },
+    {
+      "username": "许上进",
+      "lastLogin": "09:30",
+      "status": "在线",
+      "praise": "21"
+    },
+    {
+      "username": "小蚊子",
+      "lastLogin": "21:18",
+      "status": "在线",
+      "praise": "45"
+    },
+    {
+      "username": "贤心",
+      "lastLogin": "09:30",
+      "status": "在线",
+      "praise": "21"
+    }
+  ]
+}

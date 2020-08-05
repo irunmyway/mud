@@ -1,0 +1,97 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "name": "game_edit",
+      "title": "游戏编辑",
+      "icon": "layui-icon-auz",
+      "jump": "#",
+      "child": [
+        {
+          "name": "game_npc",
+          "title": "NPC",
+          "jump": "/mud/index"
+        },
+        {
+          "name": "game_map",
+          "title": "地图",
+          "jump": "/mud/map"
+        },
+        {
+          "name": "game_item",
+          "title": "物品",
+          "jump": "/mud/item"
+        },
+        {
+          "name": "game_skill",
+          "title": "技能",
+          "jump": "/mud/skill"
+        },
+        {
+          "name": "game_monster",
+          "title": "怪物",
+          "jump": "/mud/monster"
+        }
+      ]
+    },
+    {
+      "name": "game_edit",
+      "title": "公告修改",
+      "icon": "layui-icon-auz",
+      "jump": "#",
+      "child": [
+        {
+          "name": "grid",
+          "title": "公告",
+          "jump": "/mud/gg"
+        }
+      ]
+    },
+    {
+      "name": "game_edit",
+      "title": "全局修改",
+      "icon": "layui-icon-auz",
+      "jump": "#",
+      "child": [
+        {
+          "name": "grid",
+          "title": "栅格",
+          "jump": "components/grid/list.html"
+        }
+      ]
+    },
+    {
+      "name": "game_edit",
+      "title": "设置",
+      "icon": "layui-icon-auz",
+      "jump": "#",
+      "child": [
+        {
+          "name": "grid",
+          "title": "栅格",
+          "jump": "components/grid/list.html"
+        }
+      ]
+    },
+    {
+      "name": "game_edit",
+      "title": "GM工具",
+      "icon": "layui-icon-auz",
+      "jump": "#",
+      "child": [
+        {
+          "name": "grid",
+          "title": "栅格",
+          "child": [
+            {
+              "name": "list",
+              "title": "等比例列表排列",
+              "jump": "components/grid/list.html"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

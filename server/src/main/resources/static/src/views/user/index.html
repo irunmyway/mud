@@ -1,0 +1,161 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>用户</cite></a>
+    <a><cite>网站用户</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-card">
+    <div class="layui-form layui-card-header layadmin-card-header-auto" lay-filter="LAY-filter-user-list">
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">ID</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              class="layui-input"
+              name="id"
+              lay-verify="required"
+              placeholder="请输入"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">用户名</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              class="layui-input"
+              name="username"
+              lay-verify="required"
+              placeholder="请输入"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">邮箱</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              class="layui-input"
+              name="email"
+              lay-verify="required"
+              placeholder="请输入"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">性别</label>
+          <div class="layui-input-block">
+            <select name="sex" lay-verify="required">
+              <option value="0">不限</option>
+              <option value="1">男</option>
+              <option value="2">女</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <button class="layui-btn layadmin-btn-user" lay-submit lay-filter="LAY-filter-user-search">
+            <i class="layui-icon layui-icon-search layadmin-icon-search-btn"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="layui-card-body">
+      <div style="padding-bottom: 10px;">
+        <button class="layui-btn layadmin-btn-user" data-type="batchDel">
+          删除
+        </button>
+        <button class="layui-btn layadmin-btn-user" data-type="add">
+          添加
+        </button>
+      </div>
+      <table id="LAY-id-user-list" lay-filter="LAY-filter-user-list"></table>
+      <script type="text/html" id="LAY-id-imgTpl">
+        <img style="display: inline-block; width: 50%; height: 100%" class="layui-circle" src={{ d.avatar }}>
+      </script>
+      <script type="text/html" id="LAY-id-rowToolTpl">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+          <i class="layui-icon layui-icon-edit"></i>
+          编辑
+        </a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">
+          <i class="layui-icon layui-icon-delete"></i>
+          删除
+        </a>
+      </script>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('useradmin', layui.factory('useradmin')).use(['useradmin', 'table'], () => {
+    let $ = layui.$,
+      view = layui.view,
+      admin = layui.admin,
+      form = layui.form,
+      table = layui.table,
+      // 表格顶部按钮事件
+      event = {
+        // 批量删除
+        batchDel() {
+          let checkStatus = table.checkStatus('LAY-id-user-list'),
+            checkData = checkStatus.data
+
+          if (checkData.length === 0) {
+            return layer.msg('请选择数据')
+          }
+          layer.confirm('确定删除选中的数据吗?', { icon: 3, title: '提示' }, (index) => {
+            //执行 Ajax 后重载
+            // $.ajax({})
+            table.reload('LAY-id-user-list')
+            layer.msg('已删除')
+          })
+        },
+        // 添加用户
+        add() {
+          layer.open({
+            type: 1,
+            title: '添加用户',
+            id: 'LAY-popup-user-add',
+            area: ['500px', '400px'],
+            success(layero, index) {
+              view(this.id)
+                .render('user/list-form')
+                .done(() => {
+                  form.render(null, 'LAY-filter-userList-form')
+                  admin.setInputFocusEnd(layero.find('[name=username]'))
+                  form.on('submit(LAY-filter-user-submit)', (data) => {
+                    let field = data.field
+                    //提交 Ajax 成功后，关闭当前弹层并重载表格
+                    //$.ajax({});
+                    table.reload('LAY-id-user-list')
+                    layer.close(index)
+                  })
+                })
+            },
+          })
+        },
+      }
+    // 渲染表单
+    form.render(null, 'LAY-filter-user-list')
+    // 初始聚焦
+    admin.setInputFocusEnd($('.layui-form').find('[name=id]'))
+
+    // 监听搜索
+    form.on('submit(LAY-filter-user-search)', (data) => {
+      let field = data.field
+      table.reload('LAY-id-user-list', { where: field })
+    })
+
+    // 监听表格顶部按钮点击事件
+    $('.layadmin-btn-user').on('click', function () {
+      let type = $(this).data('type')
+      event[type] ? event[type].call(this) : ''
+    })
+  })
+</script>

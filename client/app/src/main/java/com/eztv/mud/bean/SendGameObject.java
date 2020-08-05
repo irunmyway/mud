@@ -1,8 +1,7 @@
 package com.eztv.mud.bean;
 
-import com.eztv.mud.bean.Enum;
-import com.eztv.mud.bean.GameObject;
-import com.eztv.mud.bean.PlayerData;
+import com.ez.utils.BDebug;
+import com.eztv.mud.util.Util;
 
 /**
  作者：hhx QQ1025334900
@@ -12,7 +11,7 @@ import com.eztv.mud.bean.PlayerData;
 public class SendGameObject extends GameObject {
     private int level;
     private Enum.gameObjectType objType;
-    private PlayerData playerData;
+    private PlayerData playerData = new PlayerData();
 
     public int getLevel() {
         return level;
@@ -45,7 +44,7 @@ public class SendGameObject extends GameObject {
     }
     public void setAttribute(Attribute attribute) {
         if(objType==Enum.gameObjectType.player){
-            getPlayerData().setAttribute(attribute);
+            playerData.setAttribute(attribute);
         }else{
             super.setAttribute(attribute);
         }

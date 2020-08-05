@@ -18,11 +18,11 @@ public class FactionCache {
         factions.clear();
         List<Faction> factionList = DataBase.getInstance().init().createSQL("select * from t_faction").list(Faction.class);
         for(Faction faction :factionList){
+            faction.setAlias();
             factions.put(faction.getId()+"",faction);
         }
         factionList=null;
     }
-
     public static synchronized void remove(int id){
         factions.remove(id+"");
     }

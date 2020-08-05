@@ -1,0 +1,87 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>页面</cite></a>
+    <a><cite>客户列表</cite></a>
+  </div>
+</div>
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-body layadmin-caller">
+          <div class="layui-form layadmin-caller-search" lay-filter="LAY-filter-caller-list">
+            <i class="layui-icon layui-icon-search"></i>
+            <input
+              type="text"
+              name="callerName"
+              required
+              lay-verify="required"
+              placeholder="请输入客户名"
+              autocomplete="off"
+              class="layui-input"
+            />
+            <i class="layui-icon layui-icon-close"></i>
+          </div>
+          <div class="layui-tab layui-tab-brief" lay-filter="LAY-filter-caller-tab">
+            <ul class="layui-tab-title">
+              <li class="layui-this">所有联系人</li>
+              <li>联系方式</li>
+              <li>联系地址</li>
+            </ul>
+            <div class="layui-tab-content" style="padding-top: 0;">
+              <div class="layui-tab-item layui-show">
+                <script type="text/html" template>
+                  {{# for(let i=0; i<6; i++){ }}
+                    <div class="layadmin-caller-item">
+                      <img
+                        src="{{ layui.setter.api}}images/portrait.png"
+                        class="layui-circle layui-float-left"
+                        width="40"
+                        height="40"
+                      />
+                      <div class="layadmin-caller-main layui-float-left">
+                        <p><strong>胡歌</strong> <span>最近联系：1 小时前</span></p>
+                        <p class="layadmin-caller-addr">
+                          <i class="layui-icon layui-icon-location"></i>
+                          浙江省广州市越秀区中山六路109
+                        </p>
+                        <div class="layadmin-social-icon">
+                          <i
+                            class="layui-icon layui-icon-login-wechat layui-text-green"
+                          ></i>
+                          <i
+                            class="layui-icon layui-icon-login-qq layui-text-blue"
+                          ></i>
+                          <i
+                            class="layui-icon layui-icon-login-weibo layui-text-red"
+                          ></i>
+                        </div>
+                      </div>
+                      <button class="layui-btn layui-btn-sm {{ i%2 !== 0 ? 'layui-btn-primary' : '' }} layui-float-right">
+                        <i class="layui-icon {{ i%2 ===0 ? 'layui-icon-ok' : '' }}"></i>
+                        已收藏
+                      </button>
+                    </div>
+                  {{# } }}
+                </script>
+              </div>
+              <div id="LAY-id-caller-page" class="layui-text-center" style="padding-top: 30px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('laypage', () => {
+    let $ = layui.$,
+      laypage = layui.laypage
+
+    laypage.render({
+      elem: 'LAY-id-caller-page',
+      count: 50,
+    })
+  })
+</script>

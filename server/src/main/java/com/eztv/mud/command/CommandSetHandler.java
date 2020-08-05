@@ -4,10 +4,7 @@ import com.eztv.mud.command.commands.MinePanel;
 import com.eztv.mud.command.commands.action.*;
 import com.eztv.mud.command.commands.bag.BagPanel;
 import com.eztv.mud.command.commands.equip.EquipPanel;
-import com.eztv.mud.command.commands.faction.CreateFaction;
-import com.eztv.mud.command.commands.faction.DestroyFaction;
-import com.eztv.mud.command.commands.faction.FactionPanel;
-import com.eztv.mud.command.commands.faction.JoinFaction;
+import com.eztv.mud.command.commands.faction.*;
 import com.eztv.mud.command.commands.pop.SkillAttackPanel;
 import com.eztv.mud.command.commands.pop.TradePanel;
 import com.eztv.mud.command.commands.store.JbStore;
@@ -29,6 +26,8 @@ public class CommandSetHandler {
         actionCommandSet.put("joinFaction", JoinFaction.class);//加入门派
         actionCommandSet.put("createFaction", CreateFaction.class);//创立门派
         actionCommandSet.put("destroyFaction", DestroyFaction.class);//门派 面板
+        actionCommandSet.put("recruitFaction", RecruitFaction.class);//招募
+        actionCommandSet.put("exitFaction", ExitFaction.class);//退出帮派
         actionCommandSet.put("useSkill", UseSkill.class);//使用技能
         actionCommandSet.put("jbStore", JbStore.class);//寄卖商城
         actionCommandSet.put("ybStore", YbStore.class);//元宝商城
@@ -45,6 +44,9 @@ public class CommandSetHandler {
         panelCommandSet.put("confirmPanel", ConfirmPanel.class);//确认 面板
         panelCommandSet.put("getSkill", SkillAttackPanel.class);//技能 面板
         panelCommandSet.put("getTrade", TradePanel.class);//交易 面板
+        panelCommandSet.put("memberFaction", MemberFaction.class);//
+        panelCommandSet.put("grantMemberFaction", MemberFaction.class);//
+
 
 
     }

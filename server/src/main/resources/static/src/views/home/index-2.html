@@ -1,0 +1,165 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>主页二</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-row layui-col-space10" id="LAY-id-cardList"></div>
+    </div>
+    <div class="layui-col-sm12">
+      <div class="layui-card">
+        <div class="layui-card-header">
+          访问量
+          <div class="layui-btn-group layadmin-btn-group">
+            <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary">去年</a>
+            <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary">今年</a>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <div class="layui-row">
+            <div class="layui-col-sm8">
+              <div
+                class="layui-carousel layadmin-carousel layadmin-dataview"
+                data-anim="fade"
+                lay-filter="LAY-filter-pageView"
+              >
+                <div carousel-item id="LAY-id-pageView">
+                  <div>
+                    <i class="layui-icon layui-icon-loading-1 layadmin-loading"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-col-sm4">
+              <div class="layadmin-card-list">
+                <p class="layadmin-normal-font">月访问数</p>
+                <span>同上期增长</span>
+                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                  <div class="layui-progress-bar" lay-percent="30%"></div>
+                </div>
+              </div>
+              <div class="layadmin-card-list">
+                <p class="layadmin-normal-font">月下载数</p>
+                <span>同上期增长</span>
+                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                  <div class="layui-progress-bar" lay-percent="20%"></div>
+                </div>
+              </div>
+              <div class="layadmin-card-list">
+                <p class="layadmin-normal-font">月收入</p>
+                <span>同上期增长</span>
+                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                  <div class="layui-progress-bar" lay-percent="25%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-sm4">
+      <div class="layui-card">
+        <div class="layui-card-header">用户留言</div>
+        <div class="layui-card-body">
+          <ul class="layadmin-usernotes" id="LAY-id-userNotes"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-sm8">
+      <div class="layui-row layui-col-space10">
+        <div class="layui-col-sm6">
+          <div class="layui-card">
+            <div class="layui-card-header">本周活跃用户列表</div>
+            <div class="layui-card-body">
+              <table id="LAY-id-activeUser"></table>
+            </div>
+          </div>
+        </div>
+        <div class="layui-col-sm6">
+          <div class="layui-card">
+            <div class="layui-card-header">项目进展</div>
+            <div class="layui-card-body">
+              <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                  <table id="LAY-id-prograss"></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-col-sm12">
+          <div class="layui-card">
+            <div class="layui-card-header">用户全国分布</div>
+            <div class="layui-card-body">
+              <div class="layui-row layui-col-space10">
+                <div class="layui-col-sm4">
+                  <table class="layui-table" lay-skin="line">
+                    <thead>
+                      <tr>
+                        <th>排名</th>
+                        <th>地区</th>
+                        <th>人数</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>浙江</td>
+                        <td>62310</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>上海</td>
+                        <td>59190</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>广东</td>
+                        <td>55891</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>北京</td>
+                        <td>51919</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>山东</td>
+                        <td>39231</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>湖北</td>
+                        <td>37109</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="layui-col-sm8">
+                  <div
+                    class="layui-carousel layadmin-carousel layadmin-dataview"
+                    data-anim="fade"
+                    lay-filter="LAY-filter-userMap"
+                  >
+                    <div carousel-item id="LAY-id-userMap">
+                      <div>
+                        <i class="layui-icon layui-icon-loading-1 layadmin-loading"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('sample', layui.factory('sample'))
+</script>

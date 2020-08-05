@@ -1,0 +1,20 @@
+<div
+  class="layui-form"
+  id="LAY-id-replysList-form"
+  lay-filter="LAY-filter-replysList-form"
+  style="padding: 20px 30px 0 0;"
+>
+  <div class="layui-form-item">
+    <label class="layui-form-label">回帖内容</label>
+    <div class="layui-input-block">
+      <script type="text/html" template>
+        <textarea name="content" lay-verify="required" class="layui-textarea" placeholder="请输入" style="height: 200px;" >{{ d.params.content || '' }}</textarea>
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item layui-text-center">
+    <button class="layui-btn" id="LAY-id-replys-submit" lay-submit lay-filter="LAY-filter-replys-submit">
+      提交
+    </button>
+  </div>
+</div>

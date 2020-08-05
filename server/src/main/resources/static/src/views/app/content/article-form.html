@@ -1,0 +1,63 @@
+<div
+  class="layui-form"
+  id="LAY-id-articleList-form"
+  lay-filter="LAY-filter-articleList-form"
+  style="padding: 20px 30px 0 0;"
+>
+  <div class="layui-form-item">
+    <label class="layui-form-label">文章标题</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="title" value="{{ d.params.title || '' }}" lay-verify="required" placeholder="请输入文章标题" autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发布人</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="author" value="{{ d.params.author || '' }}" lay-verify="required" placeholder="请输入" autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">文章标签</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <select name="label" lay-verify="required">
+          <option value="">请选择标签</option>
+          <option value="0" {{ d.params.label === 0 ? 'selected' : '' }}>美食</option>
+          <option value="1" {{ d.params.label === 1 ? 'selected' : '' }}>新闻</option>
+          <option value="2" {{ d.params.label === 2 ? 'selected' : '' }}>八卦</option>
+          <option value="3" {{ d.params.label === 3 ? 'selected' : '' }}>体育</option>
+          <option value="4" {{ d.params.label === 4 ? 'selected' : '' }}>音乐</option>
+          <option value="5" {{ d.params.label === 5 ? 'selected' : '' }}>历史</option>
+        </select>
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">发布状态</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="checkbox" name="status" lay-verify="required" lay-filter="LAY-filter-status" lay-skin="switch" lay-text="已发布|待修改" {{ d.params.status ? 'checked' : '' }} />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">文章内容</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <textarea name="content" class="layui-textarea" lay-verify="required" placeholder="请输入" autocomplete="off" style="width: 400px; height: 150px;">{{ d.params.content || '' }}</textarea>
+      </script>
+    </div>
+  </div>
+  <script type="text/html" template>
+    <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+  </script>
+  <div class="layui-form-item layui-text-center">
+    <button class="layui-btn" id="LAY-article-submit" lay-submit lay-filter="LAY-filter-article-submit">
+      提交
+    </button>
+  </div>
+</div>

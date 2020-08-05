@@ -39,6 +39,7 @@ public class Player extends GameObject implements IPlayerCallBack {
     //发动攻击
     private Battle battle = new Battle();
 
+    private int faction_position;//帮派职位
 
     //人物数据处理
     private DataBaseHandler dataBaseHandler = new DataBaseHandler();
@@ -103,6 +104,7 @@ public class Player extends GameObject implements IPlayerCallBack {
     public int getFaction() {
         return faction;
     }
+
 
     public void setFaction(int faction) {
         this.faction = faction;
@@ -183,5 +185,14 @@ public class Player extends GameObject implements IPlayerCallBack {
                 add(skillAttr).
                 add(equipAttr).
                 addTmp(client.getPlayer().getPlayerData().getAttribute()));
+    }
+
+    public int getFaction_position() {
+        return faction_position;
+    }
+
+    //帮主 副帮主 长老 堂主 成员
+    public void setFaction_position(int faction_position) {
+        this.faction_position = faction_position;
     }
 }

@@ -1,0 +1,126 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>设置</cite></a>
+    <a><cite>我的资料</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header">设置我的资料</div>
+        <div class="layui-card-body" pad15>
+          <div class="layui-form">
+            <div class="layui-form-item">
+              <label class="layui-form-label">我的角色</label>
+              <div class="layui-input-inline">
+                <select name="role">
+                  <option value="1" selected>超级管理员</option>
+                  <option value="2" disabled>普通管理员</option>
+                  <option value="3" disabled>审核员</option>
+                  <option value="4" disabled>编辑人员</option>
+                </select>
+              </div>
+              <div class="layui-form-mid layui-word-aux">
+                当前角色不可更改为其它角色
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">用户名</label>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="username" value="moyu" readonly />
+              </div>
+              <div class="layui-form-mid layui-word-aux">
+                不可修改。一般用于后台登入名
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">昵称</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="nickname"
+                  value="管理员"
+                  lay-verify="nickname"
+                  placeholder="请输入昵称"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">性别</label>
+              <div class="layui-input-inline">
+                <input type="radio" class="layui-input" name="sex" value="男" title="男" />
+                <input type="radio" class="layui-input" name="sex" value="女" title="女" checked />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">头像</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  id="LAY-id-avatar-src"
+                  name="avatar"
+                  lay-verify="required"
+                  value="https://imgs.aixifan.com/style/image/201907/4EqUrISjpAmLKbqFGWcJWkvuZSqy1Sdl.jpg"
+                />
+              </div>
+              <div class="layui-input-inline layui-btn-container" style="width: auto;">
+                <button class="layui-btn layui-btn-primary" id="LAY-id-avatar-upload">
+                  <i class="layui-icon layui-icon-upload"></i>上传图片
+                </button>
+                <button class="layui-btn layui-btn-primary" layadmin-event="avatarPreview">
+                  查看图片
+                </button>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">手机</label>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="cellphone" lay-verify="phone" autocomplete="off" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">邮箱</label>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="email" lay-verify="email" autocomplete="off" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">备注</label>
+              <div class="layui-input-block">
+                <textarea
+                  name="remarks"
+                  class="layui-textarea"
+                  placeholder="请输入内容"
+                  style="width: 500px;"
+                ></textarea>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="LAY-filter-set-info">
+                  确认修改
+                </button>
+                <button type="reset" class="layui-btn layui-btn-primary">
+                  重新填写
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('set', layui.factory('set')).use('admin', () => {
+    let $ = layui.$,
+      admin = layui.admin
+    admin.setInputFocusEnd($('[name=nickname]'))
+  })
+</script>

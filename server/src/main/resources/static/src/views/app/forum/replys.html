@@ -1,0 +1,101 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>应用</cite></a>
+    <a><cite>回帖列表</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header layui-form layadmin-card-header-auto" lay-filter="LAY-filter-replys-list">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">回帖人</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="replyer"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">回帖内容</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="content"
+                  lay-verify="required"
+                  placeholder="请输入"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layadmin-btn-replys" lay-submit lay-filter="LAY-filter-replys-search">
+                <i class="layui-icon layui-icon-search layadmin-icon-search-btn"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+          <div style="padding-bottom: 10px;">
+            <button class="layui-btn layadmin-btn-replys" data-type="batchDel">
+              删除
+            </button>
+          </div>
+          <table id="LAY-id-replys-list" lay-filter="LAY-filter-replys-list"></table>
+          <script type="text/html" id="LAY-id-avatarTpl">
+            <img class="layui-circle" src={{ d.avatar }} style="display: inline-block" width="50%" height="100%">
+          </script>
+          <script type="text/html" id="LAY-id-rowToolTpl">
+            <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</button>
+            <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</button>
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('forum', layui.factory('forum')).use('forum', () => {
+    let $ = layui.$,
+      admin = layui.admin,
+      form = layui.form,
+      table = layui.table,
+      event = {
+        batchDel() {
+          let checkStatus = table.checkStatus('LAY-id-replys-list'),
+            checkData = checkStatus.data
+
+          if (checkData.length === 0) return layer.msg('请选择数据')
+          layer.confirm('确定删除选中的数据吗', { icon: 3, title: '提示' }, (index) => {
+            //执行 Ajax 后重载
+            // $.ajax({})
+            table.reload('LAY-id-replys-list')
+            layer.msg('已删除')
+          })
+        },
+      }
+    form.render(null, 'LAY-filter-replys-list')
+    admin.setInputFocusEnd($('.layui-form').find('[name=replyer]'))
+
+    // 监听搜索
+    form.on('submit(LAY-filter-replys-search)', (data) => {
+      let field = data.field
+      table.reload('LAY-id-replys-list', { where: field })
+    })
+
+    $('.layadmin-btn-replys').on('click', function () {
+      let type = $(this).data('type')
+      event[type] && event[type].call(this)
+    })
+  })
+</script>

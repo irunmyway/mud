@@ -1,0 +1,196 @@
+<script type="text/html" template>
+  <link rel="stylesheet" href="{{ layui.setter.base }}style/login.css?v{{ layui.admin.v }}" media="all" />
+</script>
+
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-id-user-login">
+  <div class="layadmin-user-login-main">
+    <div class="layadmin-user-login-box layadmin-user-login-header">
+      <h2>layuiMoyu</h2>
+      <p>Mud后台</p>
+    </div>
+    <div class="layadmin-user-login-box layadmin-user-login-body layui-form" lay-filter="LAY-filter-forget-form">
+      <script type="text/html" template>
+        {{# if(layui.router().search.type === 'resetpass' ){ }}
+        <!-- 重置密码 -->
+          <div class="layui-form-item">
+            <label
+              class="layadmin-user-login-icon layui-icon layui-icon-password"
+              for="LAY-id-reset-newpass"
+            ></label>
+            <input
+              type="password"
+              id="LAY-id-reset-newpass"
+              class="layui-input"
+              name="password"
+              placeholder="新密码"
+              lay-verify="pass"
+            />
+          </div>
+          <div class="layui-form-item">
+            <label
+              class="layadmin-user-login-icon layui-icon layui-icon-password"
+              for="LAY-id-reset-repass"
+            ></label>
+            <input
+              type="password"
+              id="LAY-id-reset-repass"
+              class="layui-input"
+              name="repass"
+              placeholder="确认密码"
+              lay-verify="required"
+            />
+          </div>
+          <div class="layui-form-item">
+            <button
+              class="layui-btn layui-btn-fluid"
+              lay-filter="LAY-filter-resetpass-submit"
+              lay-submit
+            >
+            重置密码
+            </button>
+          </div>
+        {{# } else { }}
+        <!-- 找回密码 -->
+          <div class="layui-form-item">
+            <label
+              class="layadmin-user-login-icon layui-icon layui-icon-cellphone"
+              for="LAY-id-user-cellphone"
+            ></label>
+            <input
+              type="text"
+              id="LAY-id-user-cellphone"
+              class="layui-input"
+              name="cellphone"
+              placeholder="请输入注册时的手机号"
+              lay-verify="phone"
+            />
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-row">
+              <div class="layui-col-xs7">
+                <label
+                  for="LAY-id-forget-vercode"
+                  class="layadmin-user-login-icon layui-icon layui-icon-vercode"
+                ></label>
+                <input
+                  type="text"
+                  class="layui-input"
+                  id="LAY-id-forget-vercode"
+                  name="vercode"
+                  placeholder="图形验证码"
+                  lay-verify="required"
+                />
+              </div>
+              <div class="layui-col-xs5">
+                <div style="margin-left: 10px;">
+                  <img
+                    src="https://www.oschina.net/action/user/captcha"
+                    class="layadmin-user-login-codeimg"
+                    id="LAY-id-get-vercode"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-row">
+              <div class="layui-col-xs7">
+                <label
+                  for="LAY-id-user-smscode"
+                  class="layadmin-user-login-icon layui-icon layui-icon-vercode"
+                ></label>
+                <input
+                  type="text"
+                  class="layui-input"
+                  id="LAY-id-user-smscode"
+                  name="smscode"
+                  placeholder="短信验证码"
+                  lay-verify="required"
+                />
+              </div>
+              <div class="layui-col-xs5">
+                <div style="margin-left: 10px;">
+                  <button
+                    class="layui-btn layui-btn-primary layui-btn-fluid"
+                    id="LAY-id-get-smscode"
+                  >
+                    获取验证码
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <button
+              class="layui-btn layui-btn-fluid"
+              lay-filter="LAY-filter-forget-submit"
+              lay-submit
+            >
+            找回密码
+            </button>
+          </div>
+        {{# } }}
+      </script>
+    </div>
+  </div>
+  <div class="layadmin-user-login-footer layui-trans">
+    <p>© 2020 <a href="http://www.layui.com/" target="_blank">layui.com</a></p>
+  </div>
+</div>
+<script>
+  layui.use('user', () => {
+    let $ = layui.$,
+      setter = layui.setter,
+      admin = layui.admin,
+      form = layui.form,
+      router = layui.router()
+
+    form.render(null, 'LAY-filter-forget-form')
+    if (router.search.type === 'resetpass') {
+      admin.setInputFocusEnd($('#LAY-id-reset-newpass'))
+    } else {
+      admin.setInputFocusEnd($('#LAY-id-user-cellphone'))
+    }
+
+    // 找回密码
+    form.on('submit(LAY-filter-forget-submit)', (data) => {
+      let field = data.field
+
+      admin.req({
+        url: setter.api + 'json/user/forget.json',
+        data: field,
+        done(res) {
+          location.hash = router.href + '/type=resetpass'
+        },
+      })
+      return false
+    })
+
+    // 重置密码
+    form.on('submit(LAY-filter-resetpass-submit)', (data) => {
+      let field = data.field
+
+      if (field.password !== field.repass) {
+        return layer.msg('两次密码输入不一致')
+      }
+      admin.req({
+        url: setter.api + 'json/user/resetpass.json',
+        data: field,
+        done(res) {
+          layer.msg(
+            '密码已成功重置',
+            {
+              offset: '15px',
+              icon: 1,
+              time: 1000,
+            },
+            () => {
+              location.hash = '/user/login'
+            },
+          )
+        },
+      })
+      return false
+    })
+  })
+</script>

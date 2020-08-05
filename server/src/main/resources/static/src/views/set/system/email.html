@@ -1,0 +1,78 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>设置</cite></a>
+    <a><cite>邮件服务</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-header">邮件服务</div>
+        <div class="layui-card-body">
+          <div class="layui-form" wid100>
+            <div class="layui-form-item">
+              <label class="layui-form-label">SMTP服务器</label>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="smtp_server" value="smtp.aliyun.com" />
+              </div>
+              <div class="layui-form-mid layui-word-aux">
+                如：smtp.163.com
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">SMTP端口号</label>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="smtp_port" lay-verify="number" value="25" />
+              </div>
+              <div class="layui-form-mid layui-word-aux">
+                一般为 25 或 465
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">发件人邮箱</label>
+              <div class="layui-input-inline">
+                <input
+                  type="text"
+                  class="layui-input"
+                  name="send_email"
+                  lay-verify="email"
+                  value="xianxin@layui-inc.com"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">发件人昵称</label>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="send_nickname" value="贤心" autocomplete="off" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">邮箱登入密码</label>
+              <div class="layui-input-inline">
+                <input type="password" class="layui-input" name="email_pwd" value="123456" autocomplete="off" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="LAY-filter-set-email">
+                  确认保存
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('set', layui.factory('set')).use('admin', () => {
+    let $ = layui.$,
+      admin = layui.admin
+    admin.setInputFocusEnd($('[name=smtp_server]'))
+  })
+</script>

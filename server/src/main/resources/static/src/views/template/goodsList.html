@@ -1,0 +1,51 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>页面</cite></a>
+    <a><cite>商品列表</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <script type="text/html" template>
+      {{# for(let i=0; i<10; i++){ }}
+      <div class="layui-col-md2 layui-col-sm4" style="padding: 10px;">
+        <div class="layadmin-goods-container">
+          <a href="javascript:;">
+            <img src="{{ layui.setter.api }}images/portrait.png" width="100%" />
+          </a>
+          <a href="javascript:;">
+            <div class="layadmin-goods-content">
+              <p class="info">
+                2018春夏季新款港味短款白色T恤+网纱中长款chic半身裙套装两件套
+              </p>
+              <div class="price">
+                <b>￥79</b>
+                <span>¥ <del>130</del></span>
+                <span class="flow">
+                  <i class="layui-icon layui-icon-rate"></i>
+                  123
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      {{# } }}
+    </script>
+    <div class="layui-col-md12 layui-col-sm12">
+      <div id="LAY-id-goods-page" class="layui-text-center"></div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('laypage', () => {
+    let laypage = layui.laypage
+
+    laypage.render({
+      elem: 'LAY-id-goods-page',
+      count: 50,
+    })
+  })
+</script>

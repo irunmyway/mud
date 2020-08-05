@@ -7,6 +7,7 @@ import com.eztv.mud.bean.PlayerData;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.utils.BDebug;
 import com.google.gson.Gson;
 
 import java.util.Base64;
@@ -25,7 +26,9 @@ public class DataHandler {
                 String data = new String(Base64.getDecoder().decode(player.getData()));
                 PlayerData pd =  gson.fromJson(data, PlayerData.class);
                 player.setPlayerData(pd);
-            }catch(Exception e){e.printStackTrace();}
+            }catch(Exception e){
+                BDebug.trace("玩家没有数据:"+e.toString());
+            }
             //获取玩家基础属性
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
             Attribute base = attributes.get(player.getLevel() + "");

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/skill/")
+@RequestMapping("/game/api/skill/")
 public class SkillController {
     @Autowired
     SkillImpl skill;

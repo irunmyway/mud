@@ -1,15 +1,17 @@
 package com.eztv.mud.handler.core;
 
-import com.eztv.mud.bean.*;
+import com.eztv.mud.bean.Client;
+import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.utils.BObject;
+import com.eztv.mud.utils.BProp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static com.eztv.mud.Constant.FIGHT_SPEED;
-import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.GameUtil.getAttribute;
 
 /**
  作者：hhx QQ1025334900
@@ -19,7 +21,7 @@ import static com.eztv.mud.GameUtil.*;
 public class Battle implements ActionListener {
     private GameObject who;
     private GameObject target;
-    private Timer timer = new Timer(FIGHT_SPEED, null);
+    private Timer timer ;
     private Client client;
     private String targetKey;
 
@@ -40,7 +42,11 @@ public class Battle implements ActionListener {
         this.who = who;
         this.target = target;
         if(initFail()) return;
-        this.timer = new Timer(FIGHT_SPEED, this);
+        int speed = 1200;
+        try{
+            speed = Integer.parseInt(BProp.getInstance().get("fight_speed"));
+        }catch(Exception e){e.printStackTrace();}
+        this.timer = new Timer(speed, this);
         this.timer.start();
     }
 
@@ -74,7 +80,7 @@ public class Battle implements ActionListener {
             getAttribute(client);//获取玩家属性
             return false;
         }
-        timer.setDelay(FIGHT_SPEED);
+//        timer.setDelay(FIGHT_SPEED);
         return true;
     }
 

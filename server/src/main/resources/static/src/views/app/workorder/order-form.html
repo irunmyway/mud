@@ -1,0 +1,63 @@
+<div
+  class="layui-form"
+  id="LAY-id-orderList-form"
+  lay-filter="LAY-filter-orderList-form"
+  style="padding: 20px 30px 0 0;"
+>
+  <div class="layui-form-item">
+    <label class="layui-form-label">业务性质</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="attr" value="{{ d.params.attr || '' }}" lay-verify="required" placeholder="请输入业务性质" autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">工单标题</label>
+    <div class="layui-input-block">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="title" value="{{ d.params.title || '' }}" lay-verify="required" placeholder="工单标题..." autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">工单进度</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="progress" value="{{ d.params.progress || '' }}" lay-verify="required" placeholder="工单进度..." autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">工单状态</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <select name="state" lay-verify="required">
+          <option value="0" {{ d.params.state === 0 ? 'selected' : '' }}>未分配</option>
+          <option value="1" {{ d.params.state === 1 ? 'selected' : '' }}>处理中</option>
+          <option value="2" {{ d.params.state === 2 ? 'selected' : '' }}>已处理</option>
+        </select>
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">受理人员</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <select name="accept" lay-verify="required">
+          <option value="">请选择受理人员</option>
+          <option value="1" {{ d.params.accept === 1 ? 'selected' : '' }}>员工-1</option>
+          <option value="2" {{ d.params.accept === 2 ? 'selected' : '' }}>员工-2</option>
+          <option value="3" {{ d.params.accept === 3 ? 'selected' : '' }}>员工-3</option>
+          <option value="4" {{ d.params.accept === 4 ? 'selected' : '' }}>员工-4</option>
+          <option value="5" {{ d.params.accept === 5 ? 'selected' : '' }}>员工-5</option>
+        </select>
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item layui-text-center" style="padding-top: 20px;">
+    <button class="layui-btn" id="LAY-id-order-submit" lay-submit lay-filter="LAY-filter-order-submit">
+      提交
+    </button>
+  </div>
+</div>

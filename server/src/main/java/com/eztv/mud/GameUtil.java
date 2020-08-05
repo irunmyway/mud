@@ -3,6 +3,7 @@ package com.eztv.mud;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
+import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.cache.MonsterCache;
 import com.eztv.mud.cache.SkillCache;
 import com.eztv.mud.constant.Enum;
@@ -176,6 +177,15 @@ public class GameUtil {
             }catch (Exception e){e.printStackTrace();}
         }
     }
+    public static void sendToFaction(int faction,String str){//发送帮派
+        for (Client item: clients) {
+            if(FactionCache.factions.containsKey(faction+"")){
+                try{
+                    item.sendMsg(str.getBytes());
+                }catch (Exception e){e.printStackTrace();}
+            }
+        }
+    }
     public static void sendToRoom(Client client,String str){//向该地图的人发送战斗内容
         for (Client item : clients) {//向该地图的人发送战斗内容
             if (BObject.isNotEmpty(item.getPlayer().getPlayerData().getRoom()) && BObject.isNotEmpty(client.getPlayer().getPlayerData().getRoom()))
@@ -192,9 +202,22 @@ public class GameUtil {
             }catch (Exception e){e.printStackTrace();}
         }
     }
-
+    public static void sendToKey(String key,String str){//发送给自己
+        for (Client item: clients) {
+            try{
+                if(item.getPlayer().getKey().equals(key)){
+                    item.sendMsg(str.getBytes());
+                }
+            }catch (Exception e){e.printStackTrace();}
+        }
+    }
     public static String getProp(String prop,Object... args){
         Properties Config = BProp.getInstance().getProp();
+        return colorString(String.format(Config.get(prop).toString(),args));
+    }
+    public static String getPropByFile(String file,String prop,Object... args){
+        Properties Config = BProp.getInstance().getProp(file);
+        if(Config==null)return "";
         return colorString(String.format(Config.get(prop).toString(),args));
     }
 

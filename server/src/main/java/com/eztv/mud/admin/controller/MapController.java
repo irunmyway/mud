@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/map/")
+@RequestMapping("/game/api/map/")
 public class MapController {
 
     @Autowired
@@ -20,17 +20,13 @@ public class MapController {
 
     @RequestMapping("createRoom")
     public String createRoom() {
-        BDebug.trace("测试1");
         map.createRoom();
-        BDebug.trace("测试2");
         return "success";
     }
 
     @RequestMapping("delRoom")
     public String delRoom(int id) {
-        BDebug.trace("测试1");
         map.delRoom(id);
-        BDebug.trace("测试2");
         return "success";
     }
 

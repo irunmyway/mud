@@ -39,7 +39,6 @@ public class MapHandler {
             WinMessage win = new WinMessage();
             LuaValue luaValue = client.getScriptExecutor().loadFile(null,getRoom(targetRoom).getScript())
             .execute(LUA_进入房间,client,win,msg);
-            BDebug.trace("测试"+luaValue);
             if((luaValue==null?"1":luaValue.toString()).equals("1")||
                     getRoom(targetRoom).getScript()=="") {//代表允许进入
                 changeRoom(client, outRoom,targetRoom);

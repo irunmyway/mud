@@ -19,12 +19,15 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
         String token = request.getParameter("token");
         String requestURI = request.getRequestURI();
-        if(GameUtil.getProp("token").equals(token)||requestURI.contains("/logout")){
-            return true;
-        }else{
-            response.sendRedirect("/logout");
+        if(requestURI.contains("/game/api/")){
+            if(GameUtil.getProp("token").equals(token)||requestURI.contains("/logout")){
+                return true;
+            }else{
+                response.sendRedirect("/logout");
+                return false;
+            }
         }
-        return false;
+        return true;
     }
  
 }

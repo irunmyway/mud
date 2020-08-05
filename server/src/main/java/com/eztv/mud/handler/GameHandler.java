@@ -1,21 +1,23 @@
 package com.eztv.mud.handler;
 
 import com.alibaba.fastjson.JSONObject;
+import com.eztv.mud.Word;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.constant.Enum;
-import com.eztv.mud.constant.Enum.*;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
-import com.eztv.mud.Word;
 import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.cache.manager.FactionManager;
+import com.eztv.mud.constant.Enum;
+import com.eztv.mud.constant.Enum.color;
+import com.eztv.mud.constant.Enum.messageType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.Constant.LUA_对话;
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.GameUtil.getGameObject;
-import static com.eztv.mud.constant.Cmd.*;
+import static com.eztv.mud.constant.Cmd.doTalk;
+import static com.eztv.mud.constant.Cmd.getGG;
 
 public class GameHandler {
 
@@ -39,7 +41,11 @@ public class GameHandler {
         if(gameObject==null)return;
         List<Choice> choice = new ArrayList<>();
         if(gameObject instanceof Player){//是玩家
-            choice.add(Choice.createChoice("私聊", messageType.input,"私聊", gameObject.getKey(),null));
+            choice.add(Choice.createChoice("私聊", messageType.input,"私聊", gameObject.getKey(),null).setBgColor(color.gray));
+            Faction faction = FactionManager.getFaction(client);
+            if(faction!=null&&client.getPlayer().getFaction_position()>0){//管理层可以招募
+                choice.add(Choice.createChoice("招募", messageType.action,"recruitFaction", gameObject.getKey(),null, Enum.winAction.close).setBgColor(color.blue));
+            }
             winMsg.setChoice(choice);
             winMsg.setDesc(gameObject.getName());
             client.sendMsg(msgBuild(messageType.action, doTalk,object2JsonStr(winMsg),gameObject.getKey()).getBytes());

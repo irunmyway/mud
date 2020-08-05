@@ -1,0 +1,73 @@
+<div class="layui-card layadmin-breadcrumb">
+  <div class="layui-breadcrumb" lay-filter="LAY-filter-breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>应用</cite></a>
+    <a><cite>消息中心</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space10">
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-tab layui-tab-brief">
+          <ul class="layui-tab-title">
+            <li class="layui-this">全部消息</li>
+            <li>通知<span class="layui-badge">6</span></li>
+            <li>私信</li>
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+              <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-event="del">
+                  删除
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-event="read">
+                  标记已读
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-event="readAll">
+                  全部已读
+                </button>
+              </div>
+              <table id="LAY-id-message-all" lay-filter="LAY-filter-message-all"></table>
+            </div>
+            <div class="layui-tab-item">
+              <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-event="del">
+                  删除
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-event="read">
+                  标记已读
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="notice" data-event="readAll">
+                  全部已读
+                </button>
+              </div>
+              <table id="LAY-id-message-notice" lay-filter="LAY-filter-message-notice"></table>
+            </div>
+            <div class="layui-tab-item">
+              <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-event="del">
+                  删除
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-event="read">
+                  标记已读
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-event="readAll">
+                  全部已读
+                </button>
+              </div>
+              <table id="LAY-id-message-direct" lay-filter="LAY-filter-message-direct"></table>
+            </div>
+          </div>
+        </div>
+        <script type="text/html" id="LAY-id-titleTpl">
+          <a lay-href="{{ layui.router().href }}detail/id={{ d.id }}">{{ d.title }}</a>
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.use('message', layui.factory('message'))
+</script>

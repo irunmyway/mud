@@ -1,0 +1,15 @@
+<div class="layui-form" id="LAY-id-tagsList-form" lay-filter="LAY-filter-tagsList-form" style="padding: 20px 30px 0 0;">
+  <div class="layui-form-item">
+    <label class="layui-form-label">分类名</label>
+    <div class="layui-input-inline">
+      <script type="text/html" template>
+        <input type="text" class="layui-input" name="tags" value="{{ d.params.tags || '' }}" lay-verify="required" placeholder="请输入..." autocomplete="off" />
+      </script>
+    </div>
+  </div>
+  <div class="layui-form-item layui-text-center">
+    <button class="layui-btn" id="LAY-id-tags-submit" lay-submit lay-filter="LAY-filter-tags-submit">
+      提交
+    </button>
+  </div>
+</div>
