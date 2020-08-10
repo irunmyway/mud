@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.eztv.mud.Constant.FIGHT_SPEED;
 import static com.eztv.mud.GameUtil.getAttribute;
 
 /**
@@ -21,7 +20,7 @@ import static com.eztv.mud.GameUtil.getAttribute;
 public class Battle implements ActionListener {
     private GameObject who;
     private GameObject target;
-    private Timer timer ;
+    private Timer timer =new Timer(5000,null);
     private Client client;
     private String targetKey;
 

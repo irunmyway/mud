@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.cache.manager.ItemManager.getItemById;
+import static com.eztv.mud.cache.manager.ItemManager.getSkillById;
 
 public class UsePanel extends BaseCommand {
     public UsePanel(Client client, Msg msg, String key) {

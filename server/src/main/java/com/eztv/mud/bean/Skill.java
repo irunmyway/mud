@@ -14,7 +14,25 @@ public class Skill {
 
     public Skill() {
     }
-
+    public void delSkill(int id, int num) {
+        if (num < 1) num = 1;
+        Item delItem = null;
+        for (Item item : skills) {
+            if (item.getId() == id) {
+                if (item.getNum() > 1) {
+                    if (item.getNum() - num < 1) {
+                        delItem = item;
+                    } else {
+                        item.setNum(item.getNum() - num);
+                    }
+                } else {
+                    delItem = item;
+                }
+            }
+        }
+        if (delItem != null)
+            skills.remove(delItem);
+    }
 
     public Item getCurSkill() {
         return curSkill;

@@ -42,7 +42,12 @@ public class Bag implements LuaOpen.LuaBag {
     public long getYbMoney() {
         return ybMoney;
     }
-
+    public synchronized long changeYbMoney(long num) {
+        return ybMoney+=num;
+    }
+    public synchronized long changeMoney(long num) {
+        return money+=num;
+    }
     public void setYbMoney(long ybMoney) {
         this.ybMoney = ybMoney;
     }
@@ -57,75 +62,89 @@ public class Bag implements LuaOpen.LuaBag {
 
 
     public void giveItem(int id, int num) {
-        if (num < 1) num = 1;
-        Item addItem = null;
-        for (Item item : Word.getInstance().getItems()) {
-            if (item.getId() == id) {
-                addItem = item;
+        synchronized (items){
+            if (num < 1) num = 1;
+            Item addItem = null;
+            for (Item item : Word.getInstance().getItems()) {
+                if (item.getId() == id) {
+                    addItem = item;
+                }
             }
+            if (addItem == null) return;
+            int pos = items.indexOf(addItem);
+            if (pos > -1) {//背包中有了
+                items.remove(addItem);
+                addItem.setNum(addItem.getNum() + num);
+            } else {
+                addItem.setNum(num);
+            }
+            items.add(addItem);
         }
-        if (addItem == null) return;
-        int pos = items.indexOf(addItem);
-        if (pos > -1) {//背包中有了
-            addItem.setNum(addItem.getNum() + num);
-        } else {
-            addItem.setNum(num);
-        }
-        items.add(addItem);
-
     }
 
+    public Item getItem(int id){
+        for (Item item:items){
+            if (item.getId()==id)return  item;
+        }
+        return null;
+    }
 
     public void giveSkill(int id, int num) {
-        if (num < 1) num = 1;
-        Item addItem = null;
-        for (Item item : SkillCache.getSkills()) {
-            if (item.getId() == id) {
-                addItem = item;
+        synchronized (items){
+            if (num < 1) num = 1;
+            Item addItem = null;
+            for (Item item : SkillCache.getSkills()) {
+                if (item.getId() == id) {
+                    addItem = item;
+                }
             }
+            if (addItem == null) return;
+            int pos = items.indexOf(addItem);
+            if (pos > -1) {//背包中有了
+                items.remove(addItem);
+                addItem.setNum(addItem.getNum() + num);
+            } else {
+                addItem.setNum(num);
+            }
+            items.add(addItem);
         }
-        if (addItem == null) return;
-        int pos = items.indexOf(addItem);
-        if (pos > -1) {//背包中有了
-            addItem.setNum(addItem.getNum() + num);
-        } else {
-            addItem.setNum(num);
-        }
-        items.add(addItem);
-
     }
 
     public void delItem(int id, int num) {
-        if (num < 1) num = 1;
-        Item delItem = null;
-        for (Item item : items) {
-            if (item.getId() == id) {
-                if (item.getNum() > 1) {
-                    if (item.getNum() - num < 1) {
-                        delItem = item;
+        synchronized (items){
+            if (num < 1) num = 1;
+            Item delItem = null;
+            for (Item item : items) {
+                if (item.getId() == id) {
+                    if (item.getNum() > 1) {
+                        if (item.getNum() - num < 1) {
+                            delItem = item;
+                        } else {
+                            item.setNum(item.getNum() - num);
+                        }
                     } else {
-                        item.setNum(item.getNum() - num);
+                        delItem = item;
                     }
-                } else {
-                    delItem = item;
                 }
             }
+            if (delItem != null)
+                items.remove(delItem);
         }
-        if (delItem != null)
-            items.remove(delItem);
     }
 
     public int delItemBundle(int id) {
         int num = 0;
-        Item delItem = null;
-        for (Item item : items) {
-            if (item.getId() == id) {
-                delItem = item;
+        synchronized (items){
+            Item delItem = null;
+            for (Item item : items) {
+                if (item.getId() == id) {
+                    delItem = item;
+                }
             }
-        }
-        if (delItem != null) {
-            num = delItem.getNum();
-            items.remove(delItem);
+            if (delItem != null) {
+                num = delItem.getNum();
+                items.remove(delItem);
+            }
         }
         return num;
     }
@@ -169,5 +188,17 @@ public class Bag implements LuaOpen.LuaBag {
     @Override
     public void 给元宝(long yb) {
         setYbMoney(yb);
+    }
+
+    @Override
+    public String 到文本() {
+//        List<String> list = new ArrayList<>();
+//        if(getJbMoney()!=0)
+        String ret = "";
+        if(getJbMoney()!=0){
+
+        }
+
+        return null;
     }
 }

@@ -8,7 +8,6 @@ import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.ArrayList;
@@ -85,13 +84,9 @@ public class Test {
     public void test4(){
         Globals globals = JsePlatform.debugGlobals();
         globals.loadfile("lua/test.lua").call();
-        LuaValue lv  =CoerceJavaToLua.coerce(this); // Java to Lua
-         LuaValue[] dogs = { lv };
-        this.a=5;
-        String aVal = globals
+        globals
                 .get(LuaValue.valueOf("getVal"))
-                .invoke(lv).toString();
-        BDebug.trace("测试"+aVal);
+                .invoke();
     }
     @org.junit.Test
     public void test6(){

@@ -13,6 +13,7 @@ import java.util.List;
 import static com.eztv.mud.GameUtil.msgBuild;
 import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.doTalk;
+import static com.eztv.mud.constant.Enum.winAction.close;
 import static com.eztv.mud.constant.Enum.winAction.open;
 
 public class TradePanel extends BaseCommand {
@@ -35,7 +36,7 @@ public class TradePanel extends BaseCommand {
         ).setBgColor(Enum.color.red));
         choice.add(Choice.createChoice("寄卖商城",
                 Enum.messageType.action,
-                "jmStore", null,null,open
+                "jmStore", null,null,close
         ).setBgColor(Enum.color.blue));
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(

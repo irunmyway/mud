@@ -13,6 +13,8 @@ import java.util.List;
 import static com.eztv.mud.Constant.LUA_物品使用;
 import static com.eztv.mud.Constant.LUA_物品查看;
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.cache.manager.ItemManager.getItemById;
+import static com.eztv.mud.cache.manager.ItemManager.getSkillById;
 
 /**
  作者：hhx QQ1025334900

@@ -2,6 +2,7 @@ local 属性 = luajava.newInstance("com.eztv.mud.bean.Attribute")--属性结构�
 local 游戏工具 = luajava.newInstance("com.eztv.mud.GameUtil")--游戏工具类
 local 奖励 = luajava.newInstance("com.eztv.mud.bean.Bag")--背包物品工具
 local Enum = luajava.newInstance("com.eztv.mud.constant.Enum")
+lua工具 = luajava.newInstance("com.eztv.mud.LuaUtil")--初始化攻击
 function 初始化()
     --基础属性初始化
     属性:setHp(40);
@@ -28,14 +29,14 @@ end
 
 
 function 对话(client, 窗口, 消息, 目标)
-    luaUtil = luajava.newInstance("com.eztv.mud.LuaUtil")--初始化攻击
+
     if (目标:getDesc() ~= nil) then
         窗口:setDesc(目标:getName() .. "<br>" .. 目标:getDesc());
     else
         窗口:setDesc(目标:getName() .. "<br>");
     end
-    luaUtil:添加选项("攻击", Enum.messageType.normal, "attack", 消息:getMsg(), nil)
-    窗口:添加选项集合(luaUtil);
-    luaUtil:返回元素消息(client,"action","doTalk",目标:getKey(),窗口);
+    lua工具:添加选项("攻击", Enum.messageType.normal, "attack", 消息:getMsg(), nil)
+    窗口:添加选项集合(lua工具);
+    lua工具:返回元素消息(client,"action","doTalk",目标:getKey(),窗口);
 end
 

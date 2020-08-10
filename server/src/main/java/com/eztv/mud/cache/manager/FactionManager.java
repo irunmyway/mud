@@ -1,9 +1,11 @@
 package com.eztv.mud.cache.manager;
 
+import com.eztv.mud.Constant;
+import com.eztv.mud.DataBase;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Faction;
+import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.cache.FactionCache;
-import com.eztv.mud.utils.BProp;
 
 import static com.eztv.mud.cache.manager.ClientManager.getClient;
 
@@ -46,24 +48,25 @@ public class FactionManager {
         String alias="";
         switch (pos){
             case 0:
-                alias = BProp.getInstance().get("faction","faction_grant1");
+                alias = FactionCache.grantAlias.get(0);
                 break;
-            case 1:
-                alias = BProp.getInstance().get("faction","faction_grant1");
-                break;
-            case 2:
-                alias = BProp.getInstance().get("faction","faction_grant2");
-                break;
-            case 3:
-                alias = BProp.getInstance().get("faction","faction_grant3");
-                break;
-            case 4:
-                alias = BProp.getInstance().get("faction","faction_grant4");
-                break;
-            case 5:
-                alias = BProp.getInstance().get("faction","faction_grant5");
+            default:
+                alias = FactionCache.grantAlias.get(pos-1);
                 break;
         }
         return alias;
+    }
+
+    //设置职位
+    public static boolean setPosition(Player player,int pos){
+        for (Client client: Constant.clients){
+            if(client.getPlayer().getAccount().equals(player.getAccount())){
+                client.getPlayer().setFaction_position(pos);
+            }
+        }
+        //数据库也更新下
+        int flag = DataBase.getInstance().init().createSQL("update role set faction_position=? where account =?",
+                pos,player.getAccount()).update();
+        return flag>0;
     }
 }

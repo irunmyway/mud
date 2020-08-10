@@ -19,8 +19,6 @@ public class Room extends GameObject {
     @Id
     private int id=0;
     private String name = "";//地图名称也是中心
-    @Column(name = "desc")
-    private String describe="";//地图介绍
     @Column(name = "type")
     private String roomType="1";//安全区或者等等。。。。
     @Column(name = "west")
@@ -101,14 +99,6 @@ public class Room extends GameObject {
     }
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDescribe() {
-        return describe;
-    }
-
-    public void setDescribe(String describe) {
-        this.describe = describe;
     }
 
     public String getRoomType() {

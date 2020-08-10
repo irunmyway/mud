@@ -13,6 +13,7 @@ import com.eztv.mud.utils.BString;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eztv.mud.Constant.LUA_初始化;
 import static com.eztv.mud.Constant.Other_PATH;
 import static com.eztv.mud.GameUtil.*;
 
@@ -31,8 +32,8 @@ public class CreateFaction extends BaseCommand {
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
         if (getMsg().getRole() != null && getMsg().getMsg() != null) {//开始建立
-            if (getMsg().getRole().equals("do")) {
-                String factionName = getMsg().getMsg();
+            if (getMsg().getMsg().equals("do")) {
+                String factionName = getMsg().getRole();
                 if (BString.isChinese(factionName) && factionName.length() > 1 && factionName.length() < 7) {//执行创建
                     int factionId = BDate.getNowMillsByTen();
                     Faction faction = new Faction();
@@ -50,7 +51,7 @@ public class CreateFaction extends BaseCommand {
                         getPlayer().setFaction_position(5);
                         FactionCache.factions.put(factionId+"",faction);
                         getClient().getScriptExecutor().loadFile(null,Other_PATH+"faction")
-                                .execute("create",getClient());
+                                .execute(LUA_初始化,getClient(),new WinMessage());
                         //发送创建帮派成功消息
                         String sendStr = getPropByFile("faction","faction_create_success",
                                 factionName,

@@ -151,7 +151,7 @@
                         <!--不混淆包下的所有类名，且类中的方法也不混淆  -->
                         <option>-keep class com.eztv.mud.bean.**{*;}</option>
                         <option>-keep class com.eztv.mud.bean.**</option>
-                        <option>-keep class com.eztv.mud.command.**{*;}</option>
+<!--                        <option>-keep class com.eztv.mud.command.**{*;}</option>-->
                         <option>-keepclassmembers enum * {
                             public static **[] values();
                             public static ** valueOf(java.lang.String);

@@ -4,6 +4,8 @@ import com.eztv.mud.LuaUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.task.Task;
 
+import java.util.List;
+
 public class LuaOpen {
 
 
@@ -14,7 +16,7 @@ public class LuaOpen {
 
         public String 装备(Client client, Item item);//装备上当前物品
 
-        public int 当前等级(Client client);
+        public int 取等级(Client client);
 
 
         //任务部分
@@ -26,7 +28,8 @@ public class LuaOpen {
 
         public LuaUtil 任务添加条件集(String taskType);//添加一个任务任务类型
 
-
+        MsgMap 到消息(String str);
+        List<Item> 取背包物品集合(Client client);
         //通信部分
         void 发送消息(Client client, byte[] msg);
 
@@ -38,12 +41,18 @@ public class LuaOpen {
 
         Task 取任务();
 
+        long 取离线时间(Client client);
+
+        void 挂机奖励(Client client);
+
         void 购买(Client client,String id,String num,long price);
         void 购买技能(Client client,String id,String num,long price);
         void 元宝购买(Client client,String id,String num,long price);
         void 元宝购买技能(Client client,String id,String num,long price);
     }
-
+    public interface LuaMath {
+        double 取随机数(int a,int b);
+    }
     public interface LuaWin {
         void 添加选项集合(LuaUtil luaUtil);
 
@@ -71,6 +80,7 @@ public class LuaOpen {
         void 给铜币(long money);
         void 给金币(long jb);
         void 给元宝(long yb);
+        String 到文本();
 
     }
 

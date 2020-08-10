@@ -9,6 +9,7 @@ import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Cmd;
 import com.eztv.mud.handler.GameHandler;
 import com.eztv.mud.handler.LoginHandler;
+import com.eztv.mud.handler.event.PlayerEvent;
 import com.eztv.mud.socket.SocketServer;
 import com.eztv.mud.socket.callback.SocketServerCallback;
 import com.eztv.mud.syn.WordSyn;
@@ -56,7 +57,10 @@ public class Server implements SocketServerCallback {
     public void onClosed(ServerSocket serverSocket, Socket socket, Client client) {
         try {
             //保存测试
-            client.getPlayer().getDataBaseHandler().saveAll(client.getPlayer());
+            try{
+                client.getPlayer().getDataBaseHandler().saveAll(client.getPlayer());
+                client.getPlayer().getDataBaseHandler().offlinePlayer(client.getPlayer());
+            }catch(Exception e){e.printStackTrace();}
             clients.remove(socket);
         } catch (Exception e) {
         }
@@ -106,6 +110,9 @@ public class Server implements SocketServerCallback {
                 switch (msg.getCmd()) {
                     case Cmd.getGG://获取房间信息
                         GameHandler.getGG(client);
+                        break;
+                    case "loginSuccess"://登录成功触发event
+                        PlayerEvent.onLogin(client);
                         break;
                 }
                 break;

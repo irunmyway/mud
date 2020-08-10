@@ -54,7 +54,26 @@ public class BProp {
         return prop;
     }
     public Properties getProp(String name) {
-        return props.get(name);
+        Properties prop = props.get(name);
+        if(prop==null){
+            FileInputStream fis=null;
+            try {
+                Properties newProp = new Properties();
+                String path = System.getProperty("user.dir")+"/conf/"+name+".properties";
+                fis = new FileInputStream(path);
+                newProp.load(new InputStreamReader(fis, "UTF-8"));
+                props.put(name,newProp);
+                return newProp;
+            }catch (Exception e){e.printStackTrace();return null;}
+            finally {
+                try {
+                    fis.close(); // 关闭流
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return prop;
     }
     public  Boolean updatePro(String path, String key, String value) throws IOException {
         load(path);

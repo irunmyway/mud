@@ -5,11 +5,12 @@ import com.eztv.mud.command.commands.action.*;
 import com.eztv.mud.command.commands.bag.BagPanel;
 import com.eztv.mud.command.commands.equip.EquipPanel;
 import com.eztv.mud.command.commands.faction.*;
+import com.eztv.mud.command.commands.pop.MapPanel;
 import com.eztv.mud.command.commands.pop.SkillAttackPanel;
 import com.eztv.mud.command.commands.pop.TradePanel;
 import com.eztv.mud.command.commands.store.JbStore;
-import com.eztv.mud.command.commands.store.JmStore;
 import com.eztv.mud.command.commands.store.YbStore;
+import com.eztv.mud.command.commands.store.auction.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,12 @@ public class CommandSetHandler {
         actionCommandSet.put("jbStore", JbStore.class);//寄卖商城
         actionCommandSet.put("ybStore", YbStore.class);//元宝商城
         actionCommandSet.put("jmStore", JmStore.class);//寄卖商城
+        actionCommandSet.put("jmSell", JmSell.class);//寄卖商城
+        actionCommandSet.put("jmSellCurrency", JmStore.class);//寄卖商城
+        actionCommandSet.put("jmLook", JmLook.class);//寄卖查看
+        actionCommandSet.put("jmCancel", JmCancel.class);//下架寄卖
+        actionCommandSet.put("jmBuy", JmBuy.class);//寄卖购买
+        actionCommandSet.put("jmReward", JmReward.class);//寄卖收益
 
     }
 
@@ -39,13 +46,14 @@ public class CommandSetHandler {
         panelCommandSet.put("my_equip", EquipPanel.class);//装备面板
         panelCommandSet.put("useClick", UsePanel.class);//物品使用面板
         panelCommandSet.put("getBag", BagPanel.class);//背包面板
+        panelCommandSet.put("getMap", MapPanel.class);//背包面板
         panelCommandSet.put("getMine", MinePanel.class);//我的 面板
         panelCommandSet.put("factionPanel", FactionPanel.class);//门派 面板
         panelCommandSet.put("confirmPanel", ConfirmPanel.class);//确认 面板
         panelCommandSet.put("getSkill", SkillAttackPanel.class);//技能 面板
         panelCommandSet.put("getTrade", TradePanel.class);//交易 面板
         panelCommandSet.put("memberFaction", MemberFaction.class);//
-        panelCommandSet.put("grantMemberFaction", MemberFaction.class);//
+        panelCommandSet.put("grantMemberFaction", GrantMemberFaction.class);//
 
 
 

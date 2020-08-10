@@ -28,7 +28,7 @@ function 到文本(物品类型) end
 ---@return "玩家操作"
 function 学习技能(client,item) end
 function 装备(client,item) end
-function 当前等级(client) end
+function 取等级(client) end
 
 ---@return "工具"
 function 任务创建(id,state,nextId,desc) end

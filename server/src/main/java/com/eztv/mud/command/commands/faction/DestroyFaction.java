@@ -37,7 +37,7 @@ public class DestroyFaction extends BaseCommand {
                 .update();
         if(flag>0){
             FactionCache.remove(getClient().getPlayer().getFaction());//从缓存中移除
-            getClient().getPlayer().setFaction(0);
+            getClient().getPlayer().setFaction(-1);
             getClient().getPlayer().setFaction_position(0);
             getClient().getPlayer().getDataBaseHandler().savePlayer(getClient().getPlayer());
             //发送帮派解散成功消息

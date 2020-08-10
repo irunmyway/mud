@@ -26,7 +26,6 @@ public class MonsterCache {
         for (Monster monster : monsters) {
             try {
                 Attribute attribute = new Attribute();
-                //List<Choice> choice = new ArrayList<>();
                 if (monster.getScript().length() > 0) {//模板
                     monster.setScript(Monster_PATH + monster.getScript());
                     monsterScript.put(monster.getId() + "", globals.loadfile(monster.getScript() + ".lua"));
@@ -73,6 +72,16 @@ public class MonsterCache {
             }
         }
         BDebug.trace("怪物加载完成 数量 : Monster load monster_num:【" + monsters.size() + "】");
+    }
+
+    public static Monster buildMonster(Monster monster,Globals globals){
+        if(monster==null)monster = new Monster();
+        monster.setScript(Monster_PATH + monster.getScript());
+        monsterScript.put(monster.getId() + "", globals.loadfile(monster.getScript() + ".lua"));
+        globals.load(monsterScript.get(monster.getId() + ""));
+        Attribute attribute = JSONObject.toJavaObject(jsonStr2Json(globals.get(LuaValue.valueOf(LUA_初始化)).invoke().toString()), Attribute.class);
+        monster.setAttribute(attribute);
+        return monster;
     }
 
     public static List<Monster> getMonsters() {

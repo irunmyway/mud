@@ -17,7 +17,6 @@ import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
 @Table(name = "role")
 public class Player extends GameObject implements IPlayerCallBack {
     @JSONField(serialize = false)
-    @NoDB
     @Id
     private String account;
     private int level;
@@ -194,5 +193,13 @@ public class Player extends GameObject implements IPlayerCallBack {
     //帮主 副帮主 长老 堂主 成员
     public void setFaction_position(int faction_position) {
         this.faction_position = faction_position;
+    }
+
+    public Date getUpdateat() {
+        return updateat;
+    }
+
+    public void setUpdateat(Date updateat) {
+        this.updateat = updateat;
     }
 }

@@ -8,7 +8,7 @@ function 物品使用(client, 物品, 窗口, msg)
     物品:类型("weapon");
     物品:属性(属性);
     local 使用等级 = 2;
-    if (lua工具:当前等级(client) < 使用等级) then
+    if (lua工具:取等级(client) < 使用等级) then
         --等级不够
         窗口:内容("少侠你等级不够2级,无法驾驭。");
         lua工具:添加选项("原来如此", "action", "doTalk", "", "testTask", true);
@@ -20,7 +20,7 @@ function 物品使用(client, 物品, 窗口, msg)
     local 对比详情 = lua工具:装备(client, 物品);--穿上后显示对比数据
     窗口:内容(对比详情);
     窗口:列数(1);
-    lua工具:添加选项("感觉强大了许多...", "action", "doTalk", "", "testTask", true);
+    lua工具:添加选项("感觉强大了许多...", "action", "doTalk", "", "testTask");
     窗口:添加选项集合(lua工具);
     lua工具:返回元素消息(client, "action", "doTalk", key, 窗口);
 end

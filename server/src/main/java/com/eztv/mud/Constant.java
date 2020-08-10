@@ -34,7 +34,10 @@ public class Constant {
 
     //数据库语句
     public final static String FactionListSql = "select * from t_faction";
-    public final static String FactionMembersSql = "select t2.* from t_faction t1,role t2 where t1.id = t2.faction";
+    public final static String FactionMembersSql = "select t2.* from t_faction t1,role t2 where t1.id = t2.faction and t2.account = ?";
+    public final static String PlayersSql = "select * from role";
+    public final static String PlayerSql = "select * from role where account = ?";
+    public final static String AuctionSql = "select * from t_auction";
 
 
 
@@ -45,5 +48,7 @@ public class Constant {
     public final static String LUA_进入房间="进入房间";
     public final static String LUA_物品使用="物品使用";
     public final static String LUA_物品查看="物品查看";
+    public final static String LUA_挂机奖励="挂机奖励";
+
 
 }

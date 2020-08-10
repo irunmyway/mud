@@ -17,6 +17,8 @@ public class Cache implements ActionListener {
             minute = Integer.parseInt(BProp.getInstance().get("save_delay"));
         }catch(Exception e){e.printStackTrace();}
         this.timer = new Timer(minute*1000*60, this);
+//        this.timer = new Timer(1000, this);
+
         this.timer.start();
     }
 

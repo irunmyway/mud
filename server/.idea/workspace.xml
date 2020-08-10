@@ -27,345 +27,92 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、添加了后台管理的接口。实现了基础的后台接口">
-      <change afterPath="$PROJECT_DIR$/conf/faction.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/FactionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/ExitFaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/GrantMemberFaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/RecruitFaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Cache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/006z09Zkly1fyp78at3cgj313i0qa40l.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/00745YaMgy1ggjeqx1popj30kk0feaay.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/00745YaMgy1ggjeqx4ne9j30kk0bk761.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggg4wjuuaij312w0p9npd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggg4wp94slj30hm0r8wj6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggg4wvro7tj30nm0gyn03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggg4x3aioaj30nm0ek0xh.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggg4xdfch9j30nm09zjt8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggg4y754r5j30nm09zgmt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggjqoliwb4j31c00u01kx.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggk0bwblttj30ik0dwjth.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/0085KTY1gy1ggk0kja8q0j30h80ac75x.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/9f0b0dd5ly1ggjufeyh6zj20mj0ctwig.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/character.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/huge.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/logo.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/portrait.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/admin/adminList.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/carousel/img.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/console/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/console/top-card.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/console/top-search.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/content/article.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/content/comment.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/content/tags.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/echarts/bar.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/echarts/line.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/echarts/map.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/forum/posts.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/forum/replys.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/home/active-user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/home/prograss.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/home/sample.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/layer/photos.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/layim/getList.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/layim/getMembers.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/layim/getMsg.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/menu.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/message/all.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/message/detail.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/message/direct.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/message/newMsg.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/message/notice.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/role/roleList.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/table/demo.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/table/demo2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/table/demo3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/table/user.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/table/user30.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/tree/data.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/upload/demo.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/forget.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/login.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/logout.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/reg.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/resetpass.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/session.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/sms.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/user/userList.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/workorder/order.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/json/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/layui.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/layui.mobile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/code.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/layer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/html/chatlog.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/html/find.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/html/getMsg.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/html/msgbox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/layim.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/mobile/layim.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/skin/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/skin/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/skin/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/skin/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/skin/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/skin/logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/css/modules/layim/voice/default.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/font/iconfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/0.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/10.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/11.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/12.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/13.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/14.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/15.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/16.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/17.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/18.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/19.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/20.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/21.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/22.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/23.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/24.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/25.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/26.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/27.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/28.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/29.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/3.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/30.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/31.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/32.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/33.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/34.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/35.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/36.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/37.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/38.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/39.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/4.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/40.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/41.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/42.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/43.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/44.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/45.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/46.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/47.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/48.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/49.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/5.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/50.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/51.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/52.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/53.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/54.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/55.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/56.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/57.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/58.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/59.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/6.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/60.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/61.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/62.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/63.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/64.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/65.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/66.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/67.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/68.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/69.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/7.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/70.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/71.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/8.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/images/face/9.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/code.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/colorpicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/element.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/flow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/laydate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/layedit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/layer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/layim.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/laypage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/laytpl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/mobile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/rate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/slider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/transfer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/tree.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/upload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/lay/modules/util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/layui.all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/layui/layui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/console.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/contlist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/forum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/im.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/message.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/sample.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/senior.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/set.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/useradmin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/controller/workorder.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/admin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/extend/echarts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/extend/echartsTheme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/extend/treeGrid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/map.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/view.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/style/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/style/layout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/style/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/style/map.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/style/public.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/admin/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/admin/list-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/admin/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/content/article-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/content/article.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/content/comment-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/content/comment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/content/tags-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/content/tags.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/forum/posts-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/forum/posts.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/forum/replys-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/forum/replys.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/message/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/message/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/workorder/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/workorder/order-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/app/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/home/index-1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/home/index-2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/iframe/layer/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/iframe/link/baidu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/iframe/link/layui.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/iframe/link/layuiAdmin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/iframe/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/gg.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/item.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/map.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/monster.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/skill.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/views/item.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/views/item_edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/views/map_choice.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/views/moster.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/views/npc_edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/role/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/role/list-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/senior/echarts/bar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/senior/echarts/line.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/senior/echarts/map.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/senior/im/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/senior/im/kefu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/senior/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/set/system/email.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/set/system/website.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/set/user/info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/set/user/password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/set/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/system/about.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/system/get.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/system/more.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/system/theme.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/system/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/addressList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/caller.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/goodsList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/msgBoard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/personal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/tips/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/tips/error.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/template/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/user/forget.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/user/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/user/list-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/user/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/user/reg.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/user/说明.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="//更新内容&#10;1、添加了可以修改【保存游戏数据】的速度&#10;2、添加了可以调节基础战斗速度&#10;3、">
+      <change afterPath="$PROJECT_DIR$/conf/bag.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/conf/store.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lua/other/login.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lua/other/store/jmstore.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lua/room/xsc.lua" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Auction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/AuctionCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/PlayerCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ItemManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/MapPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmBuy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmCancel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmLook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmReward.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmSell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmStore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/PlayerEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/release/app-release.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/app/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/release/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/SendGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/bean/SendGameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameInputWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/window/GameInputWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/faction.properties" beforeDir="false" afterPath="$PROJECT_DIR$/conf/faction.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua-api/api/win.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua-api/api/win.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/item/xmj.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/item/xmj.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/monster/jszs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/monster/jszs.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/other/faction.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/other/faction.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/room/yacc.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/room/yacc.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/skill/hqs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/skill/hqs.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lua/test.lua" beforeDir="false" afterPath="$PROJECT_DIR$/lua/test.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proguard.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/proguard.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/config/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/config/TokenInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/EngineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/EngineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/MapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/MonsterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/MonsterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/NpcController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/NpcController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/SkillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/SkillController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Faction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Faction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/MsgMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/MsgMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Skill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/WinMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/WinMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/FactionCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/FactionCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/MonsterCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/MonsterCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/FactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/FactionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/BaseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/BaseCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ItemAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ItemAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/UsePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/UsePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/bag/BagPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/bag/BagPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/CreateFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/CreateFaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/DestroyFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/DestroyFaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/FactionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/FactionPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/JoinFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/JoinFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/GrantMemberFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/GrantMemberFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/TradePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/TradePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/JmStore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataBaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Cache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/utils/BProp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/utils/BProp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Chat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Room.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/WinMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/WinMessage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/计划.txt" beforeDir="false" afterPath="$PROJECT_DIR$/计划.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -434,17 +181,17 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\android\mud\server\conf" />
+      <recent name="D:\android\mud\server\lua\other\store" />
+      <recent name="D:\android\mud\server\lua\room" />
+      <recent name="D:\android\mud\server\lua\other" />
       <recent name="D:\android\mud\server\src\main\webapp" />
-      <recent name="D:\android\mud\server\src\main\resources" />
-      <recent name="D:\android\mud\server\lua\npc" />
-      <recent name="D:\android\mud\server\src\main\resources\static" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.eztv.mud.command.commands.store.auction" />
+      <recent name="com.eztv.mud.cache" />
+      <recent name="com.eztv.mud.command.commands.store" />
+      <recent name="com.eztv.mud.command.commands.pop" />
       <recent name="com.eztv.mud.command.commands.faction" />
-      <recent name="com.eztv.mud.admin.dao" />
-      <recent name="com.eztv.mud.admin.model.item" />
-      <recent name="com.eztv.mud.admin.model" />
-      <recent name="com.eztv.mud.admin.dao.impl" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\android\mud\server\src\main\resources\template" />
@@ -484,6 +231,22 @@
       <option name="PACKAGE_NAME" value="com.eztv.mud.test" />
       <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.Test" />
       <option name="METHOD_NAME" value="test10" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test.test4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="com.eztv.mud" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.eztv.mud.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.eztv.mud.test" />
+      <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.Test" />
+      <option name="METHOD_NAME" value="test4" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -531,6 +294,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.Test.test4" />
         <item itemvalue="JUnit.Test.test10" />
         <item itemvalue="JUnit.Test.test7" />
         <item itemvalue="JUnit.Test.test8" />
@@ -629,7 +393,17 @@
       <workItem from="1596499116764" duration="8827000" />
       <workItem from="1596514096091" duration="5242000" />
       <workItem from="1596535376014" duration="7419000" />
-      <workItem from="1596584255404" duration="21560000" />
+      <workItem from="1596584255404" duration="22980000" />
+      <workItem from="1596677257397" duration="26267000" />
+      <workItem from="1596760450430" duration="14363000" />
+      <workItem from="1596850177424" duration="372000" />
+      <workItem from="1596850908575" duration="7557000" />
+      <workItem from="1596874519568" duration="17281000" />
+      <workItem from="1596934897740" duration="3408000" />
+      <workItem from="1596938369008" duration="6640000" />
+      <workItem from="1596963629198" duration="6805000" />
+      <workItem from="1597020678652" duration="16976000" />
+      <workItem from="1597058481665" duration="11314000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -757,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596470006435</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="//更新内容&#10;1、添加了可以修改【保存游戏数据】的速度&#10;2、添加了可以调节基础战斗速度&#10;3、">
+      <created>1596641570089</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1596641570089</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -804,7 +585,8 @@
     <MESSAGE value="1、完善了指令的新映射方法&#10;2、加入了门派系统" />
     <MESSAGE value="1、lua的中文用接口实现，让脚本看起来更加好写" />
     <MESSAGE value="1、添加了后台管理的接口。实现了基础的后台接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、添加了后台管理的接口。实现了基础的后台接口" />
+    <MESSAGE value="//更新内容&#10;1、添加了可以修改【保存游戏数据】的速度&#10;2、添加了可以调节基础战斗速度&#10;3、" />
+    <option name="LAST_COMMIT_MESSAGE" value="//更新内容&#10;1、添加了可以修改【保存游戏数据】的速度&#10;2、添加了可以调节基础战斗速度&#10;3、" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="239" key="#Custom_Plugin_Repositories" timestamp="1596535167099">
@@ -851,11 +633,11 @@
     </state>
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596508769851" />
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1595948519434" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1596586451320">
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1597023399193">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596380961510" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596586451320" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596982130967" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597023399193" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596209194881" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1595993048008" />
     <state x="371" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1595470182648">
@@ -911,32 +693,32 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596166832163" />
-    <state width="1237" height="283" key="GridCell.Tab.0.bottom" timestamp="1596640806289">
+    <state width="1237" height="212" key="GridCell.Tab.0.bottom" timestamp="1597073801240">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="283" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596556527544" />
-    <state width="1237" height="283" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596640806289" />
+    <state width="1237" height="212" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
+    <state width="1237" height="212" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597073801240" />
     <state width="1237" height="283" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="283" key="GridCell.Tab.0.center" timestamp="1596640806289">
+    <state width="1237" height="212" key="GridCell.Tab.0.center" timestamp="1597073801239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="283" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596556527544" />
-    <state width="1237" height="283" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596640806289" />
+    <state width="1237" height="212" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
+    <state width="1237" height="212" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597073801239" />
     <state width="1237" height="283" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="283" key="GridCell.Tab.0.left" timestamp="1596640806289">
+    <state width="1237" height="212" key="GridCell.Tab.0.left" timestamp="1597073801239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="283" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596556527544" />
-    <state width="1237" height="283" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596640806289" />
+    <state width="1237" height="212" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
+    <state width="1237" height="212" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597073801239" />
     <state width="1237" height="283" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="283" key="GridCell.Tab.0.right" timestamp="1596640806289">
+    <state width="1237" height="212" key="GridCell.Tab.0.right" timestamp="1597073801239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="283" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596556527544" />
-    <state width="1237" height="283" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596640806289" />
+    <state width="1237" height="212" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
+    <state width="1237" height="212" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597073801239" />
     <state width="1237" height="283" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
     <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1596430247358">
@@ -981,10 +763,15 @@
     <state x="143" y="-1" width="914" height="680" key="SettingsEditor/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596535330479" />
     <state x="143" y="-1" key="SettingsEditor/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596585841702" />
     <state x="-3" y="-6" width="1245" height="680" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1596039270355" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1596470010220">
+    <state x="444" y="229" key="VCS.ChangelistChooser" timestamp="1596876391916">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="444" y="229" key="VCS.ChangelistChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596876391916" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1596641593542">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596470010220" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596641593542" />
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1595951646697" />
     <state x="11" y="89" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1596430200418">
       <screen x="0" y="0" width="1280" height="680" />
@@ -995,27 +782,32 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596447624853" />
-    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1596640990270">
+    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1597073209445">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596555872840" />
-    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596640990270" />
+    <state x="340" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596987233362" />
+    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597073209445" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596594783262" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1595998824534" />
     <state x="404" y="213" width="625" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1595469911888">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="404" y="213" width="625" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1280.680@0.0.1280.680" timestamp="1595469911888" />
-    <state x="297" y="151" width="672" height="677" key="run.anything.popup" timestamp="1596555066693">
+    <state x="345" y="102" key="refactoring.ChangeSignatureDialog" timestamp="1596942185546">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596555066693" />
+    <state x="345" y="102" key="refactoring.ChangeSignatureDialog/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596942185546" />
+    <state x="297" y="151" width="672" height="677" key="run.anything.popup" timestamp="1597025468702">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596792857977" />
+    <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597025468702" />
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1596079189990" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1596590180231">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1597064927176">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596511011896" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1596587113236" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596684528741" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597064927176" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596590180231" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1595941870793" />
   </component>

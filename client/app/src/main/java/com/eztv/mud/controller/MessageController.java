@@ -2,13 +2,18 @@ package com.eztv.mud.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ez.socket.SocketClient;
-import com.ez.utils.BDebug;
 import com.eztv.mud.bean.Chat;
 import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.AttackPack;
 
-import static com.eztv.mud.bean.Cmd.*;
+import static com.eztv.mud.bean.Cmd.doAttack;
+import static com.eztv.mud.bean.Cmd.doChat;
+import static com.eztv.mud.bean.Cmd.doTalk;
+import static com.eztv.mud.bean.Cmd.getAttribute;
+import static com.eztv.mud.bean.Cmd.getGG;
+import static com.eztv.mud.bean.Cmd.getMapDetail;
+import static com.eztv.mud.bean.Cmd.playerMove;
 import static com.eztv.mud.util.Util.msgBuild;
 import static com.eztv.mud.util.Util.object2JsonStr;
 
@@ -21,6 +26,14 @@ public class MessageController {
 
     public static void send(Object obj){//如果断开了连接就不要发送了
         SocketClient.getInstance().sendMsgByLength(JSONObject.parseObject(JSONObject.toJSON(obj).toString()) .toJSONString().getBytes());
+    }
+
+    //第一次进游戏获取地图信息
+    public static void loginSuccess(){
+        Msg msg = new Msg();
+        msg.setType(Enum.messageType.normal);
+        msg.setCmd("loginSuccess");
+        send(msg);
     }
 
     //第一次进游戏获取地图信息
@@ -58,7 +71,7 @@ public class MessageController {
     }
     //获取玩家属性
     public static void getGG(){//获取公告
-        send(msgBuild(Enum.messageType.normal, getGG,"",""));
+        send(msgBuild(Enum.messageType.normal, getGG,null,null));
     }
 
     //对话 游戏对象

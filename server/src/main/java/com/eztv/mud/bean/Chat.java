@@ -20,6 +20,13 @@ public class Chat {
         this.content = content;
     }
 
+    public static Chat system(String sendStr){
+        Chat chat = new Chat();
+        chat.setContent(sendStr);
+        chat.setMsgType(Enum.chat.系统);
+        return chat;
+    }
+
     public Enum.chat getMsgType() {
         return msgType;
     }

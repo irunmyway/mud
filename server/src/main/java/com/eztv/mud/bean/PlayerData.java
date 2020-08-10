@@ -64,15 +64,15 @@ public class PlayerData {
         getBag().setYbMoney(getBag().getYbMoney()+reward.getYbMoney());
         getBag().setJbMoney(getBag().getJbMoney()+reward.getJbMoney());
         if(reward.getMoney()!=0)
-            list.add("<font color=\"#D2691E\">铜币 "+
+            list.add(GameUtil.getPropByFile("bag","bag_money")+
                     (reward.getMoney()>0?"+":"")+
                     reward.getMoney()+"</font>");
         if(reward.getJbMoney()!=0)
-            list.add("<font color=\"#FFD700\">金币 "+
+            list.add(GameUtil.getPropByFile("bag","bag_jb")+
                     (reward.getJbMoney()>0?"+":"")+
                     reward.getJbMoney()+"</font>");
         if(reward.getYbMoney()!=0)
-            list.add("<font color=\"#DAA520\">元宝 "+
+            list.add(GameUtil.getPropByFile("bag","bag_yb")+
                     (reward.getYbMoney()>0?"+":"")+
                     reward.getYbMoney()+"</font>");
         if(reward.getExp()>0){

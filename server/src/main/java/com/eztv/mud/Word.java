@@ -32,9 +32,11 @@ public class Word {
         NpcCache.initNPC(globals,Rooms);//加载NPC
         MonsterCache.initMonster(globals,Rooms);//加载怪物
         FactionCache.initFactionCache();//加载行会
+        PlayerCache.initPlayerCache();//加载所有玩家缓存信息
         ItemCache.initItem(globals);//加载物品
         SkillCache.initSkill(globals);//加载技能
         initBaseAttribute();//加载基础属性
+        AuctionCache.initAuctionCache();//寄卖缓存
         initHandler();//装载指令
     }
 

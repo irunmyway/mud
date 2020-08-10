@@ -1,6 +1,8 @@
 package com.eztv.mud;
 
+import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
+import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
@@ -10,12 +12,14 @@ import com.eztv.mud.script.LuaOpen;
 import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import static com.eztv.mud.Constant.LUA_挂机奖励;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
 
-public class LuaUtil implements LuaOpen.LuaAction {
+public class LuaUtil implements LuaOpen.LuaAction , LuaOpen.LuaMath {
 
     public void 发送消息(Client client,byte[] msg){
         client.sendMsg(msg);
@@ -52,6 +56,26 @@ public class LuaUtil implements LuaOpen.LuaAction {
     @Override
     public Task 取任务() {
         return task;
+    }
+
+    @Override
+    public long 取离线时间(Client client) {
+        try{
+            Date lastTime = client.getPlayer().getUpdateat();
+            Date curTime =new Date();
+            long minute =(curTime.getTime() - lastTime.getTime())/1000/60;
+            //把当前的日期设置一下
+            client.getPlayer().setUpdateat(null);
+            return minute;
+        }catch(Exception e){return 0;}
+    }
+
+    @Override
+    public void 挂机奖励(Client client) {
+        client.getScriptExecutor().loadFile(null,getCurRoom(client).getScript()).
+                execute(LUA_挂机奖励,
+                        client,
+                        new WinMessage());
     }
 
     @Override
@@ -100,6 +124,18 @@ public class LuaUtil implements LuaOpen.LuaAction {
         taskCondition.setTaskActions(taskActions);
         task.getTaskConditions().add(taskCondition);
         return this;
+    }
+
+    @Override
+    public MsgMap 到消息(String str) {
+        try{
+            return JSONObject.toJavaObject(GameUtil.jsonStr2Json(str),MsgMap.class);
+        }catch(Exception e){return new MsgMap();}
+    }
+
+    @Override
+    public List<Item> 取背包物品集合(Client client) {
+        return client.getPlayer().getPlayerData().getBag().getItems();
     }
 
     public void 发送奖励(Client client, Bag reward) {
@@ -191,7 +227,7 @@ public class LuaUtil implements LuaOpen.LuaAction {
      * 时间: 2020-07-25 9:47
      *功能: 玩家自身部分
      **/
-    public int 当前等级(Client client) {
+    public int 取等级(Client client) {
         return client.getPlayer().getLevel();
     }
 
@@ -269,4 +305,8 @@ public class LuaUtil implements LuaOpen.LuaAction {
     }
 
 
+    @Override
+    public double 取随机数(int a, int b) {
+        return (int)(Math.random()*(b-a+1))+a;
+    }
 }

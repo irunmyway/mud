@@ -32,13 +32,13 @@ public class MemberFaction extends BaseCommand {
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
         //查询所有成员
-        List<Player> players =  DataBase.getInstance().init().createSQL(FactionMembersSql).list(Player.class);
+        List<Player> players =  DataBase.getInstance().init().createSQL(FactionMembersSql,getPlayer().getAccount()).list(Player.class);
         for (Player player:players) {
             choice.add(Choice.createChoice(getPropByFile("faction","faction_member",
                     player.getName(),
                     player.getLevel(),
                     FactionManager.getPositionAlias(player.getFaction_position())
-                    ), getMsg().getType(), "grantMemberFaction", player.getId()+"", "do"));
+                    ), getMsg().getType(), "grantMemberFaction", player.getAccount()+"", null));
         }
         winMsg.setCol(1);
         winMsg.setDesc(getPropByFile("faction","faction_member_title"));

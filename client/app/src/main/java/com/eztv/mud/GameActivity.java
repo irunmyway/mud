@@ -181,6 +181,8 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         initData();
         initView();
         MessageController.getGG();
+        MessageController.loginSuccess();
+
     }
     private void initData(){
         MessageController.getAttribute();//
@@ -255,6 +257,8 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
 
         //地图全局模块
         btn_map = findViewById(R.id.game_btn_map);
+        btn_map.setOnClickListener(view -> send(msgBuild(messageType.pop, "getMap",player.getKey(),null)));
+
 
     }
 

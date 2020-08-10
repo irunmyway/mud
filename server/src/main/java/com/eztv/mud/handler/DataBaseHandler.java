@@ -23,6 +23,12 @@ public class DataBaseHandler {
             DataBase.getInstance().init().query(player).setExceptFields("name").update();
         }catch (Exception e){e.printStackTrace();}
     }
+    public void offlinePlayer(Player player){
+        try {
+            String sql ="update role set updateat=now() where account = ?";
+            DataBase.getInstance().init().createSQL(sql,player.getAccount()).update();
+        }catch (Exception e){e.printStackTrace();}
+    }
     public void savePlayerData(Player player){
         try {
             String data = new String(Base64.getEncoder().encode(player.getPlayerData().toJson().getBytes()));

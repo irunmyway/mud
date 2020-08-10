@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.cache.MonsterCache;
-import com.eztv.mud.cache.SkillCache;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BObject;
 import com.eztv.mud.utils.BProp;
@@ -126,26 +125,7 @@ public class GameUtil {
         }
         return gameObject;
     }
-    //通过静态id查找游戏物品
-    public static Item getItemById(String id) {
-        Item item = null;
-       for(int i=0;i< Word.getInstance().getItems().size();i++){
-           if((Word.getInstance().getItems().get(i).getId()+"").equals(id)){
-               item = Word.getInstance().getItems().get(i);
-           }
-       }
-       return item;
-    }
-    //通过静态id查找游戏技能
-    public static Item getSkillById(String id) {
-        Item item = null;
-        for(int i = 0; i< SkillCache.getSkills().size(); i++){
-            if((SkillCache.getSkills().get(i).getId()+"").equals(id)){
-                item = SkillCache.getSkills().get(i);
-            }
-        }
-        return item;
-    }
+
 
 
 
@@ -233,6 +213,9 @@ public class GameUtil {
                 if(str.contains("<white>"))str = str.replaceAll("<white>","<font color=\"#ffffff\">");
                 if(str.contains("<pink>"))str = str.replaceAll("<pink>","<font color=\"#FF69B4\">");
                 if(str.contains("<brown>"))str = str.replaceAll("<brown>","<font color=\"#52433d\">");
+                if(str.contains("<jb>"))str = str.replaceAll("<jb>","<font color=\"#FFD700\">");
+                if(str.contains("<yb>"))str = str.replaceAll("<yb>","<font color=\"#DAA520\">");
+                if(str.contains("<money>"))str = str.replaceAll("<money>","<font color=\"#D2691E\">");
 
                 if(str.contains("</>"))str = str.replaceAll("</>","</font>");
             }

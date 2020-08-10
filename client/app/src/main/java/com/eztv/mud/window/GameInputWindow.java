@@ -8,9 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ez.utils.BObject;
 import com.eztv.mud.R;
-import com.eztv.mud.bean.Chat;
 import com.eztv.mud.bean.Choice;
 import com.eztv.mud.bean.Enum;
 import com.eztv.mud.bean.net.WinMessage;
@@ -22,11 +20,8 @@ import com.eztv.mud.window.callback.IChatWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.eztv.mud.Constant.player;
-import static com.eztv.mud.bean.Enum.chat.私聊;
 import static com.eztv.mud.controller.MessageController.send;
 import static com.eztv.mud.util.Util.msgBuild;
-import static com.eztv.mud.util.Util.object2JsonStr;
 
 public class GameInputWindow extends BaseWindow implements IButtonCallBack {
     private IChatWindow iChatWindow;
@@ -74,7 +69,7 @@ public class GameInputWindow extends BaseWindow implements IButtonCallBack {
     public void onClick(int pos, Choice choice, String key) {
         String str = edt_content.getText().toString().trim();
         switch (choice.getCmd()){
-            default:send(msgBuild(choice.getType(), choice.getCmd(),str, choice.getKey()));
+            default:send(msgBuild(choice.getType(), choice.getCmd(),choice.getKey(), str));
             break;
         }
         Enum.winAction action =  choice.getAction();

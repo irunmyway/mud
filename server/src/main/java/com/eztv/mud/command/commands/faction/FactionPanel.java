@@ -26,12 +26,12 @@ public class FactionPanel extends BaseCommand {
         List<Choice> choice = new ArrayList<>();
 //        DataBase.getInstance().init().query()
         int faction = getClient().getPlayer().getFaction();
+        Faction mFaction = FactionCache.factions.get(faction+"");
         winMsg.setDesc("门派");
-        if(faction<1){//暂无门派
+        if(faction<1||mFaction==null){//暂无门派
             choice.add(Choice.createChoice("创建门派", Enum.messageType.action,"createFaction", null,null).setBgColor(Enum.color.blue));
             choice.add(Choice.createChoice("查看门派", Enum.messageType.action,"joinFaction", null,null).setBgColor(Enum.color.yellow));
         }else{//有门派了 查看门派信息
-            Faction mFaction = FactionCache.factions.get(faction+"");
             String str=getPropByFile("faction","faction_panel",
                         mFaction.getName()+mFaction.getAlias(),
                         mFaction.getLevel(),

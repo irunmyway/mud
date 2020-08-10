@@ -2,10 +2,11 @@ package com.eztv.mud.handler;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.DataBase;
-import com.eztv.mud.bean.*;
-import com.eztv.mud.constant.Enum;
+import com.eztv.mud.bean.Client;
+import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.Login;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BObject;
@@ -88,7 +89,7 @@ public class LoginHandler {
 
     //登录成功
     public static Player getPlayer(String account, String password, Client client) {
-        Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.faction_position,t1.sex,t1.faction,t1.level,t1.data,t1.createat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
+        Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.faction_position,t1.sex,t1.faction,t1.level,t1.data,t1.createat,t1.updateat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
         try{
             player.setAccount(account);
             player.setClient(client);

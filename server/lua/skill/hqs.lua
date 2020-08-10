@@ -8,7 +8,7 @@ function 物品使用(client, 物品, 窗口, msg)
     物品:类型("skill");
     物品:属性(属性);
     local 使用等级 = 2;
-    if (lua工具:当前等级(client) < 使用等级) then
+    if (lua工具:取等级(client) < 使用等级) then
         --等级不够
         窗口:内容("少侠你等级不够2级,无法学习。");
         lua工具:添加选项("原来如此", "action", "doTalk", "", "testTask", "close");

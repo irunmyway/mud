@@ -7,6 +7,8 @@ import com.eztv.mud.script.LuaOpen;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eztv.mud.GameUtil.colorString;
+
 public class WinMessage implements LuaOpen.LuaWin{
     private List<String> floatMessage = new ArrayList<>();
     private String desc;
@@ -53,7 +55,7 @@ public class WinMessage implements LuaOpen.LuaWin{
 
     @Override
     public void 内容(String string) {
-        this.desc = string;
+        this.desc = colorString(string) ;
     }
 
     @Override

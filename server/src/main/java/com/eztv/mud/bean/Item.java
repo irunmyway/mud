@@ -1,9 +1,9 @@
 package com.eztv.mud.bean;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.script.LuaOpen;
 
+import static com.eztv.mud.GameUtil.colorString;
 import static com.eztv.mud.GameUtil.getProp;
 
 
@@ -59,7 +59,7 @@ public class Item extends GameObject implements Cloneable, LuaOpen.LuaItem {
         }
         if (obj instanceof Item){
             Item item = (Item) obj;
-            if(item.getId() == getId()){
+            if(item.getId() == getId()&&item.getType()==((Item) obj).getType()){
                 return true ;
             }
         }
@@ -78,7 +78,7 @@ public class Item extends GameObject implements Cloneable, LuaOpen.LuaItem {
 
     @Override
     public void 内容(String string) {
-        setDesc(string);
+        setDesc(colorString(string));
     }
 
     @Override
