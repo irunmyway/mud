@@ -27,7 +27,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="3、帮派授权&#10;3、挂机奖励 【外加增加取随机数函数】&#10;4、寄卖 [寄卖分页未作]&#10;5、">
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="副本系统构想，地图-房间 这样的对应关系。">
       <change afterPath="$PROJECT_DIR$/lua/npc/ckgl.lua" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/AuctionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -351,7 +351,7 @@
       <workItem from="1597020678652" duration="16976000" />
       <workItem from="1597058481665" duration="12372000" />
       <workItem from="1597108111172" duration="15430000" />
-      <workItem from="1597196593196" duration="12189000" />
+      <workItem from="1597196593196" duration="12493000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -493,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597073903735</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="副本系统构想，地图-房间 这样的对应关系。">
+      <created>1597246999197</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1597246999198</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,7 +549,8 @@
     <MESSAGE value="1、添加了后台管理的接口。实现了基础的后台接口" />
     <MESSAGE value="//更新内容&#10;1、添加了可以修改【保存游戏数据】的速度&#10;2、添加了可以调节基础战斗速度&#10;3、" />
     <MESSAGE value="3、帮派授权&#10;3、挂机奖励 【外加增加取随机数函数】&#10;4、寄卖 [寄卖分页未作]&#10;5、" />
-    <option name="LAST_COMMIT_MESSAGE" value="3、帮派授权&#10;3、挂机奖励 【外加增加取随机数函数】&#10;4、寄卖 [寄卖分页未作]&#10;5、" />
+    <MESSAGE value="副本系统构想，地图-房间 这样的对应关系。" />
+    <option name="LAST_COMMIT_MESSAGE" value="副本系统构想，地图-房间 这样的对应关系。" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="239" key="#Custom_Plugin_Repositories" timestamp="1596535167099">
@@ -649,32 +657,32 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596166832163" />
-    <state width="1237" height="214" key="GridCell.Tab.0.bottom" timestamp="1597246527857">
+    <state width="1237" height="214" key="GridCell.Tab.0.bottom" timestamp="1597246971776">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="214" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246527857" />
+    <state width="1237" height="214" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246971776" />
     <state width="1237" height="283" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="214" key="GridCell.Tab.0.center" timestamp="1597246527857">
+    <state width="1237" height="214" key="GridCell.Tab.0.center" timestamp="1597246971776">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="214" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246527857" />
+    <state width="1237" height="214" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246971776" />
     <state width="1237" height="283" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="214" key="GridCell.Tab.0.left" timestamp="1597246527856">
+    <state width="1237" height="214" key="GridCell.Tab.0.left" timestamp="1597246971776">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="214" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246527856" />
+    <state width="1237" height="214" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246971776" />
     <state width="1237" height="283" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="214" key="GridCell.Tab.0.right" timestamp="1597246527857">
+    <state width="1237" height="214" key="GridCell.Tab.0.right" timestamp="1597246971776">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="214" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246527857" />
+    <state width="1237" height="214" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597246971776" />
     <state width="1237" height="283" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
     <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1596430247358">
@@ -723,11 +731,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="444" y="229" key="VCS.ChangelistChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596876391916" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1597074084831">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1597247001191">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596470010220" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597074084831" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597247001191" />
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1595951646697" />
     <state x="11" y="89" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1596430200418">
       <screen x="0" y="0" width="1280" height="680" />
