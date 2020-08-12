@@ -23,7 +23,7 @@ public class MonsterImpl implements MonsterDAO {
         TableSend tableSend = new TableSend();
         tableSend.setCode(1);
         List<ObjectModel> npcList = db.init().createSQL("" +
-                "select t1.*,t2.name mapName from t_monster t1 left join t_map t2 " +
+                "select t1.*,t2.name mapName from t_monster t1 left join t_map_room t2 " +
                 "on t1.map = t2.id order by createat desc limit ?,?" +
                 "",(page-1)*limit,limit).list(ObjectModel.class);
         tableSend.setCount(npcList.size());
@@ -37,7 +37,7 @@ public class MonsterImpl implements MonsterDAO {
         TableSend tableSend = new TableSend();
         tableSend.setCode(1);
         List<ObjectModel> npcList = db.init().createSQL("SELECT * from (\n" +
-                "select t1.*,t2.name mapName from t_monster t1 left JOIN  t_map t2 on \n" +
+                "select t1.*,t2.name mapName from t_monster t1 left JOIN  t_map_room t2 on \n" +
                 "t1.map = t2.id\n" +
                 ")t3 where name like '%"+value+"%' or mapName like '%"+value+"%' limit ?,?"
         ,(page-1)*limit,limit).list(ObjectModel.class);

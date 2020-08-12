@@ -2,12 +2,13 @@ package com.eztv.mud.command.commands.store.auction;
 
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.cache.AuctionCache;
 import com.eztv.mud.cache.manager.ItemManager;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
 
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.cache.manager.AuctionManager.getAuction;
+import static com.eztv.mud.cache.manager.AuctionManager.replace;
 
 /**
  * 作者: hhx QQ1025334900
@@ -53,7 +54,7 @@ public class JmBuy extends BaseCommand {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        Auction auction = AuctionCache.getAuction(auctionId);
+        Auction auction = getAuction(auctionId);
         String itemName = "";
         String currencyName = "";
         if (auction.getRole().equals(getPlayer().getAccount())) return;
@@ -101,7 +102,7 @@ public class JmBuy extends BaseCommand {
                     break;
             }
             getClient().getPlayer().getPlayerData().getBag().changeMoney(price * num);
-            AuctionCache.replace(auction);//更新缓存和数据库
+            replace(auction);//更新缓存和数据库
         }
         Item item = null;
         switch (auction.getItemType()) {

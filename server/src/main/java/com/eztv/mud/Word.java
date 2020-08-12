@@ -2,18 +2,20 @@ package com.eztv.mud;
 
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Item;
-import com.eztv.mud.bean.Room;
 import com.eztv.mud.cache.*;
 import com.eztv.mud.command.CommandSetHandler;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BFile;
+import com.eztv.mud.utils.BProp;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.HashMap;
 import java.util.List;
 
-import static com.eztv.mud.cache.RoomCache.Rooms;
+import static com.eztv.mud.Constant.*;
+import static com.eztv.mud.GameUtil.getProp;
+import static com.eztv.mud.cache.RoomCache.getRooms;
 
 public class Word {
     private HashMap<String, Attribute> baseAttributes = new HashMap<String, Attribute>();
@@ -27,10 +29,11 @@ public class Word {
         return Instance;
     }
     public void init() {
+        initConf();
         initGG();//加载公告
         RoomCache.initRooms();//加载房间
-        NpcCache.initNPC(globals,Rooms);//加载NPC
-        MonsterCache.initMonster(globals,Rooms);//加载怪物
+        NpcCache.initNPC(globals,getRooms());//加载NPC
+        MonsterCache.initMonster(globals,getRooms());//加载怪物
         FactionCache.initFactionCache();//加载行会
         PlayerCache.initPlayerCache();//加载所有玩家缓存信息
         ItemCache.initItem(globals);//加载物品
@@ -40,10 +43,17 @@ public class Word {
         initHandler();//装载指令
     }
 
+    private void initConf() {//加载配置
+        FIGHT_SPEED = Integer.parseInt(BProp.getInstance().get("fight_speed"));
+        DEFAULT_ROOM_ID = BProp.getInstance().get("aliveMapId");
+        pageLimitCol1 = Integer.parseInt(getProp("page_limit_col1"));
+        pageLimitCol2 = Integer.parseInt(getProp("page_limit_col2"));
+    }
+
     public void initEnvironment(){
         RoomCache.initRooms();//加载房间
-        NpcCache.initNPC(globals,Rooms);//加载NPC
-        MonsterCache.initMonster(globals,Rooms);//加载怪物
+        NpcCache.initNPC(globals,getRooms());//加载NPC
+        MonsterCache.initMonster(globals,getRooms());//加载怪物
     }
 
 
@@ -71,9 +81,7 @@ public class Word {
     }
 
 
-    public HashMap<String, Room> getRooms() {
-        return Rooms;
-    }
+
 
     public HashMap<String, Attribute> getBaseAttributes() {
         return baseAttributes;

@@ -14,10 +14,11 @@ import java.util.List;
  * 时间: 2020-07-04 13:09
  * 功能: 房间
  **/
-@Table(name = "t_map")
+@Table(name = "t_map_room")
 public class Room extends GameObject {
     @Id
     private int id=0;
+    private int map=0;
     private String name = "";//地图名称也是中心
     @Column(name = "type")
     private String roomType="1";//安全区或者等等。。。。
@@ -194,4 +195,12 @@ public class Room extends GameObject {
         return null;
     }
 
+    @Override
+    public int getMap() {
+        return map;
+    }
+
+    public void setMap(int map) {
+        this.map = map;
+    }
 }

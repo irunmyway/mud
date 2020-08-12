@@ -27,9 +27,7 @@ function 击杀奖励()
     return 游戏工具:object2JsonStr(奖励);
 end
 
-
 function 对话(client, 窗口, 消息, 目标)
-
     if (目标:getDesc() ~= nil) then
         窗口:setDesc(目标:getName() .. "<br>" .. 目标:getDesc());
     else
@@ -37,6 +35,6 @@ function 对话(client, 窗口, 消息, 目标)
     end
     lua工具:添加选项("攻击", Enum.messageType.normal, "attack", 消息:getMsg(), nil)
     窗口:添加选项集合(lua工具);
-    lua工具:返回元素消息(client,"action","doTalk",目标:getKey(),窗口);
+    lua工具:返回元素消息(client, "action", "doTalk", 目标:getKey(), 窗口);
 end
 

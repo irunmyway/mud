@@ -29,7 +29,7 @@ public class MapImpl implements MapDAO {
     public String getMap() {
         long x = 1;
         long y = 1;
-        List<RoomModel> rooms = db.init().createSQL("select * from t_map").list(RoomModel.class);
+        List<RoomModel> rooms = db.init().createSQL("select * from t_map_room").list(RoomModel.class);
         Map<Integer,RoomModel> maps = new HashMap<>();
         for (RoomModel room:rooms){
             maps.put(room.getId(),room);
@@ -78,7 +78,7 @@ public class MapImpl implements MapDAO {
     @Override
     public boolean saveRoom(int id, String name, String desc, String script) {
         if(db.init().createSQL(""+
-                        "update t_map set " +
+                        "update t_map_room set " +
                         "name = ?, " +
                         "script=?," +
                         "`desc`=?," +
@@ -107,7 +107,7 @@ public class MapImpl implements MapDAO {
         }
         int newId = BDate.getNowMillsByTen();
         if(db.init().createSQL(""+
-                        "update t_map set " +directionColumn+
+                        "update t_map_room set " +directionColumn+
                         " = ? " +
                         "where id = ?"
                 ,newId,id).update()>0){
@@ -124,7 +124,7 @@ public class MapImpl implements MapDAO {
                 default:
                     directionColumn = "south";
             }
-            if(db.init().createSQL("insert into t_map(id,createat,"+directionColumn+",script,name,`desc`) values('"+ newId +"',current_timestamp(),?,?,?,?);",id,script,name,desc).update()>0){
+            if(db.init().createSQL("insert into t_map_room(id,createat,"+directionColumn+",script,name,`desc`) values('"+ newId +"',current_timestamp(),?,?,?,?);",id,script,name,desc).update()>0){
                 return true;
             }
         }
@@ -134,7 +134,7 @@ public class MapImpl implements MapDAO {
     @Override
     public boolean createRoom() {
         int newId = BDate.getNowMillsByTen();
-        if(db.init().createSQL("insert into t_map(id,createat) values('"+ newId +"',current_timestamp());").update()>0){
+        if(db.init().createSQL("insert into t_map_room(id,createat) values('"+ newId +"',current_timestamp());").update()>0){
             return true;
         }
         return false;
@@ -142,7 +142,7 @@ public class MapImpl implements MapDAO {
 
     @Override
     public boolean delRoom(int id) {
-        if(db.init().createSQL("delete from t_map where id = ?",id).update()>0){
+        if(db.init().createSQL("delete from t_map_room where id = ?",id).update()>0){
             return true;
         }
         return false;
@@ -205,7 +205,7 @@ public class MapImpl implements MapDAO {
         return parentRoom;
     }
     public String getMapOption(){
-        List<RoomModel> rooms = db.init().createSQL("select * from t_map").list(RoomModel.class);
+        List<RoomModel> rooms = db.init().createSQL("select * from t_map_room").list(RoomModel.class);
         List<Map<String,String>> list = new ArrayList<>();
         for (RoomModel room:rooms){
             HashMap o =  new HashMap<>();

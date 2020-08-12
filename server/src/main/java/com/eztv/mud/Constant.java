@@ -8,8 +8,10 @@ import java.util.List;
 public class Constant {
     public static List<Client> clients = new ArrayList();
 
-    public final static String DEFAULT_ROOM_ID = "1";//默认初始房间
-    public final static int FIGHT_SPEED = 1200;//杀怪速度
+    public static String DEFAULT_ROOM_ID = "1";//默认初始房间
+    public static int FIGHT_SPEED = 1200;//杀怪速度
+    public static int pageLimitCol1 = 10;//分页
+    public static int pageLimitCol2 = 10;//分页
 
     public final static String NPC_PATH = "lua/npc/";//NPC目录
     public final static String Monster_PATH = "lua/monster/";//NPC目录

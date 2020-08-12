@@ -1,10 +1,10 @@
 package com.eztv.mud.handler.core;
 
+import com.eztv.mud.Constant;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.utils.BObject;
-import com.eztv.mud.utils.BProp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -41,10 +41,7 @@ public class Battle implements ActionListener {
         this.who = who;
         this.target = target;
         if(initFail()) return;
-        int speed = 1200;
-        try{
-            speed = Integer.parseInt(BProp.getInstance().get("fight_speed"));
-        }catch(Exception e){e.printStackTrace();}
+        int speed = Constant.FIGHT_SPEED;
         this.timer = new Timer(speed, this);
         this.timer.start();
     }

@@ -44,7 +44,7 @@ public class LuaOpen {
         long 取离线时间(Client client);
 
         void 挂机奖励(Client client);
-
+        void 到房间(Client client,String roomId);
         void 购买(Client client,String id,String num,long price);
         void 购买技能(Client client,String id,String num,long price);
         void 元宝购买(Client client,String id,String num,long price);

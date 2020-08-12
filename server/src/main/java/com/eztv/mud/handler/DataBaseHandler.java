@@ -40,6 +40,7 @@ public class DataBaseHandler {
     public synchronized void cacheToDataBase(){
       for (Client client:Constant.clients){
           if(client.getPlayer()!=null)
+              if(client.getPlayer().getName()!=null)
           saveAll(client.getPlayer());
       }
       DataBase.getInstance().init().query(FactionCache.factions.values()).update();

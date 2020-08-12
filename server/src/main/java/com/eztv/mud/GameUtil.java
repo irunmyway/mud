@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.cache.MonsterCache;
+import com.eztv.mud.cache.RoomCache;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BObject;
 import com.eztv.mud.utils.BProp;
@@ -20,13 +21,13 @@ import static com.eztv.mud.constant.Cmd.getAttribute;
 public class GameUtil {
     //通过房间id获取房间实体
     public static Room getRoom(String roomId) {
-        Room room = Word.getInstance().getRooms().get(roomId);
+        Room room = RoomCache.getRooms().get(roomId);
         return room == null ? new Room() : room;
     }
 
     //通过房间id获取房间名称
     public static String getRoomName(int roomId) {
-        Room room = Word.getInstance().getRooms().get(roomId + "");
+        Room room = RoomCache.getRooms().get(roomId + "");
         return room == null ? "" : room.getName();
     }
 
@@ -96,7 +97,7 @@ public class GameUtil {
     }
     //通过房间id获取房间实体
     public static Room getCurRoom(Client client) {
-        Room room = Word.getInstance().getRooms().get(getCurRoomId(client));
+        Room room = RoomCache.getRooms().get(getCurRoomId(client));
         return room == null ? new Room() : room;
     }
 

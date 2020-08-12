@@ -182,7 +182,7 @@
         '              <div class="layui-form-item">\n' +
         '                <label class="layui-form-label">数量</label>\n' +
         '                <div class="layui-input-block">\n' +
-        '                  <input id="edt_num" value="' + (data.num == undefined ? "" : 0) + '" type="text" class="layui-input" autocomplete="off"lay-verify="required" />\n' +
+        '                  <input id="edt_num" value="' + (data.num == undefined ? 0 : data.num) + '" type="text" class="layui-input" autocomplete="off"lay-verify="required" />\n' +
         '                </div>\n' +
         '              </div>\n' +
         '            <div class="layui-form-item">\n' +

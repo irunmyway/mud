@@ -5,14 +5,13 @@ import com.eztv.mud.bean.Auction;
 import com.eztv.mud.bean.Chat;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
-import com.eztv.mud.cache.AuctionCache;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BDebug;
 
 import java.util.List;
 
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.cache.manager.AuctionManager.*;
 
 /**
  * 作者: hhx QQ1025334900
@@ -27,18 +26,18 @@ public class JmReward extends BaseCommand {
 
     @Override
     public void execute() {
-        List<Auction> auctions = AuctionCache.getAuctionsByRole(getPlayer().getAccount());
+        List<Auction> auctions = getAuctionsByRole(getPlayer().getAccount(),0,0 );
         int num=0;
         long yb=0;
         long money=0;
         long tmp=0;
         for (Auction auction:auctions){
             if(auction.getNum()==0){//出售完了
-                AuctionCache.remove(auction);
+                remove(auction);
             }
             tmp = auction.getTotal()-auction.getNum();
             if(tmp<0){//奇怪了
-                AuctionCache.remove(auction);
+                remove(auction);
                 continue;
             }
             switch (auction.getCurrency()){
@@ -52,7 +51,7 @@ public class JmReward extends BaseCommand {
             if(auction.getState()==1)num++;
             auction.setTotal(auction.getNum());
         }
-        AuctionCache.replace(auctions);
+        replace(auctions);
         getPlayer().getPlayerData().getBag().changeMoney(money);
         getPlayer().getPlayerData().getBag().changeMoney(yb);
         //发送收益信息

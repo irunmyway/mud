@@ -2,12 +2,13 @@ package com.eztv.mud.command.commands.store.auction;
 
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
-import com.eztv.mud.cache.AuctionCache;
 import com.eztv.mud.cache.manager.ItemManager;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
 
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.cache.manager.AuctionManager.getAuction;
+import static com.eztv.mud.cache.manager.AuctionManager.remove;
 
 /**
  * 作者: hhx QQ1025334900
@@ -29,12 +30,12 @@ public class JmCancel extends BaseCommand {
             try{
                 auctionId = Integer.parseInt(msgMap.取值("auction").toString());
             }catch(Exception e){e.printStackTrace();}
-        Auction auction =  AuctionCache.getAuction(auctionId);
+        Auction auction =  getAuction(auctionId);
         if (auction!=null){
             //判断该寄卖是不是自己的
             if(!auction.getRole().equals(getPlayer().getAccount()))return;
             //数据库里删除该寄卖信息 缓存里清空该寄卖
-            AuctionCache.remove(auction);
+            remove(auction);
             //玩家背包里增加该物品
             switch (auction.getItemType()){
                 case normal:

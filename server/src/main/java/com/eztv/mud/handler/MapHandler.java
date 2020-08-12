@@ -8,7 +8,6 @@ import com.eztv.mud.bean.net.RoomDetail;
 import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.syn.WordSyn;
-import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.LuaValue;
 
 import static com.eztv.mud.Constant.*;
@@ -17,6 +16,7 @@ import static com.eztv.mud.constant.Cmd.*;
 
 public class MapHandler {
 
+    //玩家移动指令【上下左右】
     public static void playerMove(Client client, Msg msg) {//玩家移动模块
         String outRoom = client.getPlayer().getPlayerData().getRoom();
         String targetRoom = "";
@@ -46,6 +46,24 @@ public class MapHandler {
         }
         targetRoom=null;
     }
+
+    //玩家通过id飞到某个房间
+    public static void goRoom(Client client, String roomId) {
+        String outRoom = client.getPlayer().getPlayerData().getRoom();
+        String targetRoom =roomId;
+        if(!outRoom.equals(targetRoom)&& targetRoom!=""){
+            //执行lua 预处理脚本
+            WinMessage win = new WinMessage();
+            LuaValue luaValue = client.getScriptExecutor().loadFile(null,getRoom(targetRoom).getScript())
+                    .execute(LUA_进入房间,client,win,new Msg());
+            if((luaValue==null?"1":luaValue.toString()).equals("1")||
+                    getRoom(targetRoom).getScript()=="") {//代表允许进入
+                changeRoom(client, outRoom,targetRoom);
+            }
+        }
+        targetRoom=null;
+    }
+
 
     public static void changeRoom(Client client, String outRoom,String targetRoom) {
         //设置到达新房间
@@ -83,7 +101,8 @@ public class MapHandler {
         onObjectInRoom(roomId, client.getPlayer(), client);
     }
 
-    private static void onObjectInRoom(String roomId, GameObject obj, Client client) {
+    //告诉玩家我来了
+   private static void onObjectInRoom(String roomId, GameObject obj, Client client) {
         for (Client item : clients) {
             try {
                 if (item.getPlayer().getPlayerData().getRoom().equals(roomId) && item != client) {
@@ -93,7 +112,7 @@ public class MapHandler {
             }
         }
     }
-
+    //告诉玩家我走了
     public static void onObjectOutRoom(String roomId, Player player) {
         if (roomId == null) roomId = DEFAULT_ROOM_ID;
         WordSyn.InOutRoom(player, roomId, false);

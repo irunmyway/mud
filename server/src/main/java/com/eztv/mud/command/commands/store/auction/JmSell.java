@@ -3,7 +3,6 @@ package com.eztv.mud.command.commands.store.auction;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.net.WinMessage;
-import com.eztv.mud.cache.AuctionCache;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDate;
@@ -13,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.cache.manager.AuctionManager.add;
 
 public class JmSell extends BaseCommand {
     /**
@@ -244,7 +244,7 @@ public class JmSell extends BaseCommand {
         auction.setTotal(num);
         auction.setItemType(item.getType());
         auction.setItem(item.getId());
-        return AuctionCache.add(auction);
+        return add(auction);
 //        int affected_rows = DataBase.getInstance().init().createSQL(
 //               "insert into t_auction (role,item,itemType,price,currency,num,createat) values("+
 //               "?,?,?,?,?,?,now()"+

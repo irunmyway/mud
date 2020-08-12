@@ -4,7 +4,6 @@ import com.eztv.mud.DataBase;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.bean.net.Player;
-import com.eztv.mud.cache.AuctionCache;
 import com.eztv.mud.cache.manager.ItemManager;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
@@ -12,9 +11,9 @@ import com.eztv.mud.constant.Enum;
 import java.util.List;
 
 import static com.eztv.mud.Constant.PlayerSql;
+import static com.eztv.mud.Constant.pageLimitCol2;
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.cache.AuctionCache.getAuctionsByRole;
-import static com.eztv.mud.cache.AuctionCache.getAuctionsByType;
+import static com.eztv.mud.cache.manager.AuctionManager.*;
 
 public class JmLook extends BaseCommand {
     /**
@@ -26,27 +25,35 @@ public class JmLook extends BaseCommand {
         super(client, msg, key);
     }
 
+    int pageIndex = 0;
+
     @Override
     public void execute() {
+
+
         MsgMap msgMap = new MsgMap();
-        if(getMsg().getMsg()!=null) {
+        if (getMsg().getMsg() != null) {
             msgMap = msgMap.到消息(getMsg().getMsg());
-            if(msgMap.取值("cmd")!=null) {
+            if (msgMap.取值("cmd") != null) {
+                try {
+                    pageIndex = Integer.parseInt(msgMap.取值("pageIndex").toString());
+                } catch (Exception e) {
+                }
                 switch (msgMap.取值("cmd").toString()) {
                     case "我的寄卖":
-                        getAuctions(getAuctionsByRole(getPlayer().getAccount()));
+                        getAuctions(getAuctionsByRole(getPlayer().getAccount(), pageIndex, pageLimitCol2));
                         break;
                     case "商品":
-                        getAuctions(getAuctionsByType(Enum.itemType.normal));
+                        getAuctions(getAuctionsByType(Enum.itemType.normal, pageIndex));
                         break;
                     case "技能":
-                        getAuctions(getAuctionsByType(Enum.itemType.skill));
+                        getAuctions(getAuctionsByType(Enum.itemType.skill, pageIndex));
                         break;
                     case "所有":
-                        getAuctions(getAuctionsByType(null));
+                        getAuctions(getAuctionsByType(null, pageIndex));
                         break;
                     case "货币":
-                        getAuctions(getAuctionsByType(Enum.itemType.yb));
+                        getAuctions(getAuctionsByType(Enum.itemType.yb, pageIndex));
                         break;
                     case "寄卖操作":
                         actionManagePanel();
@@ -58,32 +65,47 @@ public class JmLook extends BaseCommand {
 
 
     //我的寄卖
-    private void getAuctions(List<Auction> auctions){
+    private void getAuctions(List<Auction> auctions) {
         MsgMap msgMap = new MsgMap();
         msgMap = msgMap.到消息(getMsg().getMsg());
-        msgMap.添加("cmd","寄卖操作");
-        Item item=null;
-        if(auctions.size()<1){
-            getWinMsg().setDesc( getPropByFile("store","auction_sell_none"));
+        String tmpCmd = msgMap.取值("cmd").toString();
+        msgMap.添加("cmd", "寄卖操作");
+        Item item = null;
+        if (auctions.size() < 1) {
+            getWinMsg().setDesc(getPropByFile("store", "auction_sell_none"));
         }
-
-        for (Auction auction:auctions){
-            switch (auction.getItemType()){
+        //翻页
+        if (pageIndex > pageLimitCol2 - 1) {
+            msgMap.添加("pageIndex", pageIndex - pageLimitCol2);
+            msgMap.添加("cmd", tmpCmd);
+            getChoice().add(Choice.createChoice(
+                    "上一页",
+                    Enum.messageType.action,
+                    getMsg().getCmd(),
+                    msgMap.到文本(),
+                    null).setBgColor(Enum.color.blue)
+            );
+        }
+        for (Auction auction : auctions) {
+            switch (auction.getItemType()) {
                 case normal:
-                    item = ItemManager.getItemById(auction.getItem()+"");
+                    item = ItemManager.getItemById(auction.getItem() + "");
                     break;
                 case skill:
-                    item = ItemManager.getSkillById(auction.getItem()+"");
+                    item = ItemManager.getSkillById(auction.getItem() + "");
                     break;
                 case yb:
                     break;
             }
-            msgMap.添加("auction",auction.getId());
-            if(auction.getItemType()== Enum.itemType.yb){
+            msgMap.添加("auction", auction.getId());
+            if (auction.getItemType() == Enum.itemType.yb) {
                 getChoice().add(Choice.createChoice(
-                        getPropByFile("bag","bag_item",
+                        getPropByFile("bag", "bag_item",
                                 getPropByFile("bag", "bag_yb"),
-                                (auction.getNum()<2?"1":auction.getNum()))+" ￥"+auction.getPrice(),
+                                getPropByFile("store", "auction_item",
+                                        (auction.getNum() < 2 ? "1" : auction.getNum()),
+                               auction.getPrice() + getCurrencyAlias(auction.getCurrency()))
+                        ),
                         Enum.messageType.action,
                         getMsg().getCmd(),
                         msgMap.到文本(),
@@ -91,17 +113,31 @@ public class JmLook extends BaseCommand {
                 );
                 continue;
             }
-            if(item==null)continue;
+            if (item == null) continue;
             item.setNum(auction.getNum());
             getChoice().add(Choice.createChoice(
-                    getPropByFile("bag","bag_item",
+                    getPropByFile("bag", "bag_item",
                             item.getName(),
-                            (item.getNum()<2?"1":item.getNum()))+" ￥"+auction.getPrice(),
-                    Enum.messageType.action,
+                            getPropByFile("store", "auction_item",
+                                    (auction.getNum() < 2 ? "1" : auction.getNum()),
+                            auction.getPrice() + getCurrencyAlias(auction.getCurrency()))
+                    ),Enum.messageType.action,
                     getMsg().getCmd(),
                     msgMap.到文本(),
                     null)
-                    );
+            );
+        }
+        //翻页
+        if (auctions.size() > 0) {
+            msgMap.添加("pageIndex", pageIndex + pageLimitCol2);
+            msgMap.添加("cmd", tmpCmd);
+            getChoice().add(Choice.createChoice(
+                    "下一页",
+                    Enum.messageType.action,
+                    getMsg().getCmd(),
+                    msgMap.到文本(),
+                    null).setBgColor(Enum.color.blue)
+            );
         }
         getWinMsg().setCol(2);
         getWinMsg().setChoice(getChoice());
@@ -109,17 +145,19 @@ public class JmLook extends BaseCommand {
     }
 
     //操作面板  //下架 查看当前寄卖的信息 比如金钱等等
-    private void actionManagePanel(){
+    private void actionManagePanel() {
         MsgMap msgMap = new MsgMap();
         msgMap = msgMap.到消息(getMsg().getMsg());
         Auction auction = null;
-        if(msgMap.取值("auction")!=null)
-            try{
-                auction   = AuctionCache.getAuction(Integer.parseInt(msgMap.取值("auction").toString()));
-            }catch(Exception e){e.printStackTrace();}
-        if(auction!=null){
-            if(auction.getRole().equals(getPlayer().getAccount())){
-                getWinMsg().setDesc( getPropByFile("store","auction_sell_remaining_desc",
+        if (msgMap.取值("auction") != null)
+            try {
+                auction = getAuction(Integer.parseInt(msgMap.取值("auction").toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        if (auction != null) {
+            if (auction.getRole().equals(getPlayer().getAccount())) {
+                getWinMsg().setDesc(getPropByFile("store", "auction_sell_remaining_desc",
                         auction.getTotal(),
                         auction.getNum()
                 ));
@@ -129,7 +167,7 @@ public class JmLook extends BaseCommand {
                         msgMap.到文本(),
                         null).setBgColor(Enum.color.red)
                 );
-            }else{
+            } else {
                 getChoice().add(Choice.createChoice("购买",
                         Enum.messageType.action,
                         "jmBuy",
@@ -138,11 +176,11 @@ public class JmLook extends BaseCommand {
                 );
             }
             //设置出售者的信息
-            Player player = DataBase.getInstance().init().createSQL(PlayerSql,auction.getRole()).unique(Player.class);
-            if(player!=null&&getWinMsg().getDesc()==null){
-                getWinMsg().setDesc( getPropByFile("store","auction_sell_desc",
+            Player player = DataBase.getInstance().init().createSQL(PlayerSql, auction.getRole()).unique(Player.class);
+            if (player != null && getWinMsg().getDesc() == null) {
+                getWinMsg().setDesc(getPropByFile("store", "auction_sell_desc",
                         player.getName()
-                        ));
+                ));
             }
             getWinMsg().setCol(2);
             getWinMsg().setChoice(getChoice());
