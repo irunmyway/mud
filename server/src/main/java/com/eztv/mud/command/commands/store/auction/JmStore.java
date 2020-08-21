@@ -18,7 +18,7 @@ public class JmStore extends BaseCommand {
 
     @Override
     public void execute() {
-        getClient().getScriptExecutor().loadFile(null, Constant.Store_PATH+"jmstore"
-                ).execute(Constant.LUA_初始化,getClient(),new WinMessage(),getMsg());
+        getClient().getScriptExecutor().load(Constant.Store_PATH+"jmstore"
+                ).execute(Constant.脚本_初始化,getClient(),new WinMessage(),getMsg());
     }
 }

@@ -1,6 +1,9 @@
 package com.eztv.mud.bean;
 
-public class Attribute implements Cloneable{
+import com.eztv.mud.GameUtil;
+import com.eztv.mud.script.LuaOpen;
+
+public class Attribute implements Cloneable, LuaOpen.LuaJson {
     private int level;
     private long hp;
     private long hp_max;
@@ -134,5 +137,10 @@ public class Attribute implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    @Override
+    public String 到Json() {
+        return GameUtil.object2JsonStr(this);
     }
 }

@@ -4,6 +4,7 @@ import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Item;
 import com.eztv.mud.cache.*;
 import com.eztv.mud.command.CommandSetHandler;
+import com.eztv.mud.script.ScriptExecutor;
 import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BFile;
 import com.eztv.mud.utils.BProp;
@@ -15,11 +16,12 @@ import java.util.List;
 
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.getProp;
-import static com.eztv.mud.cache.RoomCache.getRooms;
+import static com.eztv.mud.cache.RoomCache.getMaps;
 
 public class Word {
     private HashMap<String, Attribute> baseAttributes = new HashMap<String, Attribute>();
     private Globals globals = JsePlatform.standardGlobals();
+    private ScriptExecutor scriptExecutor = new ScriptExecutor();
     private String GG = "";
     private static Word Instance;
 
@@ -32,8 +34,8 @@ public class Word {
         initConf();
         initGG();//加载公告
         RoomCache.initRooms();//加载房间
-        NpcCache.initNPC(globals,getRooms());//加载NPC
-        MonsterCache.initMonster(globals,getRooms());//加载怪物
+        NpcCache.initNPC(scriptExecutor,getMaps());//加载NPC
+        MonsterCache.initMonster(scriptExecutor,getMaps());//加载怪物
         FactionCache.initFactionCache();//加载行会
         PlayerCache.initPlayerCache();//加载所有玩家缓存信息
         ItemCache.initItem(globals);//加载物品
@@ -45,15 +47,16 @@ public class Word {
 
     private void initConf() {//加载配置
         FIGHT_SPEED = Integer.parseInt(BProp.getInstance().get("fight_speed"));
-        DEFAULT_ROOM_ID = BProp.getInstance().get("aliveMapId");
+        DEFAULT_ROOM_ID = BProp.getInstance().get("aliveRoomId");
+        DEFAULT_MAP_ID= BProp.getInstance().get("aliveMapId");
         pageLimitCol1 = Integer.parseInt(getProp("page_limit_col1"));
         pageLimitCol2 = Integer.parseInt(getProp("page_limit_col2"));
     }
 
     public void initEnvironment(){
         RoomCache.initRooms();//加载房间
-        NpcCache.initNPC(globals,getRooms());//加载NPC
-        MonsterCache.initMonster(globals,getRooms());//加载怪物
+        NpcCache.initNPC(scriptExecutor,getMaps());//加载NPC
+        MonsterCache.initMonster(scriptExecutor,getMaps());//加载怪物
     }
 
 

@@ -4,18 +4,23 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.task.Task;
+import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerData {
-    private String room;
+//    private String room;
+    @JSONField(serialize = false)
+    @Expose(serialize = false, deserialize = false)
+    private Room room;
     private Attribute attribute = new Attribute();//玩家的基础属性
-    private List<Task> tasks = new ArrayList<>();//玩家的任务集合
+    private List<Task> tasks;//玩家的任务集合
     private Bag bag = new Bag();//玩家背包
     private Equip equip = new Equip(); //玩家装备
     private Skill skill = new Skill(); //玩家技能
     @JSONField(serialize = false)
+    @Expose(serialize = false, deserialize = false)
     private Player player;
     public PlayerData(Player player) {
         this.player = player;
@@ -29,11 +34,11 @@ public class PlayerData {
         this.bag = bag;
     }
 
-    public String getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(Room room) {
         this.room = room;
     }
 
@@ -46,6 +51,7 @@ public class PlayerData {
     }
 
     public List<Task> getTasks() {
+        if(tasks==null)tasks = new ArrayList<>();
         return tasks;
     }
 

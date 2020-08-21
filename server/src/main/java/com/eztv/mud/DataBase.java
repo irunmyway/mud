@@ -36,6 +36,7 @@ public class DataBase {
                     .setUsername(dbConfig.getProperty("db_Username"))
                     .setPassword(dbConfig.getProperty("db_Password"))
                     .setIsFormat(false)
+//                    .setIsCache(false)
                     .build();
 
         }

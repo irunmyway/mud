@@ -10,8 +10,8 @@ import com.eztv.mud.utils.BString;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.eztv.mud.Constant.LUA_物品使用;
-import static com.eztv.mud.Constant.LUA_物品查看;
+import static com.eztv.mud.Constant.脚本_物品使用;
+import static com.eztv.mud.Constant.脚本_物品查看;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.cache.manager.ItemManager.getItemById;
 import static com.eztv.mud.cache.manager.ItemManager.getSkillById;
@@ -58,8 +58,8 @@ public class ItemAction extends BaseCommand {
             item = getItemById(getMsg().getMsg());
         }
         if(item==null)return;
-        getClient().getScriptExecutor().loadFile(null,item.getScript() + ".lua")
-        .execute(LUA_物品查看,getClient(),item,winMsg,getMsg());
+        getClient().getScriptExecutor().load(item.getScript())
+        .execute(脚本_物品查看,getClient(),item,winMsg,getMsg());
     }
     private void item_use(){
         WinMessage winMsg = new WinMessage();
@@ -71,8 +71,8 @@ public class ItemAction extends BaseCommand {
             item = getItemById(getMsg().getMsg());
         }
         if(item==null)return;
-        getClient().getScriptExecutor().loadFile(null,item.getScript() + ".lua")
-                .execute(LUA_物品使用,getClient(),item,winMsg,getMsg());
+        getClient().getScriptExecutor().load(item.getScript() + ".lua")
+                .execute(脚本_物品使用,getClient(),item,winMsg,getMsg());
     }
     private void item_unload(){
         Equip equip = getClient().getPlayer().getPlayerData().getEquip();

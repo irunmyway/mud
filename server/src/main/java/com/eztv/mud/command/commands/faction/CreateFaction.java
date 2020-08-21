@@ -13,7 +13,7 @@ import com.eztv.mud.utils.BString;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.eztv.mud.Constant.LUA_初始化;
+import static com.eztv.mud.Constant.脚本_初始化;
 import static com.eztv.mud.Constant.Other_PATH;
 import static com.eztv.mud.GameUtil.*;
 
@@ -50,8 +50,8 @@ public class CreateFaction extends BaseCommand {
                         getPlayer().setFaction(factionId);
                         getPlayer().setFaction_position(5);
                         FactionCache.factions.put(factionId+"",faction);
-                        getClient().getScriptExecutor().loadFile(null,Other_PATH+"faction")
-                                .execute(LUA_初始化,getClient(),new WinMessage());
+                        getClient().getScriptExecutor().load(Other_PATH+"faction")
+                                .execute(脚本_初始化,getClient(),new WinMessage());
                         //发送创建帮派成功消息
                         String sendStr = getPropByFile("faction","faction_create_success",
                                 factionName,
@@ -59,7 +59,7 @@ public class CreateFaction extends BaseCommand {
                         Chat chat = new Chat();
                         chat.setContent(sendStr);
                         chat.setMsgType(Enum.chat.系统);
-                        GameUtil.sendToAll(getClient(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
+                        GameUtil.sendToAll(msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
 
                     } catch (Exception e) {//帮派名称已存在
                         winMsg.setDesc(getPropByFile("faction","faction_exist", factionName));

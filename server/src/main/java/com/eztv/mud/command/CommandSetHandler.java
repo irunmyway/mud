@@ -5,6 +5,8 @@ import com.eztv.mud.command.commands.action.*;
 import com.eztv.mud.command.commands.bag.BagPanel;
 import com.eztv.mud.command.commands.equip.EquipPanel;
 import com.eztv.mud.command.commands.faction.*;
+import com.eztv.mud.command.commands.player.Attack;
+import com.eztv.mud.command.commands.player.Talk;
 import com.eztv.mud.command.commands.pop.MapPanel;
 import com.eztv.mud.command.commands.pop.SkillAttackPanel;
 import com.eztv.mud.command.commands.pop.TradePanel;
@@ -14,6 +16,9 @@ import com.eztv.mud.command.commands.store.auction.*;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.eztv.mud.constant.Cmd.doAttack;
+import static com.eztv.mud.constant.Cmd.doTalk;
 
 public class CommandSetHandler {
     //游戏指令集合
@@ -39,6 +44,9 @@ public class CommandSetHandler {
         actionCommandSet.put("jmCancel", JmCancel.class);//下架寄卖
         actionCommandSet.put("jmBuy", JmBuy.class);//寄卖购买
         actionCommandSet.put("jmReward", JmReward.class);//寄卖收益
+        actionCommandSet.put(doTalk, Talk.class);//玩家对话
+        actionCommandSet.put(doAttack, Attack.class);//玩家攻击
+
 
     }
 

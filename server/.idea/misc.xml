@@ -5,7 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/WEB-INF/web.xml" />
   </component>
   <component name="JavaScriptSettings">
-    <option name="languageLevel" value="ES6" />
+    <option name="languageLevel" value="NASHORN" />
   </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop" />

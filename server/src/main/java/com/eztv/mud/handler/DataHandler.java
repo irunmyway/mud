@@ -19,15 +19,17 @@ import static com.eztv.mud.GameUtil.object2JsonStr;
 
 public class DataHandler {
     static Gson gson = new Gson();
+
     //获取角色信息。绑定游戏数据专用函数
-    public synchronized static Player getPlayer(Object client , Player player) {
+    public synchronized static void getPlayer(Client client, Player player) {
         if (client != null) {
-            try{
+            try {
                 String data = new String(Base64.getDecoder().decode(player.getData()));
-                PlayerData pd =  gson.fromJson(data, PlayerData.class);
+                PlayerData pd = gson.fromJson(data, PlayerData.class);
                 player.setPlayerData(pd);
-            }catch(Exception e){
-                BDebug.trace("玩家没有数据:"+e.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+                BDebug.trace("玩家没有数据:" + e.toString());
             }
             //获取玩家基础属性
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
@@ -35,23 +37,22 @@ public class DataHandler {
             if (player.getAttribute().getHp() < 1) {//玩家身上没有信息
                 base.setHp(base.getHp_max());
                 base.setMp(base.getMp_max());
-                if(player.getLevel()>1)
-                base.setExp(0);
+                if (player.getLevel() > 1)
+                    base.setExp(0);
                 player.getPlayerData().setAttribute(base);
             }
         }
-        return player;
     }
 
     //获取角色信息。绑定游戏数据专用函数
-    public static Player getPlayerByUpLevel(Object client , Player player) {
+    public static Player getPlayerByUpLevel(Object client, Player player) {
         if (client != null) {
             //获取玩家基础属性
             HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
             Attribute base = attributes.get(player.getLevel() + "");
             base.setHp(base.getHp_max());
             base.setMp(base.getMp_max());
-            if(player.getLevel()<2)
+            if (player.getLevel() < 2)
                 base.setExp(0);
             player.getPlayerData().setAttribute(base);
         }
@@ -60,14 +61,14 @@ public class DataHandler {
 
 
     //获取角色信息。绑定游戏数据专用函数
-    public static void sendReward(Client client , List<String> list) {
+    public static void sendReward(Client client, List<String> list) {
         WinMessage winMessage = new WinMessage();
         winMessage.setFloatMessage(list);
-        client.sendMsg(msgBuild(Enum.messageType.action,"reward",object2JsonStr(winMessage),null));
+        client.sendMsg(msgBuild(Enum.messageType.action, "reward", object2JsonStr(winMessage), null));
     }
 
     //获取基础属性//不包括当前血量等等
-    public static Attribute getBaseAttribute( int level) {
+    public static Attribute getBaseAttribute(int level) {
         HashMap<String, Attribute> attributes = Word.getInstance().getBaseAttributes();
         Attribute base = attributes.get(level + "");
         Attribute attribute = new Attribute();

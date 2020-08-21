@@ -6,6 +6,7 @@ import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Faction;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.cache.FactionCache;
+import com.eztv.mud.handler.DataBaseHandler;
 
 import static com.eztv.mud.cache.manager.ClientManager.getClient;
 
@@ -29,6 +30,7 @@ public class FactionManager {
                 client.getPlayer().setFaction(faction.getId());
                 client.getPlayer().setFaction_position(0);
                 faction.getAllowJoin().remove(client.getPlayer().getKey());
+                client.getPlayer().getDataBaseHandler().savePlayer(client.getPlayer());
                 return faction;
             }
         }
@@ -67,6 +69,19 @@ public class FactionManager {
         //数据库也更新下
         int flag = DataBase.getInstance().init().createSQL("update role set faction_position=? where account =?",
                 pos,player.getAccount()).update();
+        return flag>0;
+    }
+    //驱逐
+    public static boolean expel(Player player){
+        for (Client client: Constant.clients){
+            if(client.getPlayer().getAccount().equals(player.getAccount())){
+                client.getPlayer().setFaction_position(-1);
+                client.getPlayer().setFaction(-1);
+            }
+        }
+        //数据库也更新下
+        int flag = DataBase.getInstance().init().createSQL("update role set faction_position=?,faction=? where account =?",
+                -1,-1,player.getAccount()).update();
         return flag>0;
     }
 }

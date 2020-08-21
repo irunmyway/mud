@@ -6,6 +6,7 @@ import com.eztv.mud.bean.*;
 import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.cache.MonsterCache;
 import com.eztv.mud.cache.RoomCache;
+import com.eztv.mud.cache.manager.ClientManager;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BObject;
 import com.eztv.mud.utils.BProp;
@@ -14,19 +15,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static com.eztv.mud.Constant.DEFAULT_ROOM_ID;
 import static com.eztv.mud.Constant.clients;
 import static com.eztv.mud.constant.Cmd.getAttribute;
 
 public class GameUtil {
     //通过房间id获取房间实体
-    public static Room getRoom(String roomId) {
-        Room room = RoomCache.getRooms().get(roomId);
+    public static Room getRoom(Room targetRoom) {
+        if(targetRoom==null){
+            targetRoom = GameUtil.getRoom(Constant.DEFAULT_MAP_ID,Constant.DEFAULT_ROOM_ID);
+        }
+        Room room = RoomCache.getRoomsByMap(targetRoom.getMap()+"").get(targetRoom.getId()+"");
+
+        return room == null ? new Room() : room;
+    }
+
+    //通过房间地图 和方向获取id
+    public static Room getRoom(String map,String id) {
+        Room room = RoomCache.getRoomsByMap(map).get(id);
         return room == null ? new Room() : room;
     }
 
     //通过房间id获取房间名称
-    public static String getRoomName(int roomId) {
+    public static String getRoomName(String map,int roomId) {
         Room room = RoomCache.getRooms().get(roomId + "");
         return room == null ? "" : room.getName();
     }
@@ -91,13 +101,19 @@ public class GameUtil {
     }
 
     //获取玩家当前房间
-    public static String getCurRoomId(Client client) {
-        String roomId = client.getPlayer().getPlayerData().getRoom();
-        return (roomId == null || roomId.equals("-1")) ? DEFAULT_ROOM_ID : roomId;
+    public static Room getCacheCurRoom(Client client) {
+        Room room = client.getPlayer().getPlayerData().getRoom();
+        if(room==null){
+            room = GameUtil.getRoom(Constant.DEFAULT_MAP_ID,Constant.DEFAULT_ROOM_ID);
+        }
+        return room;
     }
     //通过房间id获取房间实体
     public static Room getCurRoom(Client client) {
-        Room room = RoomCache.getRooms().get(getCurRoomId(client));
+        Room room = ClientManager.getCurRoom(client);
+        if(room==null){
+            room = GameUtil.getRoom(Constant.DEFAULT_MAP_ID,Constant.DEFAULT_ROOM_ID);
+        }
         return room == null ? new Room() : room;
     }
 
@@ -151,7 +167,7 @@ public class GameUtil {
 
 
 
-    public static void sendToAll(Client client,String str){//发送给所有人
+    public static void sendToAll(String str){//发送给所有人
         for (Client item: clients) {
             try{
                 item.sendMsg(str.getBytes());

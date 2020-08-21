@@ -5,7 +5,6 @@ import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.WinMessage;
-import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BString;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class ChatHandler {
         switch (msg.getCmd()){
             case "公聊":
                 chat.setContent(BString.getHTMLStr(chat.getContent()));
-                sendToAll(client,msgBuild(Enum.messageType.chat, msg.getCmd(),object2JsonStr(chat),""));
+                sendToAll(msgBuild(Enum.messageType.chat, msg.getCmd(),object2JsonStr(chat),""));
                 break;
             case "私聊":
                 chat.setContent(BString.getHTMLStr(chat.getContent()));

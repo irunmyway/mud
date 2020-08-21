@@ -1,6 +1,8 @@
 package com.eztv.mud.bean;
 
+import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.script.LuaOpen;
 import online.sanen.cdm.template.jpa.Column;
 import online.sanen.cdm.template.jpa.Id;
 import online.sanen.cdm.template.jpa.Table;
@@ -15,10 +17,11 @@ import java.util.List;
  * 功能: 房间
  **/
 @Table(name = "t_map_room")
-public class Room extends GameObject {
+public class Room implements LuaOpen.LuaJson {
     @Id
     private int id=0;
     private int map=0;
+    private String desc;
     private String name = "";//地图名称也是中心
     @Column(name = "type")
     private String roomType="1";//安全区或者等等。。。。
@@ -33,6 +36,9 @@ public class Room extends GameObject {
     private int capacity;
     private String script;
     private int lv;//限制等级
+
+    private boolean isPK=true;//是否允许战斗
+
 
     private Date createat;
     private Date updateat;
@@ -110,12 +116,10 @@ public class Room extends GameObject {
         this.roomType = roomType;
     }
 
-    @Override
     public String getScript() {
         return script==null?"":script;
     }
 
-    @Override
     public void setScript(String script) {
         this.script = script;
     }
@@ -188,19 +192,50 @@ public class Room extends GameObject {
         return id;
     }
 
-
-
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false ;
+        }
+        if (obj instanceof Room){
+            Room room = (Room) obj;
+            if(room.getId() == getId()&&room.getMap()==((Room) obj).getMap()){
+                return true ;
+            }
+        }
+        return false ;
+    }
+
     public Attribute getAttribute() {
         return null;
     }
 
-    @Override
     public int getMap() {
         return map;
     }
 
     public void setMap(int map) {
         this.map = map;
+    }
+
+    public boolean isPK() {
+        return isPK;
+    }
+
+    public void setPK(boolean PK) {
+        isPK = PK;
+    }
+
+    @Override
+    public String 到Json() {
+        return GameUtil.object2JsonStr(this);
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

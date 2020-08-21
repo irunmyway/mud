@@ -1,5 +1,6 @@
 package com.eztv.mud.bean;
 
+import com.eztv.mud.GameUtil;
 import com.eztv.mud.Word;
 import com.eztv.mud.cache.SkillCache;
 import com.eztv.mud.script.LuaOpen;
@@ -7,7 +8,7 @@ import com.eztv.mud.script.LuaOpen;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bag implements LuaOpen.LuaBag {
+public class Bag implements LuaOpen.LuaBag, LuaOpen.LuaJson {
     List<Item> items = new ArrayList<>();
     private long money;
     private long jbMoney;
@@ -60,6 +61,9 @@ public class Bag implements LuaOpen.LuaBag {
         this.items = items;
     }
 
+    public Bag 新建(){
+        return new Bag();
+    }
 
     public void giveItem(int id, int num) {
         synchronized (items){
@@ -200,5 +204,10 @@ public class Bag implements LuaOpen.LuaBag {
         }
 
         return null;
+    }
+
+    @Override
+    public String 到Json() {
+        return GameUtil.object2JsonStr(this);
     }
 }

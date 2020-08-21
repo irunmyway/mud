@@ -50,9 +50,9 @@ public class Battle implements ActionListener {
         boolean noFind=false;//玩家和目标不同地图
         try {
             if(target instanceof Player){
-                noFind = !client.getPlayer().getPlayerData().getRoom().equals(((Player)target).getPlayerData().getRoom()+"");
+                noFind = !client.getPlayer().getPlayerData().getRoom().equals(((Player)target).getPlayerData().getRoom());
             }else{
-                noFind = !client.getPlayer().getPlayerData().getRoom().equals(target.getMap()+"");
+                noFind = client.getPlayer().getPlayerData().getRoom().getId()!=target.getMap();
             }
         }catch (Exception e){return  true;}
         //BDebug.trace("测试"+noFind);

@@ -3,6 +3,7 @@ package com.eztv.mud;
 import com.eztv.mud.cache.ItemCache;
 import com.eztv.mud.cache.SkillCache;
 import com.eztv.mud.handler.core.Cache;
+import com.eztv.mud.script.ScriptFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
@@ -23,6 +24,7 @@ public class Main {
                 "退出:tc\n"+
                 "更新技能:skill\n"+
                 "更新物品:item\n"+
+                "更新脚本:sc\n"+
                 "更新(npc地图怪物) :env\n";
         while(run){
             String cmd = sc.nextLine();
@@ -41,6 +43,9 @@ public class Main {
                     break;
                 case "env":
                     Word.getInstance().initEnvironment();
+                    break;
+                case "sc":
+                    ScriptFactory.clearScriptStrings();
                     break;
                 default:System.out.println(notice);
             }

@@ -7,102 +7,236 @@
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0 minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+          content="width=device-width, initial-scale=1.0 minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 </head>
-
+<style>
+    .map_link{
+        font-weight: bold;
+        color: #c0747e;
+    }
+    .map_link:hover{
+        color: #93856d;
+    }
+</style>
 <body>
-    <div class="layui-fluid">
-        <div class="layui-row layui-col-space10">
-            <div class="layui-col-md12">
-                <div class="layui-card">
-                    <!-- 操作 -->
-                    <div class="layui-card-header">地图编辑器</div>
-                    <div class="layui-card-body">
-                        <div style="margin-bottom: 10px;">
-                            <button onclick="createRoom()" type="button" class="layui-btn ">创建房间</button>
-                            <button onclick="refresh()" type="button" class="layui-btn layui-btn-primary ">刷新地图</button>
-                        </div>
-                        <label class="layui-form-label">双击编辑</label>
-                        <div style="width:100%;min-height: 600px;" id="game_map"></div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">地图管理(点击地图名进入房间编辑)</div>
+                <div class="layui-card-body">
+                    <div class="layui-btn-container">
+
                     </div>
+                    <div class="layui-form" style="margin-bottom: 10px;">
+                        <label class="layui-form-label">搜索</label>
+                        <div class="layui-input-inline">
+                            <input oninput="search($(this).val())" class="layui-input" type="text">
+                        </div>
+                        <button class="layui-btn" onclick="createNpc()">
+                            创建地图
+                        </button>
+                    </div>
+                    <table class="layui-hide" id="LAY-id-table-operate" lay-filter="LAY-filter-table-operate"></table>
+                    <script type="text/html" id="LAY-id-map">
+                        <!-- 这里的 checked 的状态只是演示 -->
+                        <a onclick="setCurRoom({{d.id}})" href="#/mud/room" class="map_link" >{{ d.name }}</a>
+                    </script>
+                    <script type="text/html" id="LAY-id-toolbarTpl">
+                        <div class="layui-btn-container">
+                            <button class="layui-btn" data-type="getCheckData">
+                                选中行
+                            </button>
+                            <button class="layui-btn" data-type="getCheckLength">
+                                选中数目
+                            </button>
+                            <button class="layui-btn" data-type="isAll">
+                                是否全选
+                            </button>
+                            <button class="layui-btn" data-type="createNpc">
+                                创建地图
+                            </button>
+                        </div>
+                    </script>
+                    <script type="text/html" id="LAY-id-rowToolTpl">
+                        <!-- <button class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</button> -->
+                        <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
+                        <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
+                    </script>
                 </div>
             </div>
         </div>
     </div>
-    <script>
+</div>
+<script>
+    var setCurRoom= function(id){
+        curMap=id;
+    }
+layui
+    .use(['index', 'table'], () => {
+        let $ = layui.$,
+            setter = layui.setter,
+            table = layui.table,
+            event = {
+                getCheckData() {
+                    let checkStatus = table.checkStatus('LAY-id-table-operate'),
+                        data = checkStatus.data
 
-    </script>
+                    layer.alert(JSON.stringify(data))
+                },
+                getCheckLength() {
+                    let checkStatus = table.checkStatus('LAY-id-table-operate'),
+                        data = checkStatus.data
+                    layer.msg(`选中了：${data.length} 个`)
+                },
+                isAll() {
+                    let checkStatus = table.checkStatus('LAY-id-table-operate')
+                    console.log(checkStatus)
+                    layer.msg(checkStatus.isAll ? '全选' : '未全选')
+                },
+            }
+
+        table.render({
+            elem: '#LAY-id-table-operate',
+            url: setter.mud_api + 'game/api/map/getMapList',
+            cols: [
+                [
+                    { type: 'checkbox', fixed: 'left'},
+
+                    { field: 'name', title: '名称', width: 150, templet: '#LAY-id-map',},
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        width: 80,
+                    },
+                    {
+                        title: '操作',
+                        align: 'center',
+                        fixed: 'right',
+                        templet: '#LAY-id-rowToolTpl',
+                        width: 120,
+                    },
+                ],
+            ],
+            page: true,
+        })
+
+        // 监听表格复选框选择
+        table.on('checkbox(LAY-filter-table-operate)', (obj) => {
+            // console.log(obj)
+        })
+        // 监听工具条
+        table.on('tool(LAY-filter-table-operate)', (obj) => {
+            let data = obj.data
+            if (obj.event === 'detail') {
+                layer.msg(`ID: ${data.id} 的查看操作`)
+            } else if (obj.event === 'edit') {
+                editNpc(data);
+            } else if (obj.event === 'del') {
+                layer.confirm('确定删除该行吗', (index) => {
+                    doDel(obj);
+                    layer.close(index)
+                })
+            }
+        })
+
+        $('.layui-btn-container .layui-btn').on('click', function () {
+            let type = $(this).data('type')
+            event[type] && event[type].call(this)
+        })
+    })
+</script>
 </body>
 
 </html>
-<link rel="stylesheet" href="./src/style/map.css" type="text/css" />
-<script type="text/javascript" src="./src/lib/map.js"></script>
 <script>
-    var distance = 100;
-    nodes = [];
-    edges = [];
-    $.ajax({
-        url: layui.setter.mud_api + 'game/api/map/getMap',
-        data: {},
-        type: "post",
-        success: function (code) {
-            code = eval("(" + code + ")");
-            nodes = JSON.parse(JSON.stringify(code.nodes));
-            edges = JSON.parse(JSON.stringify(code.edges));
-            initMap();
-        },
-        error: function () {
-            nodes = [
-                { id: 100, label: '房间1', x: distance, y: distance },
-                { id: 101, label: '房间1', x: distance + distance, y: distance },
-            ];
-            edges = [
-                { from: 100, to: 101, arrows: 'to,from' },
 
-            ];
-            initMap();
-        }
-    });
-    initMap = function () {
-        var container = document.getElementById('game_map');
-        var data = {
-            nodes: nodes,
-            edges: edges
-        };
-        var options = {
-            edges: {
-                font: {
-                    size: 22
-                },
-                widthConstraint: {
-                    maximum: 90
-                },
-                smooth: false
-            },
-            nodes: {
-                shape: 'box',
-                margin: 10,
-                widthConstraint: {
-                    maximum: 200
-                }
-            },
-            physics: {
-                enabled: false
-            }
-        };
-        var game_map = new vis.Network(container, data, options);
-        game_map.on("click", function (params) {
-            var node = findNodes(params.nodes[0]);
-            var edge = findEdges(params.items[0]);
-            if (node != undefined) {
-                showEditPanel(node);
-            }
-            if(edge!=undefined){
-                changeEdges(edge);
-            }
-
+    /**
+     * 作者: hhx QQ1025334900
+     * 功能: 编辑npc
+     **/
+    editNpc = function (data) {
+        layerIndex = layer.open({
+            type: 1,
+            title: '修改地图',
+            shadeClose: true,
+            shade: 0.6,
+            // area: ['320px', '500px'],
+            content: '<div class="layui-card-body">\n' +
+                '          <form omsubmit="return true" class="layui-form">\n' +
+                '            <div class="layui-form-item">\n' +
+                '              <label class="layui-form-label">名称</label>\n' +
+                '              <div class="layui-input-block">\n' +
+                '                <input id="edt_name" value="' + (data.name == undefined ? "" : data.name) + '" type="text" class="layui-input" autocomplete="off"lay-verify="required" />\n' +
+                '              </div>\n' +
+                '            </div>\n' +
+                '            <div class="layui-form-item">\n' +
+                '              <div class="layui-input-block">\n' +
+                '                <input type="button" onclick="doEdit(' + data.id + ')" class="layui-btn" value="修改" />\n' +
+                '                  \n' +
+                '                <button type="reset" class="layui-btn layui-btn-primary">\n' +
+                '                  重置\n' +
+                '                </button>\n' +
+                '              </div>\n' +
+                '            </div>\n' +
+                '          </form>\n' +
+                '        </div>'
         });
     }
+    doEdit = function (id) {
+        var name = $("#edt_name").val();
+        $.ajax({
+            url: layui.setter.mud_api + 'game/api/map/saveMap',
+            data: { id: id, name: name},
+            type: "post",
+            success: function (code) {
+                layui.table.reload('LAY-id-table-operate');
+            },
+            error: function () {
+                alert("修改失败了。");
+            }
+        });
+        layer.close(layerIndex);
+        return false;
+    }
+    doDel = function (obj) {
+        $.ajax({
+            url: layui.setter.mud_api + 'game/api/map/delMap',
+            data: { id: obj.data.id },
+            type: "post",
+            success: function (code) {
+                obj.del()
+            },
+            error: function () {
+                alert("删除失败了。");
+            }
+        });
 
-    
+    }
+
+    function createNpc() {
+        $.ajax({
+            url: layui.setter.mud_api + 'game/api/map/createMap',
+            data: {},
+            type: "post",
+            success: function (code) {
+                layui.table.reload('LAY-id-table-operate');
+            },
+            error: function () {
+                alert("创建失败了。");
+            }
+        });
+
+    }
+
+    function search(val) {
+        layui.table.reload('LAY-id-table-operate', {
+            where: {
+                value: val
+            }
+        });
+
+    }
+
 </script>

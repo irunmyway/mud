@@ -16,12 +16,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.eztv.mud.Constant.LUA_挂机奖励;
+import static com.eztv.mud.Constant.脚本_事件_挂机奖励;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
 
 public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
-
+    public LuaUtil 新建(){
+        return new LuaUtil();
+    }
     public void 发送消息(Client client, byte[] msg) {
         client.sendMsg(msg);
     }
@@ -62,6 +64,7 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
         return task;
     }
 
+
     @Override
     public long 取离线时间(Client client) {
         try {
@@ -78,15 +81,15 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
 
     @Override
     public void 挂机奖励(Client client) {
-        client.getScriptExecutor().loadFile(null, getCurRoom(client).getScript()).
-                execute(LUA_挂机奖励,
+        client.getScriptExecutor().load(getCurRoom(client).getScript()).
+                execute(脚本_事件_挂机奖励,
                         client,
                         new WinMessage());
     }
 
     @Override
-    public void 到房间(Client client, String roomId) {
-        MapHandler.goRoom(client,roomId);
+    public void 到房间(Client client, String map, String id) {
+        MapHandler.goRoom(client, map,id);
     }
 
     @Override
@@ -120,6 +123,7 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
         bag.给技能(Integer.parseInt(id), Integer.parseInt(num));
         发送奖励(client, bag);
     }
+
 
     public LuaUtil 任务创建条件(String id, int num) {//添加具体任务
         TaskAction taskAction = new TaskAction();
@@ -160,15 +164,45 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
         DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
     }
 
+
+    @Override
+    public String 取任务状态(Client client, String taskId) {
+        Task task = new Task();
+        task.setId(taskId);
+        boolean flag = client.getPlayer().getPlayerData().getTasks().contains(task);
+        if (flag) {//已经接受
+            int pos = client.getPlayer().getPlayerData().getTasks().indexOf(task);
+
+            return client.getPlayer().getPlayerData().getTasks().get(pos).getTaskState().toString();
+        }else{
+            return Enum.taskState.can.toString();
+        }
+    }
+
     public Task 检查任务状态(Client client, Task task) {
-        int pos = client.getPlayer().getPlayerData().getTasks().indexOf(task);
-        if (pos == -1) {//尚未接受该任务
+        boolean flag = client.getPlayer().getPlayerData().getTasks().contains(task);
+        if (flag) {//已经接受
+            int pos =client.getPlayer().getPlayerData().getTasks().indexOf(task);
+            Task mTask = client.getPlayer().getPlayerData().getTasks().get(pos);
+            return mTask;
+        } else {//尚未接受该任务
             task.setTaskState(Enum.taskState.processing);
             client.getPlayer().getPlayerData().getTasks().add(task);//添加该任务
             return task;
-        } else {//已经接受
+        }
+    }
+    public Task 检查任务状态(Client client, String taskId) {
+        Task task = new Task();
+        task.setId(taskId);
+        boolean flag = client.getPlayer().getPlayerData().getTasks().contains(task);
+        if (flag) {//已经接受
+            int pos =client.getPlayer().getPlayerData().getTasks().indexOf(task);
             Task mTask = client.getPlayer().getPlayerData().getTasks().get(pos);
             return mTask;
+        } else {//尚未接受该任务
+            task.setTaskState(Enum.taskState.processing);
+            client.getPlayer().getPlayerData().getTasks().add(task);//添加该任务
+            return task;
         }
     }
 
@@ -326,6 +360,13 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
         chat.setContent(str);
         chat.setMsgType(Enum.chat.系统);
         GameUtil.sendToSelf(client, msgBuild(Enum.messageType.chat, Enum.chat.公聊.toString(), object2JsonStr(chat), ""));
+    }
+
+    public void 全局系统消息(String str) {
+        Chat chat = new Chat();
+        chat.setContent(str);
+        chat.setMsgType(Enum.chat.系统);
+        GameUtil.sendToAll(msgBuild(Enum.messageType.chat, Enum.chat.公聊.toString(), object2JsonStr(chat), ""));
     }
 
 

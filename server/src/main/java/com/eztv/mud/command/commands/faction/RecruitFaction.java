@@ -33,9 +33,7 @@ public class RecruitFaction extends BaseCommand {
                     //发送创建帮派成功消息
                     String sendStr = getPropByFile("faction","faction_join",
                             getClient().getPlayer().getName(),faction.getName());
-                    Chat chat = new Chat();
-                    chat.setContent(sendStr);
-                    chat.setMsgType(Enum.chat.系统);
+                    Chat chat = Chat.system(sendStr);
                     GameUtil.sendToFaction(getClient().getPlayer().getFaction(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
                 }
             }
@@ -47,11 +45,8 @@ public class RecruitFaction extends BaseCommand {
                //发送创建帮派成功消息
                String sendStr = getPropByFile("faction","faction_already_join",
                        client.getPlayer().getName());
-               Chat chat = new Chat();
-               chat.setContent(sendStr);
-               chat.setMsgType(Enum.chat.系统);
+               Chat chat = Chat.system(sendStr);
                GameUtil.sendToSelf(getClient(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
-
                return;
            }
             WinMessage winMsg = new WinMessage();
@@ -66,8 +61,6 @@ public class RecruitFaction extends BaseCommand {
                 winMsg.setChoice(choice);
             }
             GameUtil.sendToKey(getMsg().getMsg(), msgBuild(Enum.messageType.pop, "joinFaction", object2JsonStr(winMsg), getMsg().getMsg(), null));
-
         }
-
     }
 }

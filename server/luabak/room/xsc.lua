@@ -1,6 +1,12 @@
 local 游戏工具 = luajava.newInstance("com.eztv.mud.GameUtil")--游戏工具类
 local lua工具 = luajava.newInstance("com.eztv.mud.LuaUtil")
 local 奖励 = luajava.newInstance("com.eztv.mud.bean.Bag")--奖励
+
+function 初始化(房间)
+    房间:setPK(false);
+    return 房间:到Json();
+end
+
 function 进入房间(client, 窗口, 消息)
     return 1;
 end

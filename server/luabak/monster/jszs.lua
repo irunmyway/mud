@@ -14,7 +14,7 @@ function 初始化()
     属性:setEva(2);
     属性:setAcc(2);
     属性:setAtk(10);
-    return 游戏工具:object2JsonStr(属性);
+    return 属性:到Json();
 end
 
 function 击杀奖励()
@@ -24,7 +24,7 @@ function 击杀奖励()
     奖励:setExp(1350);--经验
     奖励:给物品(2, 1);--id 为1的物品给与1个
     奖励:给技能(1, 1);--id 为1的物品给与1个
-    return 游戏工具:object2JsonStr(奖励);
+    return 奖励:到Json();
 end
 
 function 对话(client, 窗口, 消息, 目标)
@@ -33,7 +33,7 @@ function 对话(client, 窗口, 消息, 目标)
     else
         窗口:setDesc(目标:getName() .. "<br>");
     end
-    lua工具:添加选项("攻击", Enum.messageType.normal, "attack", 消息:getMsg(), nil)
+    lua工具:添加执行选项("攻击", "attack", 消息:getMsg(),nil,"close", "red")
     窗口:添加选项集合(lua工具);
     lua工具:返回元素消息(client, "action", "doTalk", 目标:getKey(), 窗口);
 end

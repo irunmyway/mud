@@ -2,14 +2,20 @@ package com.eztv.mud.bean.net;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.GameUtil;
-import com.eztv.mud.bean.*;
+import com.eztv.mud.bean.Attribute;
+import com.eztv.mud.bean.Client;
+import com.eztv.mud.bean.GameObject;
+import com.eztv.mud.bean.PlayerData;
 import com.eztv.mud.bean.callback.IPlayerCallBack;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataBaseHandler;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.core.Battle;
 import com.eztv.mud.utils.BObject;
-import online.sanen.cdm.template.jpa.*;
+import online.sanen.cdm.template.jpa.Column;
+import online.sanen.cdm.template.jpa.Id;
+import online.sanen.cdm.template.jpa.NoUpdate;
+import online.sanen.cdm.template.jpa.Table;
 
 import java.util.Date;
 
@@ -23,6 +29,7 @@ public class Player extends GameObject implements IPlayerCallBack {
     private Enum.sex sex;
     private String profession;//职业
     private int faction;//帮派
+    private long deadTime=0;//死亡时间
 
     //普通状态
     private Enum.playerState playerState;
@@ -30,17 +37,20 @@ public class Player extends GameObject implements IPlayerCallBack {
     //存储的数据
     @Column()
     @NoUpdate
+    @JSONField(serialize = false)
     private String data;
 
     //属性
     private Date updateat;
 
     //发动攻击
+    @JSONField(serialize = false)
     private Battle battle = new Battle();
 
     private int faction_position;//帮派职位
 
     //人物数据处理
+    @JSONField(serialize = false)
     private DataBaseHandler dataBaseHandler = new DataBaseHandler();
 
     @JSONField(serialize = false)
@@ -79,7 +89,7 @@ public class Player extends GameObject implements IPlayerCallBack {
     }
 
     public String getAccount() {
-        return account;
+        return account==null?"":account;
     }
 
     public void setAccount(String account) {
@@ -201,5 +211,13 @@ public class Player extends GameObject implements IPlayerCallBack {
 
     public void setUpdateat(Date updateat) {
         this.updateat = updateat;
+    }
+
+    public long getDeadTime() {
+        return deadTime;
+    }
+
+    public void setDeadTime(long deadTime) {
+        this.deadTime = deadTime;
     }
 }

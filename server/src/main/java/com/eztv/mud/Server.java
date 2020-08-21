@@ -9,7 +9,7 @@ import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Cmd;
 import com.eztv.mud.handler.GameHandler;
 import com.eztv.mud.handler.LoginHandler;
-import com.eztv.mud.handler.event.PlayerEvent;
+import com.eztv.mud.handler.event.player.PlayerLogin;
 import com.eztv.mud.socket.SocketServer;
 import com.eztv.mud.socket.callback.SocketServerCallback;
 import com.eztv.mud.syn.WordSyn;
@@ -87,21 +87,14 @@ public class Server implements SocketServerCallback {
 
     public void onReceive(Client client, byte[] bytes) {
         String jsonStr = new String(bytes);
-        if (通信检查)
-            BDebug.trace("onReceive:" + jsonStr);
-        JSONObject json = new JSONObject();
-        try {
-            json = JSONObject.parseObject(jsonStr);
-        } catch (Exception e) {
-            return;
-        }
+        if (通信检查)BDebug.trace("onReceive:" + jsonStr);
+        JSONObject json;
+        try {json = JSONObject.parseObject(jsonStr);} catch (Exception e) {return;}
         if (!json.getString("type").equals("login") && client.getPlayer().getKey() == null) {
-            try {
-                client.getSocket().close();
-            } catch (IOException e) {
-            }
+            try {client.getSocket().close();} catch (IOException e) {}
         }
-        switch (json.getString("type")) {
+        String cmdType = json.getString("type");
+        switch (cmdType) {
             case "login"://登录处理
                 LoginHandler.login(client, json);
                 break;
@@ -112,7 +105,7 @@ public class Server implements SocketServerCallback {
                         GameHandler.getGG(client);
                         break;
                     case "loginSuccess"://登录成功触发event
-                        PlayerEvent.onLogin(client);
+                        PlayerLogin.onLogin(client);
                         break;
                 }
                 break;
@@ -127,12 +120,6 @@ public class Server implements SocketServerCallback {
                         break;
                     case Cmd.getAttribute://获取玩家属性
                         getAttribute(client);
-                        break;
-                    case Cmd.doAttack://获取房间信息
-                        GameHandler.doAttack(client, msg);
-                        break;
-                    case Cmd.doTalk://玩家对话
-                        GameHandler.doTalk(client, msg);
                         break;
                     default:
                         //指派类去执行

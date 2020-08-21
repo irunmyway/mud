@@ -34,17 +34,19 @@ public class LuaOpen {
         void 发送消息(Client client, byte[] msg);
 
         void 返回系统消息(Client client, String str);
+        void 全局系统消息(String str);
 
         void 返回数组消息(Client client, String messageType, String cmd, String key, Object obj);
 
         void 返回元素消息(Client client, String messageType, String cmd, String key, Object obj);
 
         Task 取任务();
+        String 取任务状态(Client client, String taskId);
 
         long 取离线时间(Client client);
 
         void 挂机奖励(Client client);
-        void 到房间(Client client,String roomId);
+        void 到房间(Client client,String map,String id);
         void 购买(Client client,String id,String num,long price);
         void 购买技能(Client client,String id,String num,long price);
         void 元宝购买(Client client,String id,String num,long price);
@@ -70,6 +72,7 @@ public class LuaOpen {
     public interface LuaTask {
         String 取任务详情();
         String 取状态();
+        void 置状态(String state);
     }
     public interface LuaBag {
         void 给物品(int id, int num);
@@ -82,6 +85,10 @@ public class LuaOpen {
         void 给元宝(long yb);
         String 到文本();
 
+    }
+
+    public interface LuaJson{
+        String 到Json();
     }
 
     public interface LuaChoice {

@@ -2,19 +2,20 @@ package com.eztv.mud.cache;
 
 import com.eztv.mud.DataBase;
 import com.eztv.mud.bean.Room;
+import com.eztv.mud.script.ScriptExecutor;
 import com.eztv.mud.utils.BDebug;
-import org.luaj.vm2.LuaValue;
 
 import java.util.HashMap;
 import java.util.List;
 
+import static com.eztv.mud.Constant.脚本_初始化;
 import static com.eztv.mud.Constant.Room_PATH;
 
 public class RoomCache {
     public static HashMap<String, HashMap<String, Room>> maps = new HashMap<>();
-    public static HashMap<String, Room> Rooms = new HashMap<String, Room>();
-    private static HashMap<String, LuaValue> roomScript = new HashMap<String, LuaValue>();
+    private static ScriptExecutor scriptExecutor ;
     public static void initRooms() {//初始化所有房间
+        scriptExecutor= new ScriptExecutor();
         //初始化所有房间
         maps.clear();
         List<Room> roomList = DataBase.getInstance().init().createSQL("select * from t_map_room").list(Room.class);
@@ -23,6 +24,9 @@ public class RoomCache {
             try {
                 if (room.getScript().length() > 0) {//模板
                     room.setScript(Room_PATH + room.getScript());
+                    scriptExecutor.load(room.getScript()).execute(脚本_初始化,room);
+//                    String roomStr = scriptExecutor.load(room.getScript()).execute(脚本_初始化,room);
+//                    room = JSONObject.toJavaObject(jsonStr2Json(roomStr),Room.class);
                 }
                 if(maps.get(room.getMap()+"")==null)
                     maps.put(room.getMap()+"",new HashMap<>());
@@ -30,6 +34,7 @@ public class RoomCache {
                 roomNum++;
             } catch (Exception e) {e.printStackTrace();}
         }
+        scriptExecutor=null;
         BDebug.trace("房间加载完成 数量 : Map load RoomNum:【" + roomNum + "】");
     }
 
@@ -40,5 +45,9 @@ public class RoomCache {
     //【默认世界地图】
     public static HashMap<String, Room> getRooms() {
         return maps.get("0");
+    }
+    //
+    public static HashMap<String, HashMap<String, Room>> getMaps() {
+        return maps;
     }
 }

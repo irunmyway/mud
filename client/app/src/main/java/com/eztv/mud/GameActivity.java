@@ -156,6 +156,9 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
                         case mapPop://可以关闭的弹窗
                             onSkillAttackWin(msg);
                             break;
+                        case toast://可以关闭的弹窗
+                            Toast.makeText(mContext,msg.getMsg(), Toast.LENGTH_SHORT).show();
+                            break;
                     }
                     break;
                 case 2:

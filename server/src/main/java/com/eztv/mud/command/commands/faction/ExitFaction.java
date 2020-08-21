@@ -24,17 +24,15 @@ public class ExitFaction extends BaseCommand {
     @Override
     public void execute() {
         Faction faction = FactionManager.getFaction(getClient());
-        getClient().getPlayer().setFaction(0);
-        getClient().getPlayer().setFaction_position(0);
-        getClient().getPlayer().getDataBaseHandler().savePlayer(getClient().getPlayer());
+        getPlayer().setFaction(0);
+        getPlayer().setFaction_position(0);
+        getPlayer().getDataBaseHandler().savePlayer(getClient().getPlayer());
         String sendStr = "你离开了门派";
         //发送帮派解散成功消息
-        if(faction!=null)
-        sendStr = getPropByFile("faction","faction_exit",
-        getClient().getPlayer().getName(),faction.getName());
-        Chat chat = new Chat();
-        chat.setContent(sendStr);
-        chat.setMsgType(Enum.chat.系统);
+        if (faction != null)
+            sendStr = getPropByFile("faction", "faction_exit",
+                    getPlayer().getName(), faction.getName());
+        Chat chat = Chat.system(sendStr);
         GameUtil.sendToFaction(faction.getId(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
     }
 }

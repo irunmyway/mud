@@ -3,7 +3,10 @@ local 游戏工具 = luajava.newInstance("com.eztv.mud.GameUtil")--游戏工具�
 local 奖励 = luajava.newInstance("com.eztv.mud.bean.Bag")--背包物品工具
 local lua工具 = luajava.newInstance("com.eztv.mud.LuaUtil")
 local Enum = luajava.newInstance("com.eztv.mud.constant.Enum")
-
+function 初始化(房间)
+    房间:setPK(true);
+    return 房间:到Json();
+end
 function 进入房间(client,窗口,消息)
     窗口:setDesc("此地十分凶险,你现在还进不去");
     lua工具:添加选项("好吧", "action", "", 消息:getMsg(), nil)

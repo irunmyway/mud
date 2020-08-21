@@ -1,4 +1,5 @@
 package com.eztv.mud.bean.task;
+
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.Bag;
 import com.eztv.mud.constant.Enum;
@@ -42,7 +43,9 @@ public class Task implements LuaOpen.LuaTask {
 	public void setTaskState(Enum.taskState taskState) {
 		this.taskState = taskState;
 	}
-
+	public void setTaskState(String state) {
+		this.taskState = Enum.taskState.valueOf(state);
+	}
 	public String getNextId() {
 		return nextId;
 	}
@@ -117,6 +120,11 @@ public class Task implements LuaOpen.LuaTask {
 						str+="击杀"+GameUtil.getMonstertById(taskAction.getId()).getName()+" 进度 "+taskAction.getProcess()+"/"+taskAction.getNum();
 						str+="\n";
 						break;
+					case talk:
+						boolean flag = this.getTaskState()== Enum.taskState.finished;
+						str+=" 进度 "+(flag?"已完成":"未完成");
+						str+="\n";
+						break;
 				}
 			}
 		}
@@ -126,5 +134,10 @@ public class Task implements LuaOpen.LuaTask {
 	@Override
 	public String 取状态() {
 		return taskState.toString();
+	}
+
+	@Override
+	public void 置状态(String state) {
+		this.taskState = Enum.taskState.valueOf(state);
 	}
 }

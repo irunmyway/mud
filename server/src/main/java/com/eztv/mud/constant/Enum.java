@@ -1,6 +1,9 @@
 package com.eztv.mud.constant;
 
 public class Enum {
+
+    //引擎脚本
+    public enum script {js, lua} //
     //登录注册界面
     public enum login {login, register} //登录界面判断是哪一个
 
@@ -39,11 +42,7 @@ public class Enum {
     //窗口类型
     public enum winAction {open, close, closeAll}
 
-    ;
-
     //颜色
     public enum color {blue, red, gray, yellow, normal}
-
-    ;
 
 }

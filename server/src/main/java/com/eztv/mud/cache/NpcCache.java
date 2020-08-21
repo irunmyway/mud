@@ -1,25 +1,24 @@
 package com.eztv.mud.cache;
 
-import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.DataBase;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.script.ScriptExecutor;
 import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BDebug;
-import org.luaj.vm2.Globals;
-import org.luaj.vm2.LuaValue;
 
 import java.util.HashMap;
 import java.util.List;
 
 import static com.eztv.mud.Constant.*;
-import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.GameUtil.msgBuild;
+import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.onObjectInRoom;
 
 public class NpcCache {
-    private static HashMap<String, LuaValue> npcScript = new HashMap<String, LuaValue>();
+    private static HashMap<String, String> npcScript = new HashMap<String, String>();
 
-    public static void initNPC(Globals globals,HashMap<String, Room> Rooms) {//加载所有npc 和他的脚本
+    public static void initNPC(ScriptExecutor scriptExecutor, HashMap<String ,HashMap<String, Room>> Rooms) {//加载所有npc 和他的脚本
         npcScript.clear();
         List<Npc> npcList = DataBase.getInstance().init().createSQL("select * from t_npc").list(Npc.class);
         for (Npc npc : npcList) {
@@ -27,9 +26,10 @@ public class NpcCache {
                 Attribute attribute = new Attribute();
                 if (npc.getScript().length() > 0) {
                     npc.setScript(NPC_PATH + npc.getScript());
-                    npcScript.put(npc.getId() + "", globals.loadfile(npc.getScript() + ".lua"));
-                    globals.load(npcScript.get(npc.getId() + ""));
-                    attribute = JSONObject.toJavaObject(jsonStr2Json(globals.get(LuaValue.valueOf(LUA_初始化)).invoke().toString()), Attribute.class);
+                    npcScript.put(npc.getId() + "", npc.getScript() );
+                    scriptExecutor.load(npcScript.get(npc.getId() + ""));
+                    scriptExecutor.execute(脚本_初始化,attribute);
+//                    attribute = JSONObject.toJavaObject(jsonStr2Json(scriptExecutor.execute(脚本_初始化)), Attribute.class);
                     npc.setAttribute(attribute);
                 }
                 final Attribute baseAttribute = attribute;
@@ -50,10 +50,15 @@ public class NpcCache {
                                     addM.setAttribute((Attribute) baseAttribute.clone());
                                     addM.setScript(npc.getScript());
                                     addM.setKey(BDate.getNowMills() + "");
-                                    Rooms.get(m.getMap() + "").add(addM);
+                                    Rooms.keySet().forEach(key ->
+                                            {
+                                                if(Rooms.get(key).get(m.getMap() + "")!=null)
+                                                    Rooms.get(key).get(m.getMap() + "").add(addM);
+                                            }
+                                    );
                                     for (Client item : clients) {//发送房间东西新增
                                         try {
-                                            if (item.getPlayer().getPlayerData().getRoom().equals(m.getMap() + "")) {
+                                            if (item.getPlayer().getPlayerData().getRoom().getId()==m.getMap()) {
                                                 item.sendMsg(msgBuild(Enum.messageType.normal, onObjectInRoom, object2JsonStr(addM.toSendGameObject()), null));
                                             }
                                         } catch (Exception e) {
@@ -65,7 +70,12 @@ public class NpcCache {
                             }
                         }).start());
                     }
-                    Rooms.get(npc.getMap() + "").add(m);
+                    Rooms.keySet().forEach(key ->
+                            {
+                                if(Rooms.get(key).get(m.getMap() + "")!=null)
+                                    Rooms.get(key).get(m.getMap() + "").add(m);
+                            }
+                    );
                 }
             } catch (Exception e) {
                 e.printStackTrace();

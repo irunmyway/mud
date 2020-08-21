@@ -12,7 +12,7 @@ function 初始化()
     属性:setExp(999);
     属性:setExp_max(999);
     属性:setAtk(10);
-    return 游戏工具:object2JsonStr(属性);
+    return 属性:到Json();
 end
 
 function 对话(client, 窗口, 消息, 目标)

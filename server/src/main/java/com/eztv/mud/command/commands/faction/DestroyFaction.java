@@ -46,7 +46,7 @@ public class DestroyFaction extends BaseCommand {
             Chat chat = new Chat();
             chat.setContent(sendStr);
             chat.setMsgType(Enum.chat.系统);
-            GameUtil.sendToAll(getClient(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
+            GameUtil.sendToAll(msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
         }
     }
 }

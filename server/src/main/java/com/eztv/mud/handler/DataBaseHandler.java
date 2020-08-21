@@ -14,22 +14,23 @@ import java.util.Base64;
  * 功能: 保存缓存的信息
  **/
 public class DataBaseHandler {
-    public void saveAll(Player player){
+    public synchronized void saveAll(Player player){
         savePlayer(player);
         savePlayerData(player);
     }
-    public void savePlayer(Player player){
+    public synchronized void savePlayer(Player player){
         try {
             DataBase.getInstance().init().query(player).setExceptFields("name").update();
         }catch (Exception e){e.printStackTrace();}
     }
+    //离线更新离线时间
     public void offlinePlayer(Player player){
         try {
             String sql ="update role set updateat=now() where account = ?";
             DataBase.getInstance().init().createSQL(sql,player.getAccount()).update();
         }catch (Exception e){e.printStackTrace();}
     }
-    public void savePlayerData(Player player){
+    public synchronized void savePlayerData(Player player){
         try {
             String data = new String(Base64.getEncoder().encode(player.getPlayerData().toJson().getBytes()));
             String sql ="update role set data='"+ data+

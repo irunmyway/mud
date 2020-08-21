@@ -25,7 +25,7 @@ public class FactionCache {
             factions.put(faction.getId()+"",faction);
         }
         factionList=null;
-        for(int i = 1;i<6 ;i++){
+        for(int i = 1;i<7 ;i++){
             grantAlias.add(BProp.getInstance().get("faction","faction_grant"+i));
         }
     }

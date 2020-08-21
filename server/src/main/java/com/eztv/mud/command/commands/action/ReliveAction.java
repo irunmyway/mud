@@ -1,12 +1,11 @@
 package com.eztv.mud.command.commands.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
-import com.eztv.mud.handler.DataHandler;
-import com.eztv.mud.handler.MapHandler;
+import com.eztv.mud.cache.manager.ClientManager;
 import com.eztv.mud.command.commands.BaseCommand;
-
-import static com.eztv.mud.GameUtil.getAttribute;
+import com.eztv.mud.constant.Enum;
 
 /**
  作者：hhx QQ1025334900
@@ -20,8 +19,11 @@ public class ReliveAction extends BaseCommand {
 
     @Override
     public void execute() {
-        DataHandler. getPlayer(getClient(),getClient().getPlayer());
-        MapHandler.getMapDetail(getClient());
-        getAttribute(getClient());
+        long waitTime =  ClientManager.isDead(getClient(),getPlayer());
+        if(waitTime>0){
+            getMsg().setType(Enum.messageType.toast);
+            getMsg().setMsg("还要"+(waitTime)+"秒才能复活");
+            getClient().sendMsg(JSONObject.parseObject(JSONObject.toJSON(getMsg()).toString()).toJSONString());
+        }
     }
 }

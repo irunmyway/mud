@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.cache.manager.FactionManager.expel;
 
 /**
  * 作者: hhx QQ1025334900
@@ -39,17 +40,24 @@ public class GrantMemberFaction extends BaseCommand {
                 try{
                     pos = Integer.parseInt(getMsg().getRole())+1;
                 }catch(Exception e){e.printStackTrace();}
+                if(pos>8){//驱逐
+                    String sendStr = getPropByFile("faction","faction_expel",
+                           target.getName(),
+                            getPlayer().getName()
+                    );
+                    Chat chat = Chat.system(sendStr);
+                    GameUtil.sendToFaction(target.getFaction(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
+                    expel(target);
+                    return;
+                }
                 //被授职人的职位必须比 授职的人低
                 if(pos<mPos&&target.getFaction_position()<mPos){
                     FactionManager.setPosition(target,pos);
-                    String sendStr = "提升了职位";
-                    sendStr = getPropByFile("faction","faction_grant",
+                    String sendStr = getPropByFile("faction","faction_grant",
                             target.getName(),
                             getClient().getPlayer().getName(),
                             FactionCache.grantAlias.get(pos-1));
-                    Chat chat = new Chat();
-                    chat.setContent(sendStr);
-                    chat.setMsgType(Enum.chat.系统);
+                    Chat chat = Chat.system(sendStr);
                     GameUtil.sendToFaction(getClient().getPlayer().getFaction(), msgBuild(Enum.messageType.chat, "公聊", object2JsonStr(chat), ""));
 
                 }
@@ -64,6 +72,7 @@ public class GrantMemberFaction extends BaseCommand {
                 for(int i = mPos-2;i>=0 ;i--){
                     choice.add(Choice.createChoice(FactionCache.grantAlias.get(i), Enum.messageType.pop,getMsg().getCmd(), getMsg().getMsg(),i+""));
                 }
+                choice.add(Choice.createChoice(FactionCache.grantAlias.get(5), Enum.messageType.pop,getMsg().getCmd(), getMsg().getMsg(),"10"));
                 winMsg.setCol(1);
                 winMsg.setDesc(getPropByFile("faction", "faction_grant_title"));
                 winMsg.setChoice(choice);

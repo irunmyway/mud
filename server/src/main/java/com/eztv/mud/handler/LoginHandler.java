@@ -6,6 +6,7 @@ import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.Login;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.cache.manager.ClientManager;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BDebug;
@@ -50,35 +51,39 @@ public class LoginHandler {
                     msg.setCmd(LOGIN_SUCCESS);//返回Player
                     player = getPlayer(login.getName(), login.getPasswd(), client);
                     msg.setMsg(JSONObject.parseObject(JSONObject.toJSON(player).toString()).toJSONString());
-                    for (Client item : clients) {
-                        if (item.equals(client)) {
-                            client.setPlayer(player);
-                            item = client;//初始化并绑定Player
-                        }
+                    client.setPlayer(player);
+                    //读取玩家的属性
+                    if (ClientManager.isDead(client, player) < 1) {//无死亡
+                        DataHandler.getPlayer(client, client.getPlayer());
                     }
+
                 }
             } else {//登录模块//////////////////////////////////////////////////////////////////////
                 if ((login.getName().length() > 4) && (login.getPasswd().length() > 4) && (login.getPasswd().length() <= 16) && (login.getName().length() <= 16)) {
                     if ((BString.isUsername(login.getName() + login.getPasswd()))) {
                         if (!(BString.isSql(login.getName() + login.getPasswd()))) {
                             player = getPlayer(login.getName(), login.getPasswd(), client);
-                            if (player.getName() != null) {
-                                msg.setType(Enum.messageType.normal);
-                                msg.setCmd(LOGIN_SUCCESS);//返回Player
-                                for (Client item : clients) {
-                                    if (item.equals(client)) {
-                                        //待完善//先保存Player 再做新的登录设置player防止数据丢失
-                                        client.setPlayer(player);
-                                        client.setRole(login.getName());//设置用户账号登录标识
-                                        item = client;//初始化并绑定Player
-                                    }
-                                }
-                                msg.setMsg(JSONObject.parseObject(JSONObject.toJSON(player).toString()).toJSONString());
-                                msg.setRole(client.getRole());
-                            } else {
+                            if (hasLogin(player)) {
                                 msg.setType(Enum.messageType.toast);
-                                msg.setMsg("账号或密码错误。");
+                                msg.setMsg("该角色已经登录。已经踢下线。");
+                            } else {
+                                if (player.getName() != null) {
+                                    msg.setType(Enum.messageType.normal);
+                                    msg.setCmd(LOGIN_SUCCESS);//返回Player
+                                    client.setPlayer(player);
+                                    client.setRole(login.getName());//设置用户账号登录标识
+                                    //读取玩家的属性
+                                    if (ClientManager.isDead(client, player) < 1) {//无死亡
+                                        DataHandler.getPlayer(client, client.getPlayer());
+                                    }
+                                    msg.setMsg(JSONObject.parseObject(JSONObject.toJSON(player).toString()).toJSONString());
+                                    msg.setRole(client.getRole());
+                                } else {
+                                    msg.setType(Enum.messageType.toast);
+                                    msg.setMsg("账号或密码错误。");
+                                }
                             }
+
 
                         }
                     }
@@ -90,18 +95,43 @@ public class LoginHandler {
     //登录成功
     public static Player getPlayer(String account, String password, Client client) {
         Player player = DataBase.getInstance().init().createSQL("select t1.name,t1.faction_position,t1.sex,t1.faction,t1.level,t1.data,t1.createat,t1.updateat from role t1,account t2 where t1.account = t2.account").addCondition(C.eq("t1.account", account)).addCondition(C.eq("t2.pwd", password)).unique(Player.class);
-        try{
+        try {
             player.setAccount(account);
             player.setClient(client);
-        }catch (Exception e){return new Player();}
-        player.setKey(BDate.getNowMills() + "");
-        if(player.getSex()==Enum.sex.female){//女性
-            player.setName( "<font color=\"#FF69B4\">"+player.getName()+"</font>");
-        }else{
-            player.setName( "<font color=\"#6495ED\">"+player.getName()+"</font>");
+        } catch (Exception e) {
+            Player newPlayer = new Player();
+            newPlayer.setAccount(account);
+            return newPlayer;
         }
-        return DataHandler.getPlayer(client,player);
+        player.setKey(BDate.getNowMills() + "");
+        if (player.getSex() == Enum.sex.female) {//女性
+            player.setName("<font color=\"#FF69B4\">" + player.getName() + "</font>");
+        } else {
+            player.setName("<font color=\"#6495ED\">" + player.getName() + "</font>");
+        }
+        return player;
     }
 
+    //判断是否已经登录
+    public static boolean hasLogin(Player player) {
+        boolean flag = false;
+        synchronized (clients) {
+            Client preRemove = null;
+            for (Client item : clients) {
+                if (item.getPlayer() != null)
+                    if (item.getPlayer().getAccount().equals(player.getAccount())) {
+                        flag = true;
+                        preRemove = item;
+                    }
+            }
+            //从游戏地图里移除
+            try {
+                MapHandler.onObjectOutRoom(preRemove.getPlayer().getPlayerData().getRoom(), preRemove.getPlayer());
+            } catch (Exception e) {
+            }
+            clients.remove(preRemove);
+        }
+        return flag;
+    }
 
 }

@@ -1,60 +1,24 @@
 package com.eztv.mud.handler;
 
-import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.Word;
-import com.eztv.mud.bean.*;
-import com.eztv.mud.bean.net.AttackPack;
-import com.eztv.mud.bean.net.Player;
-import com.eztv.mud.bean.net.WinMessage;
-import com.eztv.mud.cache.manager.FactionManager;
+import com.eztv.mud.bean.Chat;
+import com.eztv.mud.bean.Client;
+import com.eztv.mud.cache.manager.ClientManager;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.constant.Enum.color;
 import com.eztv.mud.constant.Enum.messageType;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.eztv.mud.Constant.LUA_对话;
-import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.constant.Cmd.doTalk;
+import static com.eztv.mud.GameUtil.msgBuild;
+import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.getGG;
+import static com.eztv.mud.handler.event.player.msg.DeadMsg.showPanel;
 
 public class GameHandler {
-
-    //玩家攻击
-    public static void doAttack(Client client,Msg msg) {//重写。。。。获取所有列表从里头拿
-        AttackPack attackPack = JSONObject.toJavaObject(jsonStr2Json(msg.getMsg()), AttackPack.class);
-        GameObject gameObject=getGameObject(client,attackPack.getTarget());
-        client.getPlayer().setBattle(client,client.getPlayer(),gameObject,attackPack.getTarget());
-    }
-
     //获取公告
     public static void getGG(Client client) {
+        if(ClientManager.isDead(client,client.getPlayer())>0) {//死亡等等
+            showPanel(client.getPlayer());
+        }
         Chat chat = new Chat(Enum.chat.系统,Word.getInstance().getGG());
         client.sendMsg(msgBuild(messageType.normal, getGG,object2JsonStr(chat),"").getBytes());
     }
-
-    //    对话object
-    public static void doTalk(Client client, Msg msg) {
-        WinMessage winMsg = new WinMessage();
-        GameObject gameObject=getGameObject(client,msg.getMsg());
-        if(gameObject==null)return;
-        List<Choice> choice = new ArrayList<>();
-        if(gameObject instanceof Player){//是玩家
-            choice.add(Choice.createChoice("私聊", messageType.input,"私聊", gameObject.getKey(),null).setBgColor(color.gray));
-            Faction faction = FactionManager.getFaction(client);
-            if(faction!=null&&client.getPlayer().getFaction_position()>0){//管理层可以招募
-                choice.add(Choice.createChoice("招募", messageType.action,"recruitFaction", gameObject.getKey(),null, Enum.winAction.close).setBgColor(color.blue));
-            }
-            winMsg.setChoice(choice);
-            winMsg.setDesc(gameObject.getName());
-            client.sendMsg(msgBuild(messageType.action, doTalk,object2JsonStr(winMsg),gameObject.getKey()).getBytes());
-        }else{//怪物npc等等的默认操作
-            client.getScriptExecutor().loadFile(null,gameObject.getScript() + ".lua")
-                    .execute(LUA_对话,client,winMsg,msg,gameObject);
-        }
-    }
-
-
-
 }
