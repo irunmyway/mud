@@ -27,120 +27,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="副本系统构想，地图-房间 这样的对应关系。">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/luaj-v5.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/item/hsys.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/item/xmj.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/monster/jszs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/npc/ckgl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/npc/cunzhang.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/npc/gzfs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/other/faction.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/other/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/other/store/jbstore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/other/store/jmstore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/room/xsc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/room/yacc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/skill/hqs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/RoomController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/dao/RoomDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/dao/impl/RoomImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/player/Attack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/player/Talk.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerDead.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/msg/DeadMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/TestJavaScript.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/faction.properties" beforeDir="false" afterPath="$PROJECT_DIR$/conf/faction.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/item/hsys.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/item/hsys.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/item/xmj.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/item/xmj.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/monster/jszs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/monster/jszs.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/npc/ckgl.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/npc/ckgl.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/npc/cunzhang.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/npc/cunzhang.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/npc/gzfs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/npc/gzfs.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/other/faction.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/other/faction.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/other/login.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/other/login.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/other/store/jbstore.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/other/store/jbstore.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/other/store/jmstore.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/other/store/jmstore.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/room/xsc.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/room/xsc.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/room/yacc.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/room/yacc.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/skill/hqs.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/skill/hqs.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lua/test.lua" beforeDir="false" afterPath="$PROJECT_DIR$/luabak/test.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/luaj-v5.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/controller/MapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/dao/MapDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/dao/MapDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/dao/impl/MapImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/admin/dao/impl/MapImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/task/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/task/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/FactionCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/FactionCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/ItemCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/ItemCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/MonsterCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/MonsterCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/NpcCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/NpcCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RoomCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RoomCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/SkillCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/SkillCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/FactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/FactionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ItemAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ItemAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ReliveAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ReliveAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/CreateFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/CreateFaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/DestroyFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/DestroyFaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/ExitFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/ExitFaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/GrantMemberFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/GrantMemberFaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/RecruitFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/RecruitFaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/MapPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/MapPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/JbStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/JbStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/store/auction/JmStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/ChatHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/ChatHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataBaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/core/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/PlayerEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/syn/WordSyn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/syn/WordSyn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/src/lib/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/src/lib/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/src/views/mud/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/DataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/DataBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Attribute.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Attribute.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Room.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/GameHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/LoginHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/handler/core/Battle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/计划.txt" beforeDir="false" afterPath="$PROJECT_DIR$/计划.txt" afterDir="false" />
-    </list>
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -443,7 +330,7 @@
       <workItem from="1597893181010" duration="3335000" />
       <workItem from="1597922556730" duration="4305000" />
       <workItem from="1597982290037" duration="1316000" />
-      <workItem from="1598014302674" duration="3510000" />
+      <workItem from="1598014302674" duration="3888000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -599,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597247085136</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件">
+      <created>1598022666484</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1598022666484</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +543,8 @@
     <MESSAGE value="//更新内容&#10;1、添加了可以修改【保存游戏数据】的速度&#10;2、添加了可以调节基础战斗速度&#10;3、" />
     <MESSAGE value="3、帮派授权&#10;3、挂机奖励 【外加增加取随机数函数】&#10;4、寄卖 [寄卖分页未作]&#10;5、" />
     <MESSAGE value="副本系统构想，地图-房间 这样的对应关系。" />
-    <option name="LAST_COMMIT_MESSAGE" value="副本系统构想，地图-房间 这样的对应关系。" />
+    <MESSAGE value="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="239" key="#Custom_Plugin_Repositories" timestamp="1596535167099">
@@ -758,32 +653,32 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596166832163" />
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom" timestamp="1598022270780">
+    <state width="1237" height="265" key="GridCell.Tab.0.bottom" timestamp="1598022547730">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022270780" />
+    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547730" />
     <state width="1237" height="283" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="265" key="GridCell.Tab.0.center" timestamp="1598022270780">
+    <state width="1237" height="265" key="GridCell.Tab.0.center" timestamp="1598022547729">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022270780" />
+    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547729" />
     <state width="1237" height="283" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="265" key="GridCell.Tab.0.left" timestamp="1598022270780">
+    <state width="1237" height="265" key="GridCell.Tab.0.left" timestamp="1598022547729">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022270780" />
+    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547729" />
     <state width="1237" height="283" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="265" key="GridCell.Tab.0.right" timestamp="1598022270780">
+    <state width="1237" height="265" key="GridCell.Tab.0.right" timestamp="1598022547729">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="212" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022270780" />
+    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547729" />
     <state width="1237" height="283" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
     <state width="1237" height="232" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
     <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1596430247358">
@@ -832,11 +727,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="444" y="229" key="VCS.ChangelistChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596876391916" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1597247001191">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1598022669335">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596470010220" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597247001191" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022669335" />
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1595951646697" />
     <state x="11" y="89" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1596430200418">
       <screen x="0" y="0" width="1280" height="680" />
