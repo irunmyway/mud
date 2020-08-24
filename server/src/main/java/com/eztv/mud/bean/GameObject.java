@@ -2,7 +2,6 @@ package com.eztv.mud.bean;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.eztv.mud.GameUtil;
-import com.eztv.mud.algorithm.AttackAlgorithm;
 import com.eztv.mud.bean.callback.IGameObject;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
@@ -15,8 +14,8 @@ import com.google.gson.annotations.Expose;
 import java.util.Date;
 import java.util.Properties;
 
+import static com.eztv.mud.Constant.Algorithm_Attack;
 import static com.eztv.mud.GameUtil.*;
-import static com.eztv.mud.algorithm.AttackAlgorithm.computeRealAtk;
 import static com.eztv.mud.constant.Cmd.doAttack;
 
 /**
@@ -47,8 +46,17 @@ public abstract class GameObject {
 
     //攻击命令
     public GameObject Attack(GameObject gameObject, Client client) {
-        float realAtc = computeRealAtk(this,gameObject);
-        boolean isAttack = AttackAlgorithm.computeAccuracy(this,gameObject);
+//        float realAtc = computeRealAtk(this,gameObject);
+//        boolean isAttack = AttackAlgorithm.computeAccuracy(this,gameObject);
+        double realAtc =(double) client.getScriptExecutor().load(Algorithm_Attack).
+                execute("攻击",
+                        this,gameObject
+                );
+        boolean isAttack = (Boolean) client.getScriptExecutor().load(Algorithm_Attack).
+                execute("命中",
+                this,gameObject
+                );
+
         AttackPack ap = new AttackPack();
         Properties dbConfig = BProp.getInstance().getProp();
         if(isAttack){ //攻击

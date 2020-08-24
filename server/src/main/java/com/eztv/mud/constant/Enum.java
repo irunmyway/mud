@@ -45,4 +45,8 @@ public class Enum {
     //颜色
     public enum color {blue, red, gray, yellow, normal}
 
+    //颜色
+    public enum relation {好友, 仇人, 伴侣, 黑名单}
+
+
 }

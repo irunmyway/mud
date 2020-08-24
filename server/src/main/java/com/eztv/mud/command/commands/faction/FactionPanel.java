@@ -22,6 +22,7 @@ public class FactionPanel extends BaseCommand {
 
     @Override
     public void execute() {
+        Msg msg = new Msg();
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
 //        DataBase.getInstance().init().query()
@@ -45,10 +46,12 @@ public class FactionPanel extends BaseCommand {
             choice.add(Choice.createChoice("帮派任务", Enum.messageType.pop,"factionTask", "","")
                     .setBgColor(Enum.color.blue));
             if(getClient().getPlayer().getAccount().equals(mFaction.getLeader())){
-                choice.add(Choice.createChoice("解散门派", Enum.messageType.pop,"confirmPanel", "destroyFaction","这将会解散你的帮派，你确定吗？")
+                msg.setCmd("destroyFaction");
+                choice.add(Choice.createChoice("解散门派", Enum.messageType.pop,"confirmPanel", object2JsonStr(msg),"这将会解散你的帮派，你确定吗？")
                         .setBgColor(Enum.color.red));
             }else{
-                choice.add(Choice.createChoice("退出门派", Enum.messageType.pop,"confirmPanel", "exitFaction","离开该帮派吗？")
+                msg.setCmd("exitFaction");
+                choice.add(Choice.createChoice("退出门派", Enum.messageType.pop,"confirmPanel", object2JsonStr(msg),"离开该帮派吗？")
                         .setBgColor(Enum.color.red));
             }
 

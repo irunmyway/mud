@@ -68,7 +68,7 @@ public class ScriptExecutor {
        return null;
     }
 
-    public String execute(String function, Object... args) {
+    public Object execute(String function, Object... args) {
         switch (Constant.script){
             case lua:
                 LuaValue func = luaGlobals.get(function);
@@ -81,7 +81,7 @@ public class ScriptExecutor {
                     return null;
                 }
                 if (args.length < 1) {
-                    return func.call().toString();
+                    return func.call();
                 } else {
                     LuaValue[] luaArgs = new LuaValue[args.length];
                     for (int i = 0; i < args.length; ++i) {
@@ -93,9 +93,9 @@ public class ScriptExecutor {
 //                    return LuaValue.NIL;
                             return null;
                         } else if (v.narg() == 1) {
-                            return v.arg1().toString();
+                            return v.arg1();
                         } else {
-                            return new LuaTable(v).toString();
+                            return new LuaTable(v);
                         }
                     }catch(Exception e){e.printStackTrace();}
 //            return LuaValue.NIL;
@@ -104,9 +104,9 @@ public class ScriptExecutor {
             case js:
                 try {
                     Object obj =  in.invokeFunction(function,args);
-                    return obj==null?null:obj.toString();
+                    return obj==null?null:obj;
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println(e.toString());
                     return null;
                 }
         }

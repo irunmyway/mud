@@ -58,7 +58,7 @@ public class PlayerDead {
          **/
         if (!(diedObj instanceof Player)) {//击杀奖励
             client.getScriptExecutor().load(diedObj.getScript() + ".lua");
-            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute(脚本_击杀奖励)), Bag.class);
+            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute(脚本_击杀奖励).toString()), Bag.class);
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
         }
 

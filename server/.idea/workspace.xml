@@ -27,7 +27,41 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件" />
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件">
+      <change afterPath="$PROJECT_DIR$/conf/relation.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script/algorithm/attack.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Relation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RelationCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/RelationManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendBreak.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendMake.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendTalk.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/RelationPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/monster/jszs.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/monster/jszs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ConfirmPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ConfirmPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/FactionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/FactionPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/player/Talk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/player/Talk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/TradePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/TradePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerDead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerDead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +115,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/script/other/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/conf" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -100,18 +134,18 @@
       <recent name="D:\android\mud\server\src\main\resources\lib" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.eztv.mud.admin.controller" />
-      <recent name="com.eztv.mud.admin.dao.impl" />
-      <recent name="com.eztv.mud.admin.dao" />
-      <recent name="com.eztv.mud.command.commands.store.auction" />
+      <recent name="com.eztv.mud.command.commands.relation" />
+      <recent name="com.eztv.mud.cache.manager" />
       <recent name="com.eztv.mud.cache" />
+      <recent name="com.eztv.mud.bean" />
+      <recent name="com.eztv.mud.admin.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\android\mud\server\conf" />
       <recent name="D:\android\mud\server\script\other\store" />
       <recent name="D:\android\mud\server\script\npc" />
       <recent name="D:\android\mud\server\lua\npc" />
       <recent name="D:\android\mud\server\lua\monster" />
-      <recent name="D:\android\mud\server\lua\item" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -330,7 +364,12 @@
       <workItem from="1597893181010" duration="3335000" />
       <workItem from="1597922556730" duration="4305000" />
       <workItem from="1597982290037" duration="1316000" />
-      <workItem from="1598014302674" duration="3888000" />
+      <workItem from="1598014302674" duration="4075000" />
+      <workItem from="1598060888249" duration="4390000" />
+      <workItem from="1598086982942" duration="5184000" />
+      <workItem from="1598142803680" duration="22266000" />
+      <workItem from="1598229564212" duration="4836000" />
+      <workItem from="1598259211874" duration="4144000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -493,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598022666484</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件">
+      <created>1598022771506</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1598022771506</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,16 +632,17 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1595472226252" />
-    <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596508769851">
+    <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598148431333">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596508769851" />
+    <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598148431333" />
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1595948519434" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1597929666701">
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1598261180300">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596982130967" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597929666701" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598109442623" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598261180300" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596209194881" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1595993048008" />
     <state x="371" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1595470182648">
@@ -653,33 +700,33 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596166832163" />
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom" timestamp="1598022547730">
+    <state width="1237" height="264" key="GridCell.Tab.0.bottom" timestamp="1598262793950">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="212" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547730" />
-    <state width="1237" height="283" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
+    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170055" />
+    <state width="1237" height="264" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793950" />
+    <state width="1237" height="264" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618271" />
     <state width="1237" height="232" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="265" key="GridCell.Tab.0.center" timestamp="1598022547729">
+    <state width="1237" height="264" key="GridCell.Tab.0.center" timestamp="1598262793949">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="212" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547729" />
-    <state width="1237" height="283" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
+    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170054" />
+    <state width="1237" height="264" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793949" />
+    <state width="1237" height="264" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618271" />
     <state width="1237" height="232" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="265" key="GridCell.Tab.0.left" timestamp="1598022547729">
+    <state width="1237" height="264" key="GridCell.Tab.0.left" timestamp="1598262793949">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="212" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547729" />
-    <state width="1237" height="283" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
+    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170054" />
+    <state width="1237" height="264" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793949" />
+    <state width="1237" height="264" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618270" />
     <state width="1237" height="232" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="265" key="GridCell.Tab.0.right" timestamp="1598022547729">
+    <state width="1237" height="264" key="GridCell.Tab.0.right" timestamp="1598262793950">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="212" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596988779464" />
-    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022547729" />
-    <state width="1237" height="283" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596593525323" />
+    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170054" />
+    <state width="1237" height="264" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793950" />
+    <state width="1237" height="264" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618271" />
     <state width="1237" height="232" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
     <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1596430247358">
       <screen x="0" y="0" width="1280" height="680" />
@@ -727,11 +774,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="444" y="229" key="VCS.ChangelistChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596876391916" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1598022669335">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1598022802160">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596470010220" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022669335" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022802160" />
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1595951646697" />
     <state x="11" y="89" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1596430200418">
       <screen x="0" y="0" width="1280" height="680" />
@@ -742,11 +789,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596447624853" />
-    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1598017471677">
+    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1598261466423">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="340" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596987233362" />
-    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598017471677" />
+    <state x="340" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110028544" />
+    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598261466423" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596594783262" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1595998824534" />
     <state x="404" y="213" width="625" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1595469911888">
@@ -763,11 +810,11 @@
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596792857977" />
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597929516112" />
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1596079189990" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1597225622075">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1598260871393">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596684528741" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597225622075" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598260871393" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596590180231" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1595941870793" />
   </component>

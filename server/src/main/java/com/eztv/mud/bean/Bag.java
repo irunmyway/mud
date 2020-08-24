@@ -15,7 +15,6 @@ public class Bag implements LuaOpen.LuaBag, LuaOpen.LuaJson {
     private long ybMoney;
     //奖励经验
     private long exp;
-
     public long getExp() {
         return exp;
     }

@@ -37,6 +37,7 @@ public class Word {
         NpcCache.initNPC(scriptExecutor,getMaps());//加载NPC
         MonsterCache.initMonster(scriptExecutor,getMaps());//加载怪物
         FactionCache.initFactionCache();//加载行会
+        RelationCache.initRelationCache();//加载玩家关系
         PlayerCache.initPlayerCache();//加载所有玩家缓存信息
         ItemCache.initItem(globals);//加载物品
         SkillCache.initSkill(globals);//加载技能

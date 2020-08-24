@@ -10,6 +10,7 @@ import com.eztv.mud.command.commands.player.Talk;
 import com.eztv.mud.command.commands.pop.MapPanel;
 import com.eztv.mud.command.commands.pop.SkillAttackPanel;
 import com.eztv.mud.command.commands.pop.TradePanel;
+import com.eztv.mud.command.commands.relation.*;
 import com.eztv.mud.command.commands.store.JbStore;
 import com.eztv.mud.command.commands.store.YbStore;
 import com.eztv.mud.command.commands.store.auction.*;
@@ -46,6 +47,9 @@ public class CommandSetHandler {
         actionCommandSet.put("jmReward", JmReward.class);//寄卖收益
         actionCommandSet.put(doTalk, Talk.class);//玩家对话
         actionCommandSet.put(doAttack, Attack.class);//玩家攻击
+        actionCommandSet.put("makeFriend", FriendMake.class);//寄卖收益
+        actionCommandSet.put("friendTalk", FriendTalk.class);//
+        actionCommandSet.put("friendBreak", FriendBreak.class);//
 
 
     }
@@ -62,6 +66,9 @@ public class CommandSetHandler {
         panelCommandSet.put("getTrade", TradePanel.class);//交易 面板
         panelCommandSet.put("memberFaction", MemberFaction.class);//
         panelCommandSet.put("grantMemberFaction", GrantMemberFaction.class);//
+        panelCommandSet.put("relationPanel", RelationPanel.class);//门派 面板
+
+        panelCommandSet.put("好友列表", FriendPanel.class);//门派 面板
 
 
 

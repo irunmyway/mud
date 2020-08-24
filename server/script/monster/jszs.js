@@ -13,7 +13,7 @@ function 初始化(属性) {
 }
 
 function 击杀奖励() {
-    var 奖励 = 背包
+    var 奖励 = 背包.新建()
     奖励.setMoney(115);//铜币
     奖励.setJbMoney(125);//金币
     奖励.setYbMoney(135);//元宝

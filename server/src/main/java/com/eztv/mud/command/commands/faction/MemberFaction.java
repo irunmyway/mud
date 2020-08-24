@@ -10,8 +10,6 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.cache.manager.FactionManager;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BDate;
-import com.eztv.mud.utils.BDebug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +34,6 @@ public class MemberFaction extends BaseCommand {
         //查询所有成员
         List<Player> players =  DataBase.getInstance().init().
                 createSQL(FactionMembersSql,getPlayer().getFaction()).list(Player.class);
-        BDebug.trace("测试"+players.size());
         for (Player player:players) {
             choice.add(Choice.createChoice(getPropByFile("faction","faction_member",
                     player.getName(),

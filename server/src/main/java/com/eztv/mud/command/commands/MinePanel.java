@@ -5,7 +5,6 @@ import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Msg;
 import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BDebug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +35,8 @@ public class MinePanel extends BaseCommand{
         winMsg.setDesc(str);//显示当前玩家状态
         choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null, Enum.winAction.open).setBgColor(Enum.color.red));
         choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null, Enum.winAction.open).setBgColor(Enum.color.blue));
+        choice.add(Choice.createChoice("社交", Enum.messageType.pop,"relationPanel", null,null, Enum.winAction.open).setBgColor(Enum.color.yellow));
+
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(Enum.messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());
     }

@@ -1,4 +1,4 @@
-package com.eztv.mud.command.commands.pop;
+package com.eztv.mud.command.commands.relation;
 
 import com.eztv.mud.bean.Choice;
 import com.eztv.mud.bean.Client;
@@ -12,30 +12,30 @@ import java.util.List;
 import static com.eztv.mud.GameUtil.msgBuild;
 import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.doTalk;
-import static com.eztv.mud.constant.Enum.winAction.close;
 import static com.eztv.mud.constant.Enum.winAction.open;
 
-public class TradePanel extends BaseCommand {
-    public TradePanel(Client client, Msg msg, String key) {
+public class RelationPanel extends BaseCommand {
+    public RelationPanel(Client client, Msg msg, String key) {
         super(client, msg, key);
     }
 
     @Override
     public void execute() {
+        getWinMsg().setDesc("我的关系");
+        getWinMsg().setCol(3);
         List<Choice> choice = new ArrayList<>();
-        getWinMsg().setDesc("欢迎来到商城。");
-        choice.add(Choice.createChoice("金币商城",
-                Enum.messageType.action,
-                "jbStore", null,null,open
+        choice.add(Choice.createChoice("好友",
+                Enum.messageType.pop,
+                "好友列表", null,null,open
         ).setBgColor(Enum.color.yellow));
-        choice.add(Choice.createChoice("元宝商城",
+        choice.add(Choice.createChoice("徒弟",
                 Enum.messageType.action,
-                "ybStore", null,null,open
-        ).setBgColor(Enum.color.red));
-        choice.add(Choice.createChoice("寄卖商城",
-                Enum.messageType.action,
-                "jmStore", null,null,close
+                "徒弟列表", null,null,open
         ).setBgColor(Enum.color.blue));
+        choice.add(Choice.createChoice("仇人",
+                Enum.messageType.action,
+                "仇人列表", null,null,open
+        ).setBgColor(Enum.color.red));
         getWinMsg().setChoice(choice);
         getClient().sendMsg(msgBuild(
                 Enum.messageType.pop,

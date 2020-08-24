@@ -42,8 +42,11 @@ public class MapHandler {
             if(targetRoom.getName().length()<1)return;
             //执行lua 预处理脚本
             WinMessage win = new WinMessage();
-            String luaValue = client.getScriptExecutor().load(getRoom(targetRoom).getScript())
-            .execute(脚本_事件_进入房间,client,win,msg);
+            String luaValue=null;
+            try{
+               luaValue = client.getScriptExecutor().load(getRoom(targetRoom).getScript())
+                        .execute(脚本_事件_进入房间,client,win,msg).toString();
+            }catch(Exception e){}
             if((luaValue==null?"1":luaValue).equals("1")||
                     targetRoom.getScript()=="") {//代表允许进入
                 changeRoom(client, outRoom,targetRoom);
@@ -60,7 +63,7 @@ public class MapHandler {
             //执行lua 预处理脚本
             WinMessage win = new WinMessage();
             String luaValue = client.getScriptExecutor().load(getRoom(targetRoom).getScript())
-                    .execute(脚本_事件_进入房间,client,win,new Msg());
+                    .execute(脚本_事件_进入房间,client,win,new Msg()).toString();
             if((luaValue==null?"1":luaValue).equals("1")||
                     targetRoom.getScript()=="") {//代表允许进入
                 changeRoom(client, outRoom,targetRoom);
