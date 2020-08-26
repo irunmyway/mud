@@ -37,7 +37,7 @@ public class GameUtil {
 
     //通过房间id获取房间名称
     public static String getRoomName(String map,int roomId) {
-        Room room = RoomCache.getRooms().get(roomId + "");
+        Room room = RoomCache.getRoomsByMap(map).get(roomId+"");
         return room == null ? "" : room.getName();
     }
 
@@ -174,9 +174,9 @@ public class GameUtil {
             }catch (Exception e){e.printStackTrace();}
         }
     }
-    public static void sendToFaction(int faction,String str){//发送帮派
+    public static void sendToFaction(String faction,String str){//发送帮派
         for (Client item: clients) {
-            if(FactionCache.factions.containsKey(faction+"")){
+            if(FactionCache.factions.containsKey(faction)){
                 try{
                     item.sendMsg(str.getBytes());
                 }catch (Exception e){e.printStackTrace();}
@@ -199,6 +199,10 @@ public class GameUtil {
             }catch (Exception e){e.printStackTrace();}
         }
     }
+    public static void sendSystemMsg(Client client, String str) {
+        Chat chat = Chat.system(str);
+        GameUtil.sendToSelf(client, msgBuild(Enum.messageType.chat, Enum.chat.公聊.toString(), object2JsonStr(chat), ""));
+    }
     public static void sendToKey(String key,String str){//发送给自己
         for (Client item: clients) {
             try{
@@ -208,6 +212,7 @@ public class GameUtil {
             }catch (Exception e){e.printStackTrace();}
         }
     }
+
     public static String getProp(String prop,Object... args){
         Properties Config = BProp.getInstance().getProp();
         return colorString(String.format(Config.get(prop).toString(),args));

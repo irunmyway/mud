@@ -70,7 +70,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="1dp"
             >
             <FrameLayout
                 android:layout_weight="1"
@@ -158,8 +158,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            >
+            android:layout_marginTop="1dp" >
             <TextView
                 android:id="@+id/tv_map_name"
                 android:layout_width="wrap_content"
@@ -177,9 +176,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_marginTop="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/line2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -390,5 +389,11 @@
     </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

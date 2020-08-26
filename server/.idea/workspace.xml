@@ -27,40 +27,142 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件">
-      <change afterPath="$PROJECT_DIR$/conf/relation.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/algorithm/attack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Relation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RelationCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/RelationManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendBreak.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendMake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/FriendTalk.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/relation/RelationPanel.java" afterDir="false" />
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、社交面板&#10;2、好友增加删除&#10;3、玩家点击功能描述">
+      <change afterPath="$PROJECT_DIR$/script/npc/bpzl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script/room/emg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script/room/faction/bpdl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/GameActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/adapter/GameObjectAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/java/com/eztv/mud/recycleview/adapter/GameObjectAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/layout/activity_game.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/layout/activity_game.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/src/main/res/layout/item_game_object.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/src/main/res/layout/item_game_object.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/.transforms/2607c1d26b0f3f984b21c234c98270ef/classes/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/.transforms/2607c1d26b0f3f984b21c234c98270ef/classes/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_library_classes/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_library_classes/debug/classes.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/BuildConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/BuildConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterLvs.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterLvs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterLvsList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterLvsList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterLvsListMaxint.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterLvsListMaxint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRv.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRv.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList$AdapterListType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList$AdapterListType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList$OnAdapterBindListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList$OnAdapterBindListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvListMaxint.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterRvListMaxint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterVpFrag.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterVpFrag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterVpStateFrag.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseAdapterVpStateFrag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$ISuperAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$ISuperAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$MyItemInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter$MyItemInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/BaseSuperAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/FragmentNotifyAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/FragmentNotifyAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/ViewRecycler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/adapter/ViewRecycler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/base/BaseViewHolder$ViewVisibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/base/BaseViewHolder$ViewVisibility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/base/BaseViewHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/base/BaseViewHolder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/IAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/IAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/IAdapterList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/IAdapterList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/IItemClick.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/IItemClick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/OnItemClickListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/OnItemClickListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/OnItemItemClickListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/interfaceabstract/OnItemItemClickListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/adapters/utils/Utils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/HeartbeatClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/HeartbeatClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer$HandlerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer$HandlerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/SocketServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/EmptyCallbackImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/EmptyCallbackImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/HeartbeatCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/HeartbeatCallback.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/SocketCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/SocketCallback.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/SocketServerCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/socket/callback/SocketServerCallback.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BArray.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BAutoSize$ScreenMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BAutoSize$ScreenMode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BAutoSize.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BAutoSize.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BDate.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BDate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BDebug.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BDebug.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BEncode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BEncode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$OnReplaceListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile$OnReplaceListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BNumber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BShareDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BShareDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BSql.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BSql.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BString.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BString.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BSystem$AppInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BSystem$AppInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BZip$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BZip$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BZip.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/BZip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/TimeConstants$Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/TimeConstants$Unit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/TimeConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/TimeConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEventItemVO$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEventItemVO$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEventItemVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEventItemVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEventManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEventManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEvents.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BEvents.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/event/BListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/model/BZipVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/model/BZipVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/AsiExtraField.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/AsiExtraField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ExtraFieldUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ExtraFieldUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/JarMarker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/JarMarker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/UnixStat.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/UnixStat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/UnrecognizedExtraField.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/UnrecognizedExtraField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipEntry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipExtraField.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipExtraField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile$BoundedInputStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile$BoundedInputStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile$OffsetEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile$OffsetEntry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipLong.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipLong.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipOutputStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipOutputStream.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipShort.class" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/javac/debug/classes/com/ez/utils/zip/ZipShort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/build/intermediates/runtime_library_classes/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/build/intermediates/runtime_library_classes/debug/classes.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/src/main/java/com/ez/adapters/adapter/BaseAdapterRvList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/src/main/java/com/ez/adapters/adapter/BaseAdapterRvList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/utils/src/main/java/com/ez/adapters/base/BaseViewHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/utils/src/main/java/com/ez/adapters/base/BaseViewHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/monster/jszs.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/monster/jszs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/faction.properties" beforeDir="false" afterPath="$PROJECT_DIR$/conf/faction.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/npc/ckgl.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/npc/ckgl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/npc/cunzhang.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/npc/cunzhang.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/npc/gzfs.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/npc/gzfs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/room/xsc.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/room/xsc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/room/yacc.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/room/yacc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/GameUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Bag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/ClientManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ConfirmPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ConfirmPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Faction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Faction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/net/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/FactionCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/FactionCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RoomCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RoomCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/FactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/manager/FactionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/CreateFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/CreateFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/DestroyFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/DestroyFaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/ExitFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/ExitFaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/FactionPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/FactionPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/MemberFaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/player/Talk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/player/Talk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/TradePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/TradePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/constant/Enum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/RecruitFaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/faction/RecruitFaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/MapHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerDead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerDead.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/test/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/GameUtil.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Room.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/test/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +217,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/conf" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/script/npc" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -141,11 +243,11 @@
       <recent name="com.eztv.mud.admin.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\android\mud\server\script\npc" />
+      <recent name="D:\android\mud\server\script\room" />
+      <recent name="D:\android\mud\server\script\room\faction" />
       <recent name="D:\android\mud\server\conf" />
       <recent name="D:\android\mud\server\script\other\store" />
-      <recent name="D:\android\mud\server\script\npc" />
-      <recent name="D:\android\mud\server\lua\npc" />
-      <recent name="D:\android\mud\server\lua\monster" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -215,7 +317,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test.test7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Test.test8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="com.eztv.mud" />
       <extension name="coverage">
         <pattern>
@@ -225,7 +327,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.eztv.mud.test" />
       <option name="MAIN_CLASS_NAME" value="com.eztv.mud.test.Test" />
-      <option name="METHOD_NAME" value="test7" />
+      <option name="METHOD_NAME" value="test8" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -241,10 +343,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.Test.test8" />
         <item itemvalue="JUnit.TestJavaScript.doJavaScript" />
         <item itemvalue="JUnit.Test.test4" />
         <item itemvalue="JUnit.Test.test10" />
-        <item itemvalue="JUnit.Test.test7" />
       </list>
     </recent_temporary>
   </component>
@@ -369,7 +471,12 @@
       <workItem from="1598086982942" duration="5184000" />
       <workItem from="1598142803680" duration="22266000" />
       <workItem from="1598229564212" duration="4836000" />
-      <workItem from="1598259211874" duration="4144000" />
+      <workItem from="1598259211874" duration="6900000" />
+      <workItem from="1598325564898" duration="1427000" />
+      <workItem from="1598329478005" duration="1218000" />
+      <workItem from="1598345664888" duration="11176000" />
+      <workItem from="1598407165186" duration="59000" />
+      <workItem from="1598407262019" duration="7066000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -539,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598022771506</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="1、社交面板&#10;2、好友增加删除&#10;3、玩家点击功能描述">
+      <created>1598265195576</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1598265195576</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +704,8 @@
     <MESSAGE value="3、帮派授权&#10;3、挂机奖励 【外加增加取随机数函数】&#10;4、寄卖 [寄卖分页未作]&#10;5、" />
     <MESSAGE value="副本系统构想，地图-房间 这样的对应关系。" />
     <MESSAGE value="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、游戏脚本为js&#10;2、增加了地图事件&#10;3、增加了怪物复活事件" />
+    <MESSAGE value="1、社交面板&#10;2、好友增加删除&#10;3、玩家点击功能描述" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、社交面板&#10;2、好友增加删除&#10;3、玩家点击功能描述" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="239" key="#Custom_Plugin_Repositories" timestamp="1596535167099">
@@ -638,11 +753,11 @@
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596508769851" />
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598148431333" />
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1595948519434" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1598261180300">
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1598431847266">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598109442623" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598261180300" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598431847266" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598284032275" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596209194881" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1595993048008" />
     <state x="371" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1595470182648">
@@ -700,33 +815,33 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596166832163" />
-    <state width="1237" height="264" key="GridCell.Tab.0.bottom" timestamp="1598262793950">
+    <state width="1237" height="264" key="GridCell.Tab.0.bottom" timestamp="1598432363453">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170055" />
-    <state width="1237" height="264" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793950" />
-    <state width="1237" height="264" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618271" />
+    <state width="1237" height="264" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598432363453" />
+    <state width="1237" height="264" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598284163375" />
+    <state width="1237" height="264" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598328981014" />
     <state width="1237" height="232" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="264" key="GridCell.Tab.0.center" timestamp="1598262793949">
+    <state width="1237" height="264" key="GridCell.Tab.0.center" timestamp="1598432363453">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170054" />
-    <state width="1237" height="264" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793949" />
-    <state width="1237" height="264" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618271" />
+    <state width="1237" height="264" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598432363453" />
+    <state width="1237" height="264" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598284163375" />
+    <state width="1237" height="264" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598328981013" />
     <state width="1237" height="232" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="264" key="GridCell.Tab.0.left" timestamp="1598262793949">
+    <state width="1237" height="264" key="GridCell.Tab.0.left" timestamp="1598432363453">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170054" />
-    <state width="1237" height="264" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793949" />
-    <state width="1237" height="264" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618270" />
+    <state width="1237" height="264" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598432363453" />
+    <state width="1237" height="264" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598284163375" />
+    <state width="1237" height="264" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598328981013" />
     <state width="1237" height="232" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="264" key="GridCell.Tab.0.right" timestamp="1598262793950">
+    <state width="1237" height="264" key="GridCell.Tab.0.right" timestamp="1598432363453">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="265" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110170054" />
-    <state width="1237" height="264" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598262793950" />
-    <state width="1237" height="264" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598231618271" />
+    <state width="1237" height="264" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598432363453" />
+    <state width="1237" height="264" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598284163375" />
+    <state width="1237" height="264" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598328981013" />
     <state width="1237" height="232" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
     <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1596430247358">
       <screen x="0" y="0" width="1280" height="680" />
@@ -774,11 +889,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="444" y="229" key="VCS.ChangelistChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596876391916" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1598022802160">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1598265199017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596470010220" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598022802160" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598265199017" />
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1595951646697" />
     <state x="11" y="89" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1596430200418">
       <screen x="0" y="0" width="1280" height="680" />
@@ -789,11 +904,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596447624853" />
-    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1598261466423">
+    <state x="340" y="0" width="879" height="680" key="find.popup" timestamp="1598431843141">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="340" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598110028544" />
-    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598261466423" />
+    <state x="340" y="0" width="879" height="680" key="find.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598431843141" />
+    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598282552508" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596594783262" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1595998824534" />
     <state x="404" y="213" width="625" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1595469911888">

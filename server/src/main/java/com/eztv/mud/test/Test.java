@@ -110,6 +110,13 @@ public class Test {
         BDebug.trace("测试"+a.getA());
     }
 
+    @org.junit.Test
+    public void test8(){
+        int code=0;
+        code = "123".hashCode();
+        BDebug.trace("测试"+code);
+    }
+
 }
 
 class A{

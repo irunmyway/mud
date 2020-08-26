@@ -28,7 +28,7 @@ public class Player extends GameObject implements IPlayerCallBack {
     private int level;
     private Enum.sex sex;
     private String profession;//职业
-    private int faction;//帮派
+    private String faction;//帮派
     private long deadTime=0;//死亡时间
 
     //普通状态
@@ -110,14 +110,7 @@ public class Player extends GameObject implements IPlayerCallBack {
         return dataBaseHandler;
     }
 
-    public int getFaction() {
-        return faction;
-    }
 
-
-    public void setFaction(int faction) {
-        this.faction = faction;
-    }
 
     public Battle getBattle() {
         return battle;
@@ -219,5 +212,13 @@ public class Player extends GameObject implements IPlayerCallBack {
 
     public void setDeadTime(long deadTime) {
         this.deadTime = deadTime;
+    }
+
+    public String getFaction() {
+        return faction;
+    }
+
+    public void setFaction(String faction) {
+        this.faction = faction;
     }
 }

@@ -12,8 +12,8 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.syn.WordSyn;
 
-import static com.eztv.mud.Constant.脚本_事件_进入房间;
 import static com.eztv.mud.Constant.clients;
+import static com.eztv.mud.Constant.脚本_事件_进入房间;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.constant.Cmd.*;
 
@@ -26,54 +26,63 @@ public class MapHandler {
         Room curRoom = getCacheCurRoom((client));
         switch (msg.getMsg()) {
             case "left":
-                targetRoom = getRoom(curRoom.getMap()+"",curRoom.getLeft() + "");
+                targetRoom = getRoom(curRoom.getMap() + "", curRoom.getLeft() + "");
                 break;
             case "right":
-                targetRoom = getRoom(curRoom.getMap()+"",curRoom.getRight() + "");
+                targetRoom = getRoom(curRoom.getMap() + "", curRoom.getRight() + "");
                 break;
             case "top":
-                targetRoom = getRoom(curRoom.getMap()+"",curRoom.getTop() + "");
+                targetRoom = getRoom(curRoom.getMap() + "", curRoom.getTop() + "");
                 break;
             case "down":
-                targetRoom =getRoom(curRoom.getMap()+"",curRoom.getDown() + "");
+                targetRoom = getRoom(curRoom.getMap() + "", curRoom.getDown() + "");
                 break;
         }
-        if(!outRoom.equals(targetRoom)&& targetRoom!=null){
-            if(targetRoom.getName().length()<1)return;
+        if (!outRoom.equals(targetRoom) && targetRoom != null) {
+            if (targetRoom.getName().length() < 1) return;
             //执行lua 预处理脚本
             WinMessage win = new WinMessage();
-            String luaValue=null;
-            try{
-               luaValue = client.getScriptExecutor().load(getRoom(targetRoom).getScript())
-                        .execute(脚本_事件_进入房间,client,win,msg).toString();
-            }catch(Exception e){}
-            if((luaValue==null?"1":luaValue).equals("1")||
-                    targetRoom.getScript()=="") {//代表允许进入
-                changeRoom(client, outRoom,targetRoom);
+            boolean flag = false;
+            try {
+                flag = (Boolean) client.getScriptExecutor().load(getRoom(targetRoom).getScript())
+                        .execute(脚本_事件_进入房间, client, win, msg);
+            } catch (Exception e) {
+                flag = true;
+            }
+            if (flag == true) {//代表允许进入
+                changeRoom(client, outRoom, targetRoom);
             }
         }
-        targetRoom=null;
+        targetRoom = null;
     }
 
     //玩家通过map - id飞到某个房间
-    public static void goRoom(Client client, String map, String id) {
+    public static boolean goRoom(Client client, String map, String id) {
         Room outRoom = client.getPlayer().getPlayerData().getRoom();
-        Room targetRoom =getRoom(map,id);
-        if(!outRoom.equals(targetRoom)&& targetRoom!=null){
-            //执行lua 预处理脚本
-            WinMessage win = new WinMessage();
-            String luaValue = client.getScriptExecutor().load(getRoom(targetRoom).getScript())
-                    .execute(脚本_事件_进入房间,client,win,new Msg()).toString();
-            if((luaValue==null?"1":luaValue).equals("1")||
-                    targetRoom.getScript()=="") {//代表允许进入
-                changeRoom(client, outRoom,targetRoom);
-            }
+        if (outRoom.isFly() == false) {//地图不允许飞行
+            GameUtil.sendSystemMsg(client, getProp("room_no_fly"));
+            return false;
         }
-        targetRoom=null;
+        Room targetRoom = getRoom(map, id);
+        if (outRoom.equals(targetRoom) || targetRoom.getName().length() < 1) return false;
+        //执行lua 预处理脚本
+        WinMessage win = new WinMessage();
+        boolean flag = false;
+        try {
+            flag = (Boolean) client.getScriptExecutor().load(getRoom(targetRoom).getScript())
+                    .execute(脚本_事件_进入房间, client, win, new Msg());
+        } catch (Exception e) {
+            flag = true;
+        }
+        if (flag == true) {//代表允许进入
+            changeRoom(client, outRoom, targetRoom);
+        }
+        targetRoom = null;
+        return true;
     }
 
 
-    public static void changeRoom(Client client, Room outRoom,Room targetRoom) {
+    public static void changeRoom(Client client, Room outRoom, Room targetRoom) {
         //设置到达新房间
         client.getPlayer().getPlayerData().setRoom(targetRoom);
         //退出房间 并到达新房间
@@ -100,10 +109,10 @@ public class MapHandler {
             room.addGameObject(obj.toSendGameObject());
         }
         room.setName(getRoom(roomId).getName());
-        room.setDown(getRoomName(getRoom(roomId).getMap()+"",getRoom(roomId).getDown()));
-        room.setLeft(getRoomName(getRoom(roomId).getMap()+"",getRoom(roomId).getLeft()));
-        room.setRight(getRoomName(getRoom(roomId).getMap()+"",getRoom(roomId).getRight()));
-        room.setTop(getRoomName(getRoom(roomId).getMap()+"",getRoom(roomId).getTop()));
+        room.setDown(getRoomName(getRoom(roomId).getMap() + "", getRoom(roomId).getDown()));
+        room.setLeft(getRoomName(getRoom(roomId).getMap() + "", getRoom(roomId).getLeft()));
+        room.setRight(getRoomName(getRoom(roomId).getMap() + "", getRoom(roomId).getRight()));
+        room.setTop(getRoomName(getRoom(roomId).getMap() + "", getRoom(roomId).getTop()));
         client.sendMsg(msgBuild(Enum.messageType.action, getMapDetail, object2JsonStr(room), client.getRole()).getBytes());
 
         //通知其他玩家；
@@ -111,7 +120,7 @@ public class MapHandler {
     }
 
     //告诉玩家我来了
-   private static void onObjectInRoom(Room roomId, GameObject obj, Client client) {
+    private static void onObjectInRoom(Room roomId, GameObject obj, Client client) {
         for (Client item : clients) {
             try {
                 if (item.getPlayer().getPlayerData().getRoom().equals(roomId) && item != client) {
@@ -121,10 +130,11 @@ public class MapHandler {
             }
         }
     }
+
     //告诉玩家我走了
     public static void onObjectOutRoom(Room room, Player player) {
-        if(room==null){
-            room = GameUtil.getRoom(Constant.DEFAULT_MAP_ID,Constant.DEFAULT_ROOM_ID);
+        if (room == null) {
+            room = GameUtil.getRoom(Constant.DEFAULT_MAP_ID, Constant.DEFAULT_ROOM_ID);
         }
         WordSyn.InOutRoom(player, room, false);
         for (Client item : clients) {

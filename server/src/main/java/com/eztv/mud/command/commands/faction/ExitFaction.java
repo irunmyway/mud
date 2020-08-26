@@ -24,7 +24,7 @@ public class ExitFaction extends BaseCommand {
     @Override
     public void execute() {
         Faction faction = FactionManager.getFaction(getClient());
-        getPlayer().setFaction(0);
+        getPlayer().setFaction(null);
         getPlayer().setFaction_position(0);
         getPlayer().getDataBaseHandler().savePlayer(getClient().getPlayer());
         String sendStr = "你离开了门派";

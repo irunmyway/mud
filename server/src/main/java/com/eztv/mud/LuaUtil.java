@@ -6,10 +6,12 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
+import com.eztv.mud.cache.manager.FactionManager;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.MapHandler;
 import com.eztv.mud.script.LuaOpen;
+import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import static com.eztv.mud.Constant.脚本_事件_挂机奖励;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.handler.DataHandler.getBaseAttribute;
 
-public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
+public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath,LuaOpen.LuaMap,LuaOpen.LuaFaction {
     public LuaUtil 新建(){
         return new LuaUtil();
     }
@@ -87,9 +89,20 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
                         new WinMessage());
     }
 
+
     @Override
     public void 到房间(Client client, String map, String id) {
         MapHandler.goRoom(client, map,id);
+    }
+
+    @Override
+    public void 到帮派房间(Client client, String map, String id) {
+        //尚未开通帮派地图 xxx
+        if(!MapHandler.goRoom(client, map,id)){
+            Room targetRoom =getRoom(map,id);
+            String str = getPropByFile("faction","faction_map_no_find",targetRoom.getName());
+            GameUtil.sendSystemMsg(client,str);
+        }
     }
 
     @Override
@@ -356,9 +369,7 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
     }
 
     public void 返回系统消息(Client client, String str) {
-        Chat chat = new Chat();
-        chat.setContent(str);
-        chat.setMsgType(Enum.chat.系统);
+        Chat chat = Chat.system(str);
         GameUtil.sendToSelf(client, msgBuild(Enum.messageType.chat, Enum.chat.公聊.toString(), object2JsonStr(chat), ""));
     }
 
@@ -373,5 +384,12 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath {
     @Override
     public double 取随机数(int a, int b) {
         return (int) (Math.random() * (b - a + 1)) + a;
+    }
+
+    @Override
+    public int 取帮派地图(Client client) {
+        Faction faction = FactionManager.getFaction(client);
+        if(faction==null)return 0;
+        return faction.getId().hashCode();
     }
 }

@@ -1,7 +1,7 @@
 function 初始化(属性){
     //初始属性
-    属性.setHp(999);
-    属性.setHp_max(999);
+    属性.setHp(100);
+    属性.setHp_max(100);
     属性.setMp(50);
     属性.setMp_max(50);
     属性.setExp(999);

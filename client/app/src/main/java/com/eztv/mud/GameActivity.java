@@ -360,7 +360,7 @@ public class GameActivity extends AppCompatActivity implements SocketCallback {
         gameObjectAdapter.clearAll();
         gameObjectAdapter.addList(roomDetail.getGameObjects());//添加npc
 
-        tv_map_name.setText(roomDetail.getName());
+        tv_map_name.setText(Html.fromHtml(roomDetail.getName()));
         btn_center.setText(roomDetail.getName());
         btn_south.setText(roomDetail.getDown());
         btn_west.setText(roomDetail.getLeft());

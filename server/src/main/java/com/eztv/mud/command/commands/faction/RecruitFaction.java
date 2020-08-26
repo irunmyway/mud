@@ -7,6 +7,7 @@ import com.eztv.mud.cache.manager.ClientManager;
 import com.eztv.mud.cache.manager.FactionManager;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.utils.BObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class RecruitFaction extends BaseCommand {
         }
         Client client =  ClientManager.getClient(getMsg().getMsg());
         if(client!=null){
-           if( client.getPlayer().getFaction()>0){//已经加入帮派了
+           if(BObject.isNotEmpty(client.getPlayer().getFaction())){//已经加入帮派了
                //发送创建帮派成功消息
                String sendStr = getPropByFile("faction","faction_already_join",
                        client.getPlayer().getName());

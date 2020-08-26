@@ -7,14 +7,13 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BString;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.eztv.mud.Constant.脚本_初始化;
 import static com.eztv.mud.Constant.Other_PATH;
+import static com.eztv.mud.Constant.脚本_初始化;
 import static com.eztv.mud.GameUtil.*;
 
 /**
@@ -35,9 +34,7 @@ public class CreateFaction extends BaseCommand {
             if (getMsg().getMsg().equals("do")) {
                 String factionName = getMsg().getRole();
                 if (BString.isChinese(factionName) && factionName.length() > 1 && factionName.length() < 7) {//执行创建
-                    int factionId = BDate.getNowMillsByTen();
                     Faction faction = new Faction();
-                    faction.setId(factionId);
                     faction.setName(factionName);
                     faction.setLevel(1);
                     faction.setDesc("");
@@ -47,9 +44,9 @@ public class CreateFaction extends BaseCommand {
                         faction.setAlias();
                         DataBase.getInstance().init().query(faction).insert();
                         //设置自身的帮派id为当前帮派id
-                        getPlayer().setFaction(factionId);
+                        getPlayer().setFaction(faction.getId());
                         getPlayer().setFaction_position(5);
-                        FactionCache.factions.put(factionId+"",faction);
+                        FactionCache.factions.put(faction.getId(),faction);
                         getClient().getScriptExecutor().load(Other_PATH+"faction")
                                 .execute(脚本_初始化,getClient(),new WinMessage());
                         //发送创建帮派成功消息

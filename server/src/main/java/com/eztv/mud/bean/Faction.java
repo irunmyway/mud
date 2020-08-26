@@ -6,6 +6,7 @@ import online.sanen.cdm.template.jpa.Id;
 import online.sanen.cdm.template.jpa.Table;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 /**
  作者：hhx QQ1025334900
@@ -15,7 +16,7 @@ import java.util.HashMap;
 @Table(name = "t_faction")
 public class Faction {
     @Id
-    private int id;
+    private String id;
     @Column
     private String name;
     @Column
@@ -28,12 +29,8 @@ public class Faction {
 
     private HashMap allowJoin = new HashMap();//请求添加允许列表
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Faction() {
+        id = UUID.randomUUID().toString();
     }
 
     public String getName() {
@@ -107,5 +104,13 @@ public class Faction {
 
     public HashMap getAllowJoin() {
         return allowJoin;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

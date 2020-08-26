@@ -30,12 +30,13 @@ public class Word {
         if (Instance == null) Instance = new Word();
         return Instance;
     }
+
     public void init() {
         initConf();
         initGG();//加载公告
         RoomCache.initRooms();//加载房间
-        NpcCache.initNPC(scriptExecutor,getMaps());//加载NPC
-        MonsterCache.initMonster(scriptExecutor,getMaps());//加载怪物
+        NpcCache.initNPC(scriptExecutor, getMaps());//加载NPC
+        MonsterCache.initMonster(scriptExecutor, getMaps());//加载怪物
         FactionCache.initFactionCache();//加载行会
         RelationCache.initRelationCache();//加载玩家关系
         PlayerCache.initPlayerCache();//加载所有玩家缓存信息
@@ -49,20 +50,22 @@ public class Word {
     private void initConf() {//加载配置
         FIGHT_SPEED = Integer.parseInt(BProp.getInstance().get("fight_speed"));
         DEFAULT_ROOM_ID = BProp.getInstance().get("aliveRoomId");
-        DEFAULT_MAP_ID= BProp.getInstance().get("aliveMapId");
+        DEFAULT_MAP_ID = BProp.getInstance().get("aliveMapId");
+        DEFAULT_FACTION_MAP_ID = BProp.getInstance().get("factionMapId");
+        DEFAULT_FACTION_ROOM_ID = BProp.getInstance().get("factionRoomId");
         pageLimitCol1 = Integer.parseInt(getProp("page_limit_col1"));
         pageLimitCol2 = Integer.parseInt(getProp("page_limit_col2"));
     }
 
-    public void initEnvironment(){
+    public void initEnvironment() {
         RoomCache.initRooms();//加载房间
-        NpcCache.initNPC(scriptExecutor,getMaps());//加载NPC
-        MonsterCache.initMonster(scriptExecutor,getMaps());//加载怪物
+        NpcCache.initNPC(scriptExecutor, getMaps());//加载NPC
+        MonsterCache.initMonster(scriptExecutor, getMaps());//加载怪物
     }
 
 
     public void initGG() {//加载公告
-        String src = System.getProperty("user.dir")+"/gg";
+        String src = System.getProperty("user.dir") + "/gg";
         GG = BFile.readFromFile(src);
         BDebug.trace("公告加载完成");
     }
@@ -85,8 +88,6 @@ public class Word {
     }
 
 
-
-
     public HashMap<String, Attribute> getBaseAttributes() {
         return baseAttributes;
     }
@@ -102,4 +103,5 @@ public class Word {
     public Globals getGlobals() {
         return globals;
     }
+
 }

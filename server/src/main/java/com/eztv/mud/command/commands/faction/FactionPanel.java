@@ -8,6 +8,7 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.cache.FactionCache;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
+import com.eztv.mud.utils.BObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,10 @@ public class FactionPanel extends BaseCommand {
         Msg msg = new Msg();
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
-//        DataBase.getInstance().init().query()
-        int faction = getClient().getPlayer().getFaction();
-        Faction mFaction = FactionCache.factions.get(faction+"");
+        String faction = getClient().getPlayer().getFaction();
+        Faction mFaction = FactionCache.factions.get(faction);
         winMsg.setDesc("门派");
-        if(faction<1||mFaction==null){//暂无门派
+        if(BObject.isEmpty(faction)||mFaction==null){//暂无门派
             choice.add(Choice.createChoice("创建门派", Enum.messageType.action,"createFaction", null,null).setBgColor(Enum.color.blue));
             choice.add(Choice.createChoice("查看门派", Enum.messageType.action,"joinFaction", null,null).setBgColor(Enum.color.yellow));
         }else{//有门派了 查看门派信息
@@ -54,6 +54,8 @@ public class FactionPanel extends BaseCommand {
                 choice.add(Choice.createChoice("退出门派", Enum.messageType.pop,"confirmPanel", object2JsonStr(msg),"离开该帮派吗？")
                         .setBgColor(Enum.color.red));
             }
+//            choice.add(Choice.createChoice("帮派地图", Enum.messageType.pop,"memberFaction", "","", Enum.winAction.open)
+//                    .setBgColor(Enum.color.gray));
 
         }
         winMsg.setChoice(choice);

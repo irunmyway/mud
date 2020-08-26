@@ -38,6 +38,7 @@ public class Room implements LuaOpen.LuaJson {
     private int lv;//限制等级
 
     private boolean isPK=true;//是否允许战斗
+    private boolean isFly=true;//是否允许飞行
 
 
     private Date createat;
@@ -237,5 +238,13 @@ public class Room implements LuaOpen.LuaJson {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public boolean isFly() {
+        return isFly;
+    }
+
+    public void setFly(boolean fly) {
+        isFly = fly;
     }
 }

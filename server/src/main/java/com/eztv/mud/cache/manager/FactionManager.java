@@ -6,7 +6,6 @@ import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.Faction;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.cache.FactionCache;
-import com.eztv.mud.handler.DataBaseHandler;
 
 import static com.eztv.mud.cache.manager.ClientManager.getClient;
 
@@ -76,7 +75,7 @@ public class FactionManager {
         for (Client client: Constant.clients){
             if(client.getPlayer().getAccount().equals(player.getAccount())){
                 client.getPlayer().setFaction_position(-1);
-                client.getPlayer().setFaction(-1);
+                client.getPlayer().setFaction(null);
             }
         }
         //数据库也更新下

@@ -3,7 +3,7 @@ function 初始化(房间) {
 }
 
 function 进入房间(client, 窗口, 消息) {
-    return 1;
+    return true;
 }
 
 function 挂机奖励(client, 窗口, 消息) {

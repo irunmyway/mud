@@ -11,8 +11,10 @@ public class Constant {
 
     public static Enum.script script= Enum.script.js;
 
-    public static String DEFAULT_MAP_ID = "1";//默认初始地图
+    public static String DEFAULT_MAP_ID = "0";//默认初始地图
     public static String DEFAULT_ROOM_ID = "1";//默认初始房间
+    public static String DEFAULT_FACTION_MAP_ID = "0";//默认帮派地图
+    public static String DEFAULT_FACTION_ROOM_ID = "1";//默认帮派房间
     public static int FIGHT_SPEED = 1200;//杀怪速度
     public static int pageLimitCol1 = 10;//分页
     public static int pageLimitCol2 = 10;//分页
