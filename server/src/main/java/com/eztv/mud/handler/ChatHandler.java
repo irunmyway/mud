@@ -5,6 +5,7 @@ import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.*;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.bean.net.WinMessage;
+import com.eztv.mud.utils.BObject;
 import com.eztv.mud.utils.BString;
 
 import java.util.ArrayList;
@@ -46,6 +47,11 @@ public class ChatHandler {
                             if(item.equals(client))return;
                         }
                     }catch (Exception e){}
+                }
+                if(BObject.isEmpty(chat.getTo())){//对方不在线
+                   String sendStr = getPropByFile("relation","target_offline");
+                   GameUtil.sendSystemMsg(client,sendStr);
+                   return;
                 }
                 sendToSelf(client,msgBuild(Enum.messageType.chat, msg.getCmd(),object2JsonStr(chat),""));
                 break;

@@ -27,7 +27,7 @@ public class Constant {
     public final static String Other_PATH = "script/other/";//房间目录
     public final static String Store_PATH = "script/other/store/";//商城目录
     public final static String Algorithm_Attack = "script/algorithm/attack";//攻击算法
-
+    public final static String Init_PATH  = "script/init/";//初始脚本
 
 
     public static boolean 通信检查 = true;

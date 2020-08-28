@@ -50,6 +50,9 @@ public class CommandSetHandler {
         actionCommandSet.put("makeFriend", FriendMake.class);//寄卖收益
         actionCommandSet.put("friendTalk", FriendTalk.class);//
         actionCommandSet.put("friendBreak", FriendBreak.class);//
+        actionCommandSet.put("enemyBreak", EnemyBreak.class);//删除仇人
+        actionCommandSet.put("enemyTalk", EnemyTalk.class);//仇人对话
+        actionCommandSet.put("enemyTrace", EnemyTrace.class);//仇人追踪
 
 
     }
@@ -69,7 +72,7 @@ public class CommandSetHandler {
         panelCommandSet.put("relationPanel", RelationPanel.class);//门派 面板
 
         panelCommandSet.put("好友列表", FriendPanel.class);//门派 面板
-
+        panelCommandSet.put("仇人列表", EnemyPanel.class);//门派 面板
 
 
     }

@@ -10,6 +10,7 @@ import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.cache.PlayerCache;
+import com.eztv.mud.cache.manager.RelationManager;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.syn.WordSyn;
@@ -22,9 +23,15 @@ import static com.eztv.mud.handler.event.player.msg.DeadMsg.showPanel;
 
 public class PlayerDead {
     public static void onDied(GameObject whoKill, GameObject diedObj, Client client) {
-        //死亡回调
+        //玩家死亡回调
         if (diedObj instanceof Player) {
             showPanel(diedObj);
+            //添加到仇人列表
+            if(whoKill instanceof Player){
+                boolean flag = RelationManager.
+                        makeEnemy(((Player) diedObj).getAccount(), (Player) whoKill);
+            }
+
         }
 
         /**

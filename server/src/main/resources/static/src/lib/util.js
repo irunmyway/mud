@@ -190,9 +190,10 @@ createRoomByBase = function (id, direction) {
 }
 
 saveRoom = function (id) {
+    var newId = $("#id").val();
     $.ajax({
         url: layui.setter.mud_api + 'game/api/room/saveRoom',
-        data: { id: id, name: $("#edt_name").val(), desc: $("#edt_desc").val(), script: $("#edt_script").val() },
+        data: { id: id,newId:newId, name: $("#edt_name").val(), desc: $("#edt_desc").val(), script: $("#edt_script").val() },
         type: "post",
         success: function (code) {
             layui.index.render();
@@ -214,7 +215,7 @@ showEditPanel = function (node) {
              <div class="layui-form-item">
                     <label class="layui-form-label">id</label>
                     <div class="layui-input-block">
-                        <input id="em" value="`+ (node.id == undefined ? "" : node.id) + `" type="text" class="layui-input" autocomplete="off" lay-verify="required" />
+                        <input id="id" value="`+ (node.id == undefined ? "" : node.id) + `" type="text" class="layui-input" autocomplete="off" lay-verify="required" />
                     </div>
                 </div>
                 <div class="layui-form-item">

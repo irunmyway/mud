@@ -34,6 +34,7 @@ public class Word {
     public void init() {
         initConf();
         initGG();//加载公告
+
         RoomCache.initRooms();//加载房间
         NpcCache.initNPC(scriptExecutor, getMaps());//加载NPC
         MonsterCache.initMonster(scriptExecutor, getMaps());//加载怪物
@@ -61,6 +62,7 @@ public class Word {
         RoomCache.initRooms();//加载房间
         NpcCache.initNPC(scriptExecutor, getMaps());//加载NPC
         MonsterCache.initMonster(scriptExecutor, getMaps());//加载怪物
+        FactionCache.initFactionCache();//加载行会
     }
 
 

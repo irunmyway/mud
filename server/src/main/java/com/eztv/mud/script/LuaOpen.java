@@ -2,6 +2,7 @@ package com.eztv.mud.script;
 
 import com.eztv.mud.LuaUtil;
 import com.eztv.mud.bean.*;
+import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.task.Task;
 
 import java.util.List;
@@ -64,6 +65,7 @@ public class LuaOpen {
     public interface LuaMap {
         void 到房间(Client client, String map, String id);
         void 到帮派房间(Client client, String map, String id);
+        Room 取房间(Player player);
     }
 
     public interface LuaMath {

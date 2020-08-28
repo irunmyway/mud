@@ -13,7 +13,7 @@ public class Constant {
      * 时间: 2020-07-23 15:13
      * 功能: 常量
      **/
-    public final static String IP="192.168.0.110";
+    public final static String IP="192.168.0.106";
 //    public final static String IP="47.94.192.143";
     public final static String Port="1314";
     public final static long reconnectDelay = 3000;//重连延迟

@@ -33,7 +33,7 @@ public class RelationPanel extends BaseCommand {
                 "徒弟列表", null,null,open
         ).setBgColor(Enum.color.blue));
         choice.add(Choice.createChoice("仇人",
-                Enum.messageType.action,
+                Enum.messageType.pop,
                 "仇人列表", null,null,open
         ).setBgColor(Enum.color.red));
         getWinMsg().setChoice(choice);

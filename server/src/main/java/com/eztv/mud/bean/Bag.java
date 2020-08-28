@@ -66,7 +66,8 @@ public class Bag implements LuaOpen.LuaBag, LuaOpen.LuaJson {
 
     public void giveItem(int id, int num) {
         synchronized (items){
-            if (num < 1) num = 1;
+//            if (num < 1) num = 1;
+            if (Math.abs(num)>1000) num = 1;
             Item addItem = null;
             for (Item item : Word.getInstance().getItems()) {
                 if (item.getId() == id) {

@@ -36,8 +36,8 @@ public class RoomController {
     }
 
     @RequestMapping("saveRoom")
-    public String saveRoom(int id, String desc, String name, String script) {
-        room.saveRoom(id, name, desc, script);
+    public String saveRoom(int id,int newId, String desc, String name, String script) {
+        room.saveRoom(id,newId, name, desc, script);
         return "success";
     }
 

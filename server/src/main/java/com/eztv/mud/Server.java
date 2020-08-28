@@ -49,6 +49,8 @@ public class Server implements SocketServerCallback {
         BDebug.trace("Socket build:Success");
     }
 
+
+    ////////////////////////////////////////////////////////////////事件监听////////////////////////////////////////////
     public void onError(Exception e) {
         e.printStackTrace();
         BDebug.trace("onError" + e.toString());

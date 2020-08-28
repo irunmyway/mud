@@ -5,6 +5,7 @@ import com.eztv.mud.bean.Relation;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.cache.manager.RelationManager;
 import com.eztv.mud.constant.Enum;
+import online.sanen.cdm.api.basic.Sorts;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class RelationCache {
     public static HashMap<String, HashMap<String,Boolean>> allows =new HashMap<>();
     public static void initRelationCache(){
         relationMap.clear();
-        List<Relation> relationList = DataBase.getInstance().init().createSQL("select * from t_relation").list(Relation.class);
+        List<Relation> relationList = DataBase.getInstance().init().queryTable("t_relation").sort(Sorts.DESC,"createat").list(Relation.class);
         for(Relation relation :relationList){
             RelationManager.addRelation(relation);
         }

@@ -2,6 +2,7 @@ package com.eztv.mud;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.bean.*;
+import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
@@ -11,7 +12,6 @@ import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.MapHandler;
 import com.eztv.mud.script.LuaOpen;
-import com.eztv.mud.utils.BDebug;
 import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
@@ -103,6 +103,11 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath,LuaOpen.LuaMa
             String str = getPropByFile("faction","faction_map_no_find",targetRoom.getName());
             GameUtil.sendSystemMsg(client,str);
         }
+    }
+
+    @Override
+    public Room 取房间(Player player) {
+        return player.getPlayerData().getRoom();
     }
 
     @Override

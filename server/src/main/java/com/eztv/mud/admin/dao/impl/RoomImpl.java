@@ -76,10 +76,12 @@ public class RoomImpl implements RoomDAO {
     }
 
     @Override
-    public boolean saveRoom(int id, String name, String desc, String script) {
+    public boolean saveRoom(int id,int newId, String name, String desc, String script) {
+        String str ="";
+        if(newId!=id)str=("id="+newId+",");
         if(db.init().createSQL(""+
                         "update t_map_room set " +
-                        "name = ?, " +
+                        "name = ?, " +str+
                         "script=?," +
                         "`desc`=? " +
                         "where id = ?"

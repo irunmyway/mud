@@ -5,6 +5,7 @@ import com.eztv.mud.GameUtil;
 import com.eztv.mud.LuaUtil;
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Bag;
+import com.eztv.mud.utils.BDebug;
 import org.luaj.vm2.*;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
@@ -57,7 +58,7 @@ public class ScriptExecutor {
                     engine.put("背包", bag);
                     engine.put("属性",attribute );
                     String script = ScriptFactory.getScriptString(scriptPath);
-                    if(script==null)return this;
+                    if(script==null)script ="";
                     engine.eval(script);
                     in = (Invocable)engine;
                 } catch (ScriptException e) {

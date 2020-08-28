@@ -87,11 +87,16 @@ public class PlayerData {
             if(getAttribute().getExp()>getAttribute().getExp_max())player.onUpLevel();//升级触发
         }
         for(Item item:reward.items){
-            list.add("获得了 "+item.getName()+" +"+item.getNum());
+            list.add("获得了 "+item.getName()+" "+(item.getNum()>0?("+"+item.getNum()):item.getNum()));
             int pos = getBag().getItems().indexOf(item);
             if(pos>-1){//叠加
                 item.setNum(getBag().getItems().get(pos).getNum()+item.getNum());
-                getBag().getItems().set(pos,item);
+                if(item.getNum()>0){
+                    getBag().getItems().set(pos,item);
+                }else{
+                    getBag().getItems().remove(pos);
+                }
+
             }else{//新增
                 getBag().getItems().add(item);
             }
