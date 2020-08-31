@@ -51,7 +51,7 @@
         type: "post",
         success: function (code) {
             code = code.replace(/<br>/g, "&#10;<br>");
-            $("#game_gg").html(code);
+            $("#game_gg").html(code.replace(/\n|\r/g,""));
         },
         error: function () {
             alert("获取公告失败了。");

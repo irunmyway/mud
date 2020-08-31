@@ -13,6 +13,7 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.getProp;
@@ -23,6 +24,7 @@ public class Word {
     private Globals globals = JsePlatform.standardGlobals();
     private ScriptExecutor scriptExecutor = new ScriptExecutor();
     private String GG = "";
+    private Map<String,String> colors = new HashMap<>();
     private static Word Instance;
 
     //获取单例
@@ -34,6 +36,7 @@ public class Word {
     public void init() {
         initConf();
         initGG();//加载公告
+        initColor();//加载公告
 
         RoomCache.initRooms();//加载房间
         NpcCache.initNPC(scriptExecutor, getMaps());//加载NPC
@@ -46,6 +49,12 @@ public class Word {
         initBaseAttribute();//加载基础属性
         AuctionCache.initAuctionCache();//寄卖缓存
         initHandler();//装载指令
+    }
+
+    public void initColor() {
+        synchronized (colors){
+            this.scriptExecutor.load(Init_PATH+"color").execute(脚本_初始化,colors);
+        }
     }
 
     private void initConf() {//加载配置
@@ -89,6 +98,9 @@ public class Word {
         BDebug.trace("装载游戏指令完成");
     }
 
+    public Map<String, String> getColors() {
+        return colors;
+    }
 
     public HashMap<String, Attribute> getBaseAttributes() {
         return baseAttributes;

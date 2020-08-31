@@ -24,7 +24,9 @@ adminToken = sessionStorage.getItem("adminToken");;
             }
             s.error = function (data, val, as) {
                 console.log("err" + as)
-                oldError(data);
+                try {
+                    oldError(data);
+                }catch (e) {}
             }
         } catch (error) {
 

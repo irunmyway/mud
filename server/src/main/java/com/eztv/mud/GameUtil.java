@@ -13,6 +13,7 @@ import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import static com.eztv.mud.Constant.clients;
@@ -226,19 +227,21 @@ public class GameUtil {
     public static String colorString(String str){
         if(str!=null)
             if(str.contains("<")){
-                if(str.contains("<red>"))str = str.replaceAll("<red>","<font color=\"#C02E2E\">");
-                if(str.contains("<blue>"))str = str.replaceAll("<blue>","<font color=\"#4682B4\">");
-                if(str.contains("<green>"))str = str.replaceAll("<green>","<font color=\"#32CD32\">");
-                if(str.contains("<gray>"))str = str.replaceAll("<gray>","<font color=\"#BDB76B\">");
-                if(str.contains("<yellow>"))str = str.replaceAll("<yellow>","<font color=\"#FFD700\">");
-                if(str.contains("<purple>"))str = str.replaceAll("<purple>","<font color=\"#8a6bbe\">");
-                if(str.contains("<white>"))str = str.replaceAll("<white>","<font color=\"#ffffff\">");
-                if(str.contains("<pink>"))str = str.replaceAll("<pink>","<font color=\"#FF69B4\">");
-                if(str.contains("<brown>"))str = str.replaceAll("<brown>","<font color=\"#52433d\">");
-                if(str.contains("<jb>"))str = str.replaceAll("<jb>","<font color=\"#FFD700\">");
-                if(str.contains("<yb>"))str = str.replaceAll("<yb>","<font color=\"#DAA520\">");
-                if(str.contains("<money>"))str = str.replaceAll("<money>","<font color=\"#D2691E\">");
-
+                for (Map.Entry<String, String> entry :  Word.getInstance().getColors().entrySet()) {
+                    if(str.contains(entry.getKey()))str = str.replaceAll(entry.getKey(),entry.getValue());
+                }
+//                if(str.contains("<red>"))str = str.replaceAll("<red>","<font color=\"#C02E2E\">");
+//                if(str.contains("<blue>"))str = str.replaceAll("<blue>","<font color=\"#4682B4\">");
+//                if(str.contains("<green>"))str = str.replaceAll("<green>","<font color=\"#32CD32\">");
+//                if(str.contains("<gray>"))str = str.replaceAll("<gray>","<font color=\"#BDB76B\">");
+//                if(str.contains("<yellow>"))str = str.replaceAll("<yellow>","<font color=\"#FFD700\">");
+//                if(str.contains("<purple>"))str = str.replaceAll("<purple>","<font color=\"#8a6bbe\">");
+//                if(str.contains("<white>"))str = str.replaceAll("<white>","<font color=\"#ffffff\">");
+//                if(str.contains("<pink>"))str = str.replaceAll("<pink>","<font color=\"#FF69B4\">");
+//                if(str.contains("<brown>"))str = str.replaceAll("<brown>","<font color=\"#52433d\">");
+//                if(str.contains("<jb>"))str = str.replaceAll("<jb>","<font color=\"#FFD700\">");
+//                if(str.contains("<yb>"))str = str.replaceAll("<yb>","<font color=\"#DAA520\">");
+//                if(str.contains("<money>"))str = str.replaceAll("<money>","<font color=\"#D2691E\">");
                 if(str.contains("</>"))str = str.replaceAll("</>","</font>");
             }
         return str;

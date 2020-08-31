@@ -28,7 +28,7 @@ public class DataBase {
     public Bootstrap init(){
         if (_db == null) {
             //初始化配置文件
-            BProp.getInstance().load(System.getProperty("user.dir")+"/config.properties");
+            BProp.getInstance().load(System.getProperty("user.dir")+"/script/config.properties");
             Properties dbConfig = BProp.getInstance().getProp();
             _db = Bootstraps.newBuilder("")
                     .setUrl(dbConfig.getProperty("db_Url"))

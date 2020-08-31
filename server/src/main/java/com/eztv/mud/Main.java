@@ -47,6 +47,7 @@ public class Main {
                     break;
                 case "sc":
                     ScriptFactory.clearScriptStrings();
+                    Word.getInstance().initColor();
                     break;
                 default:System.out.println(notice);
             }

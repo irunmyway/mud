@@ -10,7 +10,7 @@ public class BFile {
             StringBuilder result = new StringBuilder();
             String str;
             while ((str = in.readLine()) != null) {
-                result.append(str);
+                result.append(str).append("\n");
             }
             return result.toString();
         } catch (IOException e) {

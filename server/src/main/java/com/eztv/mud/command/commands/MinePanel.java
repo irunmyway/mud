@@ -9,6 +9,8 @@ import com.eztv.mud.constant.Enum;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eztv.mud.Constant.Init_PATH;
+import static com.eztv.mud.Constant.脚本_初始化;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.constant.Cmd.doTalk;
 
@@ -26,13 +28,19 @@ public class MinePanel extends BaseCommand{
     public void execute() {
         WinMessage winMsg = new WinMessage();
         List<Choice> choice = new ArrayList<>();
-        String str = getProp("my_state",
-                getClient().getPlayer().getName(),
-                getClient().getPlayer().getAttribute().getAtk(),
-                getClient().getPlayer().getAttribute().getDef(),
-                getClient().getPlayer().getAttribute().getAcc(),
-                getClient().getPlayer().getAttribute().getEva());
-        winMsg.setDesc(str);//显示当前玩家状态
+        String content = "";
+        try{
+            content = colorString(getClient().getScriptExecutor().load(Init_PATH+"mine_panel").execute(
+                    脚本_初始化,getClient(),getPlayer()
+            ).toString());
+        }catch(Exception e){e.printStackTrace();}
+//        String str = getProp("my_state",
+//                getClient().getPlayer().getName(),
+//                getClient().getPlayer().getAttribute().getAtk(),
+//                getClient().getPlayer().getAttribute().getDef(),
+//                getClient().getPlayer().getAttribute().getAcc(),
+//                getClient().getPlayer().getAttribute().getEva());
+        winMsg.setDesc(content);//显示当前玩家状态
         choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null, Enum.winAction.open).setBgColor(Enum.color.red));
         choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null, Enum.winAction.open).setBgColor(Enum.color.blue));
         choice.add(Choice.createChoice("社交", Enum.messageType.pop,"relationPanel", null,null, Enum.winAction.open).setBgColor(Enum.color.yellow));

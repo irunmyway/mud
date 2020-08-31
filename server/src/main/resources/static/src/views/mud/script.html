@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>后台首页</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0 minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+<!--                <div class="layui-card-header">游戏脚本编辑</div>-->
+                <div class="layui-card-body">
+                    <div class="layui-btn-container">
+
+                    </div>
+                    <div class="layui-card">
+                        <div class="layui-card-header">当前位置：<span id="tvFP">/</span></div>
+                        <div class="layui-card-body">
+                            <div class="btnDiv" >
+                                <button id="btnBack" class="layui-btn layui-btn-sm layui-btn-primary icon-btn"><i
+                                        class="layui-icon">&#xe65c;</i>返回上级
+                                </button>
+                                <button id="btnRefresh" class="layui-btn layui-btn-sm layui-btn-primary icon-btn"><i
+                                        class="layui-icon">&#xe669;</i>刷新
+                                </button>
+                                <button id="btnUpload" class="layui-btn layui-btn-sm layui-btn-normal icon-btn"><i
+                                        class="layui-icon">&#xe681;</i>上传文件
+                                </button>
+                                <button id="btnNewDir" class="layui-btn layui-btn-sm layui-btn-normal icon-btn"><i
+                                        class="layui-icon layui-icon-add-circle"></i>新建文件夹
+                                </button>
+                                <button id="btnDelDir" class="layui-btn layui-btn-sm layui-btn-primary icon-btn"><i
+                                        class="layui-icon layui-icon-delete"></i>刪除目录
+                                </button>
+                                <button id="btnRname" class="layui-btn layui-btn-sm layui-btn-primary icon-btn"><i
+                                        class="layui-icon layui-icon-edit"></i>重命名目录
+                                </button>
+                            </div>
+                            <div class="file-list" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 下拉菜单 -->
+<div class="dropdown-menu dropdown-anchor-top-left" id="dropdownFile">
+    <div class="dropdown-anchor"></div>
+    <ul>
+        <li><a id="open"><i class="layui-icon layui-icon-file"></i>&emsp;查看&emsp;</a></li>
+        <!--        <li><a id="down"><i class="layui-icon layui-icon-download-circle"></i>&emsp;下载&emsp;</a></li>-->
+        <li>
+            <a id="del" style="color: red !important;">
+                <i class="layui-icon layui-icon-delete" style="font-size: 19px;"></i>&nbsp;&nbsp;&nbsp;删除&emsp;
+            </a>
+        </li>
+        <!--        <li><a id="share"><i class="layui-icon layui-icon-share"></i>&emsp;分享&emsp;</a></li>-->
+        <li><a id="rename"><i class="layui-icon layui-icon-edit"></i>&emsp;重命名&emsp;</a></li>
+    </ul>
+</div>
+
+<input type="hidden" id="shareFileUrl" value="">
+
+<!-- 渲染模板 -->
+<script id="fileTpl" type="text/html">
+    {{#  layui.each(d, function(index, item){ }}
+    <div class="file-list-item" data-dir="{{item.isDir}}" data-url="{{item.url}}" data-name="{{item.name}}"
+         data-preview="{{item.preview}}">
+        <div class="file-list-img {{item.hasSm?'media':''}}">
+            {{# if(item.hasSm){ }}
+            <img src="{{item.smUrl}}"/>
+            {{# }else{ }}
+            <img src="images/fti/{{item.type}}.png"/>
+            {{# } }}
+        </div>
+        <div class="file-list-name">{{item.name}}</div>
+    </div>
+    {{#  }); }}
+    {{# if(d.length<=0){ }}
+    <div class="list-empty">
+        <i class="layui-icon layui-icon-face-surprised"></i>
+        <div>没有文件</div>
+    </div>
+    {{# } }}
+</script>
+
+<link rel="stylesheet" href="./src/style/filecommon.css" type="text/css"/>
+<script type="text/javascript" src="./src/lib/clipboard.min.js"></script>
+<script>
+    var fileDir;
+    layui.use(['jquery', 'layer', 'element', 'upload', 'laytpl', 'util'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var element = layui.element;
+        var upload = layui.upload;
+        var laytpl = layui.laytpl;
+        var util = layui.util;
+
+        // 渲染文件列表
+        function renderList(dir) {
+            if ($('#tvFP').text() == '/') {
+                $('#btnDelDir').hide();
+                $('#btnRname').hide();
+            } else {
+                $('#btnDelDir').show();
+                $('#btnRname').show();
+            }
+            if (!dir) {
+                dir = $('#tvFP').text();
+            }
+            layer.load(2);
+            $.get(layui.setter.mud_api + 'game/api/file/getFileList', {
+                dir: dir
+            }, function (res) {
+                layer.closeAll('loading');
+                if (res.code == 200) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        res.data[i].url = layui.setter.mud_api + 'game/api/file/file/' + res.data[i].url;
+                        res.data[i].smUrl = layui.setter.mud_api + 'game/api/file/file/sm?p=' + res.data[i].smUrl;
+                    }
+                    laytpl(fileTpl.innerHTML).render(res.data, function (html) {
+                        $('.file-list').html(html);
+                    });
+                } else {
+                    layer.msg(res.msg, {icon: 2});
+                }
+            });
+        }
+
+        renderList();
+
+        // 上传文件事件
+        upload.render({
+            elem: '#btnUpload',
+            data: {},
+            url: layui.setter.mud_api + 'game/api/file/upload',
+            before: function (obj) {
+                // 动态传参
+                this.data.curPos = $('#tvFP').text();
+            },
+            choose: function (obj) {
+                layer.load(2);
+            },
+            done: function (res, index, upload) {
+                layer.closeAll('loading');
+                if (res.code != 200) {
+                    layer.msg(res.msg, {icon: 2});
+                } else {
+                    layer.msg(res.msg, {icon: 1});
+                    renderList();
+                }
+            },
+            error: function () {
+                layer.closeAll('loading');
+                layer.msg('上传失败', {icon: 2});
+            },
+            accept: 'file'
+        });
+
+        // 刷新
+        $('#btnRefresh').click(function () {
+            renderList();
+        });
+
+        var mUrl;
+        // 列表点击事件
+        $('body').on('click', '.file-list-item', function (e) {
+            var isDir = $(this).data('dir');
+            var name = $(this).data('name');
+            var preview = $(this).data('preview');
+            fileDir = $('#tvFP').text();
+            fileDir += (fileDir == '/' ? name : ('/' + name));
+            mUrl = $(this).data('url');
+            $('#copy').attr('data-clipboard-text', mUrl);
+            if (isDir) {
+                var cDir = $('#tvFP').text();
+                cDir += (cDir == '/' ? name : ('/' + name));
+                $('#tvFP').text(cDir);
+                renderList(cDir);
+            } else {
+                editScript();
+                return;
+                var $target = $(this).find('.file-list-img');
+                console.log($target)
+                var offset = $target.offset();
+                $('#dropdownFile').css({
+                    'top': offset.top,
+                    'left': offset.left ,
+                });
+                $('#dropdownFile').addClass('dropdown-opened');
+                if (!preview) {
+                    //$('#open').hide();
+                } else {
+                    $('#open').show();
+                }
+                if (e !== void 0) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }
+        });
+
+        // 返回上级
+        $('#btnBack').click(function () {
+            var cDir = $('#tvFP').text();
+            if (cDir == '/') {
+                layer.msg('已经是根目录')
+            } else {
+                cDir = cDir.substring(0, cDir.lastIndexOf('/'));
+                if (!cDir) {
+                    cDir = '/';
+                }
+                $('#tvFP').text(cDir);
+                renderList(cDir);
+            }
+        });
+
+        // 点击空白隐藏下拉框
+        $('html').off('click.dropdown').on('click.dropdown', function () {
+            $('#copy').attr('data-clipboard-text', '');
+            $('#dropdownFile').removeClass('dropdown-opened');
+        });
+
+        // 查看
+        $('#open').click(function () {
+            // window.open("/file?p=" + fullName + "&d=0", '_blank');
+            editScript();
+        });
+
+        // 下载
+        $('#down').click(function () {
+            var fullName = mUrl;//.substr(7)
+            //window.open("/file?p=" + fullName + "&d=1", '_blank');
+        });
+
+        // 删除
+        $('#del').click(function () {
+            layer.confirm('确定要删除此文件吗？', function () {
+                layer.load(2);
+                $.get(layui.setter.mud_api + 'game/api/file/del', {
+                    file: mUrl.substring(mUrl.indexOf('/file/') + 6)
+                }, function (res) {
+                    layer.closeAll('loading');
+                    if (res.code == 200) {
+                        layer.msg(res.msg, {icon: 1});
+                        renderList();
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                });
+            });
+        });
+
+        // 重命名
+        $('#rename').click(function () {
+            layer.prompt({
+                formType: 0,
+                value: mUrl.substr(mUrl.lastIndexOf('/') + 1),
+                title: '新文件名'
+            }, function (value, index, elem) {
+                var oldFile = mUrl.substring(mUrl.indexOf('/file/') + 6);
+                var newFile = mUrl.substr(7, mUrl.lastIndexOf('/') - 6) + value;
+                layer.load(2);
+                $.get(layui.setter.mud_api + 'game/api/file/rename', {
+                    oldFile: oldFile,
+                    newFile: newFile
+                }, function (res) {
+                    layer.closeAll('loading');
+                    if (res.code == 200) {
+                        layer.msg(res.msg, {icon: 1});
+                        renderList();
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                });
+                layer.close(index);
+            });
+        });
+
+        // 分享
+        $('#share').click(function () {
+            layer.prompt({
+                formType: 0,
+                value: '30',
+                title: '设置时间(分钟)'
+            }, function (value, index, elem) {
+                var file = mUrl.substr(7);
+                layer.load(2);
+                $.post(layui.setter.mud_api + 'game/api/file/share', {
+                    file: file,
+                    time: value
+                }, function (res) {
+                    layer.closeAll('loading');
+                    if (res.code == 200) {
+                        layer.open({
+                            title: res.msg,
+                            content: '链接：' + res.url,
+                            btn: ['复制链接'],
+                            btn1: function (index, layero) {
+                                var clipboard = new ClipboardJS(".layui-layer-btn0", {
+                                    text: function () {
+                                        return res.url;
+                                    }
+                                });
+                                clipboard.on('success', function (e) {
+                                    e.clearSelection();
+                                    layer.msg('分享地址已复制', {icon: 1});
+                                });
+                                clipboard.on('error', function (e) {
+                                    layer.msg('复制失败，请手动复制', {icon: 2});
+                                });
+                            }
+                        });
+                    }
+                });
+                layer.close(index);
+            });
+        });
+
+        // 选择删除
+        $('#btnSelectDel').click(function () {
+            layer.open({
+                type: 2,
+                title: '选择文件',
+                content: 'fileChoose.html?multi=true',
+                area: ['600px', '420px'],
+                offset: '50px',
+                shade: .1,
+                fixed: false,
+                resize: true,
+                end: function () {
+                    if (typeof (mFsUrls) != "undefined" && mFsUrls.length > 0) {
+                        layer.msg('你选择了：' + JSON.stringify(mFsUrls), {icon: 1});
+                        mFsUrls = undefined;
+                    }
+                }
+            });
+        });
+
+        // 新建文件夹
+        $('#btnNewDir').click(function () {
+            layer.prompt({
+                formType: 0,
+                value: "新建文件夹",
+                title: '文件名'
+            }, function (value, index, elem) {
+                var curPos = $('#tvFP').text();
+                layer.load(2);
+                $.get(layui.setter.mud_api + 'game/api/file/mkdir', {
+                    curPos: curPos,
+                    dirName: value
+                }, function (res) {
+                    layer.closeAll('loading');
+                    if (res.code == 200) {
+                        layer.msg(res.msg, {icon: 1});
+                        renderList();
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                });
+                layer.close(index);
+            });
+        });
+
+        // 删除当前目录
+        $('#btnDelDir').click(function () {
+            layer.confirm('将删除此目录下所有文件', {icon: 3, title: '确认'}, function (index) {
+                var curPos = $('#tvFP').text().substr(1);
+                layer.load(2);
+                $.get(layui.setter.mud_api + 'game/api/file/del', {
+                    file: curPos
+                }, function (res) {
+                    layer.closeAll('loading');
+                    if (res.code == 200) {
+                        layer.msg(res.msg, {icon: 1});
+                        renderList();
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                });
+                layer.close(index);
+            });
+        });
+
+        // 重命名当前目录
+        $('#btnRname').click(function () {
+            var tvFP = $('#tvFP').text();
+            layer.prompt({
+                formType: 0,
+                value: tvFP,
+                title: '新目录名'
+            }, function (value, index, elem) {
+                layer.load(2);
+                $.get(layui.setter.mud_api + 'game/api/file/rename', {
+                    oldFile: tvFP.substr(1),
+                    newFile: value.substr(1)
+                }, function (res) {
+                    layer.closeAll('loading');
+                    if (res.code == 200) {
+                        layer.msg(res.msg, {icon: 1});
+                        $('#tvFP').text(res.url);
+                        renderList();
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                });
+                layer.close(index);
+            });
+        });
+
+    });
+    var isFirst = true;
+    var index=0;
+    //时间锁
+    var sync = false;
+    var syncFun = function(){
+        sync = false;
+    }
+    editScript = function (data) {
+        if(sync==true)return;
+        sync = true;
+        setTimeout(syncFun,1000);
+        var editor;
+        var showElement = $("#code_body");
+        $(showElement).find("#code").show();
+        layerIndex = layer.open({
+            type: 1,
+            title: "当前脚本:"+fileDir,
+            shadeClose: true,
+            shade: 0.6,
+            area: [$(window).width()+"px", $(window).height()/2+'px'],
+            maxmin: true,
+            // content: "/src/views/mud/views/script.html",
+            content: `
+            <textarea id="code" name="code"></textarea>
+            `,
+            btn: ['保存', '关闭'] //只是为了演示
+            , yes: function () {
+                var data = editor.getDoc().getValue();
+                alterFile(fileDir,data);
+            },
+            success:function () {
+
+            },
+        });
+        //编辑器
+        editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            styleActiveLine: true,
+            matchBrackets: true
+        });
+        editor.setOption("theme", "darcula");
+        isFirst=false;
+        requestFile(fileDir);
+
+        //获取代码
+        function requestFile(fileDir) {
+            $.post(layui.setter.mud_api + 'game/api/file/getFileContent', {
+                file: fileDir,
+            }, function (res) {
+                if (res!= null&&res!=undefined) {
+                    editor.getDoc().setValue(res);
+                    setTimeout(function () {
+                        editor.refresh()
+                    },200)
+                }
+            });
+        }
+        //保存代码
+        function alterFile(fileDir,code) {
+            $.post(layui.setter.mud_api + 'game/api/file/setFileContent', {
+                file: fileDir,
+                code: code,
+            }, function (res) {
+                if (res!= null&&res!=undefined) {
+                   layer.msg("保存成功");
+                   layer.close(layerIndex);
+                }
+            });
+        }
+
+    }
+
+</script>
+</body>
+</html>
+<style>
+    .CodeMirror {
+        font-size: 15px
+    }
+
+    .fullScreen {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+<link rel="stylesheet" href="./src/style/codemirror.css" type="text/css">
+<link rel="stylesheet" href="./src/style/theme/darcula.css" type="text/css">
+<script src="./src/lib/codemirror.js"></script>
+<script src="./src/lib/mode/javascript/javascript.js"></script>
+<script src="./src/lib/addon/selection/active-line.js"></script>
+<script src="./src/lib/addon/edit/matchbrackets.js"></script>

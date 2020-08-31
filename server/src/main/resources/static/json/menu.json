@@ -32,6 +32,11 @@
           "name": "game_monster",
           "title": "怪物",
           "jump": "/mud/monster"
+        },
+        {
+          "name": "game_monster",
+          "title": "游戏脚本",
+          "jump": "/mud/script"
         }
       ]
     },

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>后台首页</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0 minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+    <link rel="stylesheet" href="../../../style/codemirror.css" type="text/css">
+    <link rel="stylesheet" href="../../../style/theme/darcula.css" type="text/css">
+    <script src="../../../lib/codemirror.js"></script>
+    <script src="../../../lib/mode/javascript/javascript.js"></script>
+    <script src="../../../lib/addon/selection/active-line.js"></script>
+    <script src="../../../lib/addon/edit/matchbrackets.js"></script>
+    <style>
+        .CodeMirror {
+            font-size: 15px
+        }
+
+        .fullScreen {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="fullScreen">
+<div id="code_body" class="fullScreen">
+    <textarea id="code" name="code" class="fullScreen"></textarea>
+</div>
+</body>
+
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        styleActiveLine: true,
+        matchBrackets: true
+    });
+    editor.setOption("theme", "darcula");
+    var codeM = document.getElementsByClassName("CodeMirror")[0];
+    codeM.classList.add("fullScreen");
+</script>
+</html>
+
+<!--<script>-->
+<!--    layui.use(['form', 'layedit', 'laydate'], function(){});</script>-->

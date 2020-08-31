@@ -59,7 +59,7 @@ public class BProp {
             FileInputStream fis=null;
             try {
                 Properties newProp = new Properties();
-                String path = System.getProperty("user.dir")+"/conf/"+name+".properties";
+                String path = System.getProperty("user.dir")+"/script/conf/"+name+".properties";
                 fis = new FileInputStream(path);
                 newProp.load(new InputStreamReader(fis, "UTF-8"));
                 props.put(name,newProp);
@@ -91,7 +91,7 @@ public class BProp {
             FileInputStream fis=null;
             try {
                 Properties newProp = new Properties();
-                String path = System.getProperty("user.dir")+"/conf/"+propName+".properties";
+                String path = System.getProperty("user.dir")+"/script/conf/"+propName+".properties";
                 fis = new FileInputStream(path);
                 newProp.load(new InputStreamReader(fis, "UTF-8"));
                 props.put(propName,newProp);
