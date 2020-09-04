@@ -42,6 +42,7 @@ public class RoomImpl implements RoomDAO {
                 node.setId(room.getId());
                 node.setLabel(room.getName());
                 node.setDesc(room.getDesc());
+                node.setScript(room.getScript());
                 RoomModel parentRoom = hasParentPos(maps, room, node, edge);
                 if (parentRoom == null) {//默认节点位置
                     node.setX(x);

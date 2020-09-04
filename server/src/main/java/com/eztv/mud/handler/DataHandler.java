@@ -9,8 +9,11 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.utils.BDebug;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,7 +21,11 @@ import static com.eztv.mud.GameUtil.msgBuild;
 import static com.eztv.mud.GameUtil.object2JsonStr;
 
 public class DataHandler {
-    static Gson gson = new Gson();
+    static Gson gson = new GsonBuilder().
+            registerTypeAdapter(Date.class,
+                    (JsonDeserializer<Date>)(json, typeOfT, context)->
+                            new Date(json.getAsJsonPrimitive().getAsLong())
+            ).setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     //获取角色信息。绑定游戏数据专用函数
     public synchronized static void getPlayer(Client client, Player player) {
@@ -39,8 +46,13 @@ public class DataHandler {
                 base.setMp(base.getMp_max());
                 if (player.getLevel() > 1)
                     base.setExp(0);
-                player.getPlayerData().setAttribute(base);
+            } else {
+                base.setHp(player.getAttribute().getHp());
+                base.setMp(player.getAttribute().getMp());
+                base.setExp(player.getAttribute().getExp());
             }
+            //这里可以绑定玩家的一些属性
+            player.getPlayerData().setAttribute(base);
         }
     }
 

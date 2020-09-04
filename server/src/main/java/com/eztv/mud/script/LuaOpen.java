@@ -60,6 +60,14 @@ public class LuaOpen {
         void 元宝购买(Client client, String id, String num, long price);
 
         void 元宝购买技能(Client client, String id, String num, long price);
+
+        long 取时间();
+
+        void 置变量(String id,String data);
+
+        String 取变量(String id);
+
+        GamePublic 取变量元素(String id);
     }
 
     public interface LuaMap {

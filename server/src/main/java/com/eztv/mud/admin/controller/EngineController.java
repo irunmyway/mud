@@ -12,7 +12,10 @@ public class EngineController {
     public String saveGG(String content){
         String src = System.getProperty("user.dir")+"/gg";
         BFile.writeFile(src,content);
-        Word.getInstance().initGG();
+        Word.getInstance().initConf();
+        Word.getInstance().initGG();//加载公告
+        Word.getInstance().initColor();//加载公告
+        Word.getInstance().initEnvironment();
         return null;
     }
 

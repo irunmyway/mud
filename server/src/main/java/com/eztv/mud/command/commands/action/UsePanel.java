@@ -41,7 +41,10 @@ public class UsePanel extends BaseCommand {
         choice.add(Choice.createChoice("丢弃", Enum.messageType.action,"item_drop",itemId+"",getMsg().getRole(), Enum.winAction.close));
         choice.add(Choice.createChoice("全部丢弃", Enum.messageType.action,"item_drop",itemId+"","all", Enum.winAction.close));
         winMsg.setChoice(choice);
-        winMsg.setDesc(item.getName());//显示当前玩家的金钱。元宝等等 交易信息。
+
+        winMsg.setDesc(getPropByFile("bag","bag_item",
+                item.getName(),
+                (item.getNum()<2?"1":item.getNum())));//显示当前玩家的金钱。元宝等等 交易信息。
         getClient().sendMsg(msgBuild(Enum.messageType.pop, null,object2JsonStr(winMsg),null).getBytes());
     }
 }

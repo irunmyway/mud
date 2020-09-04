@@ -1,7 +1,6 @@
-package com.eztv.mud.algorithm;
+package com.eztv.mud.test.algorithm;
 
 import com.eztv.mud.bean.GameObject;
-import com.eztv.mud.utils.BDebug;
 
 public class AttackAlgorithm {
     /**

@@ -1,11 +1,11 @@
 package com.eztv.mud.handler.event.player;
 
-import com.alibaba.fastjson.JSONObject;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.bean.Bag;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.net.Player;
+import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
@@ -17,7 +17,8 @@ import com.eztv.mud.syn.WordSyn;
 import com.eztv.mud.utils.BDate;
 
 import static com.eztv.mud.Constant.脚本_击杀奖励;
-import static com.eztv.mud.GameUtil.*;
+import static com.eztv.mud.GameUtil.msgBuild;
+import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.onObjectOutRoom;
 import static com.eztv.mud.handler.event.player.msg.DeadMsg.showPanel;
 
@@ -65,7 +66,7 @@ public class PlayerDead {
          **/
         if (!(diedObj instanceof Player)) {//击杀奖励
             client.getScriptExecutor().load(diedObj.getScript() + ".lua");
-            Bag reward = JSONObject.toJavaObject(jsonStr2Json(client.getScriptExecutor().execute(脚本_击杀奖励).toString()), Bag.class);
+            Bag reward = (Bag) client.getScriptExecutor().execute(脚本_击杀奖励,client,new WinMessage());
             DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
         }
 

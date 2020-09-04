@@ -26,12 +26,9 @@ public class BagPanel  extends BaseCommand {
                 bagDesc.getJbMoney(),
                 bagDesc.getYbMoney()
                 );
-        winMsg.setCol(3);
+        winMsg.setCol(2);
         for(Item item:bagDesc.getItems()){
-
-            choice.add(Choice.createChoice(getPropByFile("bag","bag_item",
-                    item.getName(),
-                    (item.getNum()<2?"1":item.getNum())),
+            choice.add(Choice.createChoice(item.getName(),
                     Enum.messageType.pop,"useClick",
                     item.getId()+"",item.getType().toString()));
         }

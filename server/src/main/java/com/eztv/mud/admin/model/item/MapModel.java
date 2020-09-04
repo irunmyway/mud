@@ -14,6 +14,7 @@ public class MapModel  {
     private String arrows;
 
     private String desc;
+    private String script;
 
     public String getLabel() {
         return label;
@@ -84,5 +85,13 @@ public class MapModel  {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getScript() {
+        return script;
+    }
+
+    public void setScript(String script) {
+        this.script = script;
     }
 }

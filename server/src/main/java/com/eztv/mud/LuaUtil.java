@@ -7,11 +7,13 @@ import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.bean.task.Task;
 import com.eztv.mud.bean.task.TaskAction;
 import com.eztv.mud.bean.task.TaskCondition;
+import com.eztv.mud.cache.GameCache;
 import com.eztv.mud.cache.manager.FactionManager;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.handler.MapHandler;
 import com.eztv.mud.script.LuaOpen;
+import com.eztv.mud.utils.BDate;
 import com.eztv.mud.utils.BProp;
 
 import java.util.ArrayList;
@@ -140,6 +142,27 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath,LuaOpen.LuaMa
         bag.给元宝(-price);
         bag.给技能(Integer.parseInt(id), Integer.parseInt(num));
         发送奖励(client, bag);
+    }
+
+    @Override
+    public long 取时间() {
+        return BDate.getNowMills();
+    }
+
+    @Override
+    public void 置变量(String id, String data) {
+        GameCache.set(id,data);
+    }
+
+    @Override
+    public String 取变量(String id) {
+        GamePublic obj = GameCache.get(id);
+        return obj==null?null:obj.getData();
+    }
+
+    @Override
+    public GamePublic 取变量元素(String id) {
+        return GameCache.get(id);
     }
 
 

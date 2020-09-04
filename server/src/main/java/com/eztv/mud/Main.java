@@ -49,6 +49,11 @@ public class Main {
                     ScriptFactory.clearScriptStrings();
                     Word.getInstance().initColor();
                     break;
+                case "tc":
+                    cache.actionPerformed(null);
+                    System.out.println("保存数据完毕,可以关闭服务器。");
+                    System.exit(0);
+                    break;
                 default:System.out.println(notice);
             }
 

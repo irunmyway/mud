@@ -16,6 +16,10 @@ public class Attribute implements Cloneable, LuaOpen.LuaJson {
     private long def;//防御
     private long acc;//命中
     private long eva;//闪躲
+    private long luk;//幸运
+    private double shp;//吸血suck hp
+    private double smp;//吸魔suck mp
+
 
     public int getLevel() {
         return level;
@@ -79,6 +83,30 @@ public class Attribute implements Cloneable, LuaOpen.LuaJson {
 
     public void setMp_max(long mp_max) {
         this.mp_max = mp_max;
+    }
+
+    public long getLuk() {
+        return luk;
+    }
+
+    public void setLuk(long luk) {
+        this.luk = luk;
+    }
+
+    public double getShp() {
+        return shp;
+    }
+
+    public void setShp(double shp) {
+        this.shp = shp;
+    }
+
+    public double getSmp() {
+        return smp;
+    }
+
+    public void setSmp(double smp) {
+        this.smp = smp;
     }
 
     public long getExp() {

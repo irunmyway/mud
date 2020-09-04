@@ -38,16 +38,12 @@ public class Word {
         initGG();//加载公告
         initColor();//加载公告
 
-        RoomCache.initRooms();//加载房间
-        NpcCache.initNPC(scriptExecutor, getMaps());//加载NPC
-        MonsterCache.initMonster(scriptExecutor, getMaps());//加载怪物
-        FactionCache.initFactionCache();//加载行会
+        initEnvironment();
+
         RelationCache.initRelationCache();//加载玩家关系
         PlayerCache.initPlayerCache();//加载所有玩家缓存信息
-        ItemCache.initItem(globals);//加载物品
-        SkillCache.initSkill(globals);//加载技能
-        initBaseAttribute();//加载基础属性
-        AuctionCache.initAuctionCache();//寄卖缓存
+
+
         initHandler();//装载指令
     }
 
@@ -57,7 +53,7 @@ public class Word {
         }
     }
 
-    private void initConf() {//加载配置
+    public void initConf() {//加载配置
         FIGHT_SPEED = Integer.parseInt(BProp.getInstance().get("fight_speed"));
         DEFAULT_ROOM_ID = BProp.getInstance().get("aliveRoomId");
         DEFAULT_MAP_ID = BProp.getInstance().get("aliveMapId");
@@ -68,10 +64,16 @@ public class Word {
     }
 
     public void initEnvironment() {
+        GameCache.initGameCache();//加载全局变量缓存
         RoomCache.initRooms();//加载房间
         NpcCache.initNPC(scriptExecutor, getMaps());//加载NPC
         MonsterCache.initMonster(scriptExecutor, getMaps());//加载怪物
         FactionCache.initFactionCache();//加载行会
+        ItemCache.initItem(globals);//加载物品
+        SkillCache.initSkill(globals);//加载技能
+
+        initBaseAttribute();//加载基础属性
+        AuctionCache.initAuctionCache();//寄卖缓存
     }
 
 

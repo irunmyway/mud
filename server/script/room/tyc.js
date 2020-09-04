@@ -1,5 +1,5 @@
 function 初始化(房间){
-    房间.setPK(true);//允许pk
+    房间.setPK(true);//允许pk 默认都是true
     房间.setFly(true);//允许传送
 }
 function 进入房间(client,窗口,消息){//允许进入

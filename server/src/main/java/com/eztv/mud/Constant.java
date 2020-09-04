@@ -48,6 +48,7 @@ public class Constant {
     public final static String PlayersSql = "select * from role";
     public final static String PlayerSql = "select * from role where account = ?";
     public final static String AuctionSql = "select * from t_auction";
+    public final static String GamePublicSql = "select * from t_game_public";
 
 
 

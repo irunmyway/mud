@@ -13,7 +13,6 @@ import java.net.Socket;
 import static com.eztv.mud.Constant.通信检查;
 import static com.eztv.mud.utils.BArray.byteMerger;
 import static com.eztv.mud.utils.BArray.intToByteArray;
-
 public class Client {
     private DataInputStream in = null;
     private DataOutputStream out = null;
