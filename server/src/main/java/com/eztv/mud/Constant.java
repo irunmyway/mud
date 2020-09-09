@@ -61,6 +61,8 @@ public class Constant {
     public final static String 脚本_地图查看 ="地图查看";
     public final static String 脚本_事件_进入房间 ="进入房间";
     public final static String 脚本_事件_复活事件 ="复活事件";
+    public final static String 脚本_事件_战斗事件 ="战斗事件";
+    public final static String 脚本_事件_死亡事件 ="死亡事件";
     public final static String 脚本_事件_挂机奖励 ="挂机奖励";
 
 

@@ -22,7 +22,7 @@ public class Client {
     private final int HEAD_LENGTH=2;//包头长度存储空间
 
 
-    private ScriptExecutor scriptExecutor = new ScriptExecutor();//给每个玩家添加独立的脚本执行器
+    private ScriptExecutor scriptExecutor = new ScriptExecutor(this);//给每个玩家添加独立的脚本执行器
 
     public Client(Socket socket, Player player) {
         this.socket = socket;

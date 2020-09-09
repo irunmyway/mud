@@ -44,6 +44,8 @@ public class LuaOpen {
 
         void 全局系统消息(String str);
 
+        void 房间系统消息(Client client,String str);
+
         void 返回数组消息(Client client, String messageType, String cmd, String key, Object obj);
 
         void 返回元素消息(Client client, String messageType, String cmd, String key, Object obj);

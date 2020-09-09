@@ -1,4 +1,5 @@
 //踪迹
+//仇人追踪脚本
 function 初始化(client, 敌人, 窗口, 消息) {
     var 内容;
     if (敌人 == null) {

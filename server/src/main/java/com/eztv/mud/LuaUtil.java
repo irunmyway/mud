@@ -397,15 +397,23 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath,LuaOpen.LuaMa
     }
 
     public void 返回系统消息(Client client, String str) {
-        Chat chat = Chat.system(str);
+        Chat chat = Chat.system(GameUtil.colorString(str));
         GameUtil.sendToSelf(client, msgBuild(Enum.messageType.chat, Enum.chat.公聊.toString(), object2JsonStr(chat), ""));
     }
 
     public void 全局系统消息(String str) {
         Chat chat = new Chat();
-        chat.setContent(str);
+        chat.setContent(GameUtil.colorString(str));
         chat.setMsgType(Enum.chat.系统);
         GameUtil.sendToAll(msgBuild(Enum.messageType.chat, Enum.chat.公聊.toString(), object2JsonStr(chat), ""));
+    }
+
+    @Override
+    public void 房间系统消息(Client client,String str) {
+        Chat chat = new Chat();
+        chat.setContent(GameUtil.colorString(str));
+        chat.setMsgType(Enum.chat.系统);
+        GameUtil.sendToRoom(client,msgBuild(Enum.messageType.chat, Enum.chat.公聊.toString(), object2JsonStr(chat), ""));
     }
 
 

@@ -16,7 +16,7 @@ public class RoomCache {
     private static ScriptExecutor scriptExecutor;
 
     public static void initRooms() {//初始化所有房间
-        scriptExecutor = new ScriptExecutor();
+        scriptExecutor = new ScriptExecutor(null);
         //初始化所有房间
         maps.clear();
         List<Room> roomList = DataBase.getInstance().init().createSQL("select * from t_map_room").list(Room.class);

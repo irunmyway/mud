@@ -41,10 +41,12 @@ public class GameCache {
             gamePublic.setId(id);
             gamePublic.setData(data);
             maps.put(id,gamePublic);
+            DataBase.getInstance().init().query(gamePublic).insert();
         }else{
             gamePublic.setData(data);
             gamePublic.setUpdateat(new Date());
+            DataBase.getInstance().init().query(gamePublic).update();
         }
-        DataBase.getInstance().init().query(gamePublic).update();
+
     }
 }

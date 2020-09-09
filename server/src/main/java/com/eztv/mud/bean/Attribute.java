@@ -3,6 +3,9 @@ package com.eztv.mud.bean;
 import com.eztv.mud.GameUtil;
 import com.eztv.mud.script.LuaOpen;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Attribute implements Cloneable, LuaOpen.LuaJson {
     private int level;
     private long hp;
@@ -16,9 +19,16 @@ public class Attribute implements Cloneable, LuaOpen.LuaJson {
     private long def;//防御
     private long acc;//命中
     private long eva;//闪躲
+
+    private long itg;//智力
+    private long str;//力量
+    private long dex;//敏捷
+
     private long luk;//幸运
     private double shp;//吸血suck hp
     private double smp;//吸魔suck mp
+
+    private Map<String,String> attr=new HashMap<>();
 
 
     public int getLevel() {
@@ -79,6 +89,38 @@ public class Attribute implements Cloneable, LuaOpen.LuaJson {
 
     public long getMp_max() {
         return mp_max;
+    }
+
+    public long getItg() {
+        return itg;
+    }
+
+    public void setItg(long itg) {
+        this.itg = itg;
+    }
+
+    public long getStr() {
+        return str;
+    }
+
+    public void setStr(long str) {
+        this.str = str;
+    }
+
+    public long getDex() {
+        return dex;
+    }
+
+    public void setDex(long dex) {
+        this.dex = dex;
+    }
+
+    public Map<String, String> getAttr() {
+        return attr;
+    }
+
+    public void setAttr(Map<String, String> attr) {
+        this.attr = attr;
     }
 
     public void setMp_max(long mp_max) {

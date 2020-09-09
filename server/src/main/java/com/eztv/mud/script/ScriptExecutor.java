@@ -5,7 +5,7 @@ import com.eztv.mud.GameUtil;
 import com.eztv.mud.LuaUtil;
 import com.eztv.mud.bean.Attribute;
 import com.eztv.mud.bean.Bag;
-import com.eztv.mud.utils.BDebug;
+import com.eztv.mud.bean.Client;
 import org.luaj.vm2.*;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
@@ -33,9 +33,10 @@ public class ScriptExecutor {
     private LuaUtil luaUtil =  new LuaUtil();
     private Bag bag = new Bag();
     private Attribute attribute = new Attribute();
+    private Client client;
 
 
-    public ScriptExecutor() {
+    public ScriptExecutor(Client client) {
     }
 
     public ScriptExecutor load(String scriptPath) {
@@ -53,10 +54,7 @@ public class ScriptExecutor {
             case js:
                 if(!scriptPath.endsWith(".js"))scriptPath = scriptPath+".js";
                 try {
-                    engine.put("游戏工具",gameUtil);
-                    engine.put("脚本工具", luaUtil);
-                    engine.put("背包", bag);
-                    engine.put("属性",attribute );
+                    bindValue(engine);
                     String script = ScriptFactory.getScriptString(scriptPath);
                     if(script==null)script ="";
                     engine.eval(script);
@@ -104,6 +102,7 @@ public class ScriptExecutor {
                 }
             case js:
                 try {
+                    bindValueOnExectute(engine);
                     Object obj =  in.invokeFunction(function,args);
                     return obj==null?null:obj;
                 } catch (Exception e) {
@@ -112,6 +111,22 @@ public class ScriptExecutor {
                 }
         }
         return null;
+    }
+
+    public void bindValueOnExectute(ScriptEngine engine){
+        try{
+            engine.put("变量_在线人数",Constant.clients.size());
+        }catch(Exception e){e.printStackTrace();}
+    }
+    public void bindValue(ScriptEngine engine){
+        try{
+            engine.put("游戏工具",gameUtil);
+            engine.put("脚本工具", luaUtil);
+            engine.put("背包", bag);
+            engine.put("属性",attribute );
+            if(client!=null)
+            engine.put("变量_玩家",client.getPlayer());
+        }catch(Exception e){e.printStackTrace();}
     }
 
 }

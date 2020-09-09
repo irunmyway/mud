@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.eztv.mud.Constant.Init_PATH;
+import static com.eztv.mud.Constant.脚本_初始化;
 import static com.eztv.mud.GameUtil.msgBuild;
 import static com.eztv.mud.GameUtil.object2JsonStr;
 
@@ -53,6 +55,8 @@ public class DataHandler {
             }
             //这里可以绑定玩家的一些属性
             player.getPlayerData().setAttribute(base);
+            client.getScriptExecutor().load(Init_PATH+"player").
+                    execute(脚本_初始化,player);
         }
     }
 

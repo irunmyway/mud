@@ -10,7 +10,8 @@ function 初始化(client, 我) {
         "<red>『攻击』 : " + 属性.getAtk() + " </><br>" +
         "<blue>『防御』 : " + 属性.getDef() + " </><br>" +
         "<purple>『命中』 : " + 属性.getAcc() + " </><br>" +
-        "<green>『闪躲』 : " + 属性.getEva() + " </>";
+        "<green>『闪躲』 : " + 属性.getEva() + " </><br>"+
+        "<yellow>『幸运』 : " + 属性.getLuk() + " </>";
     return content;
 }
 

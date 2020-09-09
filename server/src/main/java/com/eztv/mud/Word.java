@@ -22,7 +22,7 @@ import static com.eztv.mud.cache.RoomCache.getMaps;
 public class Word {
     private HashMap<String, Attribute> baseAttributes = new HashMap<String, Attribute>();
     private Globals globals = JsePlatform.standardGlobals();
-    private ScriptExecutor scriptExecutor = new ScriptExecutor();
+    private ScriptExecutor scriptExecutor = new ScriptExecutor(null);
     private String GG = "";
     private Map<String,String> colors = new HashMap<>();
     private static Word Instance;

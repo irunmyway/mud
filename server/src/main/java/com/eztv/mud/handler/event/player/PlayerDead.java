@@ -1,7 +1,6 @@
 package com.eztv.mud.handler.event.player;
 
 import com.eztv.mud.GameUtil;
-import com.eztv.mud.bean.Bag;
 import com.eztv.mud.bean.Client;
 import com.eztv.mud.bean.GameObject;
 import com.eztv.mud.bean.net.Player;
@@ -12,11 +11,10 @@ import com.eztv.mud.bean.task.TaskCondition;
 import com.eztv.mud.cache.PlayerCache;
 import com.eztv.mud.cache.manager.RelationManager;
 import com.eztv.mud.constant.Enum;
-import com.eztv.mud.handler.DataHandler;
 import com.eztv.mud.syn.WordSyn;
 import com.eztv.mud.utils.BDate;
 
-import static com.eztv.mud.Constant.脚本_击杀奖励;
+import static com.eztv.mud.Constant.脚本_事件_死亡事件;
 import static com.eztv.mud.GameUtil.msgBuild;
 import static com.eztv.mud.GameUtil.object2JsonStr;
 import static com.eztv.mud.constant.Cmd.onObjectOutRoom;
@@ -28,7 +26,7 @@ public class PlayerDead {
         if (diedObj instanceof Player) {
             showPanel(diedObj);
             //添加到仇人列表
-            if(whoKill instanceof Player){
+            if (whoKill instanceof Player) {
                 boolean flag = RelationManager.
                         makeEnemy(((Player) diedObj).getAccount(), (Player) whoKill);
             }
@@ -66,8 +64,7 @@ public class PlayerDead {
          **/
         if (!(diedObj instanceof Player)) {//击杀奖励
             client.getScriptExecutor().load(diedObj.getScript() + ".lua");
-            Bag reward = (Bag) client.getScriptExecutor().execute(脚本_击杀奖励,client,new WinMessage());
-            DataHandler.sendReward(client, client.getPlayer().getPlayerData().toReward(reward));
+            client.getScriptExecutor().execute(脚本_事件_死亡事件, client, new WinMessage());
         }
 
         //移除死亡的东西

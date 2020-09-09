@@ -6,6 +6,7 @@ import com.eztv.mud.bean.callback.IGameObject;
 import com.eztv.mud.bean.net.AttackPack;
 import com.eztv.mud.bean.net.Player;
 import com.eztv.mud.bean.net.SendGameObject;
+import com.eztv.mud.bean.net.WinMessage;
 import com.eztv.mud.constant.Enum;
 import com.eztv.mud.handler.event.player.PlayerDead;
 import com.eztv.mud.utils.BProp;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.Properties;
 
 import static com.eztv.mud.Constant.Algorithm_Attack;
+import static com.eztv.mud.Constant.脚本_事件_战斗事件;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.constant.Cmd.doAttack;
 
@@ -74,9 +76,15 @@ public abstract class GameObject {
         }else{//闪避
             ap.setDesc(GameUtil.colorString(dbConfig.get("fight_eva").toString()));
         }
+
         if (gameObject != null&&isAttack) {//攻击后血量小于1 死亡
             if ((gameObject.getAttribute().Attack((long)realAtc) < 1))
                 PlayerDead.onDied(this, gameObject, client);
+        }
+
+        if (!(gameObject instanceof Player)) {//战斗事件AI
+            client.getScriptExecutor().load(gameObject.getScript() + ".lua");
+            client.getScriptExecutor().execute(脚本_事件_战斗事件, client,gameObject, new WinMessage());
         }
 
         ap.setWho(this.getKey());
