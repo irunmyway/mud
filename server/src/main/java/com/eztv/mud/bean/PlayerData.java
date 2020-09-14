@@ -18,7 +18,7 @@ public class PlayerData {
     private List<Task> tasks;//玩家的任务集合
     private Bag bag = new Bag();//玩家背包
     private Equip equip = new Equip(); //玩家装备
-    private Skill skill = new Skill(); //玩家技能
+    private Skills skill = new Skills(); //玩家技能
     @JSONField(serialize = false)
     @Expose(serialize = false, deserialize = false)
     private Player player;
@@ -55,7 +55,7 @@ public class PlayerData {
         return tasks;
     }
 
-    public Skill getSkill() {
+    public Skills getSkill() {
         return skill;
     }
 
@@ -112,7 +112,7 @@ public class PlayerData {
         this.equip = equip;
     }
 
-    public void setSkill(Skill skill) {
+    public void setSkill(Skills skill) {
         this.skill = skill;
     }
 

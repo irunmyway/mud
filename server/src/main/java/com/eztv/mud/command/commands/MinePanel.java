@@ -30,7 +30,7 @@ public class MinePanel extends BaseCommand{
         List<Choice> choice = new ArrayList<>();
         String content = "";
         try{
-            content = colorString(getClient().getScriptExecutor().load(Init_PATH+"mine_panel").execute(
+            content = colorString(getClient().getScriptExecutor().load(Init_PATH+"/panel/mine").execute(
                     脚本_初始化,getClient(),getPlayer()
             ).toString());
         }catch(Exception e){e.printStackTrace();}
@@ -44,6 +44,7 @@ public class MinePanel extends BaseCommand{
         choice.add(Choice.createChoice("我的装备", Enum.messageType.pop,"my_equip", null,null, Enum.winAction.open).setBgColor(Enum.color.red));
         choice.add(Choice.createChoice("门派", Enum.messageType.pop,"factionPanel", null,null, Enum.winAction.open).setBgColor(Enum.color.blue));
         choice.add(Choice.createChoice("社交", Enum.messageType.pop,"relationPanel", null,null, Enum.winAction.open).setBgColor(Enum.color.yellow));
+        choice.add(Choice.createChoice("我的技能", Enum.messageType.pop,"my_skills", null,null, Enum.winAction.open).setBgColor(Enum.color.red));
 
         winMsg.setChoice(choice);
         getClient().sendMsg(msgBuild(Enum.messageType.action, doTalk,object2JsonStr(winMsg),null).getBytes());

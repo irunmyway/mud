@@ -18,9 +18,19 @@ public class DataBaseHandler {
         savePlayer(player);
         savePlayerData(player);
     }
+    //保存玩家
     public synchronized void savePlayer(Player player){
         try {
             DataBase.getInstance().init().query(player).setExceptFields("name").update();
+        }catch (Exception e){e.printStackTrace();}
+    }
+    //保存玩家数据
+    public synchronized void savePlayerData(Player player){
+        try {
+            String data = new String(Base64.getEncoder().encode(player.getPlayerData().toJson().getBytes()));
+            String sql ="update role set data='"+ data+
+                    "' where account = ?";
+            DataBase.getInstance().init().createSQL(sql,player.getAccount()).update();
         }catch (Exception e){e.printStackTrace();}
     }
     //离线更新离线时间
@@ -30,14 +40,7 @@ public class DataBaseHandler {
             DataBase.getInstance().init().createSQL(sql,player.getAccount()).update();
         }catch (Exception e){e.printStackTrace();}
     }
-    public synchronized void savePlayerData(Player player){
-        try {
-            String data = new String(Base64.getEncoder().encode(player.getPlayerData().toJson().getBytes()));
-            String sql ="update role set data='"+ data+
-                    "' where account = ?";
-            DataBase.getInstance().init().createSQL(sql,player.getAccount()).update();
-        }catch (Exception e){e.printStackTrace();}
-    }
+    //保存所有玩家数据
     public synchronized void cacheToDataBase(){
       for (Client client:Constant.clients){
           if(client.getPlayer()!=null)

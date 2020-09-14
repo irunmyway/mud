@@ -27,35 +27,46 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、脚本工具 取时间&#10;2、全局变量的支持，为玩法脚本添加的支持">
-      <change afterPath="$PROJECT_DIR$/script/init/player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/npc/dayingjia.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/script/npc/例子.js" afterDir="false" />
+    <list default="true" id="0d47895f-9949-407a-9ad8-e87daae97221" name="Default Changelist" comment="1、初始化角色脚本可以计算属性&#10;2、大赢家玩法">
+      <change afterPath="$PROJECT_DIR$/script/init/panel/skill.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Skills.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/SkillAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/skill/SkillPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/algorithm/attack.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/algorithm/attack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/init/enemytrace.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/init/enemytrace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/init/mine_panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/init/mine_panel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/monster/jszs.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/monster/jszs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/script/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/init/mine_panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/init/panel/mine.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/monster/lu.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/monster/lu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/monster/例子.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/monster/例子.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/npc/cunzhang.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/npc/cunzhang.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/npc/dayingjia.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/npc/dayingjia.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script/npc/gzfs.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/npc/gzfs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/skill/hqs.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/skill/hqs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/LuaUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/Word.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/GameCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/GameCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RoomCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/RoomCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/PlayerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/bean/Skill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/SkillCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/cache/SkillCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/CommandSetHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/MinePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ItemAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/ItemAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/UseSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/action/UseSkill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/SkillAttackPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/command/commands/pop/SkillAttackPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataBaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/DataBaseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerDead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/handler/event/player/PlayerDead.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/LuaOpen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/eztv/mud/script/ScriptExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/Word.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Attribute.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Attribute.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/PlayerData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/eztv/mud/bean/net/Player.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +121,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/script/init" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/script/init/panel" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -122,25 +133,25 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\android\mud\server\script\init\panel" />
       <recent name="D:\android\mud\server\script\init" />
       <recent name="D:\android\mud\server\script\npc" />
       <recent name="D:\android\mud\server\script\item" />
       <recent name="D:\android\mud\server\script\monster" />
-      <recent name="D:\android\mud\server\script\room" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.eztv.mud.command.commands.action" />
       <recent name="com.eztv.mud.cache" />
       <recent name="com.eztv.mud.command.commands.relation" />
       <recent name="com.eztv.mud.cache.manager" />
       <recent name="com.eztv.mud.bean" />
-      <recent name="com.eztv.mud.admin.controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\android\mud\server\script\init\panel" />
       <recent name="D:\android\mud\server\script" />
       <recent name="D:\android\mud\server\src\main\resources\template" />
       <recent name="D:\android\mud\server\src\main\resources\static\json" />
       <recent name="D:\android\mud\server\src\main\resources\templates" />
-      <recent name="D:\android\mud\server" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -391,7 +402,12 @@
       <workItem from="1599490057097" duration="157000" />
       <workItem from="1599523150293" duration="1895000" />
       <workItem from="1599579125157" duration="1504000" />
-      <workItem from="1599641452697" duration="4983000" />
+      <workItem from="1599641452697" duration="5391000" />
+      <workItem from="1599700945549" duration="10664000" />
+      <workItem from="1599780579100" duration="15447000" />
+      <workItem from="1599830368799" duration="7485000" />
+      <workItem from="1599874182231" duration="1806000" />
+      <workItem from="1600049897772" duration="1680000" />
     </task>
     <task id="LOCAL-00001" summary="mud server">
       <created>1594432843296</created>
@@ -596,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599234318109</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="1、初始化角色脚本可以计算属性&#10;2、大赢家玩法">
+      <created>1599667028915</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1599667028915</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -652,7 +675,8 @@
     <MESSAGE value="1、仇人追踪" />
     <MESSAGE value="1、人物属性面板自定义&#10;2、目录整理&#10;3、在线代码编辑" />
     <MESSAGE value="1、脚本工具 取时间&#10;2、全局变量的支持，为玩法脚本添加的支持" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、脚本工具 取时间&#10;2、全局变量的支持，为玩法脚本添加的支持" />
+    <MESSAGE value="1、初始化角色脚本可以计算属性&#10;2、大赢家玩法" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、初始化角色脚本可以计算属性&#10;2、大赢家玩法" />
   </component>
   <component name="WindowStateProjectService">
     <state x="493" y="239" key="#Custom_Plugin_Repositories" timestamp="1596535167099">
@@ -700,11 +724,11 @@
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596508769851" />
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598148431333" />
     <state x="386" y="149" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1595948519434" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1599643010520">
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser" timestamp="1599839524183">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598431847266" />
-    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599643010520" />
+    <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599839524183" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596209194881" />
     <state x="446" y="46" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1595993048008" />
     <state x="371" y="129" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1595470182648">
@@ -727,10 +751,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="260" y="263" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1595488913197" />
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597454786156">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599744887241">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1597454786156" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599744887241" />
     <state x="247" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1595901844601" />
     <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599212487953">
       <screen x="0" y="0" width="1280" height="680" />
@@ -763,34 +787,34 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596166832163" />
-    <state width="1237" height="267" key="GridCell.Tab.0.bottom" timestamp="1599665695404">
+    <state width="1237" height="267" key="GridCell.Tab.0.bottom" timestamp="1600050919499">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="267" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598580560233" />
-    <state width="1237" height="267" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599665695404" />
+    <state width="1237" height="267" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599874532832" />
     <state width="1237" height="267" key="GridCell.Tab.0.bottom/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598629323171" />
-    <state width="1237" height="232" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="267" key="GridCell.Tab.0.center" timestamp="1599665695403">
+    <state width="1237" height="267" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600050919499" />
+    <state width="1237" height="267" key="GridCell.Tab.0.center" timestamp="1600050919499">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="267" key="GridCell.Tab.0.center/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598580560232" />
-    <state width="1237" height="267" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599665695403" />
+    <state width="1237" height="267" key="GridCell.Tab.0.center/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599874532832" />
     <state width="1237" height="267" key="GridCell.Tab.0.center/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598629323171" />
-    <state width="1237" height="232" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="267" key="GridCell.Tab.0.left" timestamp="1599665695403">
+    <state width="1237" height="267" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600050919499" />
+    <state width="1237" height="267" key="GridCell.Tab.0.left" timestamp="1600050919499">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="267" key="GridCell.Tab.0.left/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598580560232" />
-    <state width="1237" height="267" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599665695403" />
+    <state width="1237" height="267" key="GridCell.Tab.0.left/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599874532831" />
     <state width="1237" height="267" key="GridCell.Tab.0.left/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598629323171" />
-    <state width="1237" height="232" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
-    <state width="1237" height="267" key="GridCell.Tab.0.right" timestamp="1599665695404">
+    <state width="1237" height="267" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600050919499" />
+    <state width="1237" height="267" key="GridCell.Tab.0.right" timestamp="1600050919499">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="267" key="GridCell.Tab.0.right/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598580560232" />
-    <state width="1237" height="267" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599665695404" />
+    <state width="1237" height="267" key="GridCell.Tab.0.right/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599874532832" />
     <state width="1237" height="267" key="GridCell.Tab.0.right/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598629323171" />
-    <state width="1237" height="232" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596087326035" />
+    <state width="1237" height="267" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600050919499" />
     <state width="1237" height="228" key="GridCell.Tab.1.bottom" timestamp="1596430247358">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -837,11 +861,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="444" y="229" key="VCS.ChangelistChooser/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596876391916" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1599234324299">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1599667039878">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598432696687" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599234324299" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599667039878" />
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1598629288058" />
     <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1595951646697" />
     <state x="11" y="89" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1596430200418">
@@ -853,11 +877,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596447624853" />
-    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1599641827010">
+    <state x="372" y="0" width="605" height="680" key="find.popup" timestamp="1599874310883">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="340" y="0" width="879" height="680" key="find.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1598541688927" />
-    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599641827010" />
+    <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599874310883" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596594783262" />
     <state x="372" y="0" width="605" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1595998824534" />
     <state x="404" y="213" width="625" height="284" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1595469911888">
@@ -874,11 +898,11 @@
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596792857977" />
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598888449931" />
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1596079189990" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1598888611082">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1599750889170">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.0.1280.984@0.0.1280.680" timestamp="1596684528741" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1598888611082" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.130.1280.984@0.0.1280.680" timestamp="1599750889170" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/-1280.52.1280.984@0.0.1280.680" timestamp="1596590180231" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1595941870793" />
   </component>

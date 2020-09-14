@@ -63,7 +63,7 @@ public class PlayerDead {
          用处：//移除玩家杀死的其他东西   奖励触发
          **/
         if (!(diedObj instanceof Player)) {//击杀奖励
-            client.getScriptExecutor().load(diedObj.getScript() + ".lua");
+            client.getScriptExecutor().load(diedObj.getScript());
             client.getScriptExecutor().execute(脚本_事件_死亡事件, client, new WinMessage());
         }
 

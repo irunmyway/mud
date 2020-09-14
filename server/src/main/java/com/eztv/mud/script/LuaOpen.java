@@ -8,12 +8,10 @@ import com.eztv.mud.bean.task.Task;
 import java.util.List;
 
 public class LuaOpen {
-
-
     public interface LuaAction {
-
         //玩家操作
-        public boolean 学习技能(Client client, Item item);
+        public boolean 学习技能(Client client, Skill item);
+        public Skill 取当前技能(GameObject gameObject);
 
         public String 装备(Client client, Item item);//装备上当前物品
 
@@ -65,11 +63,13 @@ public class LuaOpen {
 
         long 取时间();
 
-        void 置变量(String id,String data);
+        void 置全局变量(String id, String data);
 
-        String 取变量(String id);
+        String 取全局变量(String id);
 
-        GamePublic 取变量元素(String id);
+        //void 置变量(String id, String data);
+
+        GamePublic 取全局变量元素(String id);
     }
 
     public interface LuaMap {

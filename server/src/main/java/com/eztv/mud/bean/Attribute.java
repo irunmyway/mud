@@ -190,10 +190,12 @@ public class Attribute implements Cloneable, LuaOpen.LuaJson {
     public void setExp_max(long exp_max) {
         this.exp_max = exp_max;
     }
+    //攻击
     public long Attack(long hp){
         setHp(getHp()-hp);
         return getHp();
     }
+    //扣除魔法
     public boolean AttackMp(long mp){
         if(getMp()>mp){
             setMp(getMp()-mp);

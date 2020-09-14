@@ -10,8 +10,7 @@ import com.eztv.mud.utils.BString;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.eztv.mud.Constant.脚本_物品使用;
-import static com.eztv.mud.Constant.脚本_物品查看;
+import static com.eztv.mud.Constant.*;
 import static com.eztv.mud.GameUtil.*;
 import static com.eztv.mud.cache.manager.ItemManager.getItemById;
 import static com.eztv.mud.cache.manager.ItemManager.getSkillById;
@@ -21,44 +20,30 @@ import static com.eztv.mud.cache.manager.ItemManager.getSkillById;
  日期: 2020-07-21 23:41
  用处：物品查看
 **/
-public class ItemAction extends BaseCommand {
+public class SkillAction extends BaseCommand {
 
 
-    public ItemAction(Client client, Msg msg, String key) {
+    public SkillAction(Client client, Msg msg, String key) {
         super(client, msg, key);
     }
 
     @Override
     public void execute() {
         switch (getMsg().getCmd()){
-            case "item_look"://查看物品
-                item_look();
-                break;
-            case "item_use"://物品使用
-                item_use();
-                break;
-            case "item_unload"://卸载装备
-                item_unload();
-                getClient().getPlayer().onAttributeChange();
-                break;
-            case "item_drop"://丢弃物品
-                item_drop();
+            case "skill_look"://查看物品
+                skill_look();
                 break;
         }
 
     }
 
-    private void item_look(){
+    private void skill_look(){
         WinMessage winMsg = new WinMessage();
         //执行物品脚本
-        Item item=null;
-        if (getMsg().getRole().equals("skill")){
-            item = getSkillById(getMsg().getMsg());
-        }else{
-            item = getItemById(getMsg().getMsg());
-        }
+        Item item=getSkillById(getMsg().getMsg());
+        Skill skill=item instanceof Skill?(Skill)item:null;
         if(item==null)return;
-        getClient().getScriptExecutor().load(item.getScript())
+        getClient().getScriptExecutor().load(Init_PATH+"/panel/skill")
         .execute(脚本_物品查看,getClient(),item,winMsg,getMsg());
     }
     private void item_use(){

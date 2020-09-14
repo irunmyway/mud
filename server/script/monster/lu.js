@@ -34,7 +34,6 @@ function 死亡事件(client,窗口) {
 
 function 战斗事件(client,怪物,窗口) {
     var 怪物属性 = 怪物.getAttribute();
-    print(怪物属性.getHp())
     if(怪物属性.getHp()<1){
         脚本工具.房间系统消息(client,"鹿: 额啊...快被杀死了");
     }

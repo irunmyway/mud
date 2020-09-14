@@ -1,57 +1,43 @@
 package com.eztv.mud.bean;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.eztv.mud.utils.BDebug;
 
-/**
- * 作者: hhx QQ1025334900
- * 时间: 2020-07-25 16:55
- * 功能: 玩家技能
- **/
-public class Skill {
-    private Item curSkill;//当前出招技能
-    private List<Item> skills = new ArrayList<>();//玩家所有技能
+public class Skill extends Item{
+    private int level=1;
+    private Long[] skillPot= {}; //升级对应的潜能点
+    private Long[]  skillHit={}; //伤害
+    private Long[]  skillMp={}; //所消耗的mp
 
     public Skill() {
+        try{
+            BDebug.trace("技能等级:"+level);
+        }catch(Exception e){}
     }
-    public void delSkill(int id, int num) {
-        if (num < 1) num = 1;
-        Item delItem = null;
-        for (Item item : skills) {
-            if (item.getId() == id) {
-                if (item.getNum() > 1) {
-                    if (item.getNum() - num < 1) {
-                        delItem = item;
-                    } else {
-                        item.setNum(item.getNum() - num);
-                    }
-                } else {
-                    delItem = item;
-                }
-            }
+
+    public void hit(Long[] str){
+        skillHit = str;
+        if(skillHit.length>=level)
+            getAttribute().setAtk(skillHit[level-1]);
+    }
+
+    public void pot(Long[] str){
+        skillPot = str;
+    }
+
+    public void mp(Long[] str){
+        skillMp = str;
+        if(skillMp.length>=level)
+            getAttribute().setMp(skillMp[level-1]);
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public long getPot(){
+        if(skillPot.length>=level){
+            return skillPot[level];
         }
-        if (delItem != null)
-            skills.remove(delItem);
-    }
-
-    public Item getCurSkill() {
-        return curSkill;
-    }
-
-    public void setCurSkill(Item curSkill) {
-        this.curSkill = curSkill;
-    }
-
-    public List<Item> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<Item> skills) {
-        this.skills = skills;
-    }
-
-    public Attribute calculate(){
-        if(curSkill==null)return new Attribute();
-        return  curSkill.getAttribute();
+        return 0;
     }
 }

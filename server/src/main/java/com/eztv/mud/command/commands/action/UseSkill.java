@@ -1,9 +1,6 @@
 package com.eztv.mud.command.commands.action;
 
-import com.eztv.mud.bean.Chat;
-import com.eztv.mud.bean.Client;
-import com.eztv.mud.bean.Item;
-import com.eztv.mud.bean.Msg;
+import com.eztv.mud.bean.*;
 import com.eztv.mud.command.commands.BaseCommand;
 import com.eztv.mud.constant.Enum;
 
@@ -24,9 +21,9 @@ public class UseSkill extends BaseCommand {
     @Override
     public void execute() {
         String skillId = getMsg().getMsg();
-        List<Item> skills = getClient().getPlayer().getPlayerData().getSkill().getSkills();
-        Item preSkill = null;
-        for (Item skill : skills) {
+        List<Skill> skills = getClient().getPlayer().getPlayerData().getSkill().getSkills();
+        Skill preSkill = null;
+        for (Skill skill : skills) {
             if((skill.getId()+"").equals(skillId)){
                 preSkill = skill;
                 break;

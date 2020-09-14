@@ -127,6 +127,7 @@ public class Server implements SocketServerCallback {
                         //指派类去执行
                         String key = msg.getCmd();
                         if (msg.getCmd().contains("item_")) key = "item_action";//物品操作集合
+                        if (msg.getCmd().contains("skill_")) key = "skill_action";//物品操作集合
                         if (CommandSetHandler.actionCommandSet.containsKey(key)) {
                             Class clazz = CommandSetHandler.actionCommandSet.get(key);
                             try {

@@ -4,7 +4,6 @@ import com.eztv.mud.cache.ItemCache;
 import com.eztv.mud.cache.SkillCache;
 import com.eztv.mud.handler.core.Cache;
 import com.eztv.mud.script.ScriptFactory;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
@@ -12,7 +11,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+//        SpringApplication.run(Main.class, args);
         Server.getInstance().init();//加载服务端套接字0
         DataBase.getInstance().init();//加载数据库框架
         Word.getInstance().init();//初始化整个世界地图及详细内容
@@ -40,7 +39,7 @@ public class Main {
                     ItemCache.initItem(Word.getInstance().getGlobals());
                     break;
                 case "skill":
-                    SkillCache.initSkill(Word.getInstance().getGlobals());
+                    SkillCache.initSkill(Word.getInstance().getScriptExecutor());
                     break;
                 case "env":
                     Word.getInstance().initEnvironment();

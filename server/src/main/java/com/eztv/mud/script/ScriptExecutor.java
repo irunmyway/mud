@@ -40,13 +40,13 @@ public class ScriptExecutor {
     }
 
     public ScriptExecutor load(String scriptPath) {
+        curFile = scriptPath;
         switch (Constant.script){
             case lua:
                 if(!scriptPath.endsWith(".lua"))scriptPath = scriptPath+".lua";
                 if(luaGlobals==null)luaGlobals = JsePlatform.standardGlobals();
                 luaGlobals.STDOUT = System.out;
                 try {
-                    curFile = scriptPath;
                     LuaValue script = luaGlobals.loadfile(scriptPath).call();
                 } catch (LuaError e1) {
                 }
@@ -76,7 +76,7 @@ public class ScriptExecutor {
                     return null;
                 }
                 if (!(func instanceof LuaFunction)) {
-                    System.out.println("is not fun");
+                    System.out.println("脚本出错:【"+curFile+"】"+"is not fun");
                     return null;
                 }
                 if (args.length < 1) {
@@ -106,7 +106,7 @@ public class ScriptExecutor {
                     Object obj =  in.invokeFunction(function,args);
                     return obj==null?null:obj;
                 } catch (Exception e) {
-                    System.out.println(e.toString());
+                    System.out.println("脚本出错:【"+curFile+"】"+e.toString());
                     return null;
                 }
         }

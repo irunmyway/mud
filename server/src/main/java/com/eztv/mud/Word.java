@@ -70,7 +70,7 @@ public class Word {
         MonsterCache.initMonster(scriptExecutor, getMaps());//加载怪物
         FactionCache.initFactionCache();//加载行会
         ItemCache.initItem(globals);//加载物品
-        SkillCache.initSkill(globals);//加载技能
+        SkillCache.initSkill(scriptExecutor);//加载技能
 
         initBaseAttribute();//加载基础属性
         AuctionCache.initAuctionCache();//寄卖缓存
@@ -110,6 +110,10 @@ public class Word {
 
     public List<Item> getItems() {
         return ItemCache.getItems();
+    }
+
+    public ScriptExecutor getScriptExecutor() {
+        return scriptExecutor;
     }
 
     public String getGG() {

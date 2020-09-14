@@ -150,18 +150,18 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath,LuaOpen.LuaMa
     }
 
     @Override
-    public void 置变量(String id, String data) {
+    public void 置全局变量(String id, String data) {
         GameCache.set(id,data);
     }
 
     @Override
-    public String 取变量(String id) {
+    public String 取全局变量(String id) {
         GamePublic obj = GameCache.get(id);
         return obj==null?null:obj.getData();
     }
 
     @Override
-    public GamePublic 取变量元素(String id) {
+    public GamePublic 取全局变量元素(String id) {
         return GameCache.get(id);
     }
 
@@ -380,12 +380,12 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath,LuaOpen.LuaMa
         return str;
     }
 
-    public void 装配技能(Client client, Item item) {
+    public void 装配技能(Client client, Skill item) {
         if (item != null)
             client.getPlayer().getPlayerData().getSkill().setCurSkill(item);
     }
 
-    public boolean 学习技能(Client client, Item item) {
+    public boolean 学习技能(Client client, Skill item) {
         if (item != null) {
             if (!(client.getPlayer().getPlayerData().getSkill().getSkills().contains(item))) {
                 client.getPlayer().getPlayerData().getSkill().getSkills().add(item);
@@ -394,6 +394,15 @@ public class LuaUtil implements LuaOpen.LuaAction, LuaOpen.LuaMath,LuaOpen.LuaMa
             }
         }
         return false;
+    }
+
+    @Override
+    public Skill 取当前技能(GameObject gameObject) {
+        if (gameObject instanceof Player){
+            Skill skill = ((Player) gameObject).getPlayerData().getSkill().getCurSkill();
+            return skill==null?new Skill():skill;
+        }
+        return new Skill();
     }
 
     public void 返回系统消息(Client client, String str) {

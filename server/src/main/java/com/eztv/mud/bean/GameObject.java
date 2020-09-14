@@ -25,7 +25,7 @@ import static com.eztv.mud.constant.Cmd.doAttack;
  * 时间: 2020-07-02 20:40
  * 功能: 游戏物品人物等等所有元素的基类
  **/
-public abstract class GameObject {
+public abstract class GameObject{
     private int id;//数据库标识
     private String key;//唯一标识
     private String name;
@@ -62,15 +62,15 @@ public abstract class GameObject {
         AttackPack ap = new AttackPack();
         Properties dbConfig = BProp.getInstance().getProp();
         if(isAttack){ //攻击
-            Item curSkill = client.getPlayer().getPlayerData().getSkill().getCurSkill();
+            Skill curSkill = client.getPlayer().getPlayerData().getSkill().getCurSkill();
             if (curSkill!=null){
-                if(!getAttribute().AttackMp(curSkill.getAttribute().getMp())){//普通技能
-                    client.getPlayer().getPlayerData().getSkill().setCurSkill(null);
+                if(!getAttribute().AttackMp(curSkill.getAttribute().getMp())){//普通攻击
+                    client.getPlayer().getPlayerData().getSkill().setCurSkill(new Skill());
                     ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),(int)realAtc)));
-                }else{
+                }else{//释放技能
                     ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit_skill").toString(),curSkill.getName(),(int)realAtc)));
                 }
-            }else{//普通技能
+            }else{//普通攻击
                 ap.setDesc(GameUtil.colorString(String.format(dbConfig.get("fight_hit").toString(),(int)realAtc)));
             }
         }else{//闪避
@@ -83,7 +83,7 @@ public abstract class GameObject {
         }
 
         if (!(gameObject instanceof Player)) {//战斗事件AI
-            client.getScriptExecutor().load(gameObject.getScript() + ".lua");
+            client.getScriptExecutor().load(gameObject.getScript());
             client.getScriptExecutor().execute(脚本_事件_战斗事件, client,gameObject, new WinMessage());
         }
 
